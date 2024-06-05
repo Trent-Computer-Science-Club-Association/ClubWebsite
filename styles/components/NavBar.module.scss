@@ -1,0 +1,21 @@
+.NavBar {
+  @apply bg-color-2 flex;
+}
+
+.Icon {
+  @apply grow;
+}
+
+.LinkArea {
+  @apply flex px-4;
+  & > li {
+    @apply p-4;
+    &:hover {
+      @apply text-hover-1;
+    }
+  }
+}
+
+.currentPage {
+  @apply text-active-1;
+}

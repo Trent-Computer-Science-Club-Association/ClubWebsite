@@ -1,5 +1,7 @@
+import withYaml from 'next-plugin-yaml';
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withYaml({
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
@@ -9,6 +11,6 @@ const nextConfig = {
     workerThreads: true,
     optimizeCss: true,
   }
-};
+});
 
 export default nextConfig;
