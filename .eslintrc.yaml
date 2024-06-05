@@ -1,0 +1,43 @@
+env:
+  browser: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:@next/next/recommended'
+  - 'prettier'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: latest
+  sourceType: script
+plugins:
+  - '@typescript-eslint'
+  - 'prettier'
+rules:
+  '@typescript-eslint/no-explicit-any': 0
+  '@typescript-eslint/explicit-module-boundary-types': 0
+  '@typescript-eslint/ban-ts-comment': 0
+  '@typescript-eslint/ban-types': 0
+  '@next/next/no-img-element': 0
+  '@next/next/no-html-link-for-pages': 0
+  no-invalid-regexp: warn
+  no-unreachable: warn
+  no-eval: warn
+  vars-on-top: warn
+  '@typescript-eslint/no-unused-vars':
+    - warn
+    - args: none
+  indent:
+    - warn
+    - 2
+    - SwitchCase: 1
+  quotes:
+    - warn
+    - single
+  semi:
+    - warn
+    - always
+    - omitLastInOneLineBlock: true
+  no-var: error
+  prefer-const: warn
+  prefer-template: error
+  no-prototype-builtins: 0
