@@ -1,0 +1,21 @@
+pageInfo:
+  -
+    pageName: 'Home'
+    pageLink: '/'
+    displayInNav: true
+  -
+    pageName: 'About'
+    pageLink: '/About'
+    displayInNav: true
+  -
+    pageName: 'Blog'
+    pageLink: '/Blog'
+    displayInNav: true
+  -
+    pageName: 'Events'
+    pageLink: '/Events'
+    displayInNav: true
+  -
+    pageName: 'Contact Us'
+    pageLink: '/Contact'
+    displayInNav: true
