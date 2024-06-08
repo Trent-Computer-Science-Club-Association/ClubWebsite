@@ -1,18 +1,31 @@
 // CSS
-import styles from '../styles/components/EventBanner.module.scss';
+import styles from "../styles/components/EventBanner.module.scss";
 // Config
-import { bannerInfo } from '../config.yaml';
-import ReactMarkdown from 'react-markdown';
+import * as config from "../config.yaml";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   color?: string;
+  contextKey?: string;
 }
 
-export default function EventBanner({ color }: Props) {
-  const eventMarkdown = bannerInfo[0].text;
+export default function EventBanner({ color, contextKey }: Props) {
+  if (contextKey == null) {
+    contextKey = "bannerInfo";
+  }
 
-  // set the color to be the color if it is provided, otherwise default to the tailwind color for event-banner
-  const bannerColor = color ? color : 'event-banner';
+  const bannerInfo = config[contextKey];
+  const eventMarkdown = bannerInfo[0].text;
+  const hideBanner = bannerInfo[0]?.hidden || false;
+  const bannerColor = color ? color : "event-banner";
+
+  if (hideBanner) {
+    return null;
+  }
+
+  if (eventMarkdown == null) {
+    return null;
+  }
 
   return (
     <div
