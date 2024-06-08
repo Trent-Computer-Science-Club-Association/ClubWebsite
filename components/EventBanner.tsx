@@ -7,34 +7,30 @@ import ReactMarkdown from "react-markdown";
 interface Props {
   color?: string;
   contextKey?: string;
+  hidden?: boolean;
 }
 
-export default function EventBanner({ color, contextKey }: Props) {
-  if (contextKey == null) {
-    contextKey = "bannerInfo";
-  }
+export default function EventBanner(
+  { color = "event-banner", contextKey = "bannerInfo", hidden = false }: Props,
+) {
+  const bannerInfo = config[contextKey] || [];
 
-  const bannerInfo = config[contextKey];
-  const eventMarkdown = bannerInfo[0].text;
-  const hideBanner = bannerInfo[0]?.hidden || false;
-  const bannerColor = color ? color : "event-banner";
-
-  if (hideBanner) {
+  if (bannerInfo.length === 0 || hidden || bannerInfo[0]?.hidden) {
     return null;
   }
 
-  if (eventMarkdown == null) {
+  const eventMarkdown = bannerInfo[0].text;
+  if (!eventMarkdown) {
     return null;
   }
 
   return (
-    <div
-      className={styles.EventBanner}
-      style={{ backgroundColor: bannerColor }}
-    >
+    <div className={styles.EventBanner} style={{ backgroundColor: color }}>
       {/* Event Content */}
       <div className={styles.EventContent}>
-        <ReactMarkdown children={eventMarkdown} className={styles.Markdown} />
+        <ReactMarkdown className={styles.Markdown}>
+          {eventMarkdown}
+        </ReactMarkdown>
       </div>
     </div>
   );
