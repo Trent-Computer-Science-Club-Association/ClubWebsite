@@ -1,21 +1,20 @@
 // CSS
-import styles from "../styles/components/EventBanner.module.scss";
+import styles from '../styles/components/EventBanner.module.scss';
 // Config
-import * as config from "../config.yaml";
-import ReactMarkdown from "react-markdown";
+import * as config from '../config.yaml';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   color?: string;
   contextKey?: string;
-  hidden?: boolean;
 }
 
 export default function EventBanner(
-  { color = "event-banner", contextKey = "bannerInfo", hidden = false }: Props,
+  { color = 'event-banner', contextKey = 'bannerInfo' }: Props,
 ) {
   const bannerInfo = config[contextKey] || [];
 
-  if (bannerInfo.length === 0 || hidden || bannerInfo[0]?.hidden) {
+  if (bannerInfo.length === 0 || bannerInfo[0]?.hidden) {
     return null;
   }
 
