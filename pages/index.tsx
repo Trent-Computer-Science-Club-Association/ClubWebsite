@@ -7,7 +7,7 @@ import EventBanner from "../components/EventBanner";
 export default function Home() {
   return (
     <>
-      <EventBanner contentKey="bannerInfo" />
+      <EventBanner contextKey="bannerInfo" />
       <NavBar currentPage="Home" />
       <section className={styles.container}>
         <aside className={styles.SideArea}></aside>
