@@ -1,0 +1,58 @@
+.HeroBanner {
+  @apply flex justify-between items-center bg-color-1 text-white p-8 h-[35em];
+}
+
+@media (max-width: 768px) {
+  .HeroBanner {
+    @apply flex-col h-[50em];
+  }
+}
+
+.leftColumn {
+  @apply flex flex-col flex-1 justify-center;
+
+  .title {
+    @apply font-mono;
+    @apply text-5xl font-bold leading-normal;
+    @apply ml-5;
+  }
+
+  .divider {
+    @apply bg-white h-0.5 mb-5 mr-10;
+  }
+
+  .tagLine {
+    @apply text-2xl;
+    @apply italic;
+    @apply ml-5;
+  }
+}
+
+.rightColumn {
+  @apply flex flex-1 flex-col items-center justify-center;
+
+  img {
+    @apply w-full h-auto;
+    @apply max-w-3xl;
+    @apply rounded-md;
+  }
+
+  .socials {
+    @apply flex justify-center mt-4;
+
+    a {
+      @apply mx-2;
+      @apply bg-black rounded-md;
+      @apply transition duration-300 ease-in-out;
+      @apply hover:scale-110;
+      @apply relative;
+
+      img {
+        @apply w-12 h-12;
+        @apply p-2;
+        @apply shadow-md;
+        @apply hover:shadow-lg;
+      }
+    }
+  }
+}
