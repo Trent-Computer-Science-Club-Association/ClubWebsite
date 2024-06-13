@@ -14,11 +14,11 @@ export default function EventBanner(
 ) {
   const bannerInfo = config[contextKey] || [];
 
-  if (bannerInfo.length === 0 || bannerInfo[0]?.hidden) {
+  if (bannerInfo.length === 0 || bannerInfo?.hidden) {
     return null;
   }
 
-  const eventMarkdown = bannerInfo[0].text;
+  const eventMarkdown = bannerInfo.text;
   if (!eventMarkdown) {
     return null;
   }

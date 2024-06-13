@@ -20,4 +20,4 @@ pageInfo:
     pageLink: '/Contact'
     displayInNav: true
 bannerInfo:
-  - text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!'
+  text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!'
