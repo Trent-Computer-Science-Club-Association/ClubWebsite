@@ -10,7 +10,7 @@ const nextConfig = withYaml({
   experimental: {
     workerThreads: true,
     optimizeCss: true,
-  }
+  },
 });
 
 export default nextConfig;

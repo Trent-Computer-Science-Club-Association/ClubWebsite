@@ -21,23 +21,23 @@ rules:
   '@next/next/no-html-link-for-pages': 0
   no-invalid-regexp: warn
   no-unreachable: warn
-  no-eval: warn
+  no-eval: error
   vars-on-top: warn
   '@typescript-eslint/no-unused-vars':
     - warn
     - args: none
   indent:
-    - warn
+    - error
     - 2
     - SwitchCase: 1
   quotes:
-    - warn
+    - error
     - single
   semi:
-    - warn
+    - error
     - always
     - omitLastInOneLineBlock: true
   no-var: error
   prefer-const: warn
   prefer-template: error
-  no-prototype-builtins: 0
+  no-prototype-builtins: error

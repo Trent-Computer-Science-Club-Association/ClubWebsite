@@ -12,7 +12,10 @@ export default function NavBar(props: Props) {
   pageInfo.forEach((page, index) => {
     if (!page.displayInNav) return;
     navContent.push(
-      <li key={index} className={props.currentPage == page.pageName ? styles.currentPage : ''}>
+      <li
+        key={index}
+        className={props.currentPage == page.pageName ? styles.currentPage : ''}
+      >
         <a href={page.pageLink}>{page.pageName}</a>
       </li>
     );
@@ -21,12 +24,9 @@ export default function NavBar(props: Props) {
   return (
     <nav className={styles.NavBar}>
       {/* TODO: LOGO */}
-      <div className={styles.Icon}>
-      </div>
+      <div className={styles.Icon}></div>
       {/* Navigation */}
-      <ul className={styles.LinkArea}>
-        {...navContent}
-      </ul>
+      <ul className={styles.LinkArea}>{...navContent}</ul>
     </nav>
   );
 }
