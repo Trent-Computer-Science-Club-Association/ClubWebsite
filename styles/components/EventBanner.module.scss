@@ -1,0 +1,25 @@
+.EventBanner {
+  @apply bg-event-banner;
+  @apply flex justify-center items-center;
+  @apply p-4;
+}
+
+.EventContent {
+  @apply text-color-2;
+  @apply flex flex-col;
+  @apply gap-2;
+}
+
+.Markdown {
+  @apply leading-relaxed;
+  @apply text-base;
+
+  a {
+    @apply underline;
+    @apply text-color-2;
+
+    &:hover {
+      @apply text-hover-2;
+    }
+  }
+}

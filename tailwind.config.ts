@@ -16,7 +16,9 @@ const config: Config = {
         'color-3': '#575555', // Aside Gray
         'active-1': '#4db6ac', // TODO: Decide on a color for this
         'hover-1': '#4db6ac', // TODO: Decide on a color for this
-      }
+        'hover-2': '#89B4FA', // TODO: Decide on a color for this
+        'event-banner': '#5E18EB', // Event Banner Background
+      },
     },
   },
   plugins: [],
