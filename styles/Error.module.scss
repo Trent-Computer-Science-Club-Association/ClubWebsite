@@ -1,0 +1,13 @@
+.container {
+    @apply flex flex-col justify-center items-center bg-color-2 h-screen;
+}
+
+.heading {
+    @apply text-2xl;
+    text-align: center;
+}
+
+.content {
+    @apply py-4;
+    text-align: center;
+}
