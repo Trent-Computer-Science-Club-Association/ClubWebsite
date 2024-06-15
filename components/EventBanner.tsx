@@ -9,9 +9,10 @@ interface Props {
   contextKey?: string;
 }
 
-export default function EventBanner(
-  { color = 'event-banner', contextKey = 'bannerInfo' }: Props,
-) {
+export default function EventBanner({
+  color = 'event-banner',
+  contextKey = 'bannerInfo',
+}: Props) {
   const bannerInfo = config[contextKey] || [];
 
   if (bannerInfo.length === 0 || bannerInfo?.hidden) {
