@@ -1,13 +1,17 @@
+.canvas {
+    @apply flex flex-col size-full h-screen;
+}
+
+.page {
+    @apply flex flex-1 rounded-t-lg p-4 bg-[#222];
+}
+
 .container {
-    @apply flex flex-col justify-center items-center bg-color-2 h-screen;
+    @apply flex flex-col size-full justify-center items-center rounded-lg bg-color-1;
+    @apply text-white;
+    text-align: center;
 }
 
 .heading {
     @apply text-2xl;
-    text-align: center;
-}
-
-.content {
-    @apply py-4;
-    text-align: center;
 }
