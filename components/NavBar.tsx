@@ -2,6 +2,9 @@
 import styles from '../styles/components/NavBar.module.scss';
 // Config
 import { pageInfo } from '../config.yaml';
+// Components
+import Button from '../components/Button';
+
 // Component
 interface Props {
   currentPage: string;
@@ -16,7 +19,15 @@ export default function NavBar(props: Props) {
         key={index}
         className={props.currentPage == page.pageName ? styles.currentPage : ''}
       >
-        <a href={page.pageLink}>{page.pageName}</a>
+        <Button 
+          href={page.pageLink} 
+          color={props.currentPage == page.pageName ? 'text-active-1' : 'text-color-3'}
+          backgroundColor="bg-transparent"
+          hoverColor="hover:text-hover-1"
+          borderRadius=""
+        >
+          {page.pageName}
+        </Button>
       </li>
     );
   });
@@ -26,7 +37,7 @@ export default function NavBar(props: Props) {
       {/* TODO: LOGO */}
       <div className={styles.Icon}></div>
       {/* Navigation */}
-      <ul className={styles.LinkArea}>{...navContent}</ul>
+      <ul className={styles.LinkArea}>{navContent}</ul>
     </nav>
   );
 }
