@@ -31,7 +31,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   // Runtime validation to ensure only label or children is provided
   if ((label && children) || (!label && !children)) {
-    throw new Error('Button component must have either a label or children, but not both.');
+    throw new Error(
+      'Button component must have either a label or children, but not both.'
+    );
   }
 
   // Destructure padding and margin tuples
@@ -40,7 +42,9 @@ const Button: React.FC<ButtonProps> = ({
 
   // Button content
   const content = (
-    <span className={`${color} ${backgroundColor} ${borderRadius} ${hoverColor} ${paddingX} ${paddingY} ${marginX} ${marginY}`}>
+    <span
+      className={`${color} ${backgroundColor} ${borderRadius} ${hoverColor} ${paddingX} ${paddingY} ${marginX} ${marginY}`}
+    >
       {label || children}
     </span>
   );
