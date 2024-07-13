@@ -23,18 +23,12 @@ const Button: React.FC<ButtonProps> = ({
     );
   }
 
-
   return href ? (
-    <Link href={href} prefetch={true}>
-      <span className={`${className}`}>
-        {label || children}
-      </span>
+    <Link href={href} >
+      <span className={`${className}`}>{label || children}</span>
     </Link>
   ) : (
-    <button
-      onClick={onClick}
-      className={`${className}`}
-    >
+    <button onClick={onClick} className={`${className}`}>
       {label || children}
     </button>
   );
