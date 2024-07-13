@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'next/link';
 
 interface ButtonProps {
   label?: string;
@@ -50,13 +51,14 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return href ? (
-    <a
-      href={href}
-      className={`${className}`}
-      onClick={disabled ? (e) => e.preventDefault() : undefined}
-    >
-      {content}
-    </a>
+    <Link href={href}>
+      <a
+        className={`${className}`}
+        onClick={disabled ? (e) => e.preventDefault() : undefined}
+      >
+        {content}
+      </a>
+    </Link>
   ) : (
     <button
       onClick={onClick}
