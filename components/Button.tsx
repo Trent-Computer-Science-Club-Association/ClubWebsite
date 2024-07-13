@@ -51,8 +51,8 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return href ? (
-    <Link href={href}>
-        {content}
+    <Link href={href} prefetch={true}>
+      {content}
     </Link>
   ) : (
     <button
