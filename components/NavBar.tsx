@@ -21,14 +21,11 @@ export default function NavBar(props: Props) {
       >
         <Button
           href={page.pageLink}
-          color={
-            props.currentPage == page.pageName
+          className={`${
+            props.currentPage === page.pageName
               ? 'text-active-1'
               : 'text-color-3'
-          }
-          backgroundColor='bg-transparent'
-          hoverColor='hover:text-hover-1'
-          borderRadius=''
+          } bg-transparent hover:text-hover-1`}
         >
           {page.pageName}
         </Button>

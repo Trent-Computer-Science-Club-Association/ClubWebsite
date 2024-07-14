@@ -1,30 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
 
-interface ButtonProps {
-  label?: string;
-  children?: React.ReactNode;
+interface Props {
   onClick?: () => void;
   href?: string;
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
+interface LabelProps extends Props {
+  label: string;
+}
+
+interface ChildrenProps extends Props {
+  children: React.ReactNode;
+}
+
+const Button: React.FC<LabelProps | ChildrenProps> = ({
   label,
   children,
   onClick,
   href,
   className,
 }) => {
-  // Runtime validation to ensure only label or children is provided
-  if ((label && children) || (!label && !children)) {
-    throw new Error(
-      'Button component must have either a label or children, but not both.'
-    );
-  }
-
   return href ? (
-    <Link href={href} >
+    <Link href={href}>
       <span className={`${className}`}>{label || children}</span>
     </Link>
   ) : (
