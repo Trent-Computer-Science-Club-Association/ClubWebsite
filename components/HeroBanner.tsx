@@ -1,6 +1,6 @@
 // CSS
 import styles from '../styles/components/HeroBanner.module.scss';
-import Button from './Button';
+import Button, { ButtonType } from './Button';
 import { HeroIcons } from '../config.yaml';
 import Image from 'next/image';
 
@@ -18,7 +18,7 @@ export default function HeroBanner({ imagePath }: Props) {
       {/* Left Column */}
       <div className={styles.leftColumn}>
         <Image src={imagePath} alt='TCSCA Logo' width={100} height={100} />
-        <Button>Apply</Button>
+        <Button type={ButtonType.LIGHT}>Apply</Button>
       </div>
       {/* Right Column */}
       <div className={styles.rightColumn}>
@@ -29,12 +29,16 @@ export default function HeroBanner({ imagePath }: Props) {
         <div className={styles.tagline}>Where passion meets code</div>
         <div className={styles.socialMedia}>
           {HeroIcons.map((icon) => (
-            <Image
-              src={icon.path}
-              alt={icon.altText}
-              width={100}
-              height={100}
-            />
+            <Button key={icon.altText} type={ButtonType.SOCIAL}>
+              <Image
+                key={icon.altText}
+                src={icon.path}
+                alt={icon.altText}
+                width={100}
+                height={100}
+                className={styles.socialMedia}
+              />
+            </Button>
           ))}
         </div>
       </div>

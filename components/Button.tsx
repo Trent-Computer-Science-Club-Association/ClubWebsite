@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import styles from '../styles/Button.module.scss';
 
 enum ButtonType {
-  NAVBAR = '',
-  LIGHT = 'light-btn',
-  SOCIAL = 'social-btn',
+  NAVBAR = styles.navBtn,
+  LIGHT = styles.lightBtn,
+  SOCIAL = styles.socialBtn,
 }
 
 interface Props {
@@ -28,11 +29,11 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
   onClick,
   href,
   className,
-  type,
+  type = ButtonType.NAVBAR,
 }) => {
   return href ? (
-    <Link href={href}>
-      <span className={`${className} ${type}`}>{label || children}</span>
+    <Link href={href} className={`${className} ${type}`}>
+      <span>{label || children}</span>
     </Link>
   ) : (
     <button onClick={onClick} className={`${className} ${type}`}>
@@ -42,3 +43,4 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
 };
 
 export default Button;
+export { ButtonType };

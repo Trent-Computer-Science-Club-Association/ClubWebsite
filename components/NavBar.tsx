@@ -3,7 +3,7 @@ import styles from '../styles/components/NavBar.module.scss';
 // Config
 import { pageInfo } from '../config.yaml';
 // Components
-import Button from '../components/Button';
+import Button, { ButtonType } from '../components/Button';
 
 // Component
 interface Props {
@@ -20,6 +20,7 @@ export default function NavBar(props: Props) {
         className={props.currentPage == page.pageName ? styles.currentPage : ''}
       >
         <Button
+          type={ButtonType.NAVBAR}
           href={page.pageLink}
           className={`${
             props.currentPage === page.pageName

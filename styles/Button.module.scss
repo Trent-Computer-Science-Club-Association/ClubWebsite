@@ -1,19 +1,20 @@
-.socialMedia {
+.socialBtn {
   @apply flex gap-4;
   @apply justify-center;
-  > img {
-    @apply bg-socials;
-    @apply rounded-lg;
-    @apply w-10 h-10;
-    @apply p-2;
-    @apply shadow-md;
-    @apply hover:shadow-lg;
-  }
+  @apply bg-socials;
+  @apply rounded-md;
+  @apply w-10 h-10;
+  @apply p-1;
+  @apply shadow-md;
+  @apply hover:shadow-lg;
 }
 
 .lightBtn {
   @apply bg-color-2;
-  @apply rounded-lg border-2 border-black;
+  @apply rounded-md border-2 border-black;
   @apply p-2;
   @apply font-bold;
+}
+
+.navbarBtn {
 }

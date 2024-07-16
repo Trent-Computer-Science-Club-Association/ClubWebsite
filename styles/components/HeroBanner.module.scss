@@ -14,13 +14,6 @@
     @apply object-cover mb-4 rounded-xl;
     @apply bg-black;
   }
-
-  Button {
-    @apply bg-color-2;
-    @apply rounded-lg border-2 border-black;
-    @apply p-2;
-    @apply font-bold;
-  }
 }
 
 .rightColumn {
@@ -47,13 +40,5 @@
   .socialMedia {
     @apply flex gap-4;
     @apply justify-center;
-    > img {
-      @apply bg-socials;
-      @apply rounded-lg;
-      @apply w-10 h-10;
-      @apply p-2;
-      @apply shadow-md;
-      @apply hover:shadow-lg;
-    }
   }
 }
