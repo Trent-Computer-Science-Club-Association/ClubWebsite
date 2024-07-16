@@ -17,8 +17,6 @@ export default function HeroBanner({ imagePath }: Props) {
     <div className={styles.HeroBanner}>
       {/* Left Column */}
       <div className={styles.leftColumn}>
-        {/* square with ./public/images/logo.svg in it */}
-        {/* <img src={imagePath} alt="TCSCA Logo" /> */}
         <Image src={imagePath} alt='TCSCA Logo' width={100} height={100} />
         <Button>Apply</Button>
       </div>
@@ -31,7 +29,12 @@ export default function HeroBanner({ imagePath }: Props) {
         <div className={styles.tagline}>Where passion meets code</div>
         <div className={styles.socialMedia}>
           {HeroIcons.map((icon) => (
-            <img src={icon.path} alt={icon.altText} key={icon.altText} />
+            <Image
+              src={icon.path}
+              alt={icon.altText}
+              width={100}
+              height={100}
+            />
           ))}
         </div>
       </div>
