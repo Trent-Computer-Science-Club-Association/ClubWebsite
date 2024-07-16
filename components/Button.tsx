@@ -31,13 +31,16 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
   className,
   type = ButtonType.NAVBAR,
 }) => {
+  const classes = `${className} ${type}`;
+  const content = label || children;
+
   return href ? (
-    <Link href={href} className={`${className} ${type}`}>
-      <span>{label || children}</span>
+    <Link href={href} className={classes}>
+      <span> {content} </span>
     </Link>
   ) : (
-    <button onClick={onClick} className={`${className} ${type}`}>
-      {label || children}
+    <button onClick={onClick} className={classes}>
+      {content}
     </button>
   );
 };
