@@ -19,5 +19,10 @@
   @apply font-bold;
 }
 
-.navbarBtn {
+.navBtn {
+  @apply text-color-3;
+  @apply bg-transparent hover:text-hover-1;
+  &.active {
+    @apply text-active-1;
+  }
 }
