@@ -2,12 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/Button.module.scss';
 
-enum ButtonType {
-  NAVBAR = styles.navBtn,
-  NAVBAR_ACTIVE = [styles.navBtn, styles.active].join(' '),
-  LIGHT = styles.lightBtn,
-  SOCIAL = styles.socialBtn,
-}
+const ButtonType = {
+  NAVBAR: styles.navBtn,
+  NAVBAR_ACTIVE: [styles.navBtn, styles.active].join(' '),
+  LIGHT: styles.lightBtn,
+  SOCIAL: styles.socialBtn,
+} as const;
+
+type ButtonType = typeof ButtonType[keyof typeof ButtonType]
 
 interface Props {
   onClick?: () => void;
@@ -19,10 +21,12 @@ interface Props {
 
 interface LabelProps extends Props {
   label: string;
+  children?: never;
 }
 
 interface ChildrenProps extends Props {
   children: React.ReactNode;
+  label?: never;
 }
 
 const Button: React.FC<LabelProps | ChildrenProps> = ({
