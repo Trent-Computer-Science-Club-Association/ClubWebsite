@@ -12,7 +12,7 @@ export default function Home() {
       <NavBar currentPage='Home' />
       <section className={styles.container}>
         <main className={styles.MainArea}>
-          <HeroBanner imagePath='logo.svg' />
+          <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
         </main>
       </section>
     </>

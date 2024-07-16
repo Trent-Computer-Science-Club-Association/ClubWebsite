@@ -6,14 +6,15 @@ import Image from '../components/Image';
 
 interface Props {
   imagePath: string;
+  altText: string;
 }
 
-export default function HeroBanner({ imagePath }: Props) {
+export default function HeroBanner({ imagePath, altText }: Props) {
   return (
     <div className={styles.HeroBanner}>
       {/* Left Column */}
       <div className={styles.leftColumn}>
-        <Image src={imagePath} alt='TCSCA Logo' width={100} height={100} />
+        <Image src={imagePath} alt={altText} width={100} height={100} />
         <Button type={ButtonType.LIGHT}>Apply</Button>
       </div>
       {/* Right Column */}
