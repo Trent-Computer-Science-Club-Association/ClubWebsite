@@ -20,7 +20,7 @@
   @apply col-span-1 grid place-items-center;
   @apply gap-4;
 
-  .title {
+  h1 {
     @apply text-5xl font-bold text-center;
     @apply text-color-2;
   }

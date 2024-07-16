@@ -19,9 +19,9 @@ export default function HeroBanner({ imagePath, altText }: Props) {
       </div>
       {/* Right Column */}
       <div className={styles.rightColumn}>
-        <div className={styles.title}>
+        <h1>
           Trent Computer Science Club Association
-        </div>
+        </h1>
         <hr />
         <div className={styles.tagline}>Where passion meets code</div>
         <div className={styles.socialMedia}>
