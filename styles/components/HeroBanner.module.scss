@@ -23,27 +23,27 @@
   }
 }
 
-.rightColumn{
+.rightColumn {
   @apply col-span-1 grid place-items-center;
   @apply gap-4;
-  
+
   .title {
     @apply text-5xl font-bold text-center;
     @apply text-color-2;
   }
-  
+
   .divider {
     @apply bg-color-2 h-0.5;
     @apply w-4/5;
   }
-  
+
   .tagline {
     @apply text-xl;
     @apply italic;
     @apply text-center;
     @apply text-color-2;
   }
-  
+
   .socialMedia {
     @apply flex gap-4;
     @apply justify-center;
@@ -57,5 +57,3 @@
     }
   }
 }
-
-
