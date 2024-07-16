@@ -31,7 +31,7 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
   className,
   type = ButtonType.NAVBAR,
 }) => {
-  const classes = `${className} ${type}`;
+  const classes = `${className} ${type} ${styles.button}`;
   const content = label || children;
 
   return href ? (

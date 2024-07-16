@@ -1,3 +1,7 @@
+.button {
+  @apply hover:shadow-lg;
+}
+
 .socialBtn {
   @apply flex;
   @apply justify-center;
@@ -6,7 +10,6 @@
   @apply w-10 h-10;
   @apply p-1;
   @apply shadow-md;
-  @apply hover:shadow-lg;
 }
 
 .lightBtn {
