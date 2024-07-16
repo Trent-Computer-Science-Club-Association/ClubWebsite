@@ -14,6 +14,7 @@ interface Props {
   href?: string;
   className?: string;
   type: ButtonType;
+  prefetch?: boolean;
 }
 
 interface LabelProps extends Props {
@@ -31,12 +32,13 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
   href,
   className,
   type = ButtonType.NAVBAR,
+  prefetch = false,
 }) => {
   const classes = `${className} ${type} ${styles.button}`;
   const content = label || children;
 
   return href ? (
-    <Link href={href} className={classes} onClick={onClick}>
+    <Link href={href} className={classes} onClick={onClick} prefetch={prefetch}>
       <span> {content} </span>
     </Link>
   ) : (
