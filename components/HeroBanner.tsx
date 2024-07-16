@@ -23,7 +23,7 @@ export default function HeroBanner({ imagePath, altText }: Props) {
         <hr />
         <div className={styles.tagline}>Where passion meets code</div>
         <div className={styles.socialMedia}>
-          {HeroIcons.map((icon) => (
+          {heroIcons.map((icon) => (
             <Button key={icon.altText} type={ButtonType.SOCIAL}>
               <Image
                 key={icon.altText}
