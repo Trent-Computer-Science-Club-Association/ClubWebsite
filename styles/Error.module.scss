@@ -13,5 +13,9 @@
 }
 
 .heading {
-    @apply text-2xl;
+    @apply text-2xl font-bold;
+}
+
+.return {
+    @apply bg-color-2 text-color-4 border-color-4 border-2 py-1 px-3 m-5 rounded-lg
 }
