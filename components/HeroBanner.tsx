@@ -2,7 +2,7 @@
 import styles from '../styles/components/HeroBanner.module.scss';
 import Button, { ButtonType } from './Button';
 import { HeroIcons } from '../config.yaml';
-import Image from 'next/image';
+import Image from '../components/Image';
 
 interface Props {
   imagePath: string;
