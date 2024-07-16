@@ -4,7 +4,7 @@ import styles from '../styles/Button.module.scss';
 
 enum ButtonType {
   NAVBAR = styles.navBtn,
-  NAVBAR_ACTIVE = styles.active,
+  NAVBAR_ACTIVE = [styles.navBtn, styles.active].join(' '),
   LIGHT = styles.lightBtn,
   SOCIAL = styles.socialBtn,
 }

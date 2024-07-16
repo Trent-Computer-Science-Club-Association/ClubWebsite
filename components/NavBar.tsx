@@ -19,7 +19,15 @@ export default function NavBar(props: Props) {
         key={index}
         className={props.currentPage == page.pageName ? styles.currentPage : ''}
       >
-        <Button type={ButtonType.NAVBAR} href={page.pageLink}>
+        <Button
+          type={ButtonType.NAVBAR}
+          href={page.pageLink}
+          className={
+            props.currentPage == page.pageName
+              ? ButtonType.NAVBAR_ACTIVE
+              : ButtonType.NAVBAR
+          }
+        >
           {page.pageName}
         </Button>
       </li>
