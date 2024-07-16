@@ -9,10 +9,6 @@ interface Props {
 }
 
 export default function HeroBanner({ imagePath }: Props) {
-  if (!imagePath) {
-    throw new Error('Image path is required');
-  }
-
   return (
     <div className={styles.HeroBanner}>
       {/* Left Column */}
