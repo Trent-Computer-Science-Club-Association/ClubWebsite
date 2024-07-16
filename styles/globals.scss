@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+hr{
+  @apply bg-color-2 h-0.5;
+  @apply w-4/5;
+}

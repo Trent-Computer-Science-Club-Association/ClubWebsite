@@ -21,7 +21,7 @@ export default function HeroBanner({ imagePath }: Props) {
         <div className={styles.title}>
           Trent Computer Science Club Association
         </div>
-        <div className={styles.divider}></div>
+        <hr />
         <div className={styles.tagline}>Where passion meets code</div>
         <div className={styles.socialMedia}>
           {HeroIcons.map((icon) => (
