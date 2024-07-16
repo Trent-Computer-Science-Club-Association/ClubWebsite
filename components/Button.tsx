@@ -35,7 +35,7 @@ const Button: React.FC<LabelProps | ChildrenProps> = ({
   const content = label || children;
 
   return href ? (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} onClick={onClick}>
       <span> {content} </span>
     </Link>
   ) : (
