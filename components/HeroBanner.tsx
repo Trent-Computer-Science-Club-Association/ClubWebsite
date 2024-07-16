@@ -1,37 +1,38 @@
 // CSS
 import styles from '../styles/components/HeroBanner.module.scss';
+import Button from './Button';
 import { HeroIcons } from '../config.yaml';
+import Image from 'next/image';
 
-// left and right column, right side taking up 2/3 of the space
 interface Props {
   imagePath: string;
 }
 
 export default function HeroBanner({ imagePath }: Props) {
-
   if (!imagePath) {
     throw new Error('Image path is required');
   }
 
   return (
     <div className={styles.HeroBanner}>
-      {/* 2 columns, 1 on the left and 1 on the right */}
-      < div className={styles.leftColumn} >
-        <h1 className={styles.title}>Trent Computer Science Club Association</h1>
+      {/* Left Column */}
+      <div className={styles.leftColumn}>
+        {/* square with ./public/images/logo.svg in it */}
+        {/* <img src={imagePath} alt="TCSCA Logo" /> */}
+        <Image src={imagePath} alt="TCSCA Logo" width={100} height={100} />
+        <Button>Apply</Button>
+      </div>
+      {/* Right Column */}
+      <div className={styles.rightColumn}>
+        <div className={styles.title}>Trent Computer Science Club Association</div>
         <div className={styles.divider}></div>
-        <p className={styles.tagLine}>Where Innovation Happens</p>
-      </div >
-      {/* Right column */}
-      < div className={styles.rightColumn} >
-        <img src={imagePath} alt="Hero Banner" />
-        <div className={styles.socials}>
-          {HeroIcons.map((icon: { link: string, altText: string, path: string }, index: number) => (
-            <a key={index} href={icon.link} className={styles.socialIcon} >
-              <img src={icon.path} alt={icon.altText} />
-            </a>
+        <div className={styles.tagline}>Where passion meets code</div>
+        <div className={styles.socialMedia}>
+          {HeroIcons.map((icon) => (
+            <img src={icon.path} alt={icon.altText} key={icon.altText} />
           ))}
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }

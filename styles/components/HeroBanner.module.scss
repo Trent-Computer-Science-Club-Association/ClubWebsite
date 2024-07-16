@@ -1,58 +1,61 @@
+// left side should have icon and apply button
+// right side should have title, divider, tagline and buttons for social media
+// use grid for layout
 .HeroBanner {
-  @apply flex justify-between items-center bg-color-1 text-white p-8 h-[35em];
-}
-
-@media (max-width: 768px) {
-  .HeroBanner {
-    @apply flex-col h-[50em];
-  }
+  @apply grid grid-cols-2 gap-4 p-4;
+  @apply my-8;
 }
 
 .leftColumn {
-  @apply flex flex-col flex-1 justify-center;
+  @apply col-span-1 grid place-items-center;
 
-  .title {
-    @apply font-mono;
-    @apply text-5xl font-bold leading-normal;
-    @apply ml-5;
+  img {
+    @apply w-1/2 h-auto;
+    @apply object-cover mb-4 rounded-xl;
+    @apply bg-black;
   }
 
-  .divider {
-    @apply bg-white h-0.5 mb-5 mr-10;
-  }
-
-  .tagLine {
-    @apply text-2xl;
-    @apply italic;
-    @apply ml-5;
+  Button {
+    @apply bg-color-2;
+    @apply rounded-lg border-2 border-black;
+    @apply p-2;
+    @apply font-bold;
   }
 }
 
-.rightColumn {
-  @apply flex flex-1 flex-col items-center justify-center;
-
-  img {
-    @apply w-full h-auto;
-    @apply max-w-3xl;
-    @apply rounded-md;
+.rightColumn{
+  @apply col-span-1 grid place-items-center;
+  @apply gap-4;
+  
+  .title {
+    @apply text-5xl font-bold text-center;
+    @apply text-color-2;
   }
-
-  .socials {
-    @apply flex justify-center mt-4;
-
-    a {
-      @apply mx-2;
-      @apply bg-black rounded-md;
-      @apply transition duration-300 ease-in-out;
-      @apply hover:scale-110;
-      @apply relative;
-
-      img {
-        @apply w-12 h-12;
-        @apply p-2;
-        @apply shadow-md;
-        @apply hover:shadow-lg;
-      }
+  
+  .divider {
+    @apply bg-color-2 h-0.5;
+    @apply w-4/5;
+  }
+  
+  .tagline {
+    @apply text-xl;
+    @apply italic;
+    @apply text-center;
+    @apply text-color-2;
+  }
+  
+  .socialMedia {
+    @apply flex gap-4;
+    @apply justify-center;
+    > img {
+      @apply bg-socials;
+      @apply rounded-lg;
+      @apply w-10 h-10;
+      @apply p-2;
+      @apply shadow-md;
+      @apply hover:shadow-lg;
     }
   }
 }
+
+
