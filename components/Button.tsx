@@ -9,7 +9,7 @@ const ButtonType = {
   SOCIAL: styles.socialBtn,
 } as const;
 
-type ButtonType = typeof ButtonType[keyof typeof ButtonType]
+type ButtonType = (typeof ButtonType)[keyof typeof ButtonType];
 
 interface Props {
   onClick?: () => void;

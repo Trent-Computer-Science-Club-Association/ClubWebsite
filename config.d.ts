@@ -7,6 +7,7 @@ declare module '*.yaml' {
 
   interface BannerInfo {
     text: string;
+    hidden?: boolean;
   }
 
   interface HeroIcon {
