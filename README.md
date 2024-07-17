@@ -18,3 +18,4 @@ In order to get started, fork this project, clone the forked repository and run 
 - `styles` - This folder contains all styles for the project
 - `components` - This folder contains all components for the project
 - `_Static` - This folder will contain any static code or files for the project
+
