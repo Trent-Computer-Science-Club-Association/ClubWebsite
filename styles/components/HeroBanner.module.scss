@@ -8,12 +8,6 @@
 
 .leftColumn {
   @apply col-span-1 grid place-items-center;
-
-  img {
-    @apply w-1/2 h-auto;
-    @apply object-cover mb-4 rounded-xl;
-    @apply bg-black;
-  }
 }
 
 .rightColumn {

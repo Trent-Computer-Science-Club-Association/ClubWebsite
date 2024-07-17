@@ -3,6 +3,7 @@ import styles from '../styles/components/HeroBanner.module.scss';
 import Button, { ButtonType } from './Button';
 import { heroIcons } from '../config.yaml';
 import Image from '../components/Image';
+import Logo from '../components/Logo';
 
 interface Props {
   imagePath: string;
@@ -14,7 +15,7 @@ export default function HeroBanner({ imagePath, altText }: Props) {
     <div className={styles.HeroBanner}>
       {/* Left Column */}
       <div className={styles.leftColumn}>
-        <Image src={imagePath} alt={altText} width={100} height={100} />
+        <Logo />
         <Button type={ButtonType.LIGHT}>Apply</Button>
       </div>
       {/* Right Column */}
