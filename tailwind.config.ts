@@ -18,6 +18,7 @@ const config: Config = {
         'hover-1': '#4db6ac', // TODO: Decide on a color for this
         'hover-2': '#89B4FA', // TODO: Decide on a color for this
         'event-banner': '#5E18EB', // Event Banner Background
+        socials: '#7BD4CB', // Social
       },
     },
   },
