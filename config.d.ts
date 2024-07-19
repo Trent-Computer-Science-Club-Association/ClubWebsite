@@ -16,10 +16,17 @@ declare module '*.yaml' {
     path: string;
   }
 
+  interface AboutUs {
+    text: string;
+    image: string;
+    altText: string;
+  }
+
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
     heroIcons: HeroIcon[];
+    aboutUs: AboutUs;
   }
 
   const value: Config;
