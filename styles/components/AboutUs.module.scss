@@ -1,0 +1,31 @@
+.AboutUs {
+  @apply grid grid-cols-2 gap-4 p-4;
+  @apply bg-dark-gray;
+  @apply py-16;
+  @apply px-10;
+}
+
+.TextAndButton {
+  @apply col-span-1;
+}
+
+.AboutUsText {
+  @apply text-color-2;
+  @apply leading-relaxed;
+  @apply text-xl;
+  @apply pr-4;
+}
+
+.AboutUsButton {
+  @apply mt-4;
+  @apply object-cover;
+  @apply px-4;
+}
+
+.AboutUsImage {
+  @apply col-span-1;
+  @apply rounded-xl;
+  @apply w-full;
+  @apply bg-black;
+  @apply self-center;
+}
