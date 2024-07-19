@@ -1,9 +1,9 @@
-// Style
 import styles from '../styles/Home.module.scss';
 // Internal Components
 import NavBar from '../components/NavBar';
 import EventBanner from '../components/EventBanner';
 import HeroBanner from '../components/HeroBanner';
+import SectionHeader from '../components/SectionHeader';
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
       <section className={styles.container}>
         <main className={styles.MainArea}>
           <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
+          <SectionHeader title='About Us' location='justify-start' />
         </main>
       </section>
     </>
