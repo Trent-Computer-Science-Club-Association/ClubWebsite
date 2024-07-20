@@ -2,6 +2,9 @@
 import styles from '../styles/components/NavBar.module.scss';
 // Config
 import { pageInfo } from '../config.yaml';
+// Components
+import Button, { ButtonType } from '../components/Button';
+
 // Component
 interface Props {
   currentPage: string;
@@ -12,8 +15,21 @@ export default function NavBar(props: Props) {
   pageInfo.forEach((page, index) => {
     if (!page.displayInNav) return;
     navContent.push(
-      <li key={index} className={props.currentPage == page.pageName ? styles.currentPage : ''}>
-        <a href={page.pageLink}>{page.pageName}</a>
+      <li
+        key={index}
+        className={props.currentPage == page.pageName ? styles.currentPage : ''}
+      >
+        <Button
+          type={ButtonType.NAVBAR}
+          href={page.pageLink}
+          className={
+            props.currentPage == page.pageName
+              ? ButtonType.NAVBAR_ACTIVE
+              : ButtonType.NAVBAR
+          }
+        >
+          {page.pageName}
+        </Button>
       </li>
     );
   });
@@ -21,12 +37,9 @@ export default function NavBar(props: Props) {
   return (
     <nav className={styles.NavBar}>
       {/* TODO: LOGO */}
-      <div className={styles.Icon}>
-      </div>
+      <div className={styles.Icon}></div>
       {/* Navigation */}
-      <ul className={styles.LinkArea}>
-        {...navContent}
-      </ul>
+      <ul className={styles.LinkArea}>{navContent}</ul>
     </nav>
   );
 }

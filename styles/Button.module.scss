@@ -1,0 +1,28 @@
+.button {
+  @apply hover:shadow-lg;
+}
+
+.socialBtn {
+  @apply flex;
+  @apply justify-center;
+  @apply bg-socials;
+  @apply rounded-md;
+  @apply w-10 h-10;
+  @apply p-1;
+  @apply shadow-md;
+}
+
+.lightBtn {
+  @apply bg-color-2;
+  @apply rounded-md border-2 border-black;
+  @apply p-2;
+  @apply font-bold;
+}
+
+.navBtn {
+  @apply text-color-3;
+  @apply bg-transparent hover:text-hover-1;
+  &.active {
+    @apply text-active-1;
+  }
+}
