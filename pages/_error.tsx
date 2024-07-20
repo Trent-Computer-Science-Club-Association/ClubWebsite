@@ -9,6 +9,8 @@ export default function ErrorPage({
 }:{
   statusCode: any
 }) {
+  const returnTo = '/';
+  
   return (
     <div className={styles.canvas}>
       <NavBar currentPage='Home' />
@@ -24,7 +26,12 @@ export default function ErrorPage({
           </p>
           {/* Return to home page */}
           <div>
-            <Button type={ButtonType.LIGHT}>Home</Button>
+            <Button 
+            type={ButtonType.LIGHT}
+            href={returnTo}
+            >
+              Home
+            </Button>
           </div>
         </div>
       </div>
