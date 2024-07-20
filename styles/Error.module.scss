@@ -1,5 +1,6 @@
 .canvas {
-    @apply flex flex-col size-full h-screen;
+    @apply flex flex-col;
+    @apply size-full h-screen;
 }
 
 .page {

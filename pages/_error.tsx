@@ -1,5 +1,6 @@
 // CSS
 import styles from '../styles/Error.module.scss';
+// Components
 import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
 
@@ -18,9 +19,10 @@ export default function ErrorPage({
           </h1>
           <p className={styles.body}>
             {statusCode
-              ? `An error ${statusCode} occurred on server`
+              ? `A ${statusCode} error occurred on server`
               : 'An error occurred on client'}
           </p>
+          {/* Return to home page */}
           <div>
             <Button type={ButtonType.LIGHT}>Home</Button>
           </div>
@@ -29,7 +31,8 @@ export default function ErrorPage({
     </div>
   );
 }
- 
+
+// Get error information
 ErrorPage.getInitialProps = ({ 
   res, 
   err 
