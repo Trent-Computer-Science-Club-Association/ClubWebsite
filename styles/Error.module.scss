@@ -17,12 +17,11 @@
 }
 
 .heading {
-    @apply text-4xl font-bold;
-    @apply text-white;
     @apply mb-3;
+    @apply text-4xl text-white font-bold;
 }
 
 .body {
-    @apply text-white;
     @apply mb-5;
+    @apply text-white;
 }
