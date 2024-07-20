@@ -3,19 +3,25 @@
 }
 
 .page {
-    @apply flex flex-1 rounded-t-lg p-4 bg-color-4;
+    @apply flex flex-1;
+    @apply rounded-t-lg p-4;
+    @apply bg-color-4;
 }
 
 .container {
-    @apply flex flex-col size-full justify-center items-center rounded-lg bg-color-1;
-    @apply text-white;
-    text-align: center;
+    @apply flex flex-col;
+    @apply size-full justify-center items-center;
+    @apply rounded-lg;
+    @apply bg-color-1;
 }
 
 .heading {
-    @apply text-2xl font-bold;
+    @apply text-4xl font-bold;
+    @apply text-white;
+    @apply mb-3;
 }
 
-.return {
-    @apply bg-color-2 text-color-4 border-color-4 border-2 py-1 px-3 m-5 rounded-lg
+.body {
+    @apply text-white;
+    @apply mb-5;
 }
