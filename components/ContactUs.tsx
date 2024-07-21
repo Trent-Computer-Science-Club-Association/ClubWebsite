@@ -34,7 +34,9 @@ export default function ContactUs() {
             index < array.length - 1 ? (
               <Fragment key={index}>
                 {part}
-                <Link href={`mailto:${email}`} className={styles.emailLink}>{email}</Link>
+                <Link href={`mailto:${email}`} className={styles.emailLink}>
+                  {email}
+                </Link>
               </Fragment>
             ) : (
               part

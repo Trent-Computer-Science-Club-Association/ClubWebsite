@@ -37,7 +37,8 @@
   @apply text-color-2;
   @apply underline;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     @apply text-hover-1;
   }
 
