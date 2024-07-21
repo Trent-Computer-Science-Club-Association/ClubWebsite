@@ -1,5 +1,14 @@
-.logo {
-  @apply w-1/2 h-auto;
-  @apply object-cover mb-4 rounded-xl;
+.link {
+  @apply w-1/2 h-auto mb-4;
+}
+
+.logoWrapper {
+  @apply relative;
+  @apply w-full h-full;
+  @apply pt-[100%];
+}
+
+.logoImage {
+  @apply object-cover rounded-xl;
   @apply bg-black;
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from '@/components/Image';
+import Image from './Image';
 import styles from '../styles/components/Logo.module.scss';
 
 interface LogoProps {
@@ -8,8 +8,10 @@ interface LogoProps {
 
 export default function Logo({ href = '/' }: LogoProps) {
   return (
-    <Link href={href} className={styles.logo} prefetch={true}>
-      <Image src='/logo.svg' alt='TCSCA Logo' fill={true} />
+    <Link href={href} className={styles.link} prefetch={true}>
+      <div className={styles.logoWrapper}>
+        <Image src='/logo.svg' alt='TCSCA Logo' fill={true} className={styles.logoImage} />
+      </div>
     </Link>
   );
 }
