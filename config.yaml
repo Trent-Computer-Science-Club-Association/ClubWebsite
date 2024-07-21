@@ -31,3 +31,6 @@ aboutUs:
   text: The Trent Computer Science Club Association (TCSCA) is a club that aims to provide a supportive community for computer science students at Trent University. Our mission is to create a welcoming and inclusive environment where students can learn, grow, and have fun while developing their skills and interests. We love Open Source and are always looking for new ways to contribute to the community. CHANGE ME!!!
   image: /AboutUsPlaceHolder.jpg
   altText: About Us Image
+email: &contactEmail 'tcscaclub@gmail.com'
+contactUs:
+  text: Hey! Want to get involved? We'd love to hear from you! Feel free to contact us at the socoails listed or by email at *contactEmail. PLEASE CHANGE ME
