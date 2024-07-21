@@ -21,7 +21,7 @@ export default function HeroBanner({ imagePath, altText }: Props) {
       <div className={styles.rightColumn}>
         <h1>Trent Computer Science Club Association</h1>
         <hr />
-        <div className={styles.tagline}>Where passion meets code</div>
+        <div className={styles.tagline}>Where innovation happens</div>
         <div className={styles.socialMedia}>
           {heroIcons.map((icon) => (
             <Button key={icon.altText} type={ButtonType.SOCIAL}>
