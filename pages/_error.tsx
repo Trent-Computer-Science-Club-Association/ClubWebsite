@@ -3,11 +3,12 @@ import styles from '../styles/Error.module.scss';
 // Components
 import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
+import { NextPageContext } from 'next';
 
 export default function ErrorPage({ 
   statusCode 
 }:{
-  statusCode: any
+  statusCode: number
 }) {
   const returnTo = '/';
 
@@ -21,7 +22,7 @@ export default function ErrorPage({
           </h1>
           <p className={styles.body}>
             {statusCode
-              ? `A ${statusCode} error occurred on server`
+              ? `Page not found, a ${statusCode} error occurred on server`
               : 'An error occurred on client'}
           </p>
           {/* Return to home page */}
@@ -43,10 +44,7 @@ export default function ErrorPage({
 ErrorPage.getInitialProps = ({ 
   res, 
   err 
-}:{
-  res: any,
-  err: any,
-}) => {
+}: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };
