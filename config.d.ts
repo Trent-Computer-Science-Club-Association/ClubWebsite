@@ -22,11 +22,17 @@ declare module '*.yaml' {
     altText: string;
   }
 
+  interface ContactUs {
+    text: string;
+  }
+
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
     heroIcons: HeroIcon[];
     aboutUs: AboutUs;
+    email: string;
+    contactUs: ContactUs;
   }
 
   const value: Config;

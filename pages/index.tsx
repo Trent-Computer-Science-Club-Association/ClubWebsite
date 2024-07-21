@@ -5,6 +5,7 @@ import EventBanner from '../components/EventBanner';
 import HeroBanner from '../components/HeroBanner';
 import SectionHeader from '../components/SectionHeader';
 import AboutUs from '../components/AboutUs';
+import ContactUs from '../components/ContactUs';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
           <SectionHeader title='About Us' location='justify-start' />
           <AboutUs />
+          <ContactUs />
         </main>
       </section>
     </>
