@@ -32,6 +32,7 @@ declare module '*.yaml' {
     heroIcons: HeroIcon[];
     aboutUs: AboutUs;
     email: string;
+    discordLink: string;
     contactUs: ContactUs;
   }
 
