@@ -1,7 +1,8 @@
-import React from 'react';
 import { contactUs, heroIcons, email } from '../config.yaml';
 import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
+import Link from '../components/Link';
+import { Fragment } from 'react';
 import styles from '../styles/components/ContactUs.module.scss';
 
 export default function ContactUs() {
@@ -29,7 +30,16 @@ export default function ContactUs() {
       </div>
       <div className={styles.right}>
         <p className={styles.text}>
-          {contactUs.text.replace('*contactEmail', email)}
+          {contactUs.text.split('*contactEmail').map((part, index, array) =>
+            index < array.length - 1 ? (
+              <Fragment key={index}>
+                {part}
+                <Link href={`mailto:${email}`} className={styles.emailLink}>{email}</Link>
+              </Fragment>
+            ) : (
+              part
+            )
+          )}
         </p>
       </div>
     </div>
