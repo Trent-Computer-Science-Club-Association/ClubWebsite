@@ -10,7 +10,12 @@ export default function Logo({ href = '/' }: LogoProps) {
   return (
     <Link href={href} className={styles.link} prefetch={true}>
       <div className={styles.logoWrapper}>
-        <Image src='/logo.svg' alt='TCSCA Logo' fill={true} className={styles.logoImage} />
+        <Image
+          src='/logo.svg'
+          alt='TCSCA Logo'
+          fill={true}
+          className={styles.logoImage}
+        />
       </div>
     </Link>
   );
