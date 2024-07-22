@@ -1,14 +1,20 @@
 import React from 'react';
 import styles from '../styles/components/SectionHeader.module.scss';
 
-type Location = 'justify-start' | 'justify-end';
+const SectionLocation = {
+  RIGHT_ALIGNED: 'justify-start',
+  LEFT_ALIGNED: 'justify-end',
+};
+
+type LocationType = (typeof SectionLocation)[keyof typeof SectionLocation];
+// type Location = 'justify-start' | 'justify-end';
 
 interface Props {
   title: string;
   backgroundColor?: string;
   foregroundColor?: string;
   textColor?: string;
-  location?: Location;
+  location?: LocationType;
 }
 
 export default function SectionHeader({
@@ -16,7 +22,7 @@ export default function SectionHeader({
   backgroundColor = 'bg-color-1',
   foregroundColor = 'bg-dark-gray',
   textColor = 'text-color-2',
-  location = 'justify-start',
+  location = SectionLocation.RIGHT_ALIGNED,
 }: Props) {
   return (
     <div className={`${styles.sectionHeader} ${backgroundColor} ${location}`}>
@@ -26,3 +32,5 @@ export default function SectionHeader({
     </div>
   );
 }
+
+export { SectionLocation };

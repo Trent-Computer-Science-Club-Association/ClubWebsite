@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.scss';
 import NavBar from '../components/NavBar';
 import EventBanner from '../components/EventBanner';
 import HeroBanner from '../components/HeroBanner';
-import SectionHeader from '../components/SectionHeader';
+import SectionHeader, { SectionLocation } from '../components/SectionHeader';
 import AboutUs from '../components/AboutUs';
 import ContactUs from '../components/ContactUs';
 
@@ -15,7 +15,10 @@ export default function Home() {
       <section className={styles.container}>
         <main className={styles.MainArea}>
           <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
-          <SectionHeader title='About Us' location='justify-start' />
+          <SectionHeader
+            title='About Us'
+            location={SectionLocation.RIGHT_ALIGNED}
+          />
           <AboutUs />
           <ContactUs />
         </main>
