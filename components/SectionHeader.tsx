@@ -20,7 +20,7 @@ interface Props {
 export default function SectionHeader({
   title,
   backgroundColor = 'bg-color-1',
-  foregroundColor = 'bg-dark-gray',
+  foregroundColor = 'bg-color-4',
   textColor = 'text-color-2',
   location = SectionLocation.RIGHT_ALIGNED,
 }: Props) {

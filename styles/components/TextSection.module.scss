@@ -1,6 +1,6 @@
 .AboutUs {
   @apply grid grid-cols-2 gap-4 p-4;
-  @apply bg-dark-gray;
+  @apply bg-color-4;
   @apply py-16;
   @apply px-10;
 }
@@ -14,12 +14,7 @@
   @apply leading-relaxed;
   @apply text-xl;
   @apply pr-4;
-}
-
-.AboutUsButton {
-  @apply mt-4;
-  @apply object-cover;
-  @apply px-4;
+  @apply mb-4;
 }
 
 .AboutUsImage {
