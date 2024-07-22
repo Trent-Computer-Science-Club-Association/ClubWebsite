@@ -32,6 +32,6 @@ aboutUs:
   image: /AboutUsPlaceHolder.jpg
   altText: About Us Image
 email: &contactEmail 'tcscaclub@gmail.com'
-discordLink: &discordLink https://discord.gg/serea2sPAd
+discordLink: https://discord.gg/serea2sPAd
 contactUs:
-  text: Got questions? We're here to help! Reach out to us via our discord server at *discordLink. You can also follow us on social media for the latest updates and events. We'd love to hear from you and help you get the most out of your experience with the Trent Computer Science Association.
+  text: Got questions or want to get involved? We'd love to hear from you! Feel free to contact us at the socials listed or by email at *contactEmail. We'd love to hear from you and help you get the most out of your experience with the Trent Computer Science CLub Association.

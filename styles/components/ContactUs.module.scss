@@ -1,5 +1,6 @@
 .container {
   @apply grid grid-cols-2 w-full;
+  @apply my-8;
   @apply bg-color-1;
 }
 
@@ -12,7 +13,7 @@
 }
 
 .title {
-  @apply text-center text-white font-bold text-2xl tracking-widest;
+  @apply text-center text-white font-bold text-3xl tracking-widest;
 }
 
 .socialMedia {

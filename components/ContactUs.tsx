@@ -1,4 +1,4 @@
-import { contactUs, heroIcons, discordLink } from '../config.yaml';
+import { contactUs, heroIcons, email } from '../config.yaml';
 import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import Link from '../components/Link';
@@ -30,12 +30,12 @@ export default function ContactUs() {
       </div>
       <div className={styles.right}>
         <p className={styles.text}>
-          {contactUs.text.split('*discordLink').map((part, index, array) =>
+          {contactUs.text.split('*contactEmail').map((part, index, array) =>
             index < array.length - 1 ? (
               <Fragment key={index}>
                 {part}
-                <Link href={`${discordLink}`} className={styles.link}>
-                  {discordLink}
+                <Link href={`${email}`} className={styles.link}>
+                  {email}
                 </Link>
               </Fragment>
             ) : (
