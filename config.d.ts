@@ -16,10 +16,13 @@ declare module '*.yaml' {
     path: string;
   }
 
-  interface AboutUs {
+  interface HomeSection {
+    title: string;
     text: string;
     image: string;
-    altText: string;
+    imageAlt: string;
+    buttonText?: string;
+    buttonRoute?: string;
   }
 
   interface ContactUs {
@@ -30,7 +33,7 @@ declare module '*.yaml' {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
     heroIcons: HeroIcon[];
-    aboutUs: AboutUs;
+    homeSections: HomeSection[];
     email: string;
     contactUs: ContactUs;
   }

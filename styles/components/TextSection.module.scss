@@ -1,6 +1,6 @@
 .AboutUs {
   @apply grid grid-cols-2 gap-4 p-4;
-  @apply bg-color-4;
+  // @apply bg-color-4;
   @apply py-16;
   @apply px-10;
 }
@@ -21,6 +21,5 @@
   @apply col-span-1;
   @apply rounded-xl;
   @apply w-full;
-  @apply bg-black;
   @apply self-center;
 }
