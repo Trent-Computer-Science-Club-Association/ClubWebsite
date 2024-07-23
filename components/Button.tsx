@@ -7,6 +7,7 @@ const ButtonType = {
   NAVBAR_ACTIVE: [styles.navBtn, styles.active].join(' '),
   LIGHT: styles.lightBtn,
   SOCIAL: styles.socialBtn,
+  SOCIAL_DARK: styles.socialBtnDark,
 } as const;
 
 type ButtonType = (typeof ButtonType)[keyof typeof ButtonType];

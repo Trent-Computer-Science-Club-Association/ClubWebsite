@@ -10,6 +10,7 @@ import SectionHeader, {
 } from '../components/SectionHeader';
 import TextSection, { TextSectionStyle } from '../components/TextSection';
 import ContactUs from '../components/ContactUs';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -54,6 +55,7 @@ export default function Home() {
             );
           })}
           <ContactUs />
+          <Footer />
         </main>
       </section>
     </>
