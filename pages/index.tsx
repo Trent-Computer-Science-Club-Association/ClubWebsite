@@ -18,7 +18,7 @@ export default function Home() {
           <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
           <SectionHeader
             title='About Us'
-            location={SectionLocation.RIGHT_ALIGNED}
+            location={SectionLocation.LEFT_ALIGNED}
           />
           <TextSection
             imagePath={aboutUs.image}
