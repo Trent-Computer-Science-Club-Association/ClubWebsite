@@ -12,6 +12,11 @@
   @apply shadow-md;
 }
 
+.socialBtnDark {
+  @extend .socialBtn;
+  @apply bg-black;
+}
+
 .lightBtn {
   @apply bg-color-2;
   @apply rounded-md border-2 border-black;
