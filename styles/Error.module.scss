@@ -1,4 +1,4 @@
-.canvas {
+.container {
     @apply flex flex-col;
     @apply size-full h-screen;
 }
@@ -9,19 +9,20 @@
     @apply bg-color-4;
 }
 
-.container {
+.pageContent {
     @apply flex flex-col;
-    @apply size-full justify-center items-center;
+    @apply size-full;
+    @apply justify-center items-center text-center;
     @apply rounded-lg;
-    @apply bg-color-1;
+    @apply bg-color-1 text-white;
+
+    & > h1 {
+        @apply mb-2;
+        @apply text-4xl font-bold;
+    }
 }
 
-.heading {
-    @apply mb-3;
-    @apply text-4xl text-white font-bold;
-}
-
-.body {
-    @apply mb-5;
-    @apply text-white;
+.homeButton{
+    @apply mt-4;
+    @apply text-black;
 }

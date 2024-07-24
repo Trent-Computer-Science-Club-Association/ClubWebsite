@@ -5,38 +5,40 @@ import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
 import { NextPageContext } from 'next';
 
+interface Props {
+  statusCode: number;
+}
+
 export default function ErrorPage({ 
   statusCode 
-}:{
-  statusCode: number
-}) {
-  const returnTo = '/';
+}: Props) {
+  // Allow user to return to home
+  const returnHref = '/';
 
   return (
-    <div className={styles.canvas}>
+    <main className={styles.container}>
       <NavBar currentPage='Home' />
       <div className={styles.page}>
-        <div className={styles.container}>
-          <h1 className={styles.heading}>
+        <div className={styles.pageContent}>
+          <h1>
           Oops!
           </h1>
-          <p className={styles.body}>
+          <p>
             {statusCode
               ? `Page not found, a ${statusCode} error occurred on server`
               : 'An error occurred on client'}
           </p>
           {/* Return to home page */}
-          <div>
-            <Button 
-              type={ButtonType.LIGHT}
-              href={returnTo}
-            >
-              Home
-            </Button>
-          </div>
+          <Button 
+            type={ButtonType.LIGHT}
+            href={returnHref}
+            className={styles.homeButton}
+          >
+            Return Home
+          </Button>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
