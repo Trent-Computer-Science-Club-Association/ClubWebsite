@@ -40,9 +40,9 @@ export default function TextTextSection({
   }
 
   return (
-    <div className={`${styles.AboutUs} ${backgroundColor}`}>
+    <div className={`${styles.TextSection} ${backgroundColor}`}>
       <div className={styles.TextAndButton}>
-        <p className={styles.AboutUsText}>{text}</p>
+        <p className={styles.TextSectionText}>{text}</p>
         {'buttonText' in props && 'link' in props && (
           <Button type={ButtonType.LIGHT} href={props.link}>
             {props.buttonText}
@@ -54,7 +54,7 @@ export default function TextTextSection({
         alt={altText}
         width={100}
         height={100}
-        className={styles.AboutUsImage}
+        className={styles.TextSectionImage}
       />
     </div>
   );
