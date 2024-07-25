@@ -3,15 +3,8 @@ import styles from '../styles/Error.module.scss';
 // Components
 import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
-import { NextPageContext } from 'next';
 
-interface Props {
-  statusCode: number;
-}
-
-export default function ErrorPage({ 
-  statusCode 
-}: Props) {
+export default function ErrorPage() {
   // Allow user to return to home
   const returnHref = '/';
 
@@ -24,9 +17,8 @@ export default function ErrorPage({
           Oops!
           </h1>
           <p>
-            {statusCode
-              ? `A ${statusCode} error occurred on the server`
-              : 'An error occurred on the client'}
+            404 - Page not found <br/>
+            This page may be in development or may not exist at this time
           </p>
           {/* Return to home page */}
           <Button 
@@ -41,12 +33,3 @@ export default function ErrorPage({
     </main>
   );
 }
-
-// Get error information
-ErrorPage.getInitialProps = ({ 
-  res, 
-  err 
-}: NextPageContext) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
-};

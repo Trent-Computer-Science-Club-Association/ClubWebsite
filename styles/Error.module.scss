@@ -15,14 +15,13 @@
     @apply justify-center items-center text-center;
     @apply rounded-lg;
     @apply bg-color-1 text-white;
+    @apply gap-8;
 
     & > h1 {
-        @apply mb-2;
-        @apply text-4xl font-bold;
+        @apply text-6xl font-bold;
     }
 }
 
 .homeButton{
-    @apply mt-4;
     @apply text-black;
 }
