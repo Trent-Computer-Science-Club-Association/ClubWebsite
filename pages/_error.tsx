@@ -1,9 +1,6 @@
-// CSS
-import styles from '../styles/Error.module.scss';
 // Components
-import NavBar from '../components/NavBar';
-import Button, { ButtonType } from '../components/Button';
 import { NextPageContext } from 'next';
+import ErrorLayout from './layout';
 
 interface Props {
   statusCode: number;
@@ -12,33 +9,14 @@ interface Props {
 export default function ErrorPage({ 
   statusCode 
 }: Props) {
-  // Allow user to return to home
-  const returnHref = '/';
-
   return (
-    <main className={styles.container}>
-      <NavBar currentPage='Home' />
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <h1>
-          Oops!
-          </h1>
-          <p>
-            {statusCode
-              ? `A ${statusCode} error occurred on the server`
-              : 'An error occurred on the client'}
-          </p>
-          {/* Return to home page */}
-          <Button 
-            type={ButtonType.LIGHT}
-            href={returnHref}
-            className={styles.homeButton}
-          >
-            Return Home
-          </Button>
-        </div>
-      </div>
-    </main>
+    <ErrorLayout>
+      <p>
+        {statusCode
+          ? `A ${statusCode} error occurred on the server`
+          : 'An error occurred on the client'}
+      </p>
+    </ErrorLayout>
   );
 }
 
