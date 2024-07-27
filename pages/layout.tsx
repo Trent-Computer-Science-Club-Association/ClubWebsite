@@ -6,32 +6,32 @@ import Button, { ButtonType } from '../components/Button';
 
 // Error component
 export default function ErrorLayout({
-    children,
+  children,
 }:{
-    children: React.ReactNode
+  children: React.ReactNode
 }) {
-    // Allow user to return to home
-    const returnHref = '/';
-    return(
-      <main className={styles.container}>
-        <NavBar currentPage='Home' />
-        <div className={styles.page}>
-          <div className={styles.pageContent}>
-            <h1>
-            Oops!
-            </h1>
-            {/* Display passed error message */}
-            {children}
-            {/* Return to home page */}
-            <Button 
-              type={ButtonType.LIGHT}
-              href={returnHref}
-              className={styles.homeButton}
-            >
+  // Allow user to return to home
+  const returnHref = '/';
+  return(
+    <main className={styles.container}>
+      <NavBar currentPage='Home' />
+      <div className={styles.page}>
+        <div className={styles.pageContent}>
+          <h1>
+          Oops!
+          </h1>
+          {/* Display passed error message */}
+          {children}
+          {/* Return to home page */}
+          <Button 
+            type={ButtonType.LIGHT}
+            href={returnHref}
+            className={styles.homeButton}
+          >
               Return Home
-            </Button>
-          </div>
+          </Button>
         </div>
-      </main>
-    )
+      </div>
+    </main>
+  );
 }
