@@ -9,7 +9,7 @@ interface LogoProps {
 export default function Logo({ href = '/' }: LogoProps) {
   return (
     <Link href={href} className={styles.link} prefetch={true}>
-      <div className={styles.logoWrapper}>
+      <div>
         <Image
           src='/logo.svg'
           alt='TCSCA Logo'

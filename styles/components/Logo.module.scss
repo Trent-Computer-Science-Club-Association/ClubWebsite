@@ -1,14 +1,14 @@
 .link {
   @apply w-1/2 h-auto mb-4;
-}
 
-.logoWrapper {
-  @apply relative;
-  @apply w-full h-full;
-  @apply pt-[100%];
-}
+  div {
+    @apply relative;
+    @apply w-full h-full;
+    @apply pt-[100%]; // TODO: Prevents this image from squishing (not even visable sometimes)
+  }
 
-.logoImage {
-  @apply object-cover rounded-xl;
-  @apply bg-black;
+  img {
+    @apply object-cover rounded-xl;
+    @apply bg-black;
+  }
 }
