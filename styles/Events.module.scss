@@ -1,0 +1,19 @@
+.container {
+  @apply w-full;
+  @apply bg-color-3;
+  // header Styling
+  header {
+    @apply bg-color-1;
+    display: grid;
+    padding: 3rem 4rem;
+    max-height: 30rem;
+  }
+  // Future And Current Grid
+  .upcomingGrid {
+    display: grid;
+    padding: 3rem 1rem;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
