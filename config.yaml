@@ -5,9 +5,9 @@ pageInfo:
   - pageName: 'About'
     pageLink: '/About'
     displayInNav: true
-  - pageName: 'Blog'
-    pageLink: '/Blog'
-    displayInNav: true
+  # - pageName: 'Blog'
+  #   pageLink: '/Blog'
+  #   displayInNav: true
   - pageName: 'Events'
     pageLink: '/Events'
     displayInNav: true
