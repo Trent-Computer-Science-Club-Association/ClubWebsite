@@ -1,6 +1,6 @@
 // Components
 import { NextPageContext } from 'next';
-import ErrorLayout from './layout';
+import ErrorLayout from '../layouts/Error';
 
 interface Props {
   statusCode: number;

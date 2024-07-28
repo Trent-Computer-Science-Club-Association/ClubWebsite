@@ -1,5 +1,5 @@
 // Components
-import ErrorLayout from './layout';
+import ErrorLayout from '../layouts/Error';
 
 export default function ErrorPage() {
   return (
