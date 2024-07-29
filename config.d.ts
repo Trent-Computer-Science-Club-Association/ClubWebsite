@@ -25,7 +25,7 @@ declare module '*.yaml' {
     buttonRoute?: string;
   }
 
-  interface ContactUs {
+  interface Footer {
     text: string;
   }
 
@@ -35,7 +35,7 @@ declare module '*.yaml' {
     heroIcons: HeroIcon[];
     homeSections: HomeSection[];
     email: string;
-    contactUs: ContactUs;
+    footer: Footer;
   }
 
   const value: Config;

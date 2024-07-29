@@ -3,10 +3,16 @@ import config from '../config.yaml';
 import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import Link from '../components/Link';
+import { footer } from '../config.yaml';
+import ReactMarkdown from 'react-markdown';
 
 export default function Footer() {
   return (
     <footer className={styles.Footer}>
+      {/* Top section */}
+      <div className={styles.top}>
+        <ReactMarkdown className={styles.text}>{footer.text}</ReactMarkdown>
+      </div>
       {/* Left side */}
       <div className={styles.left}>
         <Image src='/logo.svg' alt='TCSCA Logo' width={100} height={100} />

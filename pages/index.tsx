@@ -9,7 +9,6 @@ import SectionHeader, {
   SectionHeaderStyle,
 } from '../components/SectionHeader';
 import TextSection, { TextSectionStyle } from '../components/TextSection';
-import ContactUs from '../components/ContactUs';
 import LatestNews from '../components/LatestNews';
 import Footer from '../components/Footer';
 
@@ -57,11 +56,10 @@ export default function Home() {
           })}
           <SectionHeader
             title='Latest News'
-            style={SectionHeaderStyle.BLACK_ON_GREEN}
+            style={SectionHeaderStyle.GREEN_ON_BLACK}
             location={SectionLocation.RIGHT_ALIGNED}
           />
           <LatestNews />
-          <ContactUs />
           <Footer />
         </main>
       </section>
