@@ -1,5 +1,5 @@
 // CSS
-import styles from '../styles/Error.module.scss';
+import styles from '../styles/layouts/Error.module.scss';
 // Components
 import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
