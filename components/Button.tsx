@@ -56,7 +56,7 @@ const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
       // also include styles.iconContainer and classes
       <div className={`${styles.iconContainer} ${classes}`}>
         <Image src={props.icon} alt={props.altText} fill={true} />
-      </div >
+      </div>
     );
   }
 

@@ -15,7 +15,11 @@ export default function Footer() {
       </div>
       {/* Left side */}
       <div className={styles.left}>
-        <Button icon='/logo.svg' altText='TCSCA Logo' type={ButtonType.SOCIAL_DARK} />
+        <Button
+          icon='/logo.svg'
+          altText='TCSCA Logo'
+          type={ButtonType.SOCIAL_DARK}
+        />
         <Link href={`mailto:${config.email}`} className={styles.link}>
           {config.email}
         </Link>
@@ -25,7 +29,13 @@ export default function Footer() {
         <div className={styles.socialMedia}>
           {config.heroIcons.map((icon) => (
             <Button key={icon.altText} type={ButtonType.SOCIAL_DARK}>
-              <Button icon={icon.path} altText={icon.altText} type={ButtonType.SOCIAL_DARK} href={icon.path} className={styles.socialMedia} />
+              <Button
+                icon={icon.path}
+                altText={icon.altText}
+                type={ButtonType.SOCIAL_DARK}
+                href={icon.path}
+                className={styles.socialMedia}
+              />
             </Button>
           ))}
         </div>

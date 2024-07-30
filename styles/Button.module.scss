@@ -2,7 +2,10 @@
   @apply hover:shadow-lg;
 }
 
-.socialBtn, .socialBtnDark, .lightBtn, .navBtn {
+.socialBtn,
+.socialBtnDark,
+.lightBtn,
+.navBtn {
   img {
     @apply object-contain relative;
     @apply w-full h-full;
