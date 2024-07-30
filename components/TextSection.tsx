@@ -3,16 +3,19 @@ import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/components/TextSection.module.scss';
 
-enum TextSectionStyle {
-  BLACK,
-  GREEN,
-}
+const TextSectionStyle = {
+  BLACK: 'bg-color-4',
+  GREEN: 'bg-color-1',
+};
+
+type TextSectionStyleType =
+  (typeof TextSectionStyle)[keyof typeof TextSectionStyle];
 
 interface Props {
   imagePath: string;
   altText: string;
   text: string;
-  style?: TextSectionStyle;
+  style?: TextSectionStyleType;
 }
 
 interface PropsWithButton extends Props {
@@ -28,19 +31,8 @@ export default function TextSection({
   style = TextSectionStyle.BLACK,
   ...props
 }: Props | PropsWithButton) {
-  let backgroundColor: string;
-
-  switch (style) {
-    case TextSectionStyle.BLACK:
-      backgroundColor = 'bg-color-4';
-      break;
-    case TextSectionStyle.GREEN:
-      backgroundColor = 'bg-color-1';
-      break;
-  }
-
   return (
-    <div className={`${styles.TextSection} ${backgroundColor}`}>
+    <div className={`${styles.TextSection} ${style}`}>
       <div className={styles.TextAndButton}>
         <p className={styles.TextSectionText}>{text}</p>
         {'buttonText' in props && 'link' in props && (
