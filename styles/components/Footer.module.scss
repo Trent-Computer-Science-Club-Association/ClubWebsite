@@ -36,8 +36,15 @@
     }
   }
 
-  img {
-    @apply w-10 h-auto;
+  .logo {
+    @apply relative;
+    @apply w-10 h-10;
+    @apply object-contain;
+
+    img {
+      @apply rounded-md;
+      @apply p-1;
+    }
   }
 }
 
@@ -52,6 +59,7 @@
 
   .socialMedia {
     @apply flex gap-4;
+    @apply h-10;
     @apply justify-end;
   }
 }

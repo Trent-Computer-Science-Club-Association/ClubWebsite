@@ -5,6 +5,7 @@ import Button, { ButtonType } from '../components/Button';
 import Link from '../components/Link';
 import { footer } from '../config.yaml';
 import ReactMarkdown from 'react-markdown';
+import Logo from '../components/Logo';
 
 export default function Footer() {
   return (
@@ -15,11 +16,9 @@ export default function Footer() {
       </div>
       {/* Left side */}
       <div className={styles.left}>
-        <Button
-          icon='/logo.svg'
-          altText='TCSCA Logo'
-          type={ButtonType.SOCIAL_DARK}
-        />
+        <div className={styles.logo}>
+          <Logo />
+        </div>
         <Link href={`mailto:${config.email}`} className={styles.link}>
           {config.email}
         </Link>
