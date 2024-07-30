@@ -19,7 +19,7 @@ export default function Home() {
       <NavBar currentPage='Home' />
       <section className={styles.container}>
         <main className={styles.MainArea}>
-          <HeroBanner imagePath='logo.svg' altText='TCSCA Logo' />
+          <HeroBanner />
           {/* NOTE: we may want to put stuff in seperate sections rather than back to back */}
           {homeSections.map((section, index) => {
             const sectionStyle =

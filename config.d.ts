@@ -29,12 +29,14 @@ declare module '*.yaml' {
     text: string;
   }
 
+
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
     heroIcons: HeroIcon[];
     homeSections: HomeSection[];
     email: string;
+    tagline: string;
     footer: Footer;
   }
 
