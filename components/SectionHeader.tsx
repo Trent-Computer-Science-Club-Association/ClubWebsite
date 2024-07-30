@@ -4,18 +4,25 @@ import styles from '../styles/components/SectionHeader.module.scss';
 const SectionLocation = {
   RIGHT_ALIGNED: 'justify-end',
   LEFT_ALIGNED: 'justify-start',
-};
+} as const;
 
-enum SectionHeaderStyle {
-  BLACK_ON_GREEN,
-  GREEN_ON_BLACK,
-}
+const SectionHeaderStyle = {
+  BLACK_ON_GREEN: {
+    bg: 'bg-color-1',
+    fg: 'bg-color-4',
+  },
+  GREEN_ON_BLACK: {
+    bg: 'bg-color-4',
+    fg: 'bg-color-1',
+  },
+} as const;
 
 type LocationType = (typeof SectionLocation)[keyof typeof SectionLocation];
+type StyleType = (typeof SectionHeaderStyle)[keyof typeof SectionHeaderStyle];
 
 interface Props {
   title: string;
-  style?: SectionHeaderStyle;
+  style?: StyleType;
   location?: LocationType;
 }
 
@@ -24,25 +31,12 @@ export default function SectionHeader({
   style = SectionHeaderStyle.BLACK_ON_GREEN,
   location = SectionLocation.LEFT_ALIGNED,
 }: Props) {
-  let backgroundColor: string;
-  let foregroundColor: string;
-
-  switch (style) {
-    case SectionHeaderStyle.BLACK_ON_GREEN:
-      backgroundColor = 'bg-color-1';
-      foregroundColor = 'bg-color-4';
-      break;
-    case SectionHeaderStyle.GREEN_ON_BLACK:
-      backgroundColor = 'bg-color-4';
-      foregroundColor = 'bg-color-1';
-      break;
-  }
   return (
-    <div className={`${styles.sectionHeader} ${backgroundColor} ${location}`}>
-      <div className={`${styles.sectionHeaderContainer} ${foregroundColor}`}>
-        <h2 className={`${styles.sectionHeaderTitle} `}>{title}</h2>
-      </div>
-    </div>
+    <div className={`${styles.sectionHeader} ${style.bg} ${location}`}>
+      <span className={`${styles.sectionHeaderContainer} ${style.fg}`}>
+        <h2 className={styles.sectionHeaderTitle}>{title}</h2>
+      </span>
+    </div >
   );
 }
 
