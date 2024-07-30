@@ -27,15 +27,13 @@ export default function Footer() {
       <div className={styles.right}>
         <div className={styles.socialMedia}>
           {config.heroIcons.map((icon) => (
-            <Button key={icon.altText} type={ButtonType.SOCIAL_DARK}>
-              <Button
-                icon={icon.path}
-                altText={icon.altText}
-                type={ButtonType.SOCIAL_DARK}
-                href={icon.path}
-                className={styles.socialMedia}
-              />
-            </Button>
+            <Button
+              icon={icon.path}
+              altText={icon.altText}
+              type={ButtonType.SOCIAL_DARK}
+              href={icon.path}
+              className={styles.socialMedia}
+            />
           ))}
         </div>
       </div>

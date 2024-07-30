@@ -5,7 +5,6 @@ import { heroIcons, tagline } from '../config.yaml';
 import Image from '../components/Image';
 import Logo from '../components/Logo';
 
-
 export default function HeroBanner() {
   return (
     <div className={styles.HeroBanner}>

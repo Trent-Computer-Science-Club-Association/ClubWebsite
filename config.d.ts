@@ -29,7 +29,6 @@ declare module '*.yaml' {
     text: string;
   }
 
-
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
