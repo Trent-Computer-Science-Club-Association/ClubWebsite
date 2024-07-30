@@ -1,6 +1,5 @@
 import styles from '../styles/components/Footer.module.scss';
 import config from '../config.yaml';
-// import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import { footer } from '../config.yaml';
@@ -31,7 +30,7 @@ export default function Footer() {
               icon={icon.path}
               altText={icon.altText}
               type={ButtonType.SOCIAL_DARK}
-              href={icon.path}
+              href={icon.link}
               className={styles.socialMedia}
             />
           ))}

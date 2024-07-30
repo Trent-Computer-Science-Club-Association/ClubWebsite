@@ -61,5 +61,10 @@
     @apply flex gap-4;
     @apply h-10;
     @apply justify-end;
+
+    img {
+      @apply object-contain;
+      @apply p-2;
+    }
   }
 }
