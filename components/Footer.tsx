@@ -2,7 +2,7 @@ import styles from '../styles/components/Footer.module.scss';
 import config from '../config.yaml';
 // import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
-import Link from '../components/Link';
+import Link from 'next/link';
 import { footer } from '../config.yaml';
 import ReactMarkdown from 'react-markdown';
 import Logo from '../components/Logo';

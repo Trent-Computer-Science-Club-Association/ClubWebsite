@@ -1,5 +1,5 @@
 import Button, { ButtonType } from '../components/Button';
-import Link from '../components/Link';
+import Link from 'next/link';
 import styles from '../styles/components/LatestNews.module.scss';
 
 //  NOTE: will not take in props for now (later will be able to take in props or just process the config)
