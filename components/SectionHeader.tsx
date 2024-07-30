@@ -36,7 +36,7 @@ export default function SectionHeader({
       <span className={`${styles.sectionHeaderContainer} ${style.fg}`}>
         <h2 className={styles.sectionHeaderTitle}>{title}</h2>
       </span>
-    </div >
+    </div>
   );
 }
 
