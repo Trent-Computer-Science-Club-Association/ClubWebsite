@@ -6,12 +6,12 @@
   @apply grid grid-cols-5 items-center;
   @apply m-4 p-4;
   @apply rounded-xl;
+  @apply duration-300 ease-in-out;
 
   &:hover {
     @apply bg-hover-1;
     @apply shadow-lg;
-    @apply transition-all;
-    @apply duration-300 ease-in-out;
+    @apply transition-[box-shadow,background-color];
   }
 
   .left {
