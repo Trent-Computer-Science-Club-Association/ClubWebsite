@@ -53,7 +53,6 @@ const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
 
   if (props.icon) {
     return (
-      // also include styles.iconContainer and classes
       <Link className={`${styles.iconContainer} ${classes}`} href={href}>
         <Image src={props.icon} alt={props.altText} fill={true} />
       </Link>
