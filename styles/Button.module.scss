@@ -2,6 +2,20 @@
   @apply hover:shadow-lg;
 }
 
+.socialBtn, .socialBtnDark, .lightBtn, .navBtn {
+  img {
+    @apply object-contain relative;
+    @apply w-full h-full;
+  }
+}
+
+.iconContainer {
+  @apply flex;
+  @apply justify-center;
+  @apply items-center;
+  @apply relative;
+}
+
 .socialBtn {
   @apply flex;
   @apply justify-center;

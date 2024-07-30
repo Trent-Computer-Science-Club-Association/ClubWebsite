@@ -1,6 +1,6 @@
 import styles from '../styles/components/Footer.module.scss';
 import config from '../config.yaml';
-import Image from '../components/Image';
+// import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import Link from '../components/Link';
 import { footer } from '../config.yaml';
@@ -15,7 +15,7 @@ export default function Footer() {
       </div>
       {/* Left side */}
       <div className={styles.left}>
-        <Image src='/logo.svg' alt='TCSCA Logo' width={100} height={100} />
+        <Button icon='/logo.svg' altText='TCSCA Logo' type={ButtonType.SOCIAL_DARK} />
         <Link href={`mailto:${config.email}`} className={styles.link}>
           {config.email}
         </Link>
@@ -25,14 +25,7 @@ export default function Footer() {
         <div className={styles.socialMedia}>
           {config.heroIcons.map((icon) => (
             <Button key={icon.altText} type={ButtonType.SOCIAL_DARK}>
-              <Image
-                key={icon.altText}
-                src={icon.path}
-                alt={icon.altText}
-                width={100}
-                height={100}
-                className={styles.socialMedia}
-              />
+              <Button icon={icon.path} altText={icon.altText} type={ButtonType.SOCIAL_DARK} href={icon.path} className={styles.socialMedia} />
             </Button>
           ))}
         </div>
