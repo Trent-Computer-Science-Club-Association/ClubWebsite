@@ -21,7 +21,7 @@ interface PropsWithButton extends Props {
 }
 
 // props or props with button
-export default function TextTextSection({
+export default function TextSection({
   imagePath,
   altText,
   text,
