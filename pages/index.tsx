@@ -7,7 +7,7 @@ import HeroBanner from '../components/HeroBanner';
 import SectionHeader, {
   SectionLocation,
   SectionHeaderStyle,
-} from '../components/SectionHeader';
+} from '../layouts/SectionHeader';
 import TextSection, { TextSectionStyle } from '../components/TextSection';
 import LatestNews, { NewsItem } from '../layouts/LatestNews';
 import Footer from '../components/Footer';
