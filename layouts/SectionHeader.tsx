@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/SectionHeader.module.scss';
+import styles from '../styles/layouts/SectionHeader.module.scss';
 
 const SectionLocation = {
   RIGHT_ALIGNED: 'justify-end',
