@@ -9,7 +9,7 @@ import SectionHeader, {
   SectionHeaderStyle,
 } from '../components/SectionHeader';
 import TextSection, { TextSectionStyle } from '../components/TextSection';
-import LatestNews from '../components/LatestNews';
+import LatestNews, { NewsItem } from '../layouts/LatestNews';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -59,7 +59,18 @@ export default function Home() {
             style={SectionHeaderStyle.GREEN_ON_BLACK}
             location={SectionLocation.RIGHT_ALIGNED}
           />
-          <LatestNews />
+          <LatestNews>
+            <NewsItem
+              title='NEWS ABOUT TRENT COMPUTER SCIENCE'
+              date='September 10th, 2024'
+              href='/'
+            />
+            <NewsItem
+              title='NEWS ABOUT EXCITING EVENT'
+              date='July 25th, 2024'
+              href='/'
+            />
+          </LatestNews>
           <Footer />
         </main>
       </section>
