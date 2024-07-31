@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <EventBanner contextKey='bannerInfo' />
       <NavBar currentPage='Home' />
-      <section>
+      <section className={styles.container}>
         <main className={styles.MainArea}>
           <HeroBanner />
           {/* NOTE: we may want to put stuff in seperate sections rather than back to back */}
