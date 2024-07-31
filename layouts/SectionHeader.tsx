@@ -9,10 +9,10 @@ const SectionLocation = {
 const SectionHeaderStyle = {
   BLACK_ON_GREEN: {
     bg: 'bg-color-1',
-    fg: 'bg-color-4',
+    fg: 'bg-color-3',
   },
   GREEN_ON_BLACK: {
-    bg: 'bg-color-4',
+    bg: 'bg-color-3',
     fg: 'bg-color-1',
   },
 } as const;
