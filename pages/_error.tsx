@@ -13,8 +13,8 @@ export default function ErrorPage({
     <ErrorLayout>
       <p>
         {statusCode
-          ? `A ${statusCode} error occurred on the server`
-          : 'An error occurred on the client'}
+          ? `An error occured with status code ${statusCode}`
+          : 'An unknown error occured'}
       </p>
     </ErrorLayout>
   );
