@@ -25,8 +25,9 @@ export default function Footer() {
       {/* Right side */}
       <div className={styles.right}>
         <div className={styles.socialMedia}>
-          {config.heroIcons.map((icon) => (
+          {config.heroIcons.map((icon, index) => (
             <Button
+              key={index}
               icon={icon.path}
               altText={icon.altText}
               type={ButtonType.SOCIAL_DARK}

@@ -7,14 +7,8 @@ const SectionLocation = {
 } as const;
 
 const SectionHeaderStyle = {
-  BLACK_ON_GREEN: {
-    bg: 'bg-color-1',
-    fg: 'bg-color-3',
-  },
-  GREEN_ON_BLACK: {
-    bg: 'bg-color-3',
-    fg: 'bg-color-1',
-  },
+  BLACK_ON_GREEN: styles.style1,
+  GREEN_ON_BLACK: styles.style2,
 } as const;
 
 type LocationType = (typeof SectionLocation)[keyof typeof SectionLocation];
@@ -32,8 +26,8 @@ export default function SectionHeader({
   location = SectionLocation.LEFT_ALIGNED,
 }: Props) {
   return (
-    <div className={`${styles.sectionHeader} ${style.bg} ${location}`}>
-      <span className={`${styles.sectionHeaderContainer} ${style.fg}`}>
+    <div className={`${styles.sectionHeader} ${style} ${location}`}>
+      <span className={`${styles.sectionHeaderContainer}`}>
         <h2 className={styles.sectionHeaderTitle}>{title}</h2>
       </span>
     </div>

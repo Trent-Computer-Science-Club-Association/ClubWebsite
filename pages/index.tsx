@@ -33,15 +33,13 @@ export default function Home() {
             const textSectionStyle =
               index % 2 === 0 ? TextSectionStyle.BLACK : TextSectionStyle.GREEN;
             return (
-              <>
+              <section key={index}>
                 <SectionHeader
-                  key={index}
                   title={section.title}
                   style={sectionStyle}
                   location={location}
                 />
                 <TextSection
-                  key={index}
                   imagePath={section.image}
                   altText={section.imageAlt}
                   text={section.text}
@@ -51,7 +49,7 @@ export default function Home() {
                   })}
                   {...(section.buttonRoute && { link: section.buttonRoute })}
                 />
-              </>
+              </section>
             );
           })}
           <SectionHeader
