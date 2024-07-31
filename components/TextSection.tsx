@@ -34,7 +34,7 @@ export default function TextSection({
   return (
     <div className={`${styles.TextSection} ${style}`}>
       <div className={styles.TextAndButton}>
-        <p className={styles.TextSectionText}>{text}</p>
+        <p>{text}</p>
         {'buttonText' in props && 'link' in props && (
           <Button type={ButtonType.LIGHT} href={props.link}>
             {props.buttonText}

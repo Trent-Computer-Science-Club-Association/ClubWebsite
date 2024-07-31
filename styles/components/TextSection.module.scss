@@ -2,15 +2,15 @@
   @apply grid grid-cols-2 gap-4 p-4;
   @apply py-16;
   @apply px-10;
+
+  p {
+    @apply text-color-2 leading-relaxed text-xl;
+    @apply pr-4 mb-4;
+  }
 }
 
 .TextAndButton {
   @apply col-span-1;
-}
-
-.TextSectionText {
-  @apply text-color-2 leading-relaxed text-xl;
-  @apply pr-4 mb-4;
 }
 
 .TextSectionImage {
