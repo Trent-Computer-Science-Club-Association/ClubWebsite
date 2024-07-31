@@ -4,7 +4,7 @@ import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/components/TextSection.module.scss';
 
 const TextSectionStyle = {
-  BLACK: 'bg-color-4',
+  BLACK: 'bg-color-3',
   GREEN: 'bg-color-1',
 };
 
