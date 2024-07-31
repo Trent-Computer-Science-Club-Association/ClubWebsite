@@ -48,4 +48,6 @@
   &.active {
     @apply text-active-1;
   }
+
+  @apply hover:shadow-none;
 }
