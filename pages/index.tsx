@@ -8,7 +8,7 @@ import SectionHeader, {
   SectionLocation,
   SectionHeaderStyle,
 } from '../layouts/SectionHeader';
-import TextSection, { TextSectionStyle } from '../components/TextSection';
+import TextSection, { TextSectionStyle } from '../layouts/TextSection';
 import LatestNews, { NewsItem } from '../layouts/LatestNews';
 import Footer from '../components/Footer';
 

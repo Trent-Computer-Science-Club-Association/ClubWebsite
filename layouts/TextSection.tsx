@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
-import styles from '../styles/components/TextSection.module.scss';
+import styles from '../styles/layouts/TextSection.module.scss';
 
 const TextSectionStyle = {
   BLACK: 'bg-color-3',
