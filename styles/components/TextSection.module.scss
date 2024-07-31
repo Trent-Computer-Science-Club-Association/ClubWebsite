@@ -9,11 +9,8 @@
 }
 
 .TextSectionText {
-  @apply text-color-2;
-  @apply leading-relaxed;
-  @apply text-xl;
-  @apply pr-4;
-  @apply mb-4;
+  @apply text-color-2 leading-relaxed text-xl;
+  @apply pr-4 mb-4;
 }
 
 .TextSectionImage {
