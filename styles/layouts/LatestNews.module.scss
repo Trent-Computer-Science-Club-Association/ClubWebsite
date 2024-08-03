@@ -1,5 +1,5 @@
 .latestNewsLayout {
-  @apply bg-color-1 grid;
+  @apply grid;
 }
 
 .newsItem {
@@ -35,5 +35,19 @@
     .learnMore {
       @apply ml-auto;
     }
+  }
+}
+
+.blackOnGreen {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+}
+
+.greenOnBlack {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
   }
 }

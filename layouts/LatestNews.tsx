@@ -1,16 +1,30 @@
+import React from 'react';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
 
+const NewsSectionStyle = {
+  BLACK: styles.blackOnGreen,
+  GREEN: styles.greenOnBlack,
+} as const;
+
+type NewsSectionStyleType =
+  (typeof NewsSectionStyle)[keyof typeof NewsSectionStyle];
+
 interface LatestNewsLayoutProps {
   children: React.ReactNode;
+  style?: NewsSectionStyleType;
 }
 
-const LatestNewsLayout: React.FC<LatestNewsLayoutProps> = ({ children }) => {
-  return <div className={styles.latestNewsLayout}>{children}</div>;
+const LatestNewsLayout: React.FC<LatestNewsLayoutProps> = ({
+  children,
+  style = NewsSectionStyle.BLACK,
+}) => {
+  // both latestNewsLayout and style are required
+  return (
+    <div className={`${styles.latestNewsLayout} ${style}`}>{children}</div>
+  );
 };
-
-export default LatestNewsLayout;
 
 interface NewsItemProps {
   title: string;
@@ -33,3 +47,6 @@ export const NewsItem: React.FC<NewsItemProps> = ({ title, date, href }) => {
     </Link>
   );
 };
+
+export default LatestNewsLayout;
+export { NewsSectionStyle };
