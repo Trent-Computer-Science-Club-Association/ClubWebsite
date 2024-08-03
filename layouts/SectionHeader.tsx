@@ -2,8 +2,9 @@ import React from 'react';
 import styles from '../styles/layouts/SectionHeader.module.scss';
 
 const SectionLocation = {
-  RIGHT_ALIGNED: 'justify-end',
-  LEFT_ALIGNED: 'justify-start',
+  RIGHT_ALIGNED: styles.rightAligned,
+  LEFT_ALIGNED: styles.leftAligned,
+  MIDDLE_ALIGNED: styles.middleAligned,
 } as const;
 
 const SectionHeaderStyle = {

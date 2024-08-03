@@ -28,3 +28,14 @@
     @apply bg-color-1;
   }
 }
+
+.rightAligned {
+  @apply justify-end;
+}
+
+.leftAligned {
+  @apply justify-start;
+}
+
+.middleAligned {
+  @apply justify-center; }
