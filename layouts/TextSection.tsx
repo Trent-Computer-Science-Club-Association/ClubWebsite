@@ -4,9 +4,9 @@ import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
 
 const TextSectionStyle = {
-  BLACK: 'bg-color-3',
-  GREEN: 'bg-color-1',
-};
+  BLACK: styles.blackOnGreen,
+  GREEN: styles.greenOnBlack,
+} as const;
 
 type TextSectionStyleType =
   (typeof TextSectionStyle)[keyof typeof TextSectionStyle];

@@ -15,13 +15,16 @@
   @apply text-2xl font-bold text-center text-color-2;
 }
 
-
 // Header Variants
 .style1 {
   @apply bg-color-1;
-  & > span { @apply bg-color-3; }
+  & > span {
+    @apply bg-color-3;
+  }
 }
 .style2 {
   @apply bg-color-3;
-  & > span { @apply bg-color-1; }
+  & > span {
+    @apply bg-color-1;
+  }
 }

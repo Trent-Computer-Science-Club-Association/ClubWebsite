@@ -19,3 +19,17 @@
   @apply w-full;
   @apply self-center;
 }
+
+.blackOnGreen {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+}
+
+.greenOnBlack {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
+  }
+}
