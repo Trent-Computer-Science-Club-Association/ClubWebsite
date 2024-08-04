@@ -23,7 +23,6 @@ interface PropsWithButton extends Props {
   link: string;
 }
 
-// props or props with button
 export default function TextSection({
   imagePath,
   altText,
@@ -32,22 +31,25 @@ export default function TextSection({
   ...props
 }: Props | PropsWithButton) {
   return (
-    <div className={`${styles.TextSection} ${style}`}>
-      <div className={styles.TextAndButton}>
-        <p>{text}</p>
-        {'buttonText' in props && 'link' in props && (
-          <Button type={ButtonType.LIGHT} href={props.link}>
-            {props.buttonText}
-          </Button>
-        )}
+    <div className={styles.TextSectionWrapper}>
+      <div className={`${styles.TextSection} ${style}`}>
+        <div className={styles.TextAndButton}>
+          <p>{text}</p>
+          {'buttonText' in props && 'link' in props && (
+            <Button type={ButtonType.LIGHT} href={props.link}>
+              {props.buttonText}
+            </Button>
+          )}
+        </div>
+        <div className={styles.ImageWrapper}>
+          <Image
+            src={imagePath}
+            alt={altText}
+            fill={true}
+            className={styles.TextSectionImage}
+          />
+        </div>
       </div>
-      <Image
-        src={imagePath}
-        alt={altText}
-        width={100}
-        height={100}
-        className={styles.TextSectionImage}
-      />
     </div>
   );
 }

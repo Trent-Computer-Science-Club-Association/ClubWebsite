@@ -2,10 +2,12 @@
   @apply grid grid-cols-2 gap-4 p-4;
   @apply py-16;
   @apply px-10;
+  @apply items-center;
 
   p {
     @apply text-color-2 leading-relaxed text-xl;
     @apply pr-4 mb-4;
+    @apply items-start;
   }
 }
 
@@ -13,11 +15,18 @@
   @apply col-span-1;
 }
 
-.TextSectionImage {
-  @apply col-span-1;
-  @apply rounded-xl;
+.ImageWrapper {
+  @apply relative;
   @apply w-full;
-  @apply self-center;
+  @apply h-0;
+  @apply pb-[80%];
+  @apply overflow-hidden;
+  @apply rounded-xl;
+}
+
+.TextSectionImage {
+  @apply object-cover;
+  @apply object-center;
 }
 
 .blackOnGreen {
