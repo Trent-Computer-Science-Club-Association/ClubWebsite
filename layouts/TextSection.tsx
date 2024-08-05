@@ -35,6 +35,7 @@ export default function TextSection({
       <div className={`${styles.TextSection} ${style}`}>
         <div className={styles.TextAndButton}>
           <p>{text}</p>
+          {/* Checks if buttonText and link are in props in order to conditionally render a button */}
           {'buttonText' in props && 'link' in props && (
             <Button
               type={ButtonType.LIGHT}
