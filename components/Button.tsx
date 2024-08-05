@@ -22,13 +22,6 @@ interface Props {
 
 interface LabelProps extends Props {
   label: string;
-  children?: never;
-  image?: never;
-}
-
-interface ChildrenProps extends Props {
-  children: React.ReactNode;
-  label?: never;
   image?: never;
 }
 
@@ -37,11 +30,10 @@ interface IconProps extends Props {
     src: string;
     altText: string;
   };
-  children?: never;
   label?: string;
 }
 
-const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
+const Button: React.FC<LabelProps | IconProps> = ({
   onClick,
   href = '',
   className,
@@ -49,8 +41,7 @@ const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
   ...props
 }) => {
   const classes = `${className} ${type} ${styles.button}`;
-  const content = props.label || props.children;
-
+  const content = props.label;
   if (props.image) {
     return (
       <Link
