@@ -2,6 +2,7 @@ import React from 'react';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
+import ReactMarkdown from 'react-markdown';
 
 const NewsSectionStyle = {
   BLACK: styles.blackOnGreen,
@@ -11,32 +12,36 @@ const NewsSectionStyle = {
 type NewsSectionStyleType =
   (typeof NewsSectionStyle)[keyof typeof NewsSectionStyle];
 
-interface LatestNewsLayoutProps {
-  children: React.ReactNode;
+interface NewsItem {
+  text: string;
+  href: string;
+  date: Date;
+}
+
+interface NewsSectionProps {
+  newsFeed: NewsItem[];
   style?: NewsSectionStyleType;
 }
 
-const LatestNewsLayout: React.FC<LatestNewsLayoutProps> = ({
-  children,
+const NewsSection: React.FC<NewsSectionProps> = ({
+  newsFeed,
   style = NewsSectionStyle.BLACK,
 }) => {
   return (
-    <div className={`${styles.latestNewsLayout} ${style}`}>{children}</div>
+    <div className={`${styles.latestNewsLayout} ${style}`}>
+      {newsFeed.map((item, index) => (
+        <NewsItemComponent key={index} {...item} />
+      ))}
+    </div>
   );
 };
 
-interface NewsItemProps {
-  title: string;
-  date: string;
-  href: string;
-}
-
-export const NewsItem: React.FC<NewsItemProps> = ({ title, date, href }) => {
+const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   return (
     <Link className={styles.newsItem} href={href}>
       <div className={styles.left}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.date}>{date}</p>
+        <ReactMarkdown className={styles.title}>{text}</ReactMarkdown>
+        <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <div className={styles.right}>
         <Button
@@ -49,5 +54,29 @@ export const NewsItem: React.FC<NewsItemProps> = ({ title, date, href }) => {
   );
 };
 
-export default LatestNewsLayout;
-export { NewsSectionStyle };
+const formatDate = (date: Date): string => {
+  const day = date.getDate();
+
+  const getDaySuffix = (day: number): string => {
+    if (day > 3 && day < 21) return 'th'; // Covers 11th, 12th, 13th, etc.
+    switch (day % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
+
+  const [month, year] = date
+    .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+    .split(' ');
+
+  return `${month} ${day}${getDaySuffix(day)}, ${year}`;
+};
+
+export default NewsSection;
+export { NewsSectionStyle, type NewsItem, type NewsSectionProps };

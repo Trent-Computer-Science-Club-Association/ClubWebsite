@@ -29,6 +29,16 @@ declare module '*.yaml' {
     text: string;
   }
 
+  interface NewsItem {
+    text: string;
+    date: Date;
+    href: string;
+  }
+
+  interface NewsFeed {
+    items: NewsItem[];
+  }
+
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
@@ -37,6 +47,7 @@ declare module '*.yaml' {
     email: string;
     tagline: string;
     footer: Footer;
+    newsFeed: NewsFeed;
   }
 
   const value: Config;
