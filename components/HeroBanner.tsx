@@ -10,7 +10,7 @@ export default function HeroBanner() {
       {/* Left Column */}
       <div className={styles.leftColumn}>
         <Logo />
-        <Button type={ButtonType.LIGHT} label="Apply" />
+        <Button type={ButtonType.LIGHT} label='Apply' />
       </div>
       {/* Right Column */}
       <div className={styles.rightColumn}>

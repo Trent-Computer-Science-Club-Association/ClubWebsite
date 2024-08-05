@@ -20,7 +20,6 @@ const LatestNewsLayout: React.FC<LatestNewsLayoutProps> = ({
   children,
   style = NewsSectionStyle.BLACK,
 }) => {
-  // both latestNewsLayout and style are required
   return (
     <div className={`${styles.latestNewsLayout} ${style}`}>{children}</div>
   );
@@ -40,9 +39,13 @@ export const NewsItem: React.FC<NewsItemProps> = ({ title, date, href }) => {
         <p className={styles.date}>{date}</p>
       </div>
       <div className={styles.right}>
-        <Button type={ButtonType.LIGHT} className={styles.learnMore} label="Learn more" />
+        <Button
+          type={ButtonType.LIGHT}
+          className={styles.learnMore}
+          label='Learn more'
+        />
       </div>
-    </Link >
+    </Link>
   );
 };
 
