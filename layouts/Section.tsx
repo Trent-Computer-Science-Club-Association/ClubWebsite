@@ -23,14 +23,25 @@ interface SectionProps {
 
 const getStyle = (index: number) => {
   if (index % 2 === 0) {
-    return { sectionStyle: SectionHeaderStyle.BLACK_ON_GREEN, location: SectionLocation.LEFT_ALIGNED, newsSectionStyle: NewsSectionStyle.BLACK, textSectionStyle: TextSectionStyle.BLACK };
+    return {
+      sectionStyle: SectionHeaderStyle.BLACK_ON_GREEN,
+      location: SectionLocation.LEFT_ALIGNED,
+      newsSectionStyle: NewsSectionStyle.BLACK,
+      textSectionStyle: TextSectionStyle.BLACK,
+    };
   } else {
-    return { sectionStyle: SectionHeaderStyle.GREEN_ON_BLACK, location: SectionLocation.RIGHT_ALIGNED, newsSectionStyle: NewsSectionStyle.GREEN, textSectionStyle: TextSectionStyle.GREEN };
+    return {
+      sectionStyle: SectionHeaderStyle.GREEN_ON_BLACK,
+      location: SectionLocation.RIGHT_ALIGNED,
+      newsSectionStyle: NewsSectionStyle.GREEN,
+      textSectionStyle: TextSectionStyle.GREEN,
+    };
   }
 };
 
 const Section: React.FC<SectionProps> = ({ title, index, children }) => {
-  const { sectionStyle, location, newsSectionStyle, textSectionStyle } = getStyle(index);
+  const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
+    getStyle(index);
   return (
     <section>
       <SectionHeader title={title} style={sectionStyle} location={location} />
