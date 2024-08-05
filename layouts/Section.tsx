@@ -39,18 +39,34 @@ const getStyle = (index: number) => {
   }
 };
 
+const cloneChildWithStyle = (
+  child: SectionChild,
+  textSectionStyle: TextSectionStyleType,
+  newsSectionStyle: NewsSectionStyleType
+) => {
+  if (React.isValidElement(child)) {
+    if (child.type === TextSection) {
+      return React.cloneElement(child, { style: textSectionStyle });
+    }
+    if (child.type === LatestNewsLayout) {
+      return React.cloneElement(child, { style: newsSectionStyle });
+    }
+  }
+  return child;
+};
+
 const Section: React.FC<SectionProps> = ({ title, index, children }) => {
   const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
     getStyle(index);
+
+  const styledChild = React.Children.map(children, (child) =>
+    cloneChildWithStyle(child, textSectionStyle, newsSectionStyle)
+  );
+
   return (
     <section>
       <SectionHeader title={title} style={sectionStyle} location={location} />
-      {React.isValidElement(children) &&
-        (children.type === TextSection
-          ? React.cloneElement(children, { style: textSectionStyle })
-          : children.type === LatestNewsLayout
-            ? React.cloneElement(children, { style: newsSectionStyle })
-            : children)}
+      {styledChild}
     </section>
   );
 };
