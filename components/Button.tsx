@@ -43,11 +43,7 @@ const Button: React.FC<LabelProps | IconProps> = ({
   const classes = `${className} ${type} ${styles.button}`;
   if (props.image) {
     return (
-      <Link
-        className={`${styles.iconContainer} ${classes}`}
-        href={href}
-        onClick={onClick}
-      >
+      <Link className={classes} href={href} onClick={onClick}>
         <div className={styles.imageWrapper}>
           <Image src={props.image.src} alt={props.image.altText} fill={true} />
         </div>
