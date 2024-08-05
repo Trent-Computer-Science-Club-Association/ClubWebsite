@@ -2,7 +2,6 @@
 import styles from '../styles/components/HeroBanner.module.scss';
 import Button, { ButtonType } from './Button';
 import { heroIcons, tagline } from '../config.yaml';
-import Image from '../components/Image';
 import Logo from '../components/Logo';
 
 export default function HeroBanner() {
@@ -20,16 +19,11 @@ export default function HeroBanner() {
         <div className={styles.tagline}>{tagline}</div>
         <div className={styles.socialMedia}>
           {heroIcons.map((icon) => (
-            <Button key={icon.altText} type={ButtonType.SOCIAL}>
-              <Image
-                key={icon.altText}
-                src={icon.path}
-                alt={icon.altText}
-                width={100}
-                height={100}
-                className={styles.socialMedia}
-              />
-            </Button>
+            <Button
+              key={icon.altText}
+              type={ButtonType.SOCIAL}
+              image={{ src: icon.path, altText: icon.altText }}
+            />
           ))}
         </div>
       </div>

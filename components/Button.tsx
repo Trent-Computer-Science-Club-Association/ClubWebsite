@@ -23,22 +23,22 @@ interface Props {
 interface LabelProps extends Props {
   label: string;
   children?: never;
-  icon?: never;
-  altText?: never;
+  image?: never;
 }
 
 interface ChildrenProps extends Props {
   children: React.ReactNode;
   label?: never;
-  icon?: never;
-  altText?: never;
+  image?: never;
 }
 
 interface IconProps extends Props {
-  icon: string;
-  altText: string;
+  image: {
+    src: string;
+    altText: string;
+  };
   children?: never;
-  label?: never;
+  label?: string;
 }
 
 const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
@@ -49,19 +49,26 @@ const Button: React.FC<LabelProps | ChildrenProps | IconProps> = ({
   ...props
 }) => {
   const classes = `${className} ${type} ${styles.button}`;
-  const content = props.label || props.children || props.icon;
+  const content = props.label || props.children;
 
-  if (props.icon) {
+  if (props.image) {
     return (
-      <Link className={`${styles.iconContainer} ${classes}`} href={href}>
-        <Image src={props.icon} alt={props.altText} fill={true} />
+      <Link
+        className={`${styles.iconContainer} ${classes}`}
+        href={href}
+        onClick={onClick}
+      >
+        <div className={styles.imageWrapper}>
+          <Image src={props.image.src} alt={props.image.altText} fill={true} />
+        </div>
+        {content && <span className={styles.buttonText}>{content}</span>}
       </Link>
     );
   }
 
   return href ? (
     <Link href={href} className={classes} onClick={onClick}>
-      <span> {content} </span>
+      <span>{content}</span>
     </Link>
   ) : (
     <button onClick={onClick} className={classes}>

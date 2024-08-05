@@ -28,8 +28,7 @@ export default function Footer() {
           {config.heroIcons.map((icon, index) => (
             <Button
               key={index}
-              icon={icon.path}
-              altText={icon.altText}
+              image={{ src: icon.path, altText: icon.altText }}
               type={ButtonType.SOCIAL_DARK}
               href={icon.link}
               className={styles.socialMedia}

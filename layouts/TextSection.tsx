@@ -36,9 +36,11 @@ export default function TextSection({
         <div className={styles.TextAndButton}>
           <p>{text}</p>
           {'buttonText' in props && 'link' in props && (
-            <Button type={ButtonType.LIGHT} href={props.link}>
-              {props.buttonText}
-            </Button>
+            <Button
+              type={ButtonType.LIGHT}
+              href={props.link}
+              label={props.buttonText}
+            />
           )}
         </div>
         <div className={styles.ImageWrapper}>

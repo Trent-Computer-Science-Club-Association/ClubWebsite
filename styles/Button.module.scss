@@ -1,5 +1,8 @@
 .button {
   @apply hover:shadow-lg;
+  @apply inline-flex;
+  @apply items-center;
+  @apply justify-center;
 }
 
 .socialBtn,
@@ -13,21 +16,26 @@
 }
 
 .iconContainer {
-  @apply flex;
-  @apply justify-center;
+  @apply inline-flex;
   @apply items-center;
   @apply relative;
 }
 
+.imageWrapper {
+  @apply relative;
+  @apply w-6 h-6;
+  @apply flex-shrink-0;
+}
+
+.buttonText {
+  @apply ml-2;
+}
+
 .socialBtn {
-  @apply flex;
-  @apply justify-center;
   @apply bg-socials;
   @apply rounded-md;
-  @apply w-10 h-10;
   @apply p-2;
   @apply shadow-md;
-  @apply items-center;
 }
 
 .socialBtnDark {
@@ -48,6 +56,5 @@
   &.active {
     @apply text-active-1;
   }
-
   @apply hover:shadow-none;
 }
