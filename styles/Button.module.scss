@@ -4,12 +4,6 @@
   @apply items-center;
   @apply justify-center;
   @apply relative;
-}
-
-.socialBtn,
-.socialBtnDark,
-.lightBtn,
-.navBtn {
   img {
     @apply object-contain relative;
     @apply w-full h-full;
