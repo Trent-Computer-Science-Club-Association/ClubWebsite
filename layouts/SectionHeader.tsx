@@ -28,9 +28,15 @@ export default function SectionHeader({
 }: Props) {
   return (
     <div className={`${styles.sectionHeader} ${style} ${location}`}>
-      <span className={`${styles.sectionHeaderContainer}`}>
+      <div className={styles.frontRoundedCornerContainer}>
+        <div className={styles.frontRoundedCorner} />
+      </div>
+      <span className={styles.sectionHeaderContainer}>
         <h2 className={styles.sectionHeaderTitle}>{title}</h2>
       </span>
+      <div className={styles.backRoundedCornerContainer}>
+        <div className={styles.backRoundedCorner} />
+      </div>
     </div>
   );
 }
