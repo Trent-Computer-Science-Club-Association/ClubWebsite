@@ -4,8 +4,6 @@ import { homeSections } from '../config.yaml';
 import NavBar from '../components/NavBar';
 import EventBanner from '../components/EventBanner';
 import HeroBanner from '../components/HeroBanner';
-import TextSection from '../layouts/TextSection';
-import NewsSection from '../layouts/LatestNews';
 import Footer from '../components/Footer';
 import Section from '../layouts/Section';
 
