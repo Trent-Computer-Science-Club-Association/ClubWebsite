@@ -20,14 +20,14 @@ interface SectionProps {
 const getStyle = (index: number) => {
   if (index % 2 === 0) {
     return {
-      sectionStyle: SectionHeaderStyle.BLACK_ON_GREEN,
+      sectionStyle: SectionHeaderStyle.primary,
       location: SectionLocation.LEFT_ALIGNED,
       newsSectionStyle: NewsSectionStyle.primary,
       textSectionStyle: TextSectionStyle.primary,
     };
   } else {
     return {
-      sectionStyle: SectionHeaderStyle.GREEN_ON_BLACK,
+      sectionStyle: SectionHeaderStyle.secondary,
       location: SectionLocation.RIGHT_ALIGNED,
       newsSectionStyle: NewsSectionStyle.secondary,
       textSectionStyle: TextSectionStyle.secondary,
