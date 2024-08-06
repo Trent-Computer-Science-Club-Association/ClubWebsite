@@ -9,10 +9,10 @@
   @apply px-4 py-2;
   @apply shrink;
   @apply flex-grow-0;
-}
 
-.sectionHeaderTitle {
-  @apply text-2xl font-bold text-center text-color-2;
+  h2 {
+    @apply text-2xl font-bold text-center text-color-2;
+  }
 }
 
 // Header Variants
