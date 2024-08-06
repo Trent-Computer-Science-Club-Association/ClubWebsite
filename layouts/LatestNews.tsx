@@ -5,8 +5,8 @@ import styles from '../styles/layouts/LatestNews.module.scss';
 import ReactMarkdown from 'react-markdown';
 
 const NewsSectionStyle = {
-  BLACK: styles.blackOnGreen,
-  GREEN: styles.greenOnBlack,
+  primary: styles.primaryStyle,
+  secondary: styles.secondaryStyle,
 } as const;
 
 type NewsSectionStyleType =
@@ -25,7 +25,7 @@ interface NewsSectionProps {
 
 const NewsSection: React.FC<NewsSectionProps> = ({
   newsFeed,
-  style = NewsSectionStyle.BLACK,
+  style = NewsSectionStyle.primary,
 }) => {
   return (
     <div className={`${styles.latestNewsLayout} ${style}`}>

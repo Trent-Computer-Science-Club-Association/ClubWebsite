@@ -26,15 +26,15 @@ const getStyle = (index: number) => {
     return {
       sectionStyle: SectionHeaderStyle.BLACK_ON_GREEN,
       location: SectionLocation.LEFT_ALIGNED,
-      newsSectionStyle: NewsSectionStyle.BLACK,
-      textSectionStyle: TextSectionStyle.BLACK,
+      newsSectionStyle: NewsSectionStyle.primary,
+      textSectionStyle: TextSectionStyle.primary,
     };
   } else {
     return {
       sectionStyle: SectionHeaderStyle.GREEN_ON_BLACK,
       location: SectionLocation.RIGHT_ALIGNED,
-      newsSectionStyle: NewsSectionStyle.GREEN,
-      textSectionStyle: TextSectionStyle.GREEN,
+      newsSectionStyle: NewsSectionStyle.secondary,
+      textSectionStyle: TextSectionStyle.secondary,
     };
   }
 };

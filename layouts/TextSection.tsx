@@ -4,8 +4,8 @@ import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
 
 const TextSectionStyle = {
-  BLACK: styles.blackOnGreen,
-  GREEN: styles.greenOnBlack,
+  primary: styles.primaryStyle,
+  secondary: styles.secondaryStyle,
 } as const;
 
 type TextSectionStyleType =
@@ -27,7 +27,7 @@ export default function TextSection({
   imagePath,
   altText,
   text,
-  style = TextSectionStyle.BLACK,
+  style = TextSectionStyle.primary,
   ...props
 }: Props | PropsWithButton) {
   return (

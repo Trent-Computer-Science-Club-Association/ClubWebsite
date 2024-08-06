@@ -29,14 +29,14 @@
   @apply object-center;
 }
 
-.blackOnGreen {
+.primaryStyle {
   @apply bg-color-3;
   & > span {
     @apply bg-color-1;
   }
 }
 
-.greenOnBlack {
+.secondaryStyle {
   @apply bg-color-1;
   & > span {
     @apply bg-color-3;
