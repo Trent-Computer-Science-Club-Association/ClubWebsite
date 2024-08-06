@@ -23,9 +23,6 @@ export default function Home() {
               <Section sectionConfig={section} index={index} />
             </section>
           ))}
-          {/* <Section title='Latest News' index={homeSections.length}> */}
-          {/*   <NewsSection newsFeed={newsFeed.items} /> */}
-          {/* </Section> */}
         </main>
         <Footer />
       </section>
