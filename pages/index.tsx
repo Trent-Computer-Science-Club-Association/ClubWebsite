@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.scss';
-import { homeSections, newsFeed } from '../config.yaml';
+import { homeSections } from '../config.yaml';
 // Internal Components
 import NavBar from '../components/NavBar';
 import EventBanner from '../components/EventBanner';
@@ -20,23 +20,12 @@ export default function Home() {
           {/* In the config we have a list of sections, this is how we iterate through them */}
           {homeSections.map((section, index) => (
             <section key={index}>
-              <Section title={section.title} index={index}>
-                <TextSection
-                  imagePath={section.image}
-                  altText={section.imageAlt}
-                  text={section.text}
-                  {...(section.buttonText && {
-                    buttonText: section.buttonText,
-                  })}
-                  {...(section.buttonRoute && { link: section.buttonRoute })}
-                />
-              </Section>
+              <Section sectionConfig={section} index={index} />
             </section>
           ))}
-          {/* News Section */}
-          <Section title='Latest News' index={homeSections.length}>
-            <NewsSection newsFeed={newsFeed.items} />
-          </Section>
+          {/* <Section title='Latest News' index={homeSections.length}> */}
+          {/*   <NewsSection newsFeed={newsFeed.items} /> */}
+          {/* </Section> */}
         </main>
         <Footer />
       </section>

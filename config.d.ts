@@ -16,15 +16,6 @@ declare module '*.yaml' {
     path: string;
   }
 
-  interface HomeSection {
-    title: string;
-    text: string;
-    image: string;
-    imageAlt: string;
-    buttonText?: string;
-    buttonRoute?: string;
-  }
-
   interface Footer {
     text: string;
   }
@@ -35,9 +26,36 @@ declare module '*.yaml' {
     href: string;
   }
 
-  interface NewsFeed {
-    items: NewsItem[];
+  const HomeSectionTypes = {
+    TextSection = 'TextSection',
+    LatestNews = 'LatestNews',
+  };
+
+  type HomeSectionType =
+    (typeof HomeSectionTypes)[keyof typeof HomeSectionTypes];
+
+  interface HomePageSection {
+    type: HomeSectionType;
+    header: string;
   }
+
+  interface TextSection extends HomePageSection {
+    type: HomeSectionType.TextSection;
+    text: string;
+    image: string;
+    imageAlt: string;
+    buttonText?: string;
+    buttonRoute?: string;
+  }
+
+  interface LatestNews extends HomePageSection {
+    type: HomeSectionType.LatestNews;
+    newsFeed: NewsItem[];
+  }
+
+  type TextSectionType = (typeof TextSection)[keyof typeof TextSection];
+  type LatestNewsType = (typeof LatestNews)[keyof typeof LatestNews];
+  type HomeSection = TextSectionType | LatestNewsType;
 
   interface Config {
     pageInfo: PageInfo[];
@@ -47,7 +65,7 @@ declare module '*.yaml' {
     email: string;
     tagline: string;
     footer: Footer;
-    newsFeed: NewsFeed;
+    HomeSection: HomeSection;
   }
 
   const value: Config;

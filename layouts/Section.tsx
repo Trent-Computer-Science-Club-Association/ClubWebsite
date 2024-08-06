@@ -3,22 +3,18 @@ import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
 } from './SectionHeader';
-import LatestNewsLayout, { NewsSectionStyle } from './LatestNews';
+import NewsSection, { NewsSectionStyle } from './LatestNews';
 import TextSection, { TextSectionStyle } from './TextSection';
+import { type HomeSection } from '../config.yaml';
 
 type NewsSectionStyleType =
   (typeof NewsSectionStyle)[keyof typeof NewsSectionStyle];
 type TextSectionStyleType =
   (typeof TextSectionStyle)[keyof typeof TextSectionStyle];
 
-type SectionChild = React.ReactElement<{
-  style?: NewsSectionStyleType | TextSectionStyleType;
-}>;
-
 interface SectionProps {
-  title: string;
+  sectionConfig: typeof HomeSection;
   index: number;
-  children: SectionChild;
 }
 
 const getStyle = (index: number) => {
@@ -39,34 +35,37 @@ const getStyle = (index: number) => {
   }
 };
 
-const cloneChildWithStyle = (
-  child: SectionChild,
-  textSectionStyle: TextSectionStyleType,
-  newsSectionStyle: NewsSectionStyleType
-) => {
-  if (React.isValidElement(child)) {
-    if (child.type === TextSection) {
-      return React.cloneElement(child, { style: textSectionStyle });
-    }
-    if (child.type === LatestNewsLayout) {
-      return React.cloneElement(child, { style: newsSectionStyle });
-    }
-  }
-  return child;
-};
-
-const Section: React.FC<SectionProps> = ({ title, index, children }) => {
+const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
   const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
     getStyle(index);
 
-  const styledChild = React.Children.map(children, (child) =>
-    cloneChildWithStyle(child, textSectionStyle, newsSectionStyle)
-  );
+  let content: React.ReactNode;
+
+  if (sectionConfig.type === 'TextSection') {
+    content = (
+      <TextSection
+        imagePath={sectionConfig.image}
+        altText={sectionConfig.imageAlt}
+        text={sectionConfig.text}
+        buttonText={sectionConfig.buttonText}
+        link={sectionConfig.buttonRoute}
+        style={textSectionStyle}
+      />
+    );
+  } else if (sectionConfig.type === 'LatestNews') {
+    content = (
+      <NewsSection newsFeed={sectionConfig.newsFeed} style={newsSectionStyle} />
+    );
+  }
 
   return (
     <section>
-      <SectionHeader title={title} style={sectionStyle} location={location} />
-      {styledChild}
+      <SectionHeader
+        title={sectionConfig.header}
+        style={sectionStyle}
+        location={location}
+      />
+      {content}
     </section>
   );
 };
