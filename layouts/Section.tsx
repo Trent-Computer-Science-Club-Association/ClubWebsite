@@ -3,17 +3,18 @@ import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
 } from './SectionHeader';
-import NewsSection, { NewsSectionStyle } from './LatestNews';
-import TextSection, { TextSectionStyle } from './TextSection';
+import NewsSection, {
+  NewsSectionStyle,
+  type NewsSectionStyleType,
+} from './LatestNews';
+import TextSection, {
+  TextSectionStyle,
+  type TextSectionStyleType,
+} from './TextSection';
 import { type HomeSection } from '../config.yaml';
 
-type NewsSectionStyleType =
-  (typeof NewsSectionStyle)[keyof typeof NewsSectionStyle];
-type TextSectionStyleType =
-  (typeof TextSectionStyle)[keyof typeof TextSectionStyle];
-
 interface SectionProps {
-  sectionConfig: typeof HomeSection;
+  sectionConfig: HomeSection;
   index: number;
 }
 
@@ -35,28 +36,44 @@ const getStyle = (index: number) => {
   }
 };
 
+const getContent = (
+  sectionConfig: HomeSection,
+  index: number,
+  style: {
+    newsSectionStyle: NewsSectionStyleType;
+    textSectionStyle: TextSectionStyleType;
+  }
+) => {
+  switch (sectionConfig.type) {
+    case 'TextSection':
+      return (
+        <TextSection
+          imagePath={sectionConfig.image}
+          altText={sectionConfig.imageAlt}
+          text={sectionConfig.text}
+          buttonText={sectionConfig.buttonText}
+          link={sectionConfig.buttonRoute}
+          style={style.textSectionStyle}
+        />
+      );
+    case 'LatestNews':
+      return (
+        <NewsSection
+          newsFeed={sectionConfig.newsFeed}
+          style={style.newsSectionStyle}
+        />
+      );
+  }
+};
+
 const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
   const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
     getStyle(index);
 
-  let content: React.ReactNode;
-
-  if (sectionConfig.type === 'TextSection') {
-    content = (
-      <TextSection
-        imagePath={sectionConfig.image}
-        altText={sectionConfig.imageAlt}
-        text={sectionConfig.text}
-        buttonText={sectionConfig.buttonText}
-        link={sectionConfig.buttonRoute}
-        style={textSectionStyle}
-      />
-    );
-  } else if (sectionConfig.type === 'LatestNews') {
-    content = (
-      <NewsSection newsFeed={sectionConfig.newsFeed} style={newsSectionStyle} />
-    );
-  }
+  const content = getContent(sectionConfig, index, {
+    newsSectionStyle,
+    textSectionStyle,
+  });
 
   return (
     <section>

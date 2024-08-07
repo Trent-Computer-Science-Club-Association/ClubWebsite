@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
@@ -55,28 +56,13 @@ const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
 };
 
 const formatDate = (date: Date): string => {
-  const day = date.getDate();
-
-  const getDaySuffix = (day: number): string => {
-    if (day > 3 && day < 21) return 'th'; // Covers 11th, 12th, 13th, etc.
-    switch (day % 10) {
-      case 1:
-        return 'st';
-      case 2:
-        return 'nd';
-      case 3:
-        return 'rd';
-      default:
-        return 'th';
-    }
-  };
-
-  const [month, year] = date
-    .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-    .split(' ');
-
-  return `${month} ${day}${getDaySuffix(day)}, ${year}`;
+  return moment(date).format('MMMM Do, YYYY');
 };
 
 export default NewsSection;
-export { NewsSectionStyle, type NewsItem, type NewsSectionProps };
+export {
+  NewsSectionStyle,
+  type NewsItem,
+  type NewsSectionProps,
+  type NewsSectionStyleType,
+};

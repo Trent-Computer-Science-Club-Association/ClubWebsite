@@ -57,4 +57,4 @@ export default function TextSection({
   );
 }
 
-export { TextSectionStyle };
+export { TextSectionStyle, type TextSectionStyleType };

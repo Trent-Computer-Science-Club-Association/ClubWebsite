@@ -41,26 +41,30 @@ const Button: React.FC<LabelProps | IconProps> = ({
   ...props
 }) => {
   const classes = `${className} ${type} ${styles.button}`;
-  if (props.image) {
-    return (
-      <Link className={classes} href={href} onClick={onClick}>
+  const content = (
+    <>
+      {props.image == undefined ? (
+        <></>
+      ) : (
         <div className={styles.imageWrapper}>
           <Image src={props.image.src} alt={props.image.altText} fill={true} />
         </div>
-        {props.label && (
-          <span className={styles.buttonText}>{props.label}</span>
-        )}
-      </Link>
-    );
-  }
+      )}
+      {props.label == undefined ? (
+        <></>
+      ) : (
+        <span className={styles.buttonText}>{props.label}</span>
+      )}
+    </>
+  );
 
   return href ? (
     <Link href={href} className={classes} onClick={onClick}>
-      <span>{props.label}</span>
+      {content}
     </Link>
   ) : (
     <button onClick={onClick} className={classes}>
-      {props.label}
+      {content}
     </button>
   );
 };

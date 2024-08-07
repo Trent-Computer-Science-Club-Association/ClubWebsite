@@ -26,10 +26,10 @@ declare module '*.yaml' {
     href: string;
   }
 
-  const HomeSectionTypes = {
+  const enum HomeSectionTypes {
     TextSection = 'TextSection',
     LatestNews = 'LatestNews',
-  };
+  }
 
   type HomeSectionType =
     (typeof HomeSectionTypes)[keyof typeof HomeSectionTypes];
@@ -53,8 +53,6 @@ declare module '*.yaml' {
     newsFeed: NewsItem[];
   }
 
-  type TextSectionType = (typeof TextSection)[keyof typeof TextSection];
-  type LatestNewsType = (typeof LatestNews)[keyof typeof LatestNews];
   type HomeSection = TextSectionType | LatestNewsType;
 
   interface Config {
@@ -65,9 +63,9 @@ declare module '*.yaml' {
     email: string;
     tagline: string;
     footer: Footer;
-    HomeSection: HomeSection;
   }
 
   const value: Config;
   export = value;
+  export { HomeSection };
 }
