@@ -53,9 +53,8 @@ function displayHomeButton(){
         type={ButtonType.LIGHT}
         href={returnHref}
         className={styles.button}
-      >
-        Return Home
-      </Button>
+        label='Return Home'
+      />
     </>
   );
 }
@@ -71,9 +70,8 @@ function displayButtons(){
         type={ButtonType.LIGHT}
         href={reportHref}
         className={styles.button}
-      >
-        Let us know
-      </Button>
+        label='Let us know'
+      />
     </div>
   );
 }
