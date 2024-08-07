@@ -1,0 +1,33 @@
+.Container {
+  @apply w-full h-[30rem];
+  @apply relative;
+  @apply overflow-hidden;
+}
+
+.BlurBanner {
+  @apply w-full h-full;
+  @apply relative;
+  @apply flex flex-col;
+}
+
+.imageContainer {
+  @apply w-full h-full;
+  @apply relative;
+
+  img {
+    @apply blur-sm object-cover;
+  }
+}
+
+.overlay {
+  @apply absolute inset-0;
+  @apply flex items-center justify-center;
+  @apply bg-black/40;
+  @apply z-10;
+}
+
+.title {
+  @apply w-1/2;
+  @apply text-6xl font-bold text-white text-center leading-normal;
+  @apply mb-10;
+}

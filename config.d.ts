@@ -55,6 +55,23 @@ declare module '*.yaml' {
 
   type HomeSection = TextSectionType | LatestNewsType;
 
+  const ListingType = {
+    Developer: 'Developer',
+    Creative: 'Creative',
+    Managerial: 'Managerial',
+    Volunteer: 'Volunteer',
+  } as const;
+
+  interface Listing {
+    priority?: number;
+    title: string;
+    description: string;
+    requirements: { description: string; iconPath: string }[];
+    type: PositionType;
+    modal?: string;
+    keywords?: string[];
+  }
+
   interface Config {
     pageInfo: PageInfo[];
     bannerInfo: BannerInfo;
@@ -63,9 +80,10 @@ declare module '*.yaml' {
     email: string;
     tagline: string;
     footer: Footer;
+    listings: Listing[];
   }
 
   const value: Config;
   export = value;
-  export { HomeSection };
+  export { HomeSection, Position, ListingType, Listing };
 }

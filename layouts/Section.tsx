@@ -38,7 +38,6 @@ const getStyle = (index: number) => {
 
 const getContent = (
   sectionConfig: HomeSection,
-  index: number,
   style: {
     newsSectionStyle: NewsSectionStyleType;
     textSectionStyle: TextSectionStyleType;
@@ -70,7 +69,7 @@ const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
   const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
     getStyle(index);
 
-  const content = getContent(sectionConfig, index, {
+  const content = getContent(sectionConfig, {
     newsSectionStyle,
     textSectionStyle,
   });
