@@ -27,9 +27,8 @@ export default function NavBar(props: Props) {
               ? ButtonType.NAVBAR_ACTIVE
               : ButtonType.NAVBAR
           }
-        >
-          {page.pageName}
-        </Button>
+          label={page.pageName}
+        />
       </li>
     );
   });

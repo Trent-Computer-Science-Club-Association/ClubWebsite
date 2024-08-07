@@ -1,0 +1,63 @@
+.Footer {
+  @apply grid grid-cols-2 gap-4 p-4;
+  @apply bg-color-3;
+
+  a {
+    @apply text-color-2;
+    @apply underline;
+
+    &:visited,
+    &:active {
+      @apply text-color-2;
+    }
+
+    &:hover {
+      @apply text-hover-1;
+    }
+  }
+}
+
+.top {
+  @apply col-span-2;
+  @apply text-center;
+  @apply text-color-2;
+  @apply my-4;
+}
+
+.left {
+  @apply flex gap-4 items-center;
+
+  a {
+    @apply text-color-2;
+    @apply underline;
+
+    &:hover {
+      @apply text-hover-1;
+    }
+  }
+
+  .logo {
+    @apply w-10 h-10;
+
+    img {
+      @apply rounded-md;
+      @apply p-1;
+    }
+  }
+}
+
+.right {
+  @apply col-span-1 grid;
+  @apply gap-4;
+
+  h1 {
+    @apply text-5xl font-bold text-center;
+    @apply text-color-2;
+  }
+
+  .socialMedia {
+    @apply flex gap-4;
+    @apply h-10;
+    @apply justify-end;
+  }
+}

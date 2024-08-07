@@ -16,7 +16,6 @@ pageInfo:
     displayInNav: true
 bannerInfo:
   text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!'
-# please refer to https://react-icons.github.io/react-icons/icons/ for possible icons
 heroIcons:
   - altText: Link to TCSCA Instagram
     link: https://www.instagram.com/trentcsca/
@@ -27,3 +26,25 @@ heroIcons:
   - altText: Link to TCSCA Discord
     link: https://discord.gg/serea2sPAd
     path: /Icons/discord.svg
+email: &contactEmail 'tcscaclub@gmail.com'
+discordLink: https://discord.gg/serea2sPAd
+tagline: Where innovation happens
+footer:
+  text: Got questions or want to get involved? We'd love to hear from you! Feel free to contact us at the socials listed or by our  [contact us](Contact) page. We'd love to hear from you and help you get the most out of your experience with the Trent Computer Science Club Association.
+homeSections:
+  - type: TextSection
+    header: About Us
+    text: Welcome to the Trent Computer Science Club Association! We are a vibrant community of tech enthusiasts at Trent University, dedicated to fostering a love for technology and innovation. Our club hosts workshops, events, tech talks, and hackathons, providing a platform for students to learn, connect, and grow. Whether you're looking for coding help, career guidance, or just a place to share your passion for computer science, our club is here for you.
+    image: /AboutUsPlaceHolder.jpg
+    imageAlt: About Us Image
+    buttonText: Learn More
+    buttonRoute: /About
+  - type: LatestNews
+    header: Latest News
+    newsFeed:
+      - text: NEWS ABOUT TRENT COMPUTER SCIENCE
+        date: 2024-09-10
+        href: /
+      - text: NEWS ABOUT EXCITING EVENT
+        date: 2024-07-25
+        href: /

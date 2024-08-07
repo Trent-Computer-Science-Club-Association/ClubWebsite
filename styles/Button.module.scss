@@ -1,15 +1,35 @@
 .button {
   @apply hover:shadow-lg;
+  @apply inline-flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply relative;
+  img {
+    @apply object-contain relative;
+    @apply w-full h-full;
+  }
+}
+
+.imageWrapper {
+  @apply relative;
+  @apply w-6 h-6;
+  @apply flex-shrink-0;
+}
+
+.buttonText {
+  @apply ml-2;
 }
 
 .socialBtn {
-  @apply flex;
-  @apply justify-center;
   @apply bg-socials;
   @apply rounded-md;
-  @apply w-10 h-10;
-  @apply p-1;
+  @apply p-2;
   @apply shadow-md;
+}
+
+.socialBtnDark {
+  @extend .socialBtn;
+  @apply bg-black;
 }
 
 .lightBtn {
@@ -25,4 +45,5 @@
   &.active {
     @apply text-active-1;
   }
+  @apply hover:shadow-none;
 }

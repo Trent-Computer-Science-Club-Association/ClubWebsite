@@ -1,9 +1,5 @@
 .container {
-  @apply flex;
-}
-
-.SideArea {
-  @apply bg-color-3 w-96;
+  @apply flex flex-col;
 }
 
 .MainArea {

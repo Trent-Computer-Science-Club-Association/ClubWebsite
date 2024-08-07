@@ -1,0 +1,44 @@
+.TextSection {
+  @apply grid grid-cols-2 gap-4 p-4;
+  @apply py-16;
+  @apply px-10;
+  @apply items-center;
+
+  p {
+    @apply text-color-2 leading-relaxed text-xl;
+    @apply pr-4 mb-4;
+    @apply items-start;
+  }
+}
+
+.TextAndButton {
+  @apply col-span-1;
+}
+
+.ImageWrapper {
+  @apply relative;
+  @apply w-full;
+  @apply h-0;
+  @apply pb-[80%];
+  @apply overflow-hidden;
+  @apply rounded-xl;
+}
+
+.TextSectionImage {
+  @apply object-cover;
+  @apply object-center;
+}
+
+.primaryStyle {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+}
+
+.secondaryStyle {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
+  }
+}
