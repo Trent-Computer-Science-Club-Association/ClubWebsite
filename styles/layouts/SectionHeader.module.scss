@@ -1,0 +1,83 @@
+.sectionHeader {
+  @apply w-full;
+  @apply pt-4 px-4;
+  @apply flex;
+  @apply overflow-hidden;
+}
+
+.sectionHeaderContainer {
+  @apply rounded-t-lg;
+  @apply px-4 py-2;
+  @apply shrink;
+  @apply flex-grow-0;
+
+  h2 {
+    @apply text-2xl font-bold text-center text-color-2;
+  }
+}
+
+// Header Variants
+.style1 {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
+  }
+
+  .frontRoundedCornerContainer,
+  .backRoundedCornerContainer {
+    @apply bg-color-3;
+  }
+
+  .frontRoundedCorner,
+  .backRoundedCorner {
+    @apply bg-color-1;
+  }
+}
+.style2 {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+
+  .frontRoundedCornerContainer,
+  .backRoundedCornerContainer {
+    @apply bg-color-1;
+  }
+
+  .frontRoundedCorner,
+  .backRoundedCorner {
+    @apply bg-color-3;
+  }
+}
+
+// Header Alignments
+.rightAligned {
+  @apply justify-end;
+}
+
+.leftAligned {
+  @apply justify-start;
+}
+
+.middleAligned {
+  @apply justify-center;
+}
+
+.frontRoundedCornerContainer,
+.backRoundedCornerContainer {
+  @apply w-10;
+  @apply flex items-stretch;
+}
+
+.frontRoundedCorner,
+.backRoundedCorner {
+  @apply w-full h-full;
+}
+
+.frontRoundedCorner {
+  @apply rounded-br-xl;
+}
+
+.backRoundedCorner {
+  @apply rounded-bl-xl;
+}

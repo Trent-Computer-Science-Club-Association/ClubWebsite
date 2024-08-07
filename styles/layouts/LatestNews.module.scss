@@ -1,0 +1,53 @@
+.latestNewsLayout {
+  @apply grid;
+}
+
+.newsItem {
+  @apply grid grid-cols-5 items-center;
+  @apply m-4 p-4;
+  @apply rounded-xl;
+  @apply duration-300 ease-in-out;
+
+  &:hover {
+    @apply bg-hover-1;
+    @apply shadow-lg;
+    @apply transition-[box-shadow,background-color];
+  }
+
+  .left {
+    @apply col-span-4;
+    @apply text-white;
+    @apply grid grid-cols-1;
+
+    p {
+      @apply text-xl;
+    }
+
+    .date {
+      @apply text-base;
+    }
+  }
+
+  .right {
+    @apply grid;
+    @apply col-span-1;
+
+    .learnMore {
+      @apply ml-auto;
+    }
+  }
+}
+
+.primaryStyle {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+}
+
+.secondaryStyle {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
+  }
+}

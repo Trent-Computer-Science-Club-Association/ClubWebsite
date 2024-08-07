@@ -8,13 +8,9 @@ interface LogoProps {
 
 export default function Logo({ href = '/' }: LogoProps) {
   return (
-    <Link href={href} className={styles.container} prefetch={true}>
+    <Link href={href} className={styles.container}>
       <div>
-        <Image
-          src='/logo.svg'
-          alt='TCSCA Logo'
-          fill={true}
-        />
+        <Image src='/logo.svg' alt='TCSCA Logo' fill={true} />
       </div>
     </Link>
   );
