@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import Button, { ButtonType } from '../components/Button';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Footer from '@/components/Footer';
 
 const test_config_url = 'testing.com';
 
@@ -40,6 +41,7 @@ export default function ErrorLayout({
           {!allowReport && displayHomeButton()}
         </div>
       </div>
+      <Footer/>
     </main>
   );
 }
