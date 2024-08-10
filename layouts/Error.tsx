@@ -27,22 +27,24 @@ export default function ErrorLayout({
   }, []);
 
   return(
-    <main className={styles.container}>
+    <section className={styles.container}>
       <NavBar currentPage='Home' />
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <h1>
-          Oops!
-          </h1>
-          {/* Display passed error message */}
-          {children}
-          {/* Actions the user can take */}
-          {allowReport && displayButtons()}
-          {!allowReport && displayHomeButton()}
+      <main className={styles.container}>
+        <div className={styles.page}>
+          <div className={styles.pageContent}>
+            <h1>
+            Oops!
+            </h1>
+            {/* Display passed error message */}
+            {children}
+            {/* Actions the user can take */}
+            {allowReport && displayButtons()}
+            {!allowReport && displayHomeButton()}
+          </div>
         </div>
-      </div>
+      </main>
       <Footer/>
-    </main>
+    </section>
   );
 }
 
