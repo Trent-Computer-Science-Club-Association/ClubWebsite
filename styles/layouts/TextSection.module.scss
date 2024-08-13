@@ -7,7 +7,11 @@
   p {
     @apply text-color-2 leading-relaxed text-xl;
     @apply pr-4 mb-4;
-    @apply items-start;
+  }
+
+  h2 {
+    @apply text-color-2 leading-relaxed text-3xl font-bold;
+    @apply pr-4 mb-4;
   }
 }
 

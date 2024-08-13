@@ -15,6 +15,7 @@ interface Props {
   imagePath: string;
   altText: string;
   text: string;
+  title?: string;
   style?: TextSectionStyleType;
 }
 
@@ -26,6 +27,7 @@ interface PropsWithButton extends Props {
 export default function TextSection({
   imagePath,
   altText,
+  title,
   text,
   style = TextSectionStyle.primary,
   ...props
@@ -34,6 +36,7 @@ export default function TextSection({
     <div className={styles.TextSectionWrapper}>
       <div className={`${styles.TextSection} ${style}`}>
         <div className={styles.TextAndButton}>
+          {title && <h2>{title}</h2>}
           <p>{text}</p>
           {/* Checks if buttonText and link are in props in order to conditionally render a button */}
           {'buttonText' in props && 'link' in props && (
