@@ -53,9 +53,7 @@ const Button: React.FC<LabelProps | IconProps> = ({
       {props.label == undefined ? (
         <></>
       ) : (
-        <span className={styles.buttonText}>
-          {props.label}
-        </span>
+        <span className={styles.buttonText}>{props.label}</span>
       )}
     </>
   );
