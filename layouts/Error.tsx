@@ -7,7 +7,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 
-const test_config_url = 'testing.com';
+const departure_url = 'http://tcsca';
 
 export default function ErrorLayout({
   children,
@@ -17,7 +17,7 @@ export default function ErrorLayout({
   const [allowReport, setAllowReport] = useState(false);
   useEffect(() => {
     // If the user is coming from a broken link on our site, they can report an issue
-    if (document.referrer.includes('localhost:3000' || document.referrer.startsWith(test_config_url))){
+    if (document.referrer.includes('localhost:3000' || document.referrer.startsWith(departure_url))){
      setAllowReport(true);
     }
     // If not, they don't need to report an issue
