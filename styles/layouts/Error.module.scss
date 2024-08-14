@@ -1,22 +1,22 @@
 .container {
-    @apply flex flex-col;
-    @apply size-full h-screen;
+  @apply flex flex-col;
+  @apply size-full h-screen;
 }
 
 .page {
-    @apply flex flex-col flex-1;
-    @apply p-4 gap-8;
-    @apply size-full;
-    @apply justify-center items-center text-center;
-    @apply bg-color-1 text-white;
+  @apply flex flex-col flex-1;
+  @apply p-4 gap-8;
+  @apply size-full;
+  @apply justify-center items-center text-center;
+  @apply bg-color-1 text-white;
 
-    & > h1 {
-        @apply text-6xl font-bold;
-    }
+  & > h1 {
+    @apply text-6xl font-bold;
+  }
 }
 
 .button{
-    @apply text-black;
-    @apply m-2;
-    @apply text-center;
+  @apply text-center;
+  @apply text-black;
+  @apply m-2;
 }
