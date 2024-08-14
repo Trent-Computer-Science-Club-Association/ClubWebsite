@@ -7,7 +7,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 
-const departure_url = 'http://tcsca';
+const departure_url = 'https://tcsca';
 
 export default function ErrorLayout({
   children,
