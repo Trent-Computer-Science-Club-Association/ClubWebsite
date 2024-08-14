@@ -7,7 +7,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 
-const departureUrl = 'https://tcsca';
 
 export default function ErrorLayout({
   children,
@@ -15,6 +14,10 @@ export default function ErrorLayout({
   children: React.ReactNode
 }) {
   const [allowReport, setAllowReport] = useState(false);
+  const departureUrl = 'https://tcsca';
+  const returnHref = '/'; // Allow user to return to home
+  const reportHref = ''; // Allow users to report on GitHub
+  
   useEffect(() => {
     // If the user is coming from a broken link on our site, they can report an issue
     // Note: document.referrer is not always reliable as there are ways it can be blocked
@@ -32,50 +35,32 @@ export default function ErrorLayout({
       <main className={styles.container}>
         <div className={styles.page}>
           <h1>
-          Oops!
+            Oops!
           </h1>
           {/* Display passed error message */}
           <div>
             {children}
           </div>
           {/* Actions the user can take */}
-          {allowReport && displayButtons()}
-          {!allowReport && displayHomeButton()}
+          <div>
+            <Button 
+              type={ButtonType.LIGHT}
+              href={returnHref}
+              className={styles.button}
+              label='Return Home'
+            />
+            {allowReport &&             
+              <Button 
+                type={ButtonType.LIGHT}
+                href={reportHref}
+                className={styles.button}
+                label='Let us know'
+              />
+            }
+          </div>
         </div>
       </main>
       <Footer/>
     </section>
-  );
-}
-
-function displayHomeButton(){
-  // Allow user to return to home
-  const returnHref = '/';
-  return (
-    <>
-      <Button 
-        type={ButtonType.LIGHT}
-        href={returnHref}
-        className={styles.button}
-        label='Return Home'
-      />
-    </>
-  );
-}
-
-function displayButtons(){
-  // Allow users to report on GitHub
-  const reportHref = '';
-  const homeButton = displayHomeButton();
-  return (
-    <div>
-      {homeButton}
-      <Button 
-        type={ButtonType.LIGHT}
-        href={reportHref}
-        className={styles.button}
-        label='Let us know'
-      />
-    </div>
   );
 }
