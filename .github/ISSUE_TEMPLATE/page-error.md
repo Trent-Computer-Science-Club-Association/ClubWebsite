@@ -3,13 +3,13 @@ name: Page Error
 about: Come across the error page while navigating our site? Let us know what went
   wrong
 title: ''
-labels: ''
+labels: 'page-error'
 assignees: ''
 
 ---
 
 **Describe the error**
-What error message appeared? Was there a status code displayed?
+Describe the error, include any error number or additional context that was displayed. 
 
 **To Reproduce**
 Steps to reproduce the error:
@@ -17,9 +17,6 @@ Steps to reproduce the error:
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
-
-**Expected behavior**
-What were you looking for when this error occurred?
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
@@ -34,6 +31,3 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. iOS8.1]
  - Browser [e.g. stock browser, safari]
  - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
