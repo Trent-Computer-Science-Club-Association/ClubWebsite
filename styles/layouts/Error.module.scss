@@ -8,15 +8,17 @@
   @apply p-4 gap-8;
   @apply size-full;
   @apply justify-center items-center text-center;
-  @apply bg-color-1 text-white;
+  @apply bg-color-1;
 
-  & > h1 {
+  h1, p {
+    @apply text-white;
+  }
+
+  h1 {
     @apply text-6xl font-bold;
   }
-}
 
-.button{
-  @apply text-center;
-  @apply text-black;
-  @apply m-2;
+  .button{
+    @apply m-2;
+  }
 }
