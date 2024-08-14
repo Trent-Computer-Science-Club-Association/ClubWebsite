@@ -1,7 +1,6 @@
 ---
 name: Page Error
-about: Come across the error page while navigating our site? Let us know what went
-  wrong
+about: Come across an error page while navigating our site? Let us know what went wrong
 title: ''
 labels: 'page-error'
 assignees: ''
