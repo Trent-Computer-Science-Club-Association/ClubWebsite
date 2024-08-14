@@ -4,18 +4,11 @@
 }
 
 .page {
-    @apply flex flex-1;
-    @apply rounded-t-lg p-4;
-    @apply bg-color-3;
-}
-
-.pageContent {
-    @apply flex flex-col;
+    @apply flex flex-col flex-1;
+    @apply p-4 gap-8;
     @apply size-full;
     @apply justify-center items-center text-center;
-    @apply rounded-lg;
     @apply bg-color-1 text-white;
-    @apply gap-8;
 
     & > h1 {
         @apply text-6xl font-bold;

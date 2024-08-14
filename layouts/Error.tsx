@@ -31,16 +31,14 @@ export default function ErrorLayout({
       <NavBar currentPage='Home' />
       <main className={styles.container}>
         <div className={styles.page}>
-          <div className={styles.pageContent}>
-            <h1>
-            Oops!
-            </h1>
-            {/* Display passed error message */}
-            {children}
-            {/* Actions the user can take */}
-            {allowReport && displayButtons()}
-            {!allowReport && displayHomeButton()}
-          </div>
+          <h1>
+          Oops!
+          </h1>
+          {/* Display passed error message */}
+          {children}
+          {/* Actions the user can take */}
+          {allowReport && displayButtons()}
+          {!allowReport && displayHomeButton()}
         </div>
       </main>
       <Footer/>
