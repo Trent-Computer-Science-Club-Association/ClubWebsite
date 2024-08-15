@@ -23,6 +23,8 @@ const config: Config = {
         'creative-color': '#88EB3D', // Creative Color
         'managerial-color': '#FBD93C', // Managerial Color
         'volunteer-color': '#FAB22D', // Volunteer Color
+        'area-header': '#DCD489', // Area Header
+        'secondary-green': '#43FFA5', // Secondary Green
       },
     },
   },

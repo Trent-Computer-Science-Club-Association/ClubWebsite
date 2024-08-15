@@ -11,6 +11,7 @@ import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
 } from '../layouts/SectionHeader';
+import ContactSection from '../layouts/ContactSection';
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
               link=''
             />
           </div>
+          <ContactSection />
         </main>
         <Footer />
       </section>

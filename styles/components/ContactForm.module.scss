@@ -1,0 +1,78 @@
+.contactForm {
+  @apply bg-color-3 text-white p-3 rounded-lg shadow-lg;
+
+  h2 {
+    @apply text-3xl font-bold mb-2 text-area-header;
+  }
+
+  p {
+    @apply text-sm mb-4 text-color-2;
+  }
+
+  form {
+    @apply space-y-4;
+  }
+
+  .formField {
+    @apply flex flex-col;
+  }
+
+  .group {
+    @apply flex flex-row space-x-4;
+  }
+
+  .groupItem {
+    @apply flex-1;
+  }
+
+  label {
+    @apply text-sm mb-1 text-color-2 flex items-center;
+  }
+
+  .mandatory {
+    @apply text-red-500 ml-1;
+  }
+
+  .invalidLabel {
+    @apply text-red-500;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply w-full bg-color-3 text-white border-2 border-color-2 rounded-md p-2 outline-none;
+    @apply h-10;
+
+    &:focus:not(.invalid) {
+      @apply border-area-header;
+    }
+  }
+
+  textarea {
+    @apply h-32 resize-none;
+  }
+
+  button[type='submit'] {
+    @apply w-full bg-secondary-green text-color-3 py-2 px-4 rounded-md hover:bg-green-600 mt-4 font-bold;
+  }
+
+  .errorText {
+    @apply text-red-500 text-sm;
+  }
+
+  .invalid {
+    @apply border-red-500;
+  }
+
+  .serverError {
+    @apply text-red-500 mt-4;
+  }
+
+  .successMessage {
+    @apply text-green-500 mt-4;
+  }
+
+  .errorMessage {
+    @apply text-red-500 mt-4 font-bold;
+  }
+}
