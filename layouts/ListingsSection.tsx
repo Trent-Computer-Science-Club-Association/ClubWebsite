@@ -8,6 +8,9 @@ import { Listing } from '../config.yaml';
 
 interface ListingsSectionProps {
   positions: Listing[];
+  formData: Record<string, string>;
+  onInputChange: (label: string, value: string) => void;
+  onSubmit: (formData: Record<string, string>) => Promise<void>;
 }
 
 const ListingType = {
@@ -19,7 +22,12 @@ const ListingType = {
 
 Modal.setAppElement('#__next');
 
-const ListingsSection: React.FC<ListingsSectionProps> = ({ positions }) => {
+const ListingsSection: React.FC<ListingsSectionProps> = ({
+  positions,
+  formData,
+  onInputChange,
+  onSubmit,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
@@ -104,6 +112,16 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({ positions }) => {
     setIsModalOpen(false);
   };
 
+  const handleApply = () => {
+    // Pre-fill the Subject field with the selected listing title
+    onInputChange('Subject', selectedListing?.title || '');
+    setIsModalOpen(false);
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={styles.listingsSectionWrapper}>
       <div className={styles.listingsSection}>
@@ -169,9 +187,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({ positions }) => {
               />
               <Button
                 type={ButtonType.LIGHT}
-                onClick={() => {
-                  // Handle apply logic
-                }}
+                onClick={handleApply}
                 className={styles.modalButton}
                 label='Apply'
               />

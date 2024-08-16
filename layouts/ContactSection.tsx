@@ -1,43 +1,33 @@
+import React from 'react';
 import ContactForm, {
   TextInput,
   EmailInput,
   DropdownInput,
   Group,
 } from '../components/ContactForm';
+import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
 
-export default function ContactSection() {
-  const handleSubmit = async (formData: Record<string, string>) => {
-    try {
-      // existing endpoint
-      // const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+interface ContactSectionProps {
+  formData: Record<string, string>;
+  onInputChange: (label: string, value: string) => void;
+  onSubmit: (formData: Record<string, string>) => Promise<void>;
+}
 
-      // non existing endpoint so no working
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.status === 200) {
-        console.log('Form submitted successfully');
-      } else {
-        throw new Error('Server error');
-      }
-
-      console.log('Form submitted successfully');
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      throw error; // Re-throw the error to be caught by the ContactForm component
-    }
-  };
+export default function ContactSection({
+  formData,
+  onInputChange,
+  onSubmit,
+}: ContactSectionProps) {
   return (
-    <div className={styles.contactSection}>
-      <div className='left'>
+    <div className={styles.contactSection} id='contact-form'>
+      <div className={styles.left}>
         <ContactForm
           title='Get In Touch'
           description='Fill out the form below to contact us.'
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          formData={formData}
+          onInputChange={onInputChange}
           formItems={[
             Group(
               TextInput('Name', 'Enter your name'),
@@ -55,9 +45,41 @@ export default function ContactSection() {
           ]}
         />
       </div>
-      <div className='right'>
-        <h2>Get In Touch</h2>
-        <p>Fill out the form below to contact us.</p>
+      <div className={styles.right}>
+        <div className={styles.topBox}>
+          <TextBox
+            title='Why Join Us?'
+            description='Join our community of passionate computer science enthusiasts and explore the latest technologies, collaborate on projects, and network with industry professionals.'
+          />
+        </div>
+        <div className={styles.bottomBox}>
+          <TextBox
+            title='Get In Touch'
+            description='Fill out the form below to contact us.'
+            links={[
+              {
+                icon: '/Icons/discord.svg',
+                link: 'https://discord.gg/serea2sPAd',
+                text: 'Discord',
+              },
+              {
+                icon: '/Icons/instagram.svg',
+                link: 'https://www.instagram.com/trentcsca/',
+                text: 'Instagram',
+              },
+              {
+                icon: '/Icons/linkedin.svg',
+                link: 'https://www.linkedin.com/company/trent-computer-science-society',
+                text: 'LinkedIn',
+              },
+              {
+                icon: '/Icons/github.svg',
+                link: 'https://github.com/tcsca',
+                text: 'GitHub',
+              },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );

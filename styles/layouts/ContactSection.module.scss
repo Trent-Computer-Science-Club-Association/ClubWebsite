@@ -4,11 +4,21 @@
 
 .right {
   @apply col-span-1;
+  @apply flex flex-col;
+  @apply h-full;
 }
 
 .contactSection {
   @apply grid grid-cols-2 gap-4 p-4;
-  @apply py-16;
-  @apply px-10;
+  @apply py-8;
+  @apply px-8;
   @apply items-center;
+}
+
+.topBox {
+  @apply mb-auto;
+}
+
+.bottomBox {
+  @apply mt-auto;
 }

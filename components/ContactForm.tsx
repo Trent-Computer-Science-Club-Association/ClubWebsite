@@ -28,6 +28,8 @@ interface ContactFormProps {
   description: string;
   formItems: FormItem[];
   onSubmit: (formData: Record<string, string>) => Promise<void>;
+  formData: Record<string, string>;
+  onInputChange: (label: string, value: string) => void;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
@@ -35,8 +37,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
   description,
   formItems,
   onSubmit,
+  formData,
+  onInputChange,
 }) => {
-  const [formData, setFormData] = useState<Record<string, string>>({});
   const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>(
     {}
   );
@@ -48,10 +51,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
   useEffect(() => {
     validateForm();
   }, [formData, touchedFields]);
-
-  const handleInputChange = (label: string, value: string) => {
-    setFormData((prevData) => ({ ...prevData, [label]: value }));
-  };
 
   const handleBlur = (label: string) => {
     setTouchedFields((prevTouched) => ({ ...prevTouched, [label]: true }));
@@ -113,7 +112,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
         await onSubmit(formData);
         setSubmissionStatus('success');
         // Reset form after successful submission
-        setFormData({});
         setTouchedFields({});
       } catch (error) {
         console.error('Error submitting form:', error);
@@ -157,7 +155,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           <select
             id={item.label}
             value={value}
-            onChange={(e) => handleInputChange(item.label, e.target.value)}
+            onChange={(e) => onInputChange(item.label, e.target.value)}
             onBlur={() => handleBlur(item.label)}
             className={isInvalid ? styles.invalid : ''}
           >
@@ -190,18 +188,18 @@ const ContactForm: React.FC<ContactFormProps> = ({
           <textarea
             id={item.label}
             value={value}
-            onChange={(e) => handleInputChange(item.label, e.target.value)}
+            onChange={(e) => onInputChange(item.label, e.target.value)}
             onBlur={() => handleBlur(item.label)}
             placeholder={item.placeholder}
             className={isInvalid ? styles.invalid : ''}
-            maxLength={5000} // this is so large due to just worrying about sponsors since they may have long copy-pasted messages
+            maxLength={5000}
           />
         ) : (
           <input
             type={item.type}
             id={item.label}
             value={value}
-            onChange={(e) => handleInputChange(item.label, e.target.value)}
+            onChange={(e) => onInputChange(item.label, e.target.value)}
             onBlur={() => handleBlur(item.label)}
             placeholder={item.placeholder}
             className={isInvalid ? styles.invalid : ''}

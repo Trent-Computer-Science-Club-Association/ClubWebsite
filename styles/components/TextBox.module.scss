@@ -1,0 +1,23 @@
+.TextBox {
+  @apply bg-color-3 text-white p-3 rounded-lg shadow-lg;
+
+  h2 {
+    @apply text-3xl font-bold mb-2 text-area-header;
+  }
+
+  p {
+    @apply text-sm mb-4 text-color-2;
+  }
+
+  .links {
+    @apply mt-12;
+    @apply flex flex-col gap-1;
+    @apply flex-shrink-0;
+    a {
+      @apply flex items-center;
+      span {
+        @apply ml-2;
+      }
+    }
+  }
+}
