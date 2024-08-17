@@ -1,28 +1,31 @@
 // CSS
 import styles from '../styles/components/HeroBanner.module.scss';
 import Button, { ButtonType } from './Button';
-import { heroIcons, tagline } from '../config.yaml';
 import Logo from '../components/Logo';
+import { website_config } from '../config';
 
 export default function HeroBanner() {
+  const { title, social_icons, tagline } = website_config;
+  // ui
   return (
     <div className={styles.HeroBanner}>
       {/* Left Column */}
       <div className={styles.leftColumn}>
         <Logo />
-        <Button type={ButtonType.LIGHT} label='Apply' />
+        <Button type={ButtonType.LIGHT} label='Apply' href={'/Contact'} />
       </div>
       {/* Right Column */}
       <div className={styles.rightColumn}>
-        <h1>Trent Computer Science Club Association</h1>
+        <h1>{title}</h1>
         <hr />
         <div className={styles.tagline}>{tagline}</div>
         <div className={styles.socialMedia}>
-          {heroIcons.map((icon) => (
+          {social_icons.map(({ alt_text, link, path }, i) => (
             <Button
-              key={icon.altText}
+              key={i}
+              href={link}
               type={ButtonType.SOCIAL}
-              image={{ src: icon.path, altText: icon.altText }}
+              image={{ src: path, altText: alt_text }}
             />
           ))}
         </div>

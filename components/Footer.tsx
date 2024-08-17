@@ -1,36 +1,38 @@
 import styles from '../styles/components/Footer.module.scss';
-import config from '../config.yaml';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
-import { footer } from '../config.yaml';
+import { website_config, footer_config } from '../config';
 import ReactMarkdown from 'react-markdown';
 import Logo from '../components/Logo';
 
 export default function Footer() {
+  const { social_icons } = website_config;
+  const { text} = footer_config;
+  // ui
   return (
     <footer className={styles.Footer}>
       {/* Top section */}
       <div className={styles.top}>
-        <ReactMarkdown className={styles.text}>{footer.text}</ReactMarkdown>
+        <ReactMarkdown className={styles.text}>{text}</ReactMarkdown>
       </div>
       {/* Left side */}
       <div className={styles.left}>
         <div className={styles.logo}>
           <Logo />
         </div>
-        <Link href={`mailto:${config.email}`} className={styles.link}>
-          {config.email}
+        <Link href={`mailto:${website_config.email}`} className={styles.link}>
+          {website_config.email}
         </Link>
       </div>
       {/* Right side */}
       <div className={styles.right}>
         <div className={styles.socialMedia}>
-          {config.heroIcons.map((icon, index) => (
+          {social_icons.map(({ alt_text, link, path }, i) => (
             <Button
-              key={index}
-              image={{ src: icon.path, altText: icon.altText }}
+              key={i}
+              image={{ src: path, altText: alt_text }}
               type={ButtonType.SOCIAL_DARK}
-              href={icon.link}
+              href={link}
               className={styles.socialMedia}
             />
           ))}

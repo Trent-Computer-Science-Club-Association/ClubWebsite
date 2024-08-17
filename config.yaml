@@ -1,50 +1,57 @@
-pageInfo:
-  - pageName: 'Home'
-    pageLink: '/'
-    displayInNav: true
-  - pageName: 'About'
-    pageLink: '/About'
-    displayInNav: true
-  - pageName: 'Blog'
-    pageLink: '/Blog'
-    displayInNav: true
-  - pageName: 'Events'
-    pageLink: '/Events'
-    displayInNav: true
-  - pageName: 'Contact Us'
-    pageLink: '/Contact'
-    displayInNav: true
-bannerInfo:
-  text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!'
-heroIcons:
-  - altText: Link to TCSCA Instagram
-    link: https://www.instagram.com/trentcsca/
-    path: /Icons/instagram.svg
-  - altText: Link to TCSCA Linkedin
-    link: https://www.linkedin.com/company/trent-computer-science-society
-    path: /Icons/linkedin.svg
-  - altText: Link to TCSCA Discord
-    link: https://discord.gg/serea2sPAd
-    path: /Icons/discord.svg
-email: &contactEmail 'tcscaclub@gmail.com'
-discordLink: https://discord.gg/serea2sPAd
-tagline: Where innovation happens
-footer:
+# General website configuration
+website_config:
+  title: Trent Student Computer Science Association
+  email: &contactEmail 'tcscaclub@gmail.com' # &contactEmail lets us reuse this throughout the config
+  discord: https://discord.gg/serea2sPAd
+  tagline: Where innovation happens
+  # Social Icons
+  social_icons:
+    - alt_text: Link to TCSCA Instagram
+      link: https://www.instagram.com/trentcsca/
+      path: /Icons/instagram.svg
+    - alt_text: Link to TCSCA Linkedin
+      link: https://www.linkedin.com/company/trent-computer-science-society
+      path: /Icons/linkedin.svg
+    - alt_text: Link to TCSCA Discord
+      link: https://discord.gg/serea2sPAd
+      path: /Icons/discord.svg
+  # Banner text, comment this out if you do not want a banner
+  banner_text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!' # TODO: Placeholder example.com
+# Page info for navigation
+page_list:
+  - page_name: Home
+    page_link: /
+    display_in_navbar: true
+  - page_name: About
+    page_link: /About
+    display_in_navbar: true
+  - page_name: Events
+    page_link: /Events
+    display_in_navbar: true
+  - page_name: Contact Us
+    page_link: /Contact
+    display_in_navbar: true
+# Footer Config
+footer_config:
   text: Got questions or want to get involved? We'd love to hear from you! Feel free to contact us at the socials listed or by our  [contact us](Contact) page. We'd love to hear from you and help you get the most out of your experience with the Trent Computer Science Club Association.
-homeSections:
-  - type: TextSection
-    header: About Us
-    text: Welcome to the Trent Computer Science Club Association! We are a vibrant community of tech enthusiasts at Trent University, dedicated to fostering a love for technology and innovation. Our club hosts workshops, events, tech talks, and hackathons, providing a platform for students to learn, connect, and grow. Whether you're looking for coding help, career guidance, or just a place to share your passion for computer science, our club is here for you.
-    image: /AboutUsPlaceHolder.jpg
-    imageAlt: About Us Image
-    buttonText: Learn More
-    buttonRoute: /About
-  - type: LatestNews
-    header: Latest News
-    newsFeed:
-      - text: NEWS ABOUT TRENT COMPUTER SCIENCE
-        date: 2024-09-10
-        href: /
-      - text: NEWS ABOUT EXCITING EVENT
-        date: 2024-07-25
-        href: /
+# Configuration for the homepage
+home_page:
+  sections:
+    - section_type: TextSection
+      section_header: About Us
+      text: Welcome to the Trent Computer Science Club Association! We are a vibrant community of tech enthusiasts at Trent University, dedicated to fostering a love for technology and innovation. Our club hosts workshops, events, tech talks, and hackathons, providing a platform for students to learn, connect, and grow. Whether you're looking for coding help, career guidance, or just a place to share your passion for computer science, our club is here for you.
+      image: 
+        src: /AboutUsPlaceHolder.jpg
+        alt: About Us Image
+      button:
+        text: Learn More
+        href: /About
+    - section_type: NewsSection
+      section_header: Latest News
+      news_feed:
+        - text: NEWS ABOUT TRENT COMPUTER SCIENCE
+          date: 2024-09-10
+          href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          href: /
