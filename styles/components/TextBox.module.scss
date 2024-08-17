@@ -10,7 +10,6 @@
   }
 
   .links {
-    @apply mt-12;
     @apply flex flex-col gap-1;
     @apply flex-shrink-0;
     a {

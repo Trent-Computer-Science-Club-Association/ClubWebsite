@@ -1,8 +1,12 @@
 .TextSection {
-  @apply grid grid-cols-2 gap-4 p-4;
+  @apply grid gap-4 p-4;
   @apply py-16;
   @apply px-10;
   @apply items-center;
+
+  @screen md {
+    @apply grid-cols-2;
+  }
 
   p {
     @apply text-color-2 leading-relaxed text-xl;
@@ -17,6 +21,11 @@
 
 .TextAndButton {
   @apply col-span-1;
+  order: 2;
+
+  @screen md {
+    order: 1;
+  }
 }
 
 .ImageWrapper {
@@ -26,6 +35,11 @@
   @apply pb-[80%];
   @apply overflow-hidden;
   @apply rounded-xl;
+  order: 1;
+
+  @screen md {
+    order: 2;
+  }
 }
 
 .TextSectionImage {

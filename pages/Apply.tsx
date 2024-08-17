@@ -46,6 +46,7 @@ export default function Home() {
             imagePath='/FaryonBridge.jpg'
             altText='About Us Image'
             title='Trent Computer Science Club Association'
+            sectionHeader='Positions'
           />
           <ListingsSection
             positions={config.listings}

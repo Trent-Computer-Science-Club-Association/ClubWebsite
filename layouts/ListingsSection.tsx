@@ -5,6 +5,7 @@ import styles from '../styles/layouts/Listing.module.scss';
 import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
 import { Listing } from '../config.yaml';
+import Link from 'next/link';
 
 interface ListingsSectionProps {
   positions: Listing[];
@@ -23,10 +24,8 @@ const ListingType = {
 Modal.setAppElement('#__next');
 
 const ListingsSection: React.FC<ListingsSectionProps> = ({
-  positions,
-  formData,
+  positions = [],
   onInputChange,
-  onSubmit,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -113,7 +112,6 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
   };
 
   const handleApply = () => {
-    // Pre-fill the Subject field with the selected listing title
     onInputChange('Subject', selectedListing?.title || '');
     setIsModalOpen(false);
     const contactForm = document.getElementById('contact-form');
@@ -124,31 +122,50 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
 
   return (
     <div className={styles.listingsSectionWrapper}>
-      <div className={styles.listingsSection}>
-        {visibleListings.map((position) => position.card)}
-      </div>
-      {hasMoreListings && (
-        <button
-          className={styles.expandButton}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          {isExpanded ? (
-            <>
-              <Image src='/ChevronUp.svg' alt='Expand' width={20} height={20} />
-              Show Less
-            </>
-          ) : (
-            <>
-              <Image
-                src='/ChevronDown.svg'
-                alt='Expand'
-                width={20}
-                height={20}
-              />
-              Show More
-            </>
+      {positions.length === 0 ? (
+        <div className={styles.noPositions}>
+          <p>
+            There are no positions open at the moment. Please follow our{' '}
+            <Link href='https://www.linkedin.com/company/trent-computer-science-society'>
+              LinkedIn
+            </Link>{' '}
+            for updates.
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className={styles.listingsSection}>
+            {visibleListings.map((position) => position.card)}
+          </div>
+          {hasMoreListings && (
+            <button
+              className={styles.expandButton}
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? (
+                <>
+                  <Image
+                    src='/ChevronUp.svg'
+                    alt='Expand'
+                    width={20}
+                    height={20}
+                  />
+                  Show Less
+                </>
+              ) : (
+                <>
+                  <Image
+                    src='/ChevronDown.svg'
+                    alt='Expand'
+                    width={20}
+                    height={20}
+                  />
+                  Show More
+                </>
+              )}
+            </button>
           )}
-        </button>
+        </>
       )}
 
       {selectedListing && (

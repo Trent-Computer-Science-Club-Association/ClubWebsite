@@ -64,6 +64,24 @@
 
 .listingsSectionWrapper {
   @apply flex flex-col items-center m-4;
+
+  .noPositions {
+    @apply flex flex-col items-center;
+    @apply text-color-2;
+    @apply text-center;
+    @apply mt-4;
+
+    p {
+      @apply w-1/2;
+      @apply text-3xl leading-loose font-bold;
+      @apply my-16;
+    }
+
+    a {
+      @apply underline;
+      @apply text-color-2;
+    }
+  }
 }
 
 .expandButton {
