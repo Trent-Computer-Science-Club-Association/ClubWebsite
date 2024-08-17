@@ -1,43 +1,24 @@
 // CSS
 import styles from '../styles/components/EventBanner.module.scss';
 // Config
-import config from '../config.yaml';
+import { website_config } from '../config';
 import ReactMarkdown from 'react-markdown';
 
 interface Props {
   color?: string;
-  contextKey?: keyof typeof config;
 }
 
-export default function EventBanner({
-  color = 'event-banner',
-  contextKey = 'bannerInfo',
-}: Props) {
-  const bannerInfo = config[contextKey];
+export default function EventBanner({ color = 'event-banner' }: Props) {
+  const { banner_text } = website_config;
+  if (banner_text == undefined) return null;
+  if (banner_text.length == 0) return null;
 
-  if (contextKey === 'bannerInfo') {
-    const bannerInfoTyped = bannerInfo as typeof config.bannerInfo;
-    if (!bannerInfoTyped || bannerInfoTyped.hidden) {
-      return null;
-    }
-
-    const eventMarkdown = bannerInfoTyped.text;
-
-    if (!eventMarkdown) {
-      return null;
-    }
-
-    return (
-      <div className={styles.EventBanner} style={{ backgroundColor: color }}>
-        {/* Event Content */}
-        <div className={styles.EventContent}>
-          <ReactMarkdown className={styles.Markdown}>
-            {eventMarkdown}
-          </ReactMarkdown>
-        </div>
+  return (
+    <div className={styles.EventBanner} style={{ backgroundColor: color }}>
+      {/* Event Content */}
+      <div className={styles.EventContent}>
+        <ReactMarkdown className={styles.Markdown}>{banner_text}</ReactMarkdown>
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 }

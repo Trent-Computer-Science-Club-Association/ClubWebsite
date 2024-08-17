@@ -11,10 +11,10 @@ import TextSection, {
   TextSectionStyle,
   type TextSectionStyleType,
 } from './TextSection';
-import { type HomeSection } from '../config.yaml';
+import { SectionType, type Section } from '../config';
 
 interface SectionProps {
-  sectionConfig: HomeSection;
+  sectionConfig: Section;
   index: number;
 }
 
@@ -37,31 +37,21 @@ const getStyle = (index: number) => {
 };
 
 const getContent = (
-  sectionConfig: HomeSection,
+  sectionConfig: Section,
   index: number,
   style: {
     newsSectionStyle: NewsSectionStyleType;
     textSectionStyle: TextSectionStyleType;
   }
 ) => {
-  switch (sectionConfig.type) {
-    case 'TextSection':
+  switch (sectionConfig.section_type) {
+    case SectionType.TextSection:
       return (
-        <TextSection
-          imagePath={sectionConfig.image}
-          altText={sectionConfig.imageAlt}
-          text={sectionConfig.text}
-          buttonText={sectionConfig.buttonText}
-          link={sectionConfig.buttonRoute}
-          style={style.textSectionStyle}
-        />
+        <TextSection section={sectionConfig} style={style.textSectionStyle} />
       );
-    case 'LatestNews':
+    case SectionType.LatestNews:
       return (
-        <NewsSection
-          newsFeed={sectionConfig.newsFeed}
-          style={style.newsSectionStyle}
-        />
+        <NewsSection section={sectionConfig} style={style.newsSectionStyle} />
       );
   }
 };
@@ -78,7 +68,7 @@ const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
   return (
     <section>
       <SectionHeader
-        title={sectionConfig.header}
+        title={sectionConfig.section_header}
         style={sectionStyle}
         location={location}
       />

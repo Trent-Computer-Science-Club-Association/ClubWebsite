@@ -2,6 +2,7 @@ import React from 'react';
 import Image from '../components/Image';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
+import { type TextSection } from '../config';
 
 const TextSectionStyle = {
   primary: styles.primaryStyle,
@@ -12,9 +13,7 @@ type TextSectionStyleType =
   (typeof TextSectionStyle)[keyof typeof TextSectionStyle];
 
 interface Props {
-  imagePath: string;
-  altText: string;
-  text: string;
+  section: TextSection;
   style?: TextSectionStyleType;
 }
 
@@ -24,9 +23,7 @@ interface PropsWithButton extends Props {
 }
 
 export default function TextSection({
-  imagePath,
-  altText,
-  text,
+  section: { text, image, button },
   style = TextSectionStyle.primary,
   ...props
 }: Props | PropsWithButton) {
@@ -36,18 +33,18 @@ export default function TextSection({
         <div className={styles.TextAndButton}>
           <p>{text}</p>
           {/* Checks if buttonText and link are in props in order to conditionally render a button */}
-          {'buttonText' in props && 'link' in props && (
+          {button != null && (
             <Button
               type={ButtonType.LIGHT}
-              href={props.link}
-              label={props.buttonText}
+              href={button.href}
+              label={button.text}
             />
           )}
         </div>
         <div className={styles.ImageWrapper}>
           <Image
-            src={imagePath}
-            alt={altText}
+            src={image.src}
+            alt={image.alt}
             fill={true}
             className={styles.TextSectionImage}
           />
