@@ -4,7 +4,7 @@ import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
-import { Listing } from '../config.yaml';
+import { Listing } from '../config';
 import Link from 'next/link';
 
 interface ListingsSectionProps {
@@ -60,7 +60,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
           {position.requirements.map((requirement, reqIndex) => (
             <li key={reqIndex} className={styles.requirementItem}>
               <Image
-                src={requirement.iconPath || '/checkmark.svg'}
+                src={requirement.icon_path || '/checkmark.svg'}
                 alt={requirement.description}
                 width={20}
                 height={20}
@@ -185,7 +185,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
               {selectedListing.requirements.map((requirement, reqIndex) => (
                 <li key={reqIndex} className={styles.modalRequirementItem}>
                   <Image
-                    src={requirement.iconPath || '/checkmark.svg'}
+                    src={requirement.icon_path || '/checkmark.svg'}
                     alt={requirement.description}
                     width={20}
                     height={20}
