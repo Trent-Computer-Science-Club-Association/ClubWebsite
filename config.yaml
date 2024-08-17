@@ -58,107 +58,118 @@ home_page:
         - text: NEWS ABOUT EXCITING EVENT
           date: 2024-07-25
           href: /
-listings:
-  - title: Frontend Developer
-    description: We're looking for a talented frontend developer to join our team.
-    requirements:
-      - description: Experience with React, Next.js, and/or TypeScript
-      - description: Strong CSS and UI/UX design skills
-      - description: Familiarity with modern web development tools
-    type: Developer
-    priority: 1
-    modal: >
-      We're looking for a talented frontend developer to join our team. You'll be
-      responsible for building and maintaining our website, as well as contributing
-      to our open-source projects maintained by our club at your leisure. Additionally,
-      you may be asked to help out with additional events but that is not required.
-  - title: Backend Developer
-    description: Seeking a skilled backend developer to create and maintain server-side logic.
-    requirements:
-      - description: Proficiency in Node.js, Python, or Java
-        icon_path: ''
-      - description: Experience with databases like MongoDB, MySQL
-        icon_path: ''
-      - description: Knowledge of RESTful APIs and microservices architecture
-        icon_path: ''
-    type: Developer
-    priority: 1
-    modal: >
-      We are in need of a backend developer to work on server-side logic and integration
-      with front-end components. Your role will involve database management, server-side
-      programming, and API development.
-  - title: Data Scientist
-    description: Join us to analyze data and derive meaningful insights to guide our club's projects.
-    requirements:
-      - description: Experience with data analysis tools like Python, R
-        icon_path: ''
-      - description: Knowledge of machine learning algorithms
-        icon_path: ''
-      - description: Strong statistical analysis skills
-        icon_path: ''
-    type: Developer
-    priority: 2
-    modal: >
-      As a Data Scientist, you will analyze complex datasets to help improve our club's
-      initiatives. You'll work on predictive modeling, data visualization, and collaborate
-      with our development team.
-  - title: Graphic Designer
-    description: Looking for a creative graphic designer to create visual content for our club.
-    requirements:
-      - description: Proficiency in Adobe Creative Suite (Photoshop, Illustrator)
-        icon_path: ''
-      - description: Strong portfolio of design projects
-        icon_path: ''
-      - description: Creativity and attention to detail
-        icon_path: ''
-    type: Creative
-    priority: 2
-    modal: >
-      We need a graphic designer to produce engaging visual content for our website and events.
-      You will be responsible for creating logos, banners, and other marketing materials.
-  - title: Content Writer
-    description: Seeking a content writer to create engaging articles and blog posts for our club's site.
-    requirements:
-      - description: Excellent writing and editing skills
-      - description: Experience with SEO and content strategy
-      - description: Ability to research and generate unique content ideas
-    type: Creative
-    priority: 3
-    modal: >
-      As a Content Writer, you'll craft articles and blog posts that align with our club's
-      mission. You'll collaborate with designers and developers to enhance our club's online presence.
-  - title: Event Coordinator
-    description: Looking for an event coordinator to organize club meetings and events.
-    requirements:
-      - description: Excellent communication and interpersonal skills
-      - description: Experience in event planning or management
-      - description: Ability to work under tight deadlines
-    type: Managerial
-    priority: 2
-    modal: >
-      As an Event Coordinator, you will organize and manage our club's events, from planning
-      to execution. You'll work with club members to ensure successful and engaging events.
-  - title: Volunteer Coordinator
-    description: Seeking a volunteer coordinator to manage our club's volunteer activities and recruit new volunteers.
-    requirements:
-      - description: Strong communication and leadership skills
-      - description: Experience with volunteer management
-      - description: Ability to motivate and inspire volunteers
-    type: Volunteer
-    priority: 3
-    modal: >
-      The Volunteer Coordinator will be responsible for recruiting, training, and managing
-      volunteers for various club activities. You'll ensure that our volunteer program runs smoothly
-      and efficiently.
+contact_page:
+  sponsor:
+    section_type: TextSection
+    section_header: Why Become a Sponsor?
+    text: By sponsoring our computer science club, you'll gain valuable exposure to a talented pool of future tech leaders.Your support will help us provide cutting-edge resources and opportunities for our members, strengthening the local tech community.
+    image:
+      src: /SponsorImage.jpg
+      alt: Why To Become a Sponsor?
+    button:
+      text: Become a Sponsor
+      href: ''
+  listings:
+    - title: Frontend Developer
+      description: We're looking for a talented frontend developer to join our team.
+      requirements:
+        - description: Experience with React, Next.js, and/or TypeScript
+        - description: Strong CSS and UI/UX design skills
+        - description: Familiarity with modern web development tools
+      type: Developer
+      priority: 1
+      modal: >
+        We're looking for a talented frontend developer to join our team. You'll be
+        responsible for building and maintaining our website, as well as contributing
+        to our open-source projects maintained by our club at your leisure. Additionally,
+        you may be asked to help out with additional events but that is not required.
+    - title: Backend Developer
+      description: Seeking a skilled backend developer to create and maintain server-side logic.
+      requirements:
+        - description: Proficiency in Node.js, Python, or Java
+          icon_path: ''
+        - description: Experience with databases like MongoDB, MySQL
+          icon_path: ''
+        - description: Knowledge of RESTful APIs and microservices architecture
+          icon_path: ''
+      type: Developer
+      priority: 1
+      modal: >
+        We are in need of a backend developer to work on server-side logic and integration
+        with front-end components. Your role will involve database management, server-side
+        programming, and API development.
+    - title: Data Scientist
+      description: Join us to analyze data and derive meaningful insights to guide our club's projects.
+      requirements:
+        - description: Experience with data analysis tools like Python, R
+          icon_path: ''
+        - description: Knowledge of machine learning algorithms
+          icon_path: ''
+        - description: Strong statistical analysis skills
+          icon_path: ''
+      type: Developer
+      priority: 2
+      modal: >
+        As a Data Scientist, you will analyze complex datasets to help improve our club's
+        initiatives. You'll work on predictive modeling, data visualization, and collaborate
+        with our development team.
+    - title: Graphic Designer
+      description: Looking for a creative graphic designer to create visual content for our club.
+      requirements:
+        - description: Proficiency in Adobe Creative Suite (Photoshop, Illustrator)
+          icon_path: ''
+        - description: Strong portfolio of design projects
+          icon_path: ''
+        - description: Creativity and attention to detail
+          icon_path: ''
+      type: Creative
+      priority: 2
+      modal: >
+        We need a graphic designer to produce engaging visual content for our website and events.
+        You will be responsible for creating logos, banners, and other marketing materials.
+    - title: Content Writer
+      description: Seeking a content writer to create engaging articles and blog posts for our club's site.
+      requirements:
+        - description: Excellent writing and editing skills
+        - description: Experience with SEO and content strategy
+        - description: Ability to research and generate unique content ideas
+      type: Creative
+      priority: 3
+      modal: >
+        As a Content Writer, you'll craft articles and blog posts that align with our club's
+        mission. You'll collaborate with designers and developers to enhance our club's online presence.
+    - title: Event Coordinator
+      description: Looking for an event coordinator to organize club meetings and events.
+      requirements:
+        - description: Excellent communication and interpersonal skills
+        - description: Experience in event planning or management
+        - description: Ability to work under tight deadlines
+      type: Managerial
+      priority: 2
+      modal: >
+        As an Event Coordinator, you will organize and manage our club's events, from planning
+        to execution. You'll work with club members to ensure successful and engaging events.
+    - title: Volunteer Coordinator
+      description: Seeking a volunteer coordinator to manage our club's volunteer activities and recruit new volunteers.
+      requirements:
+        - description: Strong communication and leadership skills
+        - description: Experience with volunteer management
+        - description: Ability to motivate and inspire volunteers
+      type: Volunteer
+      priority: 3
+      modal: >
+        The Volunteer Coordinator will be responsible for recruiting, training, and managing
+        volunteers for various club activities. You'll ensure that our volunteer program runs smoothly
+        and efficiently.
 
-  - title: Outreach Coordinator
-    description: Looking for an outreach coordinator to promote our club and build partnerships with other organizations.
-    requirements:
-      - description: Excellent communication and networking skills
-      - description: Experience with public relations or community outreach
-      - description: Ability to develop and maintain partnerships
-    type: Volunteer
-    priority: 2
-    modal: >
-      The Outreach Coordinator will work to increase our club's visibility and establish partnerships
-      with other organizations. You'll lead efforts in public relations and community engagement.
+    - title: Outreach Coordinator
+      description: Looking for an outreach coordinator to promote our club and build partnerships with other organizations.
+      requirements:
+        - description: Excellent communication and networking skills
+        - description: Experience with public relations or community outreach
+        - description: Ability to develop and maintain partnerships
+      type: Volunteer
+      priority: 2
+      modal: >
+        The Outreach Coordinator will work to increase our club's visibility and establish partnerships
+        with other organizations. You'll lead efforts in public relations and community engagement.

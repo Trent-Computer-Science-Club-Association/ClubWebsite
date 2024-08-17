@@ -19,30 +19,36 @@ export interface ImageDescription {
   src: string;
   alt: string;
 }
+
 // Section
 export enum SectionType {
   TextSection = 'TextSection',
   LatestNews = 'NewsSection',
 }
+
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
   section_header: string;
 }
+
 const sectionBase = z.strictObject({
   section_type: z.nativeEnum(SectionType),
   section_header: z.string(),
 });
+
 // Config Types
 interface SocialIcon {
   alt_text: string;
   link: string;
   path: string;
 }
+
 const socialIcon = z.strictObject({
   alt_text: z.string(),
   link: z.string(),
   path: z.string(),
 });
+
 interface WebsiteConfig {
   title: string;
   email: string;
@@ -53,6 +59,7 @@ interface WebsiteConfig {
   social_icons: SocialIcon[];
   banner_text?: string;
 }
+
 const websiteConfig = z.strictObject({
   title: z.string(),
   email: z.string(),
@@ -63,22 +70,27 @@ const websiteConfig = z.strictObject({
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),
 });
+
 interface PageItem {
   page_name: string;
   page_link: string;
   display_in_navbar: boolean;
 }
+
 const pageItem = z.strictObject({
   page_name: z.string(),
   page_link: z.string(),
   display_in_navbar: z.boolean(),
 });
+
 interface FooterConfig {
   text: string;
 }
+
 const footerConfig = z.strictObject({
   text: z.string(),
 });
+
 // homepage sections
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;
@@ -89,6 +101,7 @@ export interface TextSection extends SectionBase {
     href: string;
   };
 }
+
 const textSection = sectionBase.extend({
   section_type: z.literal(SectionType.TextSection),
   text: z.string(),
@@ -103,6 +116,7 @@ const textSection = sectionBase.extend({
     })
     .optional(),
 });
+
 export interface NewsSection extends SectionBase {
   section_type: SectionType.LatestNews;
   news_feed: {
@@ -111,6 +125,7 @@ export interface NewsSection extends SectionBase {
     href: string;
   }[];
 }
+
 const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.LatestNews),
   news_feed: z.array(
@@ -121,6 +136,7 @@ const newsSection = sectionBase.extend({
     })
   ),
 });
+
 type HomeSection = TextSection | NewsSection;
 const homeSection = z.union([textSection, newsSection]);
 interface HomePage {
@@ -129,6 +145,57 @@ interface HomePage {
 const homePage = z.strictObject({
   sections: z.array(homeSection),
 });
+
+// Listing Types
+export enum ListingType {
+  Developer = 'Developer',
+  Creative = 'Creative',
+  Managerial = 'Managerial',
+  Volunteer = 'Volunteer',
+}
+
+const listingTypeEnum = z.nativeEnum(ListingType);
+
+interface Requirement {
+  description: string;
+  icon_path?: string;
+}
+
+const requirement = z.strictObject({
+  description: z.string(),
+  icon_path: z.optional(z.string()),
+});
+
+export interface Listing {
+  priority?: number;
+  title: string;
+  description: string;
+  requirements: Requirement[];
+  type: (typeof ListingType)[keyof typeof ListingType];
+  modal?: string;
+  keywords?: string[];
+}
+
+const listing = z.strictObject({
+  priority: z.number().optional(),
+  title: z.string(),
+  description: z.string(),
+  requirements: z.array(requirement),
+  type: listingTypeEnum,
+  modal: z.string().optional(),
+  keywords: z.array(z.string()).optional(),
+});
+
+interface ContactPage {
+  sponsor: TextSection;
+  listings: Listing[];
+}
+
+const contactPage = z.strictObject({
+  sponsor: textSection,
+  listings: z.array(listing),
+});
+
 // config
 export type Section = HomeSection;
 interface ValidConfig {
@@ -137,13 +204,16 @@ interface ValidConfig {
   footer_config: FooterConfig;
   // Page Configs
   home_page: HomePage;
+  contact_page: ContactPage;
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
   home_page: homePage,
+  contact_page: contactPage,
 });
+
 // Config Section Spaced out for an easier error
 // =========================================================================
 // The real error is in config.yaml, you messed up the configuration file
@@ -162,3 +232,4 @@ export const website_config = config.website_config;
 export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
+export const contact_page = config.contact_page;

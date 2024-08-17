@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from '../styles/About.module.scss';
-import config from '../config.yaml';
+import { contact_page, website_config } from '../config';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import BlurBanner from '../components/BlurBanner';
 import ListingsSection from '../layouts/ListingsSection';
-import TextSection from '../layouts/TextSection';
+import TextSection, { TextSectionStyle } from '../layouts/TextSection';
 import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
@@ -45,11 +45,11 @@ export default function Home() {
           <BlurBanner
             imagePath='/FaryonBridge.jpg'
             altText='About Us Image'
-            title='Trent Computer Science Club Association'
+            title={website_config.title}
             sectionHeader='Positions'
           />
           <ListingsSection
-            positions={config.listings}
+            positions={contact_page.listings}
             formData={formData}
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
@@ -61,12 +61,8 @@ export default function Home() {
           />
           <div className={styles.sponsorButton}>
             <TextSection
-              imagePath='/SponsorImage.jpg'
-              title='Why Become a Sponsor?'
-              altText='Why To Become a Sponsor?'
-              text="By sponsoring our computer science club, you'll gain valuable exposure to a talented pool of future tech leaders. Your support will help us provide cutting-edge resources and opportunities for our members, strengthening the local tech community."
-              buttonText='Become a Sponsor'
-              link=''
+              section={contact_page.sponsor}
+              style={TextSectionStyle.primary}
             />
           </div>
           <SectionHeader
