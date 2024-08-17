@@ -124,7 +124,7 @@ const homePage = z.strictObject({
 });
 // config
 export type Section = HomeSection;
-interface Config {
+interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];
   footer_config: FooterConfig;
@@ -140,9 +140,16 @@ const configValidator = z.strictObject({
 // Config Section Spaced out for an easier error
 // =========================================================================
 // The real error is in config.yaml, you messed up the configuration file
-const config: Config = configValidator.parse(rawConfig);
+const validatedConfig: ValidConfig = configValidator.parse(rawConfig);
 // =========================================================================
 
+
+
+
+// Preprocessing if needed
+type Config = ValidConfig; // if you need todo preprocessing, replace this line with the commented out one below, replace home_page with whatever field you want to replace
+// interface Config extends Omit<ValidConfig, 'home_page'> {}
+const config: Config = validatedConfig; // if you need todo preprocessing, this is where
 
 
 
