@@ -1,24 +1,6 @@
-interface PageInfo {
-  pageName: string;
-  pageLink: string;
-  pageTitle: string;
-  displayInNav: boolean;
-}
-
-interface BannerInfo {
-  title: string;
-}
-
-interface HeroIcons {
-  altText: string;
-  link: string;
-  path: string;
-}
 // Yaml Config
-// TODO: Make this only match the config.yaml file
 declare module '*.yaml' {
-  // Config
-  export const pageInfo: PageInfo[];
-  export const bannerInfo: BannerInfo;
-  export const heroIcons: HeroIcons[];
+  // This is marked as unknown because when we import from the yaml we do not know any of the type information.
+  const value: unknown;
+  export default value;
 }

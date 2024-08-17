@@ -1,7 +1,7 @@
 // CSS
 import styles from '../styles/components/NavBar.module.scss';
 // Config
-import { pageInfo } from '../config.yaml';
+import { page_list } from '../config';
 // Components
 import Button, { ButtonType } from '../components/Button';
 
@@ -12,22 +12,24 @@ interface Props {
 export default function NavBar(props: Props) {
   // Build The Nav
   const navContent: JSX.Element[] = [];
-  pageInfo.forEach((page, index) => {
-    if (!page.displayInNav) return;
+  page_list.forEach((page, index) => {
+    if (!page.display_in_navbar) return;
     navContent.push(
       <li
         key={index}
-        className={props.currentPage == page.pageName ? styles.currentPage : ''}
+        className={
+          props.currentPage == page.page_name ? styles.currentPage : ''
+        }
       >
         <Button
           type={ButtonType.NAVBAR}
-          href={page.pageLink}
+          href={page.page_link}
           className={
-            props.currentPage == page.pageName
+            props.currentPage == page.page_name
               ? ButtonType.NAVBAR_ACTIVE
               : ButtonType.NAVBAR
           }
-          label={page.pageName}
+          label={page.page_name}
         />
       </li>
     );
