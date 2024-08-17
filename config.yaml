@@ -1,19 +1,22 @@
 # General website configuration
 website_config:
   title: Trent Student Computer Science Association
-  email: &contactEmail 'tcscaclub@gmail.com' # &contactEmail lets us reuse this throughout the config
-  discord: https://discord.gg/serea2sPAd
+  # Socials - The `&<value>` are anchors which let us use these elsewhere in the config with `*<value>``
+  email: &contactEmail 'tcscaclub@gmail.com'
+  discord: &discordLink https://discord.gg/serea2sPAd
+  instagram: &instagramLink https://www.instagram.com/trentcsca/
+  linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
   tagline: Where innovation happens
   # Social Icons
   social_icons:
     - alt_text: Link to TCSCA Instagram
-      link: https://www.instagram.com/trentcsca/
+      link: *instagramLink
       path: /Icons/instagram.svg
     - alt_text: Link to TCSCA Linkedin
-      link: https://www.linkedin.com/company/trent-computer-science-society
+      link: *linkedinLink
       path: /Icons/linkedin.svg
     - alt_text: Link to TCSCA Discord
-      link: https://discord.gg/serea2sPAd
+      link: *discordLink
       path: /Icons/discord.svg
   # Banner text, comment this out if you do not want a banner
   banner_text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!' # TODO: Placeholder example.com
