@@ -1,18 +1,16 @@
 .Container {
   @apply w-full;
   @apply relative;
-  // Removed the fixed height and overflow-hidden
 }
 
 .BlurBanner {
   @apply w-full;
   @apply relative;
   @apply flex flex-col;
-  // Removed the fixed height
 }
 
 .imageContainer {
-  @apply w-full h-[40rem]; // Fixed height moved here
+  @apply w-full h-[40rem];
   @apply relative;
   img {
     @apply blur-sm object-cover;
@@ -21,15 +19,14 @@
 
 .overlay {
   @apply absolute inset-0;
-  @apply flex items-center justify-start;
+  @apply flex items-center justify-center;
   @apply bg-black/40;
   @apply z-10;
 }
 
 .title {
   @apply w-1/2;
-  @apply text-6xl font-bold text-white leading-normal;
-  @apply ml-16;
+  @apply text-6xl font-bold text-white leading-normal text-center;
 }
 
 .waveContainer {
