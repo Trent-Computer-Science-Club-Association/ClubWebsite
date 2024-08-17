@@ -47,17 +47,11 @@ const getContent = (
   switch (sectionConfig.section_type) {
     case SectionType.TextSection:
       return (
-        <TextSection
-          section={sectionConfig}
-          style={style.textSectionStyle}
-        />
+        <TextSection section={sectionConfig} style={style.textSectionStyle} />
       );
     case SectionType.LatestNews:
       return (
-        <NewsSection
-          section={sectionConfig}
-          style={style.newsSectionStyle}
-        />
+        <NewsSection section={sectionConfig} style={style.newsSectionStyle} />
       );
   }
 };

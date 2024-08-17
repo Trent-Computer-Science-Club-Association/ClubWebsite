@@ -17,7 +17,9 @@ export default function NavBar(props: Props) {
     navContent.push(
       <li
         key={index}
-        className={props.currentPage == page.page_name ? styles.currentPage : ''}
+        className={
+          props.currentPage == page.page_name ? styles.currentPage : ''
+        }
       >
         <Button
           type={ButtonType.NAVBAR}

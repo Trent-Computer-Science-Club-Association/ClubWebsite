@@ -7,7 +7,7 @@ import Logo from '../components/Logo';
 
 export default function Footer() {
   const { social_icons } = website_config;
-  const { text} = footer_config;
+  const { text } = footer_config;
   // ui
   return (
     <footer className={styles.Footer}>

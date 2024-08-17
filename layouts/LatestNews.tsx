@@ -51,10 +51,11 @@ const NewsSection: React.FC<NewsSectionProps> = ({
 }) => {
   return (
     <div className={`${styles.latestNewsLayout} ${style}`}>
-      {news_feed.map((item, i) => <NewsItemComponent key={i} {...item} />)}
+      {news_feed.map((item, i) => (
+        <NewsItemComponent key={i} {...item} />
+      ))}
     </div>
   );
 };
-
 
 export default NewsSection;

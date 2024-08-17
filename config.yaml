@@ -40,7 +40,7 @@ home_page:
     - section_type: TextSection
       section_header: About Us
       text: Welcome to the Trent Computer Science Club Association! We are a vibrant community of tech enthusiasts at Trent University, dedicated to fostering a love for technology and innovation. Our club hosts workshops, events, tech talks, and hackathons, providing a platform for students to learn, connect, and grow. Whether you're looking for coding help, career guidance, or just a place to share your passion for computer science, our club is here for you.
-      image: 
+      image:
         src: /AboutUsPlaceHolder.jpg
         alt: About Us Image
       button:

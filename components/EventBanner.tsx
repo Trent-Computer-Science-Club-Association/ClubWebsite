@@ -8,9 +8,7 @@ interface Props {
   color?: string;
 }
 
-export default function EventBanner({
-  color = 'event-banner'
-}: Props) {
+export default function EventBanner({ color = 'event-banner' }: Props) {
   const { banner_text } = website_config;
   if (banner_text == undefined) return null;
   if (banner_text.length == 0) return null;
@@ -19,9 +17,7 @@ export default function EventBanner({
     <div className={styles.EventBanner} style={{ backgroundColor: color }}>
       {/* Event Content */}
       <div className={styles.EventContent}>
-        <ReactMarkdown className={styles.Markdown}>
-          {banner_text}
-        </ReactMarkdown>
+        <ReactMarkdown className={styles.Markdown}>{banner_text}</ReactMarkdown>
       </div>
     </div>
   );

@@ -11,7 +11,6 @@
 
 // An additional note, do not use `z.object` instead use `z.strictObject` or else we are not fully validating the values
 
-
 import z from 'zod';
 // Import Config
 import rawConfig from './config.yaml';
@@ -31,7 +30,7 @@ interface SectionBase {
 }
 const sectionBase = z.strictObject({
   section_type: z.nativeEnum(SectionType),
-  section_header: z.string()
+  section_header: z.string(),
 });
 // Config Types
 interface SocialIcon {
@@ -42,7 +41,7 @@ interface SocialIcon {
 const socialIcon = z.strictObject({
   alt_text: z.string(),
   link: z.string(),
-  path: z.string()
+  path: z.string(),
 });
 interface WebsiteConfig {
   title: string;
@@ -93,10 +92,12 @@ const textSection = sectionBase.extend({
     src: z.string(),
     alt: z.string(),
   }),
-  button: z.strictObject({
-    text: z.string(),
-    href: z.string(),
-  }).optional(),
+  button: z
+    .strictObject({
+      text: z.string(),
+      href: z.string(),
+    })
+    .optional(),
 });
 export interface NewsSection extends SectionBase {
   section_type: SectionType.LatestNews;
@@ -108,14 +109,16 @@ export interface NewsSection extends SectionBase {
 }
 const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.LatestNews),
-  news_feed: z.array(z.strictObject({
-    text: z.string(),
-    date: z.date(),
-    href: z.string(),
-  })),
+  news_feed: z.array(
+    z.strictObject({
+      text: z.string(),
+      date: z.date(),
+      href: z.string(),
+    })
+  ),
 });
 type HomeSection = TextSection | NewsSection;
-const homeSection = z.union( [textSection, newsSection]);
+const homeSection = z.union([textSection, newsSection]);
 interface HomePage {
   sections: HomeSection[];
 }
@@ -141,17 +144,14 @@ const configValidator = z.strictObject({
 // =========================================================================
 // The real error is in config.yaml, you messed up the configuration file
 const validatedConfig: ValidConfig = configValidator.parse(rawConfig);
+//
+//
 // =========================================================================
 
-
-
-
-// Preprocessing if needed
+// ======== Preprocessing if needed ========
 type Config = ValidConfig; // if you need todo preprocessing, replace this line with the commented out one below, replace home_page with whatever field you want to replace
 // interface Config extends Omit<ValidConfig, 'home_page'> {}
 const config: Config = validatedConfig; // if you need todo preprocessing, this is where
-
-
 
 // Exports - to ensure our configuration is written well, we export each top level field directly
 export const website_config = config.website_config;
