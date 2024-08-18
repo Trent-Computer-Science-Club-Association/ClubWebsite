@@ -32,12 +32,12 @@ export default function ContactSection({
             Group(
               TextInput('Name', 'Enter your name'),
               DropdownInput('Subject', 'Select your subject', [
-                'Applying',
-                'Volunteering',
-                'Development',
-                'Creative',
-                'Managerial',
-                'Outreach',
+                { value: 'Applying', label: 'Applying' },
+                { value: 'Volunteering', label: 'Volunteering' },
+                { value: 'Development', label: 'Development' },
+                { value: 'Creative', label: 'Creative' },
+                { value: 'Managerial', label: 'Managerial' },
+                { value: 'Outreach', label: 'Outreach' },
               ])
             ),
             EmailInput('Email', 'Enter your email'),

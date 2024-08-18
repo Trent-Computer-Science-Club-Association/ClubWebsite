@@ -38,18 +38,19 @@
   }
 
   input,
-  select,
   textarea {
     @apply w-full bg-color-3 text-white border-2 border-color-2 rounded-md p-2 outline-none;
     @apply h-10;
-
-    &:focus:not(.invalid) {
+    &:focus:not(.invalidInput) {
       @apply border-area-header;
     }
   }
+  .invalidInput {
+    @apply border-red-500;
+  }
 
   textarea {
-    @apply h-32 resize-none;
+    @apply h-40 resize-none;
   }
 
   button[type='submit'] {
@@ -58,10 +59,6 @@
 
   .errorText {
     @apply text-red-500 text-sm;
-  }
-
-  .invalid {
-    @apply border-red-500;
   }
 
   .serverError {
@@ -74,5 +71,68 @@
 
   .errorMessage {
     @apply text-red-500 mt-4 font-bold;
+  }
+
+  .reactSelect {
+    @apply w-full;
+    :global {
+      .react-select__control {
+        @apply bg-color-3 border-2 border-color-2 rounded-md;
+        @apply text-white;
+        @apply h-10;
+        @apply flex items-center;
+        &--is-focused {
+          @apply border-area-header shadow-none;
+        }
+      }
+
+      .react-select__value-container {
+        @apply p-0 pr-2;
+        @apply flex items-center;
+        @apply ml-2;
+      }
+
+      .react-select__input-container,
+      .react-select__single-value {
+        @apply text-white m-0;
+      }
+
+      .react-select__placeholder {
+        @apply text-color-2;
+      }
+
+      .react-select__indicators {
+        @apply p-0;
+      }
+
+      .react-select__indicator-separator {
+        @apply hidden;
+      }
+
+      .react-select__menu {
+        @apply bg-color-3 border-2 border-color-2 rounded-md;
+      }
+
+      .react-select__option {
+        @apply text-white bg-color-3;
+
+        &--is-selected {
+          @apply bg-area-header;
+          @apply text-color-3;
+        }
+
+        &--is-focused {
+          @apply bg-color-1;
+          @apply text-color-2;
+        }
+      }
+    }
+  }
+  .invalidSelect {
+    :global {
+      .react-select__control {
+        @apply border-red-500;
+      }
+    }
   }
 }

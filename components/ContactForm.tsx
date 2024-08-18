@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import styles from '../styles/components/ContactForm.module.scss';
 
 interface TextInputProps {
@@ -12,8 +13,8 @@ interface TextInputProps {
 
 interface DropdownInputProps {
   label: string;
-  options: string[];
-  value: string;
+  options: { value: string; label: string }[];
+  value: { value: string; label: string } | null;
   mandatory?: boolean;
 }
 
@@ -143,8 +144,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
       (value.trim() === '' || (item.type === 'email' && !validateEmail(value)));
 
     if (item.type === 'dropdown') {
+      const selectedOption = item.options.find(
+        (option: { value: string; label: string }) => option.value === value
+      );
       return (
-        <div key={`field-${index}`} className={styles.formField}>
+        <div
+          key={`field-${index}`}
+          className={`${styles.formField} ${isInvalid ? styles.invalidField : ''}`}
+        >
           <label
             htmlFor={item.label}
             className={isInvalid ? styles.invalidLabel : ''}
@@ -152,22 +159,18 @@ const ContactForm: React.FC<ContactFormProps> = ({
             {item.label}
             {item.mandatory && <span className={styles.mandatory}>*</span>}
           </label>
-          <select
+          <Select
             id={item.label}
-            value={value}
-            onChange={(e) => onInputChange(item.label, e.target.value)}
+            value={selectedOption}
+            onChange={(option) =>
+              onInputChange(item.label, option ? option.value : '')
+            }
             onBlur={() => handleBlur(item.label)}
-            className={isInvalid ? styles.invalid : ''}
-          >
-            <option value='' disabled>
-              {item.placeholder}
-            </option>
-            {item.options.map((option: string) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+            options={item.options}
+            placeholder={item.placeholder}
+            className={`${styles.reactSelect} ${isInvalid ? styles.invalidSelect : ''}`}
+            classNamePrefix='react-select'
+          />
           {isInvalid && (
             <span className={styles.errorText}>This field is required</span>
           )}
@@ -176,7 +179,10 @@ const ContactForm: React.FC<ContactFormProps> = ({
     }
 
     return (
-      <div key={`field-${index}`} className={styles.formField}>
+      <div
+        key={`field-${index}`}
+        className={`${styles.formField} ${isInvalid ? styles.invalidField : ''}`}
+      >
         <label
           htmlFor={item.label}
           className={isInvalid ? styles.invalidLabel : ''}
@@ -191,7 +197,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
             onChange={(e) => onInputChange(item.label, e.target.value)}
             onBlur={() => handleBlur(item.label)}
             placeholder={item.placeholder}
-            className={isInvalid ? styles.invalid : ''}
+            className={isInvalid ? styles.invalidInput : ''}
             maxLength={5000}
           />
         ) : (
@@ -202,7 +208,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
             onChange={(e) => onInputChange(item.label, e.target.value)}
             onBlur={() => handleBlur(item.label)}
             placeholder={item.placeholder}
-            className={isInvalid ? styles.invalid : ''}
+            className={isInvalid ? styles.invalidInput : ''}
           />
         )}
         {isInvalid && (
@@ -262,7 +268,7 @@ function EmailInput(
 function DropdownInput(
   label: string,
   placeholder: string,
-  options: string[],
+  options: { value: string; label: string }[],
   value: string = '',
   mandatory: boolean = true
 ) {

@@ -21,6 +21,7 @@
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
     "react-modal": "^3.16.1",
+    "react-select": "^5.8.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
