@@ -4,39 +4,24 @@ import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
 import ReactMarkdown from 'react-markdown';
+import { type NewsSection } from '../config';
 
-const NewsSectionStyle = {
+export const NewsSectionStyle = {
   primary: styles.primaryStyle,
   secondary: styles.secondaryStyle,
 } as const;
 
-type NewsSectionStyleType =
+export type NewsSectionStyleType =
   (typeof NewsSectionStyle)[keyof typeof NewsSectionStyle];
 
 interface NewsItem {
   text: string;
-  href: string;
   date: Date;
+  href: string;
 }
-
-interface NewsSectionProps {
-  newsFeed: NewsItem[];
-  style?: NewsSectionStyleType;
-}
-
-const NewsSection: React.FC<NewsSectionProps> = ({
-  newsFeed,
-  style = NewsSectionStyle.primary,
-}) => {
-  return (
-    <div className={`${styles.latestNewsLayout} ${style}`}>
-      {newsFeed.map((item, index) => (
-        <NewsItemComponent key={index} {...item} />
-      ))}
-    </div>
-  );
+const formatDate = (date: Date): string => {
+  return moment(date).format('MMMM Do, YYYY');
 };
-
 const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   return (
     <Link className={styles.newsItem} href={href}>
@@ -55,14 +40,22 @@ const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   );
 };
 
-const formatDate = (date: Date): string => {
-  return moment(date).format('MMMM Do, YYYY');
+interface NewsSectionProps {
+  section: NewsSection;
+  style?: NewsSectionStyleType;
+}
+
+const NewsSection: React.FC<NewsSectionProps> = ({
+  section: { news_feed },
+  style = NewsSectionStyle.primary,
+}) => {
+  return (
+    <div className={`${styles.latestNewsLayout} ${style}`}>
+      {news_feed.map((item, i) => (
+        <NewsItemComponent key={i} {...item} />
+      ))}
+    </div>
+  );
 };
 
 export default NewsSection;
-export {
-  NewsSectionStyle,
-  type NewsItem,
-  type NewsSectionProps,
-  type NewsSectionStyleType,
-};
