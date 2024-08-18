@@ -1,5 +1,5 @@
 // Components
-import { NextPageContext } from 'next';
+import type { NextPageContext } from 'next';
 import ErrorLayout from '../layouts/Error';
 import Image from '../components/Image';
 
