@@ -16,7 +16,7 @@ export default function ErrorLayout({
   const [allowReport, setAllowReport] = useState(false);
   const departureUrl = 'https://tcsca';
   const returnHref = '/'; // Allow user to return to home
-  const reportHref = ''; // Allow users to report on GitHub
+  const reportHref = 'https://github.com/Trent-Computer-Science-Club-Association/ClubWebsite/issues/new?labels=page-error&template=page-error.md'; // Allow users to report on GitHub
   
   useEffect(() => {
     // If the user is coming from a broken link on our site, they can report an issue
