@@ -2,6 +2,7 @@
 import styles from '../styles/Events.module.scss';
 // Internal Components
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import Section from '../layouts/Section';
 import EventBanner from '../components/EventBanner';
 import Event from '../components/Event';
@@ -104,6 +105,7 @@ export default function Events() {
           ))}
         </main>
       </section>
+      <Footer />
     </>
   );
 }
