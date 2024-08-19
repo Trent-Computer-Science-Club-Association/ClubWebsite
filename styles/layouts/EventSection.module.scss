@@ -12,8 +12,17 @@
     @apply grid;
     @apply p-4;
     @apply grid-flow-col auto-cols-4 gap-4;
-    @apply justify-center;
+    @apply justify-center items-center;
     @apply overflow-x-auto;
+    li {
+      @apply flex items-center cursor-pointer;
+    }
+    .icon {
+      @apply text-txt-1 opacity-75;
+      &:hover {
+        @apply opacity-100;
+      }
+    }
     button {
       @apply w-full aspect-square;
       @apply rounded-full;

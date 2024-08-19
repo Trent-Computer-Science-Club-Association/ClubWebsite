@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/layouts/EventSection.module.scss';
 import { SectionStyle, EventGridStyle, type EventSection } from '../config';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Event from '../components/Event';
 
 const getStyle = (style: SectionStyle) => {
@@ -68,9 +69,15 @@ export default function EventSection({
       {/* Event Container */}
       <div>{event_view}</div>
       {/* Possible Buttons */}
-      <ul>
-        {event_list.length > 1 &&
-          event_list.map((_, i) => (
+      {event_list.length > 1 && (
+        <ul>
+          <li>
+            <FaChevronLeft
+              className={styles.icon}
+              onClick={() => setCurrentView((view) => Math.max(view - 1, 0))}
+            />
+          </li>
+          {event_list.map((_, i) => (
             <li key={i}>
               <button
                 onClick={() => setCurrentView(i)}
@@ -78,7 +85,18 @@ export default function EventSection({
               ></button>
             </li>
           ))}
-      </ul>
+          <li>
+            <FaChevronRight
+              className={styles.icon}
+              onClick={() =>
+                setCurrentView((view) =>
+                  Math.min(view + 1, event_list.length - 1)
+                )
+              }
+            />
+          </li>
+        </ul>
+      )}
     </div>
   );
 }
