@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../components/Image';
 import Button from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
-import { type TextSection } from '../config';
+import { SectionStyle, type TextSection } from '../config';
 
 interface Props {
   section: TextSection;

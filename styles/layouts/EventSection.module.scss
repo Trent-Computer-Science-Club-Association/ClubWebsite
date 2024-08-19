@@ -1,0 +1,43 @@
+.container {
+  @apply py-12 px-8;
+
+  & > div {
+    @apply grid gap-4 grid-cols-3;
+    & > p {
+      @apply text-txt-1 w-full text-center col-span-full;
+    }
+  }
+
+  ul {
+    padding: 1rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 1rem));
+    gap: 1rem;
+    justify-content: center;
+    button {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #eee;
+      opacity: 50%;
+      border-radius: 50%;
+      &:hover,
+      &.active {
+        opacity: 100%;
+      }
+    }
+  }
+}
+// Style Variants
+.primaryStyle {
+  @apply bg-color-3;
+  & > span {
+    @apply bg-color-1;
+  }
+}
+.secondaryStyle {
+  @apply bg-color-1;
+  & > span {
+    @apply bg-color-3;
+  }
+}

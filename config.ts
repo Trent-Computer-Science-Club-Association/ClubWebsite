@@ -16,6 +16,10 @@ import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
 // General Types
+export enum SectionStyle {
+  Primary = 'primary',
+  Secondary = 'secondary',
+}
 export interface ImageDescription {
   src: string;
   alt: string;
@@ -24,6 +28,7 @@ export interface ImageDescription {
 export enum SectionType {
   TextSection = 'TextSection',
   NewsSection = 'NewsSection',
+  EventSection = 'EventSection',
 }
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
@@ -145,20 +150,51 @@ interface HomePage {
 const homePage = z.strictObject({
   sections: z.array(homeSection),
 });
+// events
+export interface EventItem {
+  title: string;
+  href: string;
+  main_event: boolean;
+  open_date: Date;
+  date: Date;
+  image: ImageDescription;
+}
+const eventItem = z.strictObject({
+  title: z.string(),
+  href: z.string(),
+  main_event: z.boolean().optional().default(false),
+  open_date: z.date(),
+  date: z.date(),
+  image: z.strictObject({
+    src: z.string(),
+    alt: z.string(),
+  }),
+});
+export enum EventGridStyle {
+  Grid,
+  List,
+}
+export interface EventSection extends SectionBase {
+  section_type: SectionType.EventSection;
+  grid_style: EventGridStyle;
+  events: EventItem[];
+}
 // config
-export type Section = HomeSection;
+export type Section = HomeSection | EventSection;
 interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];
   footer_config: FooterConfig;
   // Page Configs
   home_page: HomePage;
+  events: EventItem[];
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
   home_page: homePage,
+  events: z.array(eventItem),
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
@@ -197,3 +233,4 @@ export const website_config = config.website_config;
 export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
+export const events = config.events;

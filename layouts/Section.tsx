@@ -3,6 +3,7 @@ import React from 'react';
 import SectionHeader, { Alignment } from './SectionHeader';
 import NewsSection from './NewsSection';
 import TextSection from './TextSection';
+import EventSection from './EventSection';
 import { SectionType, type Section } from '../config';
 
 interface SectionProps {
@@ -36,6 +37,8 @@ const getContent = (
       return <TextSection section={sectionConfig} className={sectionStyle} />;
     case SectionType.NewsSection:
       return <NewsSection section={sectionConfig} className={sectionStyle} />;
+    case SectionType.EventSection:
+      return <EventSection section={sectionConfig} className={sectionStyle} />;
   }
 };
 

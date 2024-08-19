@@ -2,62 +2,64 @@
 import styles from '../styles/Events.module.scss';
 // Internal Components
 import NavBar from '../components/NavBar';
-import Section, { SectionType } from '../layouts/Section';
+import Section from '../layouts/Section';
 import EventBanner from '../components/EventBanner';
 import Event from '../components/Event';
-import { events, type EventItem } from '../config.yaml';
+import {
+  events,
+  SectionType,
+  EventGridStyle,
+  type EventItem,
+  type EventSection,
+} from '../config';
 
 const processEvents = (events: EventItem[]) => {
-  let mainEvent = null;
-  const futureEvents: JSX.Element[] = [];
-  const currentEvents: JSX.Element[] = [];
-  const pastEvents: JSX.Element[] = [];
+  let mainEvent: EventItem | undefined = undefined;
+  const futureEvents: EventItem[] = [];
+  const currentEvents: EventItem[] = [];
+  const pastEvents: EventItem[] = [];
   // Sort Events
   events.sort((a, b) => a.date.getTime() - b.date.getTime());
   // Process Events
   for (const event of events) {
     // Sanity TypeChecking
-    if (event.date < event.openDate) throw new Error('ConfigError: Event opens after event date');
-    // Build Event
-    const eventElement = <Event
-      title={event.title}
-      href={event.href}
-      openDate={event.openDate}
-      date={event.date}
-      image={event.image}
-      imageAlt={event.imageAlt}
-    />;
+    if (event.date < event.open_date)
+      throw new Error('ConfigError: Event opens after event date');
     // handle main event
-    if (event.markMainEvent) {
-      if (mainEvent == null) mainEvent = eventElement;
+    if (event.main_event) {
+      if (mainEvent == null) mainEvent = event;
       else throw new Error('ConfigError: Multiple events marked as main');
     }
     // Determine if it is future, current or past
     const now = new Date();
-    if (event.openDate > now) {
-      futureEvents.push(eventElement);
+    if (event.open_date > now) {
+      futureEvents.push(event);
     } else if (event.date > now) {
-      currentEvents.push(eventElement);
+      currentEvents.push(event);
     } else {
-      pastEvents.push(eventElement);
+      pastEvents.push(event);
     }
   }
-  // TODO: Debug this line
-  if (mainEvent == null) mainEvent = futureEvents[-1] ?? currentEvents[0] ?? pastEvents[-1];
+  // If no main event we will pick a featured event
+  if (mainEvent == null)
+    mainEvent = currentEvents[0] ?? futureEvents[0] ?? pastEvents[-1];
   // Build Section Configs
-  const futureEventsSection = {
-    type: SectionType.EventSection,
-    header: 'Upcoming Events',
+  const futureEventsSection: EventSection = {
+    section_type: SectionType.EventSection,
+    section_header: 'Upcoming Events',
+    grid_style: EventGridStyle.List,
     events: futureEvents,
   };
-  const currentEventsSection = {
-    type: SectionType.EventSection,
-    header: 'Current Events',
+  const currentEventsSection: EventSection = {
+    section_type: SectionType.EventSection,
+    section_header: 'Current Events',
+    grid_style: EventGridStyle.List,
     events: currentEvents,
   };
-  const pastEventsSection = {
-    type: SectionType.EventSection,
-    header: 'Past Events',
+  const pastEventsSection: EventSection = {
+    section_type: SectionType.EventSection,
+    section_header: 'Past Events',
+    grid_style: EventGridStyle.Grid,
     events: pastEvents,
   };
   // Return events
@@ -70,33 +72,30 @@ const processEvents = (events: EventItem[]) => {
 };
 
 export default function Events() {
+  // Generate fake events
+  // TODO: Remove debug
+  const fake_events = [...events, ...Array(100).fill(events[0])];
   // Build events
-  const { main_event, future_events, current_events, past_events} = processEvents(events);
+  const { main_event, future_events, current_events, past_events } =
+    processEvents(fake_events);
+  // Make Main Event
+  const mainEvent = <Event eventItem={main_event} />;
   // merge sections
-  const sections = [ future_events, current_events, past_events ];
+  const sections = [];
+  if (current_events.events.length > 0) sections.push(current_events);
+  sections.push(future_events);
+  sections.push(past_events);
   // Build ui
   return (
     <>
-      <EventBanner contextKey='bannerInfo' />
+      <EventBanner />
       <NavBar currentPage='Events' />
       <section className={styles.container}>
-        <header>
-          {main_event}
-        </header>
+        <header>{mainEvent}</header>
         <main>
-          {sections.map((section, i) => <Section sectionConfig={section} index={i} />)}
-          {/* Header - Current Event & Upcoming Events */}
-          <div className={styles.upcomingGrid}> 
-            {future_events}
-          </div>
-          {/* Past Events */}
-          <div className={styles.upcomingGrid}> 
-            {current_events}
-          </div>
-          {/* Past Events */}
-          <div className={styles.upcomingGrid}> 
-            {past_events}
-          </div>
+          {sections.map((section, i) => (
+            <Section sectionConfig={section} index={i} />
+          ))}
         </main>
       </section>
     </>

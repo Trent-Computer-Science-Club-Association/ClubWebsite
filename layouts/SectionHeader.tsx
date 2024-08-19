@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/layouts/SectionHeader.module.scss';
+import { SectionStyle } from '../config';
 
 export enum Alignment {
   Left,

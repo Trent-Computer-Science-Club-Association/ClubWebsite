@@ -23,6 +23,9 @@ const config: Config = {
         'newsItem-color': '#135b3f', // a shade of green
         socials: '#7BD4CB', // Social
       },
+      spacing: {
+        '136': '30rem',
+      },
       aspectRatio: {
         event: '2 / 1', // This controls the aspect ratio of event elements, do not touch you will probably break stuff.
       },
