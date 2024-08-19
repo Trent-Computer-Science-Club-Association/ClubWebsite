@@ -5,7 +5,9 @@
   header {
     @apply bg-color-1;
     display: grid;
-    padding: 3rem 4rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    padding: 3rem 12rem;
     max-height: 30rem;
   }
   // Future And Current Grid
