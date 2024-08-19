@@ -12,6 +12,7 @@
 // An additional note, do not use `z.object` instead use `z.strictObject` or else we are not fully validating the values
 
 import z from 'zod';
+import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
 // General Types
@@ -146,10 +147,29 @@ const configValidator = z.strictObject({
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
-// The real error is in config.yaml, you messed up the configuration file
-const validatedConfig: ValidConfig = configValidator.parse(rawConfig);
-//
-//
+function formatConfigError(error: z.ZodError) {
+  const formattedError = fromZodError(error, {
+    prefix: 'Configuration error',
+    prefixSeparator: ': ',
+  });
+
+  return `${formattedError.message}\n\nPlease check your config.yaml file at the following location(s):
+${error.errors.map((err) => `  - ${err.path.join('.')}`).join('\n')}`;
+}
+
+function validateConfig(rawConfig: unknown): ValidConfig {
+  const result = configValidator.safeParse(rawConfig);
+
+  if (!result.success) {
+    const errorMessage = formatConfigError(result.error);
+    throw new Error(errorMessage);
+  }
+
+  return result.data;
+}
+
+const validatedConfig: ValidConfig = validateConfig(rawConfig);
+
 // =========================================================================
 
 // ======== Preprocessing if needed ========
