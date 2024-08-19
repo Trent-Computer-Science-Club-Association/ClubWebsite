@@ -5,16 +5,20 @@ import Link from 'next/link';
 // Internal Components
 import Image from './Image';
 import { type EventItem } from '../config';
+
 interface Props {
   eventItem: EventItem;
 }
 export default function Event({ eventItem }: Props) {
-  const { title, href, date, image } = eventItem;
-  // TODO: Logic to figure out if we are an open event
-  // TODO: Format the date neatly
+  const now = new Date();
+  const { title, href, open_date, date, image } = eventItem;
+  const closed = open_date > now || href == '';
+  const styleList = [];
+  if (closed) styleList.push(styles.closed);
   const userFriendlyDate = date.toDateString();
-  return (
-    <Link href={href} className={styles.container}>
+  // Build ui
+  const content = (
+    <>
       {/* Background Image */}
       <Image src={image.src} alt={image.alt} fill />
       {/* Content */}
@@ -23,6 +27,16 @@ export default function Event({ eventItem }: Props) {
         {/* Date  */}
         <span>{userFriendlyDate}</span>
       </div>
-    </Link>
+    </>
   );
+  const classList = [styles.container, ...styleList].join(' ');
+  if (closed) {
+    return (
+      <Link href={href} className={classList}>
+        {content}
+      </Link>
+    );
+  } else {
+    return <div className={classList}>{content}</div>;
+  }
 }

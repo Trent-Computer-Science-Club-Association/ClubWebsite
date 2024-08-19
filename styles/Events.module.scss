@@ -3,10 +3,25 @@
   @apply bg-color-3;
   // header Styling
   header {
-    // TODO: Convert this to tailwind, try and work on maintaining proper event sizing
     @apply grid grid-cols-1 grid-rows-1;
     @apply max-h-136;
     @apply px-48 py-12;
     @apply bg-color-1;
+  }
+}
+// Mobile
+@media (max-width: 900px) {
+  .container > header {
+    @apply px-32;
+  }
+}
+@media (max-width: 600px) {
+  .container > header {
+    @apply px-16;
+  }
+}
+@media (max-width: 450px) {
+  .container > header {
+    @apply px-8;
   }
 }

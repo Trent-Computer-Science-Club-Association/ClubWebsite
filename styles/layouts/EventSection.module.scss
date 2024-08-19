@@ -9,23 +9,35 @@
   }
 
   ul {
-    padding: 1rem;
-    display: grid;
-    grid-auto-flow: column;
+    @apply grid;
+    @apply p-4;
+    @apply grid-flow-col gap-4;
+    @apply justify-center;
+    @apply overflow-x-auto;
+    // TODO: Convert to tailwind
     grid-template-columns: repeat(auto-fit, minmax(1rem, 1rem));
-    gap: 1rem;
-    justify-content: center;
     button {
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      @apply w-full aspect-square;
+      @apply rounded-full;
+      @apply opacity-50;
+      // TODO: Convert this to tailwind
       background-color: #eee;
-      opacity: 50%;
-      border-radius: 50%;
       &:hover,
       &.active {
-        opacity: 100%;
+        @apply opacity-100;
       }
     }
+  }
+}
+// Mobile
+@media (max-width: 1200px) {
+  .container > div {
+    @apply grid-cols-2;
+  }
+}
+@media (max-width: 675px) {
+  .container > div {
+    @apply grid-cols-1;
   }
 }
 // Style Variants

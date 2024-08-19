@@ -74,7 +74,11 @@ const processEvents = (events: EventItem[]) => {
 export default function Events() {
   // Generate fake events
   // TODO: Remove debug
-  const fake_events = [...events, ...Array(100).fill(events[0])];
+  const fake_events = [
+    ...events,
+    ...Array(100).fill(events[3]),
+    ...Array(25).fill(events[2]),
+  ];
   // Build events
   const { main_event, future_events, current_events, past_events } =
     processEvents(fake_events);
