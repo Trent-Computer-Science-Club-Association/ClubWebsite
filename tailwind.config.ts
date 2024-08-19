@@ -37,6 +37,9 @@ const config: Config = {
       background: {
         aero: 'linear-gradient(0deg, rgba(0, 0, 0, .55) 0%, rgba(75, 75, 75, .55) 20%)',
       },
+      gridAutoColumns: {
+        '4': 'minmax(1rem, 1rem)',
+      },
     },
   },
   plugins: [],

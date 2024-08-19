@@ -1,5 +1,4 @@
 .container {
-  // TODO: This currently does not maintain both directions we need to change this
   @apply max-w-full max-h-full w-full aspect-event;
   @apply m-auto rounded-xl overflow-hidden shadow-l1;
   @apply relative cursor-pointer;

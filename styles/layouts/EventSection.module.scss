@@ -11,17 +11,13 @@
   ul {
     @apply grid;
     @apply p-4;
-    @apply grid-flow-col gap-4;
+    @apply grid-flow-col auto-cols-4 gap-4;
     @apply justify-center;
     @apply overflow-x-auto;
-    // TODO: Convert to tailwind
-    grid-template-columns: repeat(auto-fit, minmax(1rem, 1rem));
     button {
       @apply w-full aspect-square;
       @apply rounded-full;
-      @apply opacity-50;
-      // TODO: Convert this to tailwind
-      background-color: #eee;
+      @apply bg-txt-1 opacity-50;
       &:hover,
       &.active {
         @apply opacity-100;
