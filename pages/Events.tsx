@@ -95,7 +95,9 @@ export default function Events() {
       <EventBanner />
       <NavBar currentPage='Events' />
       <section className={styles.container}>
-        <header>{mainEvent}</header>
+        <header>
+          <span>{mainEvent}</span>
+        </header>
         <main>
           {sections.map((section, i) => (
             <Section sectionConfig={section} index={i} />

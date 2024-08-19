@@ -3,10 +3,12 @@
   @apply bg-color-3;
   // header Styling
   header {
-    @apply grid grid-cols-1 grid-rows-1;
-    @apply max-h-136;
+    @apply w-full;
     @apply px-48 py-12;
     @apply bg-color-1;
+    span {
+      @apply max-w-4xl;
+    }
   }
 }
 // Mobile
