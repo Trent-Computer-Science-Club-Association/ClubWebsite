@@ -13,7 +13,7 @@ export default function Event({ eventItem }: Props) {
   const now = new Date();
   const { title, href, open_date, date, image } = eventItem;
   const closed = open_date > now || href == '';
-  const styleList = [];
+  const styleList = [styles.container];
   if (closed) styleList.push(styles.closed);
   const userFriendlyDate = date.toDateString();
   // Build ui
@@ -29,14 +29,13 @@ export default function Event({ eventItem }: Props) {
       </div>
     </>
   );
-  const classList = [styles.container, ...styleList].join(' ');
   if (closed) {
+    return <div className={styleList.join(' ')}>{content}</div>;
+  } else {
     return (
-      <Link href={href} className={classList}>
+      <Link href={href} className={styleList.join(' ')}>
         {content}
       </Link>
     );
-  } else {
-    return <div className={classList}>{content}</div>;
   }
 }

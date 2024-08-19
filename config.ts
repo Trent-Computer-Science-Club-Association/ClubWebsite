@@ -97,7 +97,27 @@ interface FooterConfig {
 const footerConfig = z.strictObject({
   text: z.string(),
 });
-// homepage sections
+// Events
+export interface EventItem {
+  title: string;
+  href: string;
+  main_event: boolean;
+  open_date: Date;
+  date: Date;
+  image: ImageDescription;
+}
+const eventItem = z.strictObject({
+  title: z.string(),
+  href: z.string(),
+  main_event: z.boolean().optional().default(false),
+  open_date: z.date(),
+  date: z.date(),
+  image: z.strictObject({
+    src: z.string(),
+    alt: z.string(),
+  }),
+});
+// Sections
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;
   text: string;
@@ -142,45 +162,33 @@ const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.NewsSection),
   news_feed: z.array(newsItem),
 });
-type HomeSection = TextSection | NewsSection;
-const homeSection = z.union([textSection, newsSection]);
-interface HomePage {
-  sections: HomeSection[];
-}
-const homePage = z.strictObject({
-  sections: z.array(homeSection),
-});
-// events
-export interface EventItem {
-  title: string;
-  href: string;
-  main_event: boolean;
-  open_date: Date;
-  date: Date;
-  image: ImageDescription;
-}
-const eventItem = z.strictObject({
-  title: z.string(),
-  href: z.string(),
-  main_event: z.boolean().optional().default(false),
-  open_date: z.date(),
-  date: z.date(),
-  image: z.strictObject({
-    src: z.string(),
-    alt: z.string(),
-  }),
-});
 export enum EventGridStyle {
-  Grid,
-  List,
+  Grid = 'EventGrid',
+  List = 'EventList',
+  HomeList = 'HomeList',
 }
+const eventGridStyle = z.nativeEnum(EventGridStyle);
 export interface EventSection extends SectionBase {
   section_type: SectionType.EventSection;
   grid_style: EventGridStyle;
   events: EventItem[];
 }
+const eventSection = sectionBase.extend({
+  section_type: z.literal(SectionType.EventSection),
+  grid_style: eventGridStyle,
+  events: z.array(eventItem),
+});
+export type Section = TextSection | NewsSection | EventSection;
+const section = z.union([textSection, newsSection, eventSection]);
+// Home page
+interface HomePage {
+  sections: Section[];
+}
+const homePage = z.strictObject({
+  sections: z.array(section),
+});
+
 // config
-export type Section = HomeSection | EventSection;
 interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];

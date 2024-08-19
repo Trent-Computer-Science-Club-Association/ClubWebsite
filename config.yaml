@@ -77,8 +77,7 @@ home_page:
           # href: /
           href: /
 # Configuration for events
-events:
-  # Future Events
+events: &events # Future Events
   - title: Future Event
     href: https://www.example.com/
     open_date: 2024-08-20
@@ -110,3 +109,28 @@ events:
     image:
       src: https://via.placeholder.com/150
       alt: placeholder image
+# Configuration for the homepage
+home_page:
+  sections:
+    - section_type: TextSection
+      section_header: About Us
+      text: Welcome to the Trent Computer Science Club Association! We are a vibrant community of tech enthusiasts at Trent University, dedicated to fostering a love for technology and innovation. Our club hosts workshops, events, tech talks, and hackathons, providing a platform for students to learn, connect, and grow. Whether you're looking for coding help, career guidance, or just a place to share your passion for computer science, our club is here for you.
+      image:
+        src: /AboutUsPlaceHolder.jpg
+        alt: About Us Image
+      button:
+        text: Learn More
+        href: /About
+    - section_type: EventSection
+      section_header: Events
+      grid_style: HomeList
+      events: *events
+    - section_type: NewsSection
+      section_header: Latest News
+      news_feed:
+        - text: NEWS ABOUT TRENT COMPUTER SCIENCE
+          date: 2024-09-10
+          href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          href: /
