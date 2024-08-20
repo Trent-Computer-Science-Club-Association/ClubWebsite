@@ -1,23 +1,24 @@
 .container {
   @apply flex flex-col;
   @apply size-full h-screen;
-  
+
   .page {
     @apply flex flex-col flex-1;
     @apply p-4 gap-8;
     @apply size-full;
     @apply justify-center items-center text-center;
     @apply bg-color-1;
-    
-    h1, p {
+
+    h1,
+    p {
       @apply text-white;
     }
-    
+
     h1 {
       @apply text-6xl font-bold;
     }
-    
-    .button{
+
+    .button {
       @apply m-2;
     }
   }

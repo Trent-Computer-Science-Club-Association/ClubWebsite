@@ -7,9 +7,7 @@ interface Props {
   statusCode: number;
 }
 
-export default function ErrorPage({ 
-  statusCode 
-}: Props) {
+export default function ErrorPage({ statusCode }: Props) {
   return (
     <ErrorLayout>
       <p>
@@ -23,24 +21,19 @@ export default function ErrorPage({
 }
 
 // Get error information
-ErrorPage.getInitialProps = ({ 
-  res, 
-  err 
-}: NextPageContext) => {
+ErrorPage.getInitialProps = ({ res, err }: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };
 
 // Easter Egg
-function teapot(){
+function teapot() {
   return (
     <>
-      <p>
-        If you're looking for coffee you're in the wrong place
-      </p>
+      <p>If you're looking for coffee you're in the wrong place</p>
       <div>
         <Image src='/teapot.svg' alt='Teapot outline' />
       </div>
     </>
   );
-};
+}

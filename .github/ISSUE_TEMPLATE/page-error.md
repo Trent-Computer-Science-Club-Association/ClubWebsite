@@ -4,14 +4,14 @@ about: Come across an error page while navigating our site? Let us know what wen
 title: ''
 labels: 'page-error'
 assignees: ''
-
 ---
 
 **Describe the error**
-Describe the error, include any error number or additional context that was displayed. 
+Describe the error, include any error number or additional context that was displayed.
 
 **To Reproduce**
 Steps to reproduce the error:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
