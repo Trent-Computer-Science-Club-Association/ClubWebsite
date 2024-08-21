@@ -4,7 +4,7 @@ import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
-import { Listing } from '../config';
+import { Listing, ListingType, website_config } from '../config';
 import Link from 'next/link';
 
 interface ListingsSectionProps {
@@ -14,13 +14,15 @@ interface ListingsSectionProps {
   onSubmit: (formData: Record<string, string>) => Promise<void>;
 }
 
-const ListingType = {
-  Developer: 'Developer',
-  Creative: 'Creative',
-  Managerial: 'Managerial',
-  Volunteer: 'Volunteer',
-} as const;
+// const ListingType = {
+//   Developer: 'Developer',
+//   Creative: 'Creative',
+//   Managerial: 'Managerial',
+//   Volunteer: 'Volunteer',
+// } as const;
 
+// If you dont bind the modal to the app element, it will still work but for the use of screen reader, other content will be aria-hidden while the attribute is open. to do this you can either do `Modal.setAppElement('#__next')` or `Modal.setAppElement(document.getElementById('root'))`
+// For more information, see https://reactcommunity.org/react-modal/accessibility/
 Modal.setAppElement('#__next');
 
 const ListingsSection: React.FC<ListingsSectionProps> = ({
@@ -52,7 +54,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
       borderClass = styles.gradientBorder;
     }
     const card = (
-      <div key={index} className={`${styles.card}`}>
+      <div key={index} className={styles.card}>
         <h2 className={styles.cardTitle}>{position.title}</h2>
         <hr className={styles.cardDivider} />
         <p className={styles.cardDescription}>{position.description}</p>
@@ -79,7 +81,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
       </div>
     );
     return {
-      priority: position.priority || Infinity,
+      priority: position.priority ?? Infinity,
       borderClass,
       card: (
         <div
@@ -92,6 +94,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
     };
   });
 
+  // this is sorting by priority from lowest to highest
   const sortedListings = positionCards.sort((a, b) => a.priority - b.priority);
 
   const cardsPerRow = 3;
@@ -125,10 +128,8 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
       {positions.length === 0 ? (
         <div className={styles.noPositions}>
           <p>
-            There are no positions open at the moment. Please follow our{' '}
-            <Link href='https://www.linkedin.com/company/trent-computer-science-society'>
-              LinkedIn
-            </Link>{' '}
+            There are no positions open at the moment. Please follow our&nbsp;
+            <Link href={website_config.linkedin}>LinkedIn</Link>
             for updates.
           </p>
         </div>
@@ -139,30 +140,21 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
           </div>
           {hasMoreListings && (
             <button
-              className={styles.expandButton}
+              className={`${styles.expandButton} ${isExpanded ? styles.expanded : ''}`}
               onClick={() => setIsExpanded(!isExpanded)}
             >
-              {isExpanded ? (
-                <>
-                  <Image
-                    src='/ChevronUp.svg'
-                    alt='Expand'
-                    width={20}
-                    height={20}
-                  />
-                  Show Less
-                </>
-              ) : (
-                <>
-                  <Image
-                    src='/ChevronDown.svg'
-                    alt='Expand'
-                    width={20}
-                    height={20}
-                  />
-                  Show More
-                </>
-              )}
+              <div className={styles.expandButtonContent}>
+                <Image
+                  src='/ChevronDown.svg'
+                  alt='Expand'
+                  width={20}
+                  height={20}
+                  className={styles.chevronIcon}
+                />
+                <span className={styles.expandButtonText}>
+                  {isExpanded ? 'Show Less' : 'Show More'}
+                </span>
+              </div>
             </button>
           )}
         </>

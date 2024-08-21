@@ -6,18 +6,26 @@ website_config:
   discord: &discordLink https://discord.gg/serea2sPAd
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
+  github: &githubLink https://github.com/Trent-Computer-Science-Club-Association/ClubWebsite
   tagline: Where innovation happens
   # Social Icons
   social_icons:
     - alt_text: Link to TCSCA Instagram
       link: *instagramLink
       path: /Icons/instagram.svg
+      text: Instagram
     - alt_text: Link to TCSCA Linkedin
       link: *linkedinLink
       path: /Icons/linkedin.svg
+      text: LinkedIn
     - alt_text: Link to TCSCA Discord
       link: *discordLink
       path: /Icons/discord.svg
+      text: Discord
+    - alt_text: Link to TCSCA GitHub
+      link: *githubLink
+      path: /Icons/github.svg
+      text: GitHub
   # Banner text, comment this out if you do not want a banner
   banner_text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!' # TODO: Placeholder example.com
 # Page info for navigation
@@ -59,7 +67,7 @@ home_page:
           date: 2024-07-25
           href: /
 contact_page:
-  sponsor:
+  sponsor_section:
     section_type: TextSection
     section_header: Why Become a Sponsor?
     text: By sponsoring our computer science club, you'll gain valuable exposure to a talented pool of future tech leaders.Your support will help us provide cutting-edge resources and opportunities for our members, strengthening the local tech community.
@@ -77,7 +85,8 @@ contact_page:
         - description: Strong CSS and UI/UX design skills
         - description: Familiarity with modern web development tools
       type: Developer
-      priority: 1
+      priority: 1 # The lower the number, the higher the priority (with 1 being highest)
+      keywords: []
       modal: >
         We're looking for a talented frontend developer to join our team. You'll be
         responsible for building and maintaining our website, as well as contributing
@@ -87,13 +96,11 @@ contact_page:
       description: Seeking a skilled backend developer to create and maintain server-side logic.
       requirements:
         - description: Proficiency in Node.js, Python, or Java
-          icon_path: ''
         - description: Experience with databases like MongoDB, MySQL
-          icon_path: ''
         - description: Knowledge of RESTful APIs and microservices architecture
-          icon_path: ''
       type: Developer
       priority: 1
+      keywords: []
       modal: >
         We are in need of a backend developer to work on server-side logic and integration
         with front-end components. Your role will involve database management, server-side
@@ -102,13 +109,11 @@ contact_page:
       description: Join us to analyze data and derive meaningful insights to guide our club's projects.
       requirements:
         - description: Experience with data analysis tools like Python, R
-          icon_path: ''
         - description: Knowledge of machine learning algorithms
-          icon_path: ''
         - description: Strong statistical analysis skills
-          icon_path: ''
       type: Developer
       priority: 2
+      keywords: []
       modal: >
         As a Data Scientist, you will analyze complex datasets to help improve our club's
         initiatives. You'll work on predictive modeling, data visualization, and collaborate
@@ -117,13 +122,11 @@ contact_page:
       description: Looking for a creative graphic designer to create visual content for our club.
       requirements:
         - description: Proficiency in Adobe Creative Suite (Photoshop, Illustrator)
-          icon_path: ''
         - description: Strong portfolio of design projects
-          icon_path: ''
         - description: Creativity and attention to detail
-          icon_path: ''
       type: Creative
       priority: 2
+      keywords: []
       modal: >
         We need a graphic designer to produce engaging visual content for our website and events.
         You will be responsible for creating logos, banners, and other marketing materials.
@@ -135,6 +138,7 @@ contact_page:
         - description: Ability to research and generate unique content ideas
       type: Creative
       priority: 3
+      keywords: []
       modal: >
         As a Content Writer, you'll craft articles and blog posts that align with our club's
         mission. You'll collaborate with designers and developers to enhance our club's online presence.
@@ -146,6 +150,7 @@ contact_page:
         - description: Ability to work under tight deadlines
       type: Managerial
       priority: 2
+      keywords: []
       modal: >
         As an Event Coordinator, you will organize and manage our club's events, from planning
         to execution. You'll work with club members to ensure successful and engaging events.
@@ -157,6 +162,7 @@ contact_page:
         - description: Ability to motivate and inspire volunteers
       type: Volunteer
       priority: 3
+      keywords: []
       modal: >
         The Volunteer Coordinator will be responsible for recruiting, training, and managing
         volunteers for various club activities. You'll ensure that our volunteer program runs smoothly
@@ -170,6 +176,7 @@ contact_page:
         - description: Ability to develop and maintain partnerships
       type: Volunteer
       priority: 2
+      keywords: []
       modal: >
         The Outreach Coordinator will work to increase our club's visibility and establish partnerships
         with other organizations. You'll lead efforts in public relations and community engagement.

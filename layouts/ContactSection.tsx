@@ -7,6 +7,7 @@ import ContactForm, {
 } from '../components/ContactForm';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
+import { website_config } from '../config';
 
 interface ContactSectionProps {
   formData: Record<string, string>;
@@ -25,9 +26,9 @@ export default function ContactSection({
         <ContactForm
           title='Get In Touch'
           description='Fill out the form below to contact us.'
-          onSubmit={onSubmit}
+          onSubmit={onSubmit} // Defines what data is sent to the server and how its handled (ex. adding metadata)
           formData={formData}
-          onInputChange={onInputChange}
+          onInputChange={onInputChange} // How to handle input being changed (for example, validation)
           formItems={[
             Group(
               TextInput('Name', 'Enter your name'),
@@ -56,28 +57,7 @@ export default function ContactSection({
           <TextBox
             title='Get In Touch'
             description='Fill out the form below to contact us.'
-            links={[
-              {
-                icon: '/Icons/discord.svg',
-                link: 'https://discord.gg/serea2sPAd',
-                text: 'Discord',
-              },
-              {
-                icon: '/Icons/instagram.svg',
-                link: 'https://www.instagram.com/trentcsca/',
-                text: 'Instagram',
-              },
-              {
-                icon: '/Icons/linkedin.svg',
-                link: 'https://www.linkedin.com/company/trent-computer-science-society',
-                text: 'LinkedIn',
-              },
-              {
-                icon: '/Icons/github.svg',
-                link: 'https://github.com/tcsca',
-                text: 'GitHub',
-              },
-            ]}
+            links={website_config.social_icons}
           />
         </div>
       </div>

@@ -24,6 +24,8 @@ interface GroupProps {
 
 type FormItem = TextInputProps | DropdownInputProps | GroupProps;
 
+type SubmissionState = { success: true } | { success: false; message: string };
+
 interface ContactFormProps {
   title: string;
   description: string;
@@ -45,9 +47,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
     {}
   );
   const [canSubmit, setCanSubmit] = useState<boolean>(false);
-  const [submissionStatus, setSubmissionStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle');
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState | null>(null);
 
   useEffect(() => {
     validateForm();
@@ -58,6 +59,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   const validateEmail = (email: string): boolean => {
+    // This regex comes from https://stackoverflow.com/a/46181
+    // see throrough evaluation of the regex here: https://jsfiddle.net/ghvj4gy9/
     const emailRegex =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(email);
@@ -109,14 +112,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
     validateForm();
 
     if (canSubmit) {
-      try {
-        await onSubmit(formData);
-        setSubmissionStatus('success');
+      await onSubmit(formData).catch((error: any) => {
+        setSubmissionState({ success: false, message: error.message });
+      });
+      if (submissionState) {
         // Reset form after successful submission
         setTouchedFields({});
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        setSubmissionStatus('error');
       }
     }
   };
@@ -230,12 +231,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
         {formItems.map((item, index) => renderFormItem(item, index))}
         <button type='submit'>Submit</button>
       </form>
-      {submissionStatus === 'success' && (
+      {submissionState && submissionState.success && (
         <p className={styles.successMessage}>
           Form submitted successfully! We'll get back to you soon.
         </p>
       )}
-      {submissionStatus === 'error' && (
+      {submissionState && !submissionState.success && (
         <p className={styles.errorMessage}>
           There was an error submitting the form. Please email
           tcscadev@gmail.com or try again later.
@@ -256,28 +257,28 @@ function TextInput(
   return { label, type: 'text', placeholder, value, long, mandatory, onChange };
 }
 
-function EmailInput(
+const EmailInput = (
   label: string,
   placeholder: string,
   value: string = '',
   mandatory: boolean = true
-) {
+) => {
   return { label, type: 'email', placeholder, value, mandatory };
-}
+};
 
-function DropdownInput(
+const DropdownInput = (
   label: string,
   placeholder: string,
   options: { value: string; label: string }[],
   value: string = '',
   mandatory: boolean = true
-) {
+) => {
   return { label, type: 'dropdown', placeholder, options, value, mandatory };
-}
+};
 
-function Group(...inputs: (TextInputProps | DropdownInputProps)[]) {
+const Group = (...inputs: (TextInputProps | DropdownInputProps)[]) => {
   return { inputs };
-}
+};
 
 export default ContactForm;
 export { TextInput, EmailInput, DropdownInput, Group };

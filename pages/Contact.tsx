@@ -61,7 +61,7 @@ export default function Home() {
           />
           <div className={styles.sponsorButton}>
             <TextSection
-              section={contact_page.sponsor}
+              section={contact_page.sponsor_section}
               style={TextSectionStyle.primary}
             />
           </div>

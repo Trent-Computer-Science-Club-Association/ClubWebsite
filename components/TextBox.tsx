@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from '../styles/components/TextBox.module.scss';
 import Image from './Image';
+import { type SocialIcon } from '../config';
 
 interface Props {
   title: string;
   description: string;
-  links?: { icon: string; link: string; text: string }[];
+  links?: SocialIcon[];
 }
 
 export default function TextBox({ title, description, links }: Props) {
@@ -18,7 +19,7 @@ export default function TextBox({ title, description, links }: Props) {
           {links.map((link, index) => (
             <a key={index} href={link.link} target='_blank' rel='noreferrer'>
               <div className={styles.iconWrapper}>
-                <Image src={link.icon} alt={link.link} width={15} height={15} />
+                <Image src={link.path} alt={link.text} width={15} height={15} />
               </div>
               <span>{link.text}</span>
             </a>

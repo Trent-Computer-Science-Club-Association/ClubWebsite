@@ -1,14 +1,14 @@
 import Image from './Image';
 import styles from '../styles/components/BlurBanner.module.scss';
 
-interface BaseProps {
+interface Props {
   imagePath: string;
   altText: string;
   title: string;
   sectionHeader?: string;
 }
 
-const BlurBanner: React.FC<BaseProps> = ({
+const BlurBanner: React.FC<Props> = ({
   imagePath,
   altText,
   title,
@@ -26,7 +26,7 @@ const BlurBanner: React.FC<BaseProps> = ({
         {sectionHeader && (
           <div className={styles.waveContainer}>
             <Image src={'wave.svg'} alt={'wave'} fill={true} />
-            <div className={styles.sectionHeaderContainer}>
+            <div>
               <h2 className={styles.sectionHeader}>{sectionHeader}</h2>
               <hr className={styles.sectionHeaderUnderline} />
             </div>

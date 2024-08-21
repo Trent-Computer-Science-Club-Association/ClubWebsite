@@ -89,10 +89,20 @@
   &:hover {
     @apply bg-active-1;
   }
+
+  .expandButtonContent {
+    @apply flex items-center;
+  }
+
+  &.expanded {
+    img {
+      @apply rotate-180;
+    }
+  }
 }
 
 .expandButtonText {
-  @apply ml-3;
+  @apply ml-2;
 }
 
 .expandIcon {

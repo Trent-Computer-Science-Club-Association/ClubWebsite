@@ -36,25 +36,25 @@
   @apply translate-y-2;
   @apply w-full;
 
+  > div {
+    @apply absolute bottom-4 left-8;
+    @apply z-30;
+    @apply inline-block;
+
+    > h2 {
+      @apply text-4xl font-semibold text-white;
+      @apply mb-2;
+    }
+
+    > hr {
+      @apply border-t-2 border-white;
+      @apply rounded-2xl;
+      @apply w-full;
+      @apply mt-1;
+    }
+  }
+
   img {
     @apply object-cover object-bottom;
   }
-}
-
-.sectionHeaderContainer {
-  @apply absolute bottom-4 left-8;
-  @apply z-30;
-  @apply inline-block;
-}
-
-.sectionHeader {
-  @apply text-4xl font-semibold text-white;
-  @apply mb-2;
-}
-
-.sectionHeaderUnderline {
-  @apply border-t-2 border-white;
-  @apply rounded-2xl;
-  @apply w-full;
-  @apply mt-1;
 }

@@ -38,16 +38,18 @@ const sectionBase = z.strictObject({
 });
 
 // Config Types
-interface SocialIcon {
+export interface SocialIcon {
   alt_text: string;
   link: string;
   path: string;
+  text: string;
 }
 
 const socialIcon = z.strictObject({
   alt_text: z.string(),
   link: z.string(),
   path: z.string(),
+  text: z.string(),
 });
 
 interface WebsiteConfig {
@@ -56,6 +58,7 @@ interface WebsiteConfig {
   discord: string;
   instagram: string;
   linkedin: string;
+  github: string;
   tagline: string;
   social_icons: SocialIcon[];
   banner_text?: string;
@@ -67,6 +70,7 @@ const websiteConfig = z.strictObject({
   discord: z.string(),
   instagram: z.string(),
   linkedin: z.string(),
+  github: z.string(),
   tagline: z.string(),
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),
@@ -168,32 +172,32 @@ const requirement = z.strictObject({
 });
 
 export interface Listing {
-  priority?: number;
+  priority: number;
   title: string;
   description: string;
   requirements: Requirement[];
-  type: (typeof ListingType)[keyof typeof ListingType];
+  type: ListingType;
   modal?: string;
-  keywords?: string[];
+  keywords: string[];
 }
 
 const listing = z.strictObject({
-  priority: z.number().optional(),
+  priority: z.number().default(Infinity),
   title: z.string(),
   description: z.string(),
-  requirements: z.array(requirement),
+  requirements: z.array(requirement).max(4),
   type: listingTypeEnum,
   modal: z.string().optional(),
-  keywords: z.array(z.string()).optional(),
+  keywords: z.array(z.string()),
 });
 
 interface ContactPage {
-  sponsor: TextSection;
+  sponsor_section: TextSection;
   listings: Listing[];
 }
 
 const contactPage = z.strictObject({
-  sponsor: textSection,
+  sponsor_section: textSection,
   listings: z.array(listing),
 });
 
