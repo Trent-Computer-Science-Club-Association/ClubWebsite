@@ -19,7 +19,7 @@ website_config:
       link: *discordLink
       path: /Icons/discord.svg
   # Banner text, comment this out if you do not want a banner
-  banner_text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!' # TODO: Placeholder example.com
+  banner_text: '**HACK TRENT**, coming November 8th-10th, [Learn More](example.com)!' # TODO: Placeholder example.com
 # Page info for navigation
 page_list:
   - page_name: Home
