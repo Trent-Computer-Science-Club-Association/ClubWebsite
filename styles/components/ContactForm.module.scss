@@ -1,6 +1,5 @@
 .contactForm {
   @apply bg-color-3 text-white p-4 rounded-lg shadow-lg;
-
   h2 {
     @apply text-3xl font-bold mb-2 text-area-header;
   }
@@ -45,6 +44,7 @@
       @apply border-area-header;
     }
   }
+
   .invalidInput {
     @apply border-red-500;
   }
@@ -115,7 +115,6 @@
 
       .react-select__option {
         @apply text-white bg-color-3;
-
         &--is-selected {
           @apply bg-area-header;
           @apply text-color-3;
@@ -128,7 +127,8 @@
       }
     }
   }
-  .invalidSelect {
+
+  .invalidField {
     :global {
       .react-select__control {
         @apply border-red-500;
