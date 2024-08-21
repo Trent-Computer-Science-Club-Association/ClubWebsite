@@ -1,10 +1,12 @@
 import React from 'react';
-import ContactForm, {
+import ContactForm from '../components/ContactForm';
+import {
   TextInput,
   EmailInput,
   DropdownInput,
   Group,
-} from '../components/ContactForm';
+  InputProps,
+} from '../components/FormComponents';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
 
@@ -19,6 +21,38 @@ export default function ContactSection({
   onInputChange,
   onSubmit,
 }: ContactSectionProps) {
+  const createFormItem = (item: InputProps): InputProps => ({
+    ...item,
+    value: formData[item.label] || '',
+    onChange: (value: string) => onInputChange(item.label, value),
+  });
+
+  const formItems = [
+    {
+      inputs: [
+        createFormItem(TextInput('Name', 'Enter your name', '', false, true)),
+        createFormItem(
+          DropdownInput(
+            'Subject',
+            'Select your subject',
+            [
+              { value: 'Applying', label: 'Applying' },
+              { value: 'Volunteering', label: 'Volunteering' },
+              { value: 'Development', label: 'Development' },
+              { value: 'Creative', label: 'Creative' },
+              { value: 'Managerial', label: 'Managerial' },
+              { value: 'Outreach', label: 'Outreach' },
+            ],
+            '',
+            true
+          )
+        ),
+      ],
+    },
+    createFormItem(EmailInput('Email', 'Enter your email')),
+    createFormItem(TextInput('Message', 'Enter your message', '', true, true)),
+  ];
+
   return (
     <div className={styles.contactSection} id='contact-form'>
       <div className={styles.left}>
@@ -28,21 +62,7 @@ export default function ContactSection({
           onSubmit={onSubmit}
           formData={formData}
           onInputChange={onInputChange}
-          formItems={[
-            Group(
-              TextInput('Name', 'Enter your name'),
-              DropdownInput('Subject', 'Select your subject', [
-                { value: 'Applying', label: 'Applying' },
-                { value: 'Volunteering', label: 'Volunteering' },
-                { value: 'Development', label: 'Development' },
-                { value: 'Creative', label: 'Creative' },
-                { value: 'Managerial', label: 'Managerial' },
-                { value: 'Outreach', label: 'Outreach' },
-              ])
-            ),
-            EmailInput('Email', 'Enter your email'),
-            TextInput('Message', 'Enter your message', '', true),
-          ]}
+          formItems={formItems}
         />
       </div>
       <div className={styles.right}>

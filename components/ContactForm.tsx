@@ -1,28 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
 import styles from '../styles/components/ContactForm.module.scss';
+import { FormField, Group, InputProps } from '../components/FormComponents';
 
-interface TextInputProps {
-  label: string;
-  type: string;
-  placeholder: string;
-  value: string;
-  long?: boolean;
-  mandatory?: boolean;
-}
-
-interface DropdownInputProps {
-  label: string;
-  options: { value: string; label: string }[];
-  value: { value: string; label: string } | null;
-  mandatory?: boolean;
-}
-
-interface GroupProps {
-  inputs: (TextInputProps | DropdownInputProps)[];
-}
-
-type FormItem = TextInputProps | DropdownInputProps | GroupProps;
+export type FormItem = InputProps | { inputs: InputProps[] };
 
 interface ContactFormProps {
   title: string;
@@ -58,15 +38,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   const validateEmail = (email: string): boolean => {
-    const emailRegex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const validateForm = () => {
     let isValid = true;
 
-    const validateItems = (items: any[]) => {
+    const validateItems = (items: FormItem[]) => {
       items.forEach((item) => {
         if ('inputs' in item) {
           validateItems(item.inputs);
@@ -75,7 +54,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           const isTouched = touchedFields[item.label] || false;
           if (
             isTouched &&
-            (value.trim() === '' ||
+            ((item.mandatory && value.trim() === '') ||
               (item.type === 'email' && !validateEmail(value)))
           ) {
             isValid = false;
@@ -93,16 +72,16 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
     // Mark all fields as touched
     const allTouched: Record<string, boolean> = {};
-    const validateItems = (items: any[]) => {
+    const touchAllFields = (items: FormItem[]) => {
       items.forEach((item) => {
         if ('inputs' in item) {
-          validateItems(item.inputs);
+          touchAllFields(item.inputs);
         } else {
           allTouched[item.label] = true;
         }
       });
     };
-    validateItems(formItems);
+    touchAllFields(formItems);
     setTouchedFields(allTouched);
 
     // Re-validate the form
@@ -121,104 +100,27 @@ const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
-  const renderFormItem = (item: any, index: number) => {
+  const renderFormItem = (item: FormItem, index: number) => {
     if ('inputs' in item) {
-      return (
-        <div key={`group-${index}`} className={styles.group}>
-          {item.inputs.map((input: any, inputIndex: number) => (
-            <div
-              key={`group-item-${index}-${inputIndex}`}
-              className={styles.groupItem}
-            >
-              {renderFormItem(input, inputIndex)}
-            </div>
-          ))}
-        </div>
-      );
+      return <Group key={`group-${index}`} inputs={item.inputs} />;
     }
 
     const value = formData[item.label] || '';
     const isTouched = touchedFields[item.label] || false;
     const isInvalid =
       isTouched &&
-      (value.trim() === '' || (item.type === 'email' && !validateEmail(value)));
-
-    if (item.type === 'dropdown') {
-      const selectedOption = item.options.find(
-        (option: { value: string; label: string }) => option.value === value
-      );
-      return (
-        <div
-          key={`field-${index}`}
-          className={`${styles.formField} ${isInvalid ? styles.invalidField : ''}`}
-        >
-          <label
-            htmlFor={item.label}
-            className={isInvalid ? styles.invalidLabel : ''}
-          >
-            {item.label}
-            {item.mandatory && <span className={styles.mandatory}>*</span>}
-          </label>
-          <Select
-            id={item.label}
-            value={selectedOption}
-            onChange={(option) =>
-              onInputChange(item.label, option ? option.value : '')
-            }
-            onBlur={() => handleBlur(item.label)}
-            options={item.options}
-            placeholder={item.placeholder}
-            className={`${styles.reactSelect} ${isInvalid ? styles.invalidSelect : ''}`}
-            classNamePrefix='react-select'
-          />
-          {isInvalid && (
-            <span className={styles.errorText}>This field is required</span>
-          )}
-        </div>
-      );
-    }
+      ((item.mandatory && value.trim() === '') ||
+        (item.type === 'email' && !validateEmail(value)));
 
     return (
-      <div
+      <FormField
         key={`field-${index}`}
-        className={`${styles.formField} ${isInvalid ? styles.invalidField : ''}`}
-      >
-        <label
-          htmlFor={item.label}
-          className={isInvalid ? styles.invalidLabel : ''}
-        >
-          {item.label}
-          {item.mandatory && <span className={styles.mandatory}>*</span>}
-        </label>
-        {item.long ? (
-          <textarea
-            id={item.label}
-            value={value}
-            onChange={(e) => onInputChange(item.label, e.target.value)}
-            onBlur={() => handleBlur(item.label)}
-            placeholder={item.placeholder}
-            className={isInvalid ? styles.invalidInput : ''}
-            maxLength={5000}
-          />
-        ) : (
-          <input
-            type={item.type}
-            id={item.label}
-            value={value}
-            onChange={(e) => onInputChange(item.label, e.target.value)}
-            onBlur={() => handleBlur(item.label)}
-            placeholder={item.placeholder}
-            className={isInvalid ? styles.invalidInput : ''}
-          />
-        )}
-        {isInvalid && (
-          <span className={styles.errorText}>
-            {item.type === 'email'
-              ? 'Please enter a valid email address'
-              : 'This field is required'}
-          </span>
-        )}
-      </div>
+        {...item}
+        value={value}
+        onChange={(value: string) => onInputChange(item.label, value)}
+        onBlur={() => handleBlur(item.label)}
+        isInvalid={isInvalid}
+      />
     );
   };
 
@@ -228,7 +130,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <p>{description}</p>
       <form onSubmit={handleSubmit}>
         {formItems.map((item, index) => renderFormItem(item, index))}
-        <button type='submit'>Submit</button>
+        <button type='submit' disabled={!canSubmit}>
+          Submit
+        </button>
       </form>
       {submissionStatus === 'success' && (
         <p className={styles.successMessage}>
@@ -245,39 +149,4 @@ const ContactForm: React.FC<ContactFormProps> = ({
   );
 };
 
-function TextInput(
-  label: string,
-  placeholder: string,
-  value: string = '',
-  long: boolean = false,
-  mandatory: boolean = true,
-  onChange?: (value: string) => void
-) {
-  return { label, type: 'text', placeholder, value, long, mandatory, onChange };
-}
-
-function EmailInput(
-  label: string,
-  placeholder: string,
-  value: string = '',
-  mandatory: boolean = true
-) {
-  return { label, type: 'email', placeholder, value, mandatory };
-}
-
-function DropdownInput(
-  label: string,
-  placeholder: string,
-  options: { value: string; label: string }[],
-  value: string = '',
-  mandatory: boolean = true
-) {
-  return { label, type: 'dropdown', placeholder, options, value, mandatory };
-}
-
-function Group(...inputs: (TextInputProps | DropdownInputProps)[]) {
-  return { inputs };
-}
-
 export default ContactForm;
-export { TextInput, EmailInput, DropdownInput, Group };
