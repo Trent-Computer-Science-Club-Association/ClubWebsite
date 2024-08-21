@@ -2,7 +2,7 @@
 website_config:
   title: Trent Student Computer Science Association
   # Socials - The `&<value>` are anchors which let us use these elsewhere in the config with `*<value>``
-  email: &contactEmail 'tcscaclub@gmail.com'
+  email: &contactEmail 'tcscatrent@outlook.com'
   discord: &discordLink https://discord.gg/serea2sPAd
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
