@@ -15,9 +15,11 @@ export default function TextBox({ title, description, links }: Props) {
       <p>{description}</p>
       {links && (
         <div className={styles.links}>
-          {links.map((link) => (
-            <a href={link.link} target='_blank' rel='noreferrer'>
-              <Image src={link.icon} alt={link.link} width={15} height={15} />
+          {links.map((link, index) => (
+            <a key={index} href={link.link} target='_blank' rel='noreferrer'>
+              <div className={styles.iconWrapper}>
+                <Image src={link.icon} alt={link.link} width={15} height={15} />
+              </div>
               <span>{link.text}</span>
             </a>
           ))}

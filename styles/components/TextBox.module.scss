@@ -1,5 +1,5 @@
 .TextBox {
-  @apply bg-color-3 text-white p-3 rounded-lg shadow-lg;
+  @apply bg-color-3 text-white p-4 rounded-lg shadow-lg;
 
   h2 {
     @apply text-3xl font-bold mb-2 text-area-header;
@@ -14,6 +14,11 @@
     @apply flex-shrink-0;
     a {
       @apply flex items-center;
+
+      &:hover {
+        @apply text-hover-1;
+      }
+
       span {
         @apply ml-2;
       }

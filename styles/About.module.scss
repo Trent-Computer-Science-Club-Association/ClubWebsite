@@ -12,5 +12,9 @@
 .sponsorButton {
   button {
     @apply bg-event-banner text-white border-white;
+
+    &:hover {
+      @apply bg-hover-2;
+    }
   }
 }
