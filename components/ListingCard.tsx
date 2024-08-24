@@ -32,7 +32,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ position, onLearnMore }) => {
     <div className={`${styles.border} ${borderClass}`}>
       <div className={styles.card}>
         <h2>{position.title}</h2>
-        <div className={getUnderlineClass(position.type)} />
+        <hr className={getUnderlineClass(position.type)} />
         <p>{position.description}</p>
         <ul>
           {position.requirements.map((requirement, reqIndex) => (
@@ -49,9 +49,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ position, onLearnMore }) => {
           className={styles.learnMoreButton}
           type={ButtonType.LIGHT}
           label='Learn More'
-        >
-          Learn More
-        </Button>
+        />
       </div>
     </div>
   );
