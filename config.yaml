@@ -82,6 +82,7 @@ contact_page:
       description: We're looking for a talented frontend developer to join our team.
       requirements:
         - description: Experience with React, Next.js, and/or TypeScript
+          icon: FaReact
         - description: Strong CSS and UI/UX design skills
         - description: Familiarity with modern web development tools
       type: Developer

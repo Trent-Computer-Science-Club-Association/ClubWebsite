@@ -18,13 +18,14 @@ const config: Config = {
         'hover-1': '#4db6ac', // TODO: Decide on a color for this
         'hover-2': '#89B4FA', // TODO: Decide on a color for this
         'event-banner': '#5E18EB', // Event Banner Background
+        'secondary-green': '#43FFA5', // Secondary Green
+        'area-header': '#DCD489', // Area Header
         socials: '#7BD4CB', // Social
+        // For the open positions, we wanted to have a color to indicate what kind of position it is
         'development-color': '#4DEB91', // Development Color
         'creative-color': '#88EB3D', // Creative Color
         'managerial-color': '#FBD93C', // Managerial Color
         'volunteer-color': '#FAB22D', // Volunteer Color
-        'area-header': '#DCD489', // Area Header
-        'secondary-green': '#43FFA5', // Secondary Green
       },
     },
   },

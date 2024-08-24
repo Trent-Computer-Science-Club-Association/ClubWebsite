@@ -25,7 +25,6 @@ interface PropsWithButton extends Props {
 export default function TextSection({
   section: { text, image, button },
   style = TextSectionStyle.primary,
-  ...props
 }: Props | PropsWithButton) {
   return (
     <div className={styles.TextSectionWrapper}>

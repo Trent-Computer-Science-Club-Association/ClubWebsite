@@ -21,10 +21,10 @@
 
 .TextAndButton {
   @apply col-span-1;
-  order: 2;
+  @apply order-2;
 
   @screen md {
-    order: 1;
+    @apply order-1;
   }
 }
 
@@ -35,10 +35,10 @@
   @apply pb-[80%];
   @apply overflow-hidden;
   @apply rounded-xl;
-  order: 1;
+  @apply order-1;
 
   @screen md {
-    order: 2;
+    @apply order-2;
   }
 }
 

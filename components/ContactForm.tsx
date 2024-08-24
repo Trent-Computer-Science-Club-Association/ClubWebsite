@@ -30,7 +30,7 @@ interface ContactFormProps {
   title: string;
   description: string;
   formItems: FormItem[];
-  onSubmit: (formData: Record<string, string>) => Promise<void>;
+  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
   formData: Record<string, string>;
   onInputChange: (label: string, value: string) => void;
 }

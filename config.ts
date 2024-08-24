@@ -163,12 +163,12 @@ const listingTypeEnum = z.nativeEnum(ListingType);
 
 interface Requirement {
   description: string;
-  icon_path?: string;
+  icon?: string;
 }
 
 const requirement = z.strictObject({
   description: z.string(),
-  icon_path: z.optional(z.string()),
+  icon: z.string().optional(),
 });
 
 export interface Listing {
@@ -193,12 +193,12 @@ const listing = z.strictObject({
 
 interface ContactPage {
   sponsor_section: TextSection;
-  listings: Listing[];
+  listings?: Listing[];
 }
 
 const contactPage = z.strictObject({
   sponsor_section: textSection,
-  listings: z.array(listing),
+  listings: z.array(listing).optional(),
 });
 
 // config

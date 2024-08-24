@@ -12,7 +12,7 @@ import { website_config } from '../config';
 interface ContactSectionProps {
   formData: Record<string, string>;
   onInputChange: (label: string, value: string) => void;
-  onSubmit: (formData: Record<string, string>) => Promise<void>;
+  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
 }
 
 export default function ContactSection({

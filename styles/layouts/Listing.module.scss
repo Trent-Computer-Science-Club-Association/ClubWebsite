@@ -3,179 +3,57 @@
   @apply w-full overflow-hidden;
 }
 
-.card {
-  @apply bg-color-3 rounded-lg shadow-md p-6 flex flex-col flex-1 relative overflow-hidden;
-}
-
-.cardTitle {
-  @apply text-2xl font-bold mb-2;
-  @apply text-color-2;
-}
-
-.cardDescription {
-  @apply mb-4 text-color-2;
-}
-
-.requirementsList {
-  @apply space-y-2 mb-4;
-}
-
-.requirementItem {
-  @apply flex items-center text-color-2;
-}
-
-.requirementsIcon {
-  @apply mr-2 flex-shrink-0;
-}
-
-.learnMoreButton,
-.applyButton {
-  @apply mt-auto mr-auto text-color-3;
-}
-
-.border {
-  @apply p-1 rounded-lg shadow-md flex flex-col relative overflow-hidden;
-  @apply transition-[transform] duration-300 ease-out;
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
-.gradientBorder {
-  background: linear-gradient(
-    135deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #ee82ee,
-    #8b00ff
-  );
-  @apply text-white;
-}
-
-.developerBorder,
-.creativeBorder,
-.managerialBorder,
-.volunteerBorder {
-  @apply bg-color-2 text-white;
-}
-
 .listingsSectionWrapper {
   @apply flex flex-col items-center m-4;
 
   .noPositions {
-    @apply flex flex-col items-center;
-    @apply text-color-2;
-    @apply text-center;
-    @apply mt-4;
+    @apply flex flex-col items-center text-color-2 text-center mt-4;
 
     p {
-      @apply w-1/2;
-      @apply text-3xl leading-loose font-bold;
-      @apply my-16;
+      @apply w-1/2 text-3xl leading-loose font-bold my-16;
     }
 
     a {
-      @apply underline;
-      @apply text-color-2;
+      @apply underline text-color-2;
+
+      &:visited,
+      &:active {
+        @apply text-color-2;
+      }
+
+      &:hover {
+        @apply text-hover-1;
+      }
     }
   }
 }
 
 .expandButton {
   @apply mt-4 flex items-center justify-center text-color-2 bg-color-3 px-6 py-2 rounded-full shadow-md transition-colors duration-300;
+
   &:hover {
     @apply bg-active-1;
   }
 
   .expandButtonContent {
     @apply flex items-center;
-  }
 
-  &.expanded {
-    img {
-      @apply rotate-180;
+    span {
+      @apply ml-2;
+    }
+
+    .expandIcon {
+      @apply w-5 h-5;
+      @apply flex items-center justify-center;
+      @apply transition-transform duration-300;
+
+      svg {
+        @apply w-full h-full;
+      }
+
+      &.rotated {
+        @apply transform rotate-180;
+      }
     }
   }
-}
-
-.expandButtonText {
-  @apply ml-2;
-}
-
-.expandIcon {
-  @apply w-5 h-5;
-}
-
-.modal {
-  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-color-3 rounded-lg shadow-md p-8 w-11/12 max-w-2xl z-50;
-}
-
-.modalOverlay {
-  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40;
-}
-
-.modalContent {
-  @apply flex flex-col items-center justify-center;
-}
-
-.modalTitle {
-  @apply text-2xl font-bold mb-4 text-color-2;
-}
-
-.modalDescription {
-  @apply mb-4 text-color-2;
-}
-
-.modalRequirementsList {
-  @apply space-y-2 mb-4;
-}
-
-.modalRequirementItem {
-  @apply flex items-center text-color-2;
-}
-
-.modalButtonsContainer {
-  @apply flex space-x-4;
-}
-
-.modalButton,
-.modalButton {
-  @apply mt-4;
-}
-
-.cardDivider {
-  @apply w-full h-0.5 bg-color-2 mb-2 border-0;
-  @apply rounded-lg;
-}
-
-.developerBorder .cardDivider {
-  @apply bg-development-color;
-}
-
-.creativeBorder .cardDivider {
-  @apply bg-creative-color;
-}
-
-.managerialBorder .cardDivider {
-  @apply bg-managerial-color;
-}
-
-.volunteerBorder .cardDivider {
-  @apply bg-volunteer-color;
-}
-
-.gradientBorder .cardDivider {
-  background: linear-gradient(
-    135deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #ee82ee,
-    #8b00ff
-  );
 }

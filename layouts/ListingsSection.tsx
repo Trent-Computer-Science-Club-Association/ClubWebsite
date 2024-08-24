@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
-import Image from '../components/Image';
+import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
+import modalStyles from '../styles/components/Modal.module.scss';
 import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
-import { Listing, ListingType, website_config } from '../config';
+import { Listing, website_config } from '../config';
 import Link from 'next/link';
+import ListingCard from '../components/ListingCard';
 
 interface ListingsSectionProps {
-  positions: Listing[];
+  positions?: Listing[];
   formData: Record<string, string>;
   onInputChange: (label: string, value: string) => void;
-  onSubmit: (formData: Record<string, string>) => Promise<void>;
+  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
 }
 
-// const ListingType = {
-//   Developer: 'Developer',
-//   Creative: 'Creative',
-//   Managerial: 'Managerial',
-//   Volunteer: 'Volunteer',
-// } as const;
-
-// If you dont bind the modal to the app element, it will still work but for the use of screen reader, other content will be aria-hidden while the attribute is open. to do this you can either do `Modal.setAppElement('#__next')` or `Modal.setAppElement(document.getElementById('root'))`
-// For more information, see https://reactcommunity.org/react-modal/accessibility/
 Modal.setAppElement('#__next');
 
 const ListingsSection: React.FC<ListingsSectionProps> = ({
@@ -33,76 +26,8 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
 
-  const positionCards = positions.map((position, index) => {
-    const isHighestPriority = position.priority === 1;
-    let borderClass;
-    switch (position.type) {
-      case ListingType.Developer:
-        borderClass = styles.developerBorder;
-        break;
-      case ListingType.Creative:
-        borderClass = styles.creativeBorder;
-        break;
-      case ListingType.Managerial:
-        borderClass = styles.managerialBorder;
-        break;
-      case ListingType.Volunteer:
-        borderClass = styles.volunteerBorder;
-        break;
-    }
-    if (isHighestPriority) {
-      borderClass = styles.gradientBorder;
-    }
-    const card = (
-      <div key={index} className={styles.card}>
-        <h2 className={styles.cardTitle}>{position.title}</h2>
-        <hr className={styles.cardDivider} />
-        <p className={styles.cardDescription}>{position.description}</p>
-        <ul className={styles.requirementsList}>
-          {position.requirements.map((requirement, reqIndex) => (
-            <li key={reqIndex} className={styles.requirementItem}>
-              <Image
-                src={requirement.icon_path || '/checkmark.svg'}
-                alt={requirement.description}
-                width={20}
-                height={20}
-                className={styles.requirementIcon}
-              />
-              <p>{requirement.description}</p>
-            </li>
-          ))}
-        </ul>
-        <Button
-          type={ButtonType.LIGHT}
-          onClick={() => handleModalOpen(position)}
-          className={styles.learnMoreButton}
-          label='Learn More'
-        />
-      </div>
-    );
-    return {
-      priority: position.priority ?? Infinity,
-      borderClass,
-      card: (
-        <div
-          key={`border-${index}`}
-          className={`${styles.border} ${borderClass}`}
-        >
-          {card}
-        </div>
-      ),
-    };
-  });
-
-  // this is sorting by priority from lowest to highest
-  const sortedListings = positionCards.sort((a, b) => a.priority - b.priority);
-
+  // number of cards per row
   const cardsPerRow = 3;
-  const visibleListings = isExpanded
-    ? sortedListings
-    : sortedListings.slice(0, cardsPerRow);
-
-  const hasMoreListings = sortedListings.length > cardsPerRow;
 
   const handleModalOpen = (position: Listing) => {
     setSelectedListing(position);
@@ -115,7 +40,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
   };
 
   const handleApply = () => {
-    onInputChange('Subject', selectedListing?.title || '');
+    onInputChange('Subject', selectedListing?.title ?? '');
     setIsModalOpen(false);
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -123,81 +48,94 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
     }
   };
 
-  return (
-    <div className={styles.listingsSectionWrapper}>
-      {positions.length === 0 ? (
+  const renderListings = () => {
+    if (positions.length === 0) {
+      return (
         <div className={styles.noPositions}>
           <p>
             There are no positions open at the moment. Please follow our&nbsp;
-            <Link href={website_config.linkedin}>LinkedIn</Link>
-            for updates.
+            <Link href={website_config.linkedin} target='_blank'>
+              LinkedIn
+            </Link>
+            &nbsp; for updates.
           </p>
         </div>
-      ) : (
-        <>
-          <div className={styles.listingsSection}>
-            {visibleListings.map((position) => position.card)}
-          </div>
-          {hasMoreListings && (
-            <button
-              className={`${styles.expandButton} ${isExpanded ? styles.expanded : ''}`}
-              onClick={() => setIsExpanded(!isExpanded)}
-            >
-              <div className={styles.expandButtonContent}>
-                <Image
-                  src='/ChevronDown.svg'
-                  alt='Expand'
-                  width={20}
-                  height={20}
-                  className={styles.chevronIcon}
-                />
-                <span className={styles.expandButtonText}>
-                  {isExpanded ? 'Show Less' : 'Show More'}
-                </span>
-              </div>
-            </button>
-          )}
-        </>
-      )}
+      );
+    }
 
+    // this is sorting by priority from lowest to highest
+    const sortedListings = [...positions].sort(
+      (a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)
+    );
+    const visibleListings = isExpanded
+      ? sortedListings
+      : sortedListings.slice(0, cardsPerRow);
+
+    return (
+      <>
+        <div className={styles.listingsSection}>
+          {visibleListings.map((position, index) => (
+            <ListingCard
+              key={index}
+              position={position}
+              onLearnMore={handleModalOpen}
+            />
+          ))}
+        </div>
+        {positions.length > cardsPerRow && (
+          <button
+            className={`${styles.expandButton} ${isExpanded ? styles.expanded : ''}`}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <div className={styles.expandButtonContent}>
+              <div
+                className={`${styles.expandIcon} ${isExpanded ? styles.rotated : ''}`}
+              >
+                <FaChevronDown />
+              </div>
+              <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+            </div>
+          </button>
+        )}
+      </>
+    );
+  };
+
+  return (
+    <div className={styles.listingsSectionWrapper}>
+      {renderListings()}
       {selectedListing && (
         <Modal
           isOpen={isModalOpen}
           onRequestClose={handleModalClose}
           contentLabel={selectedListing.title}
-          className={styles.modal}
-          overlayClassName={styles.modalOverlay}
+          className={modalStyles.modal}
+          overlayClassName={modalStyles.modalOverlay}
         >
-          <div className={styles.modalContent}>
-            <h2 className={styles.modalTitle}>{selectedListing.title}</h2>
-            <ReactMarkdown className={styles.modalDescription}>
-              {selectedListing.modal || selectedListing.description}
+          <div className={modalStyles.modalContent}>
+            <h2>{selectedListing.title}</h2>
+            <ReactMarkdown>
+              {selectedListing.modal ?? selectedListing.description}
             </ReactMarkdown>
-            <ul className={styles.modalRequirementsList}>
+            <ul>
               {selectedListing.requirements.map((requirement, reqIndex) => (
-                <li key={reqIndex} className={styles.modalRequirementItem}>
-                  <Image
-                    src={requirement.icon_path || '/checkmark.svg'}
-                    alt={requirement.description}
-                    width={20}
-                    height={20}
-                    className={styles.requirementIcon}
-                  />
+                <li key={reqIndex}>
+                  <div className={modalStyles.requirementIcon}>
+                    {requirement.icon ? <requirement.icon /> : <FaCheck />}
+                  </div>
                   <p>{requirement.description}</p>
                 </li>
               ))}
             </ul>
-            <div className={styles.modalButtonsContainer}>
+            <div className={modalStyles.buttonContainer}>
               <Button
                 type={ButtonType.LIGHT}
                 onClick={handleModalClose}
-                className={styles.modalButton}
                 label='Close'
               />
               <Button
                 type={ButtonType.LIGHT}
                 onClick={handleApply}
-                className={styles.modalButton}
                 label='Apply'
               />
             </div>

@@ -1,0 +1,38 @@
+.modal {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-color-3 rounded-lg shadow-md p-8 w-11/12 max-w-2xl z-50;
+}
+
+.modalOverlay {
+  @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40;
+  & div:first-child {
+    @apply flex flex-col;
+
+    h2 {
+      @apply text-2xl font-bold mb-4 text-color-2;
+    }
+
+    > p {
+      @apply mb-4 text-color-2;
+    }
+
+    ul {
+      @apply space-y-2 mb-4;
+
+      li {
+        @apply flex items-center text-color-2;
+      }
+    }
+
+    .requirementIcon {
+      @apply relative w-5 h-5 mr-2 flex-shrink-0;
+
+      img {
+        @apply w-full h-full object-contain;
+      }
+    }
+
+    .buttonContainer {
+      @apply flex space-x-4 mt-4 justify-center;
+    }
+  }
+}

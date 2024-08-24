@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import BlurBanner from '../components/BlurBanner';
 import ListingsSection from '../layouts/ListingsSection';
 import TextSection, { TextSectionStyle } from '../layouts/TextSection';
+import EventBanner from '../components/EventBanner';
 import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
@@ -20,26 +21,31 @@ export default function Home() {
   };
 
   const handleSubmit = async (formData: Record<string, string>) => {
-    try {
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+    const response = await fetch('/api/submit-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }).catch((error) => {
+      console.error('Error submitting form:', error);
+    });
+    if (response) {
       if (response.status === 200) {
         console.log('Form submitted successfully');
+      } else if (response.status === 400) {
+        console.error('Error: Bad request');
+      } else if (response.status === 404) {
+        console.error('Error: Not found');
       } else {
-        throw new Error('Server error');
+        console.error(`Error: Unknown${response.status}`);
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      throw error;
     }
+    return response;
   };
 
   return (
     <>
-      <NavBar currentPage='Apply' />
+      <EventBanner />
+      <NavBar currentPage='Contact Us' />
       <section className={styles.container}>
         <main className={styles.MainArea}>
           <BlurBanner
