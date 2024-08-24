@@ -61,6 +61,10 @@
     @apply text-red-500 text-sm;
   }
 
+  .marginTop {
+    @apply mt-4;
+  }
+
   .serverError {
     @apply text-red-500 mt-4;
   }
@@ -129,10 +133,8 @@
   }
 
   .invalidField {
-    :global {
-      .react-select__control {
-        @apply border-red-500;
-      }
+    .react-select__control {
+      @apply border-red-500;
     }
   }
 }
