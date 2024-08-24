@@ -2,7 +2,7 @@
 website_config:
   title: Trent Student Computer Science Association
   # Socials - The `&<value>` are anchors which let us use these elsewhere in the config with `*<value>``
-  email: &contactEmail 'tcscaclub@gmail.com'
+  email: &contactEmail 'tcscatrent@outlook.com'
   discord: &discordLink https://discord.gg/serea2sPAd
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
@@ -27,7 +27,7 @@ website_config:
       path: /Icons/github.svg
       text: GitHub
   # Banner text, comment this out if you do not want a banner
-  banner_text: 'HACKATHON 2024, coming to Trent, [Learn More](example.com)!' # TODO: Placeholder example.com
+  banner_text: '**HACK TRENT**, coming November 8th-10th, [Learn More](example.com)!' # TODO: Placeholder example.com
 # Page info for navigation
 page_list:
   - page_name: Home
