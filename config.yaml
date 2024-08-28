@@ -10,6 +10,7 @@ website_config:
   discord: &discordLink https://discord.gg/serea2sPAd
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
+  hackathon: &hackathonLink https://hacktrent.com/
   tagline: Where innovation happens
   # Social Icons
   social_icons:

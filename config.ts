@@ -61,6 +61,7 @@ interface WebsiteConfig {
   discord: string;
   instagram: string;
   linkedin: string;
+  hackathon: string;
   tagline: string;
   social_icons: SocialIcon[];
   banner_text?: string;
@@ -72,6 +73,7 @@ const websiteConfig = z.strictObject({
   discord: z.string(),
   instagram: z.string(),
   linkedin: z.string(),
+  hackathon: z.string(),
   tagline: z.string(),
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),
