@@ -90,4 +90,30 @@ home_page:
         - text: NEWS ABOUT EXCITING EVENT
           date: 2024-07-25
           # href: /
-          href: /
+# Configuration for About page
+about_page:
+  sections:
+    - section_type: TextSecion
+      section_header: Who Are We?
+      text: I need some test data 
+      image:
+        src: /AboutUsPlaceHolder.jpg
+        alt: Who Are We Image
+    - section_type: TextSecion
+      section_header: Our Mission
+      text: (missed a line)
+      image:
+        src: /AboutUsPlaceHolder.jpg
+        alt: Our Mission Image
+    - section_type: TextSecion
+      section_header: Why Join Us?
+      text: And I didn't feel like opening discord
+      image:
+        src: /AboutUsPlaceHolder.jpg
+        alt: Why Join Us Image
+    - section_type: TextSecion
+      section_header: Meet The Team
+      text: so here's some bad writing
+      image: 
+        src: /AboutUsPlaceHolder.jpg
+        alt: Meet The Team Image
