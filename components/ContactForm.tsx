@@ -112,9 +112,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
     validateForm();
 
     if (canSubmit) {
-      await onSubmit(formData).catch((error: any) => {
+      const response = await onSubmit(formData).catch((error: any) => {
         setSubmissionState({ success: false, message: error.message });
       });
+      if (response instanceof Response && response.status === 204) {
+        setSubmissionState({
+          success: true,
+        });
+      }
       if (submissionState) {
         // Reset form after successful submission
         setTouchedFields({});

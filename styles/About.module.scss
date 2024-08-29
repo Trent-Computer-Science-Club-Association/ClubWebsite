@@ -10,6 +10,9 @@
 }
 
 .sponsorButton {
+  > div > div {
+    @apply px-12;
+  }
   button {
     @apply bg-event-banner text-white border-white;
 
