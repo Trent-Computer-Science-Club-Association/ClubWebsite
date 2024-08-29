@@ -117,3 +117,6 @@ about_page:
       image: 
         src: /AboutUsPlaceHolder.jpg
         alt: Meet The Team Image
+      button:
+        text: Join Now!
+        href: /Apply
