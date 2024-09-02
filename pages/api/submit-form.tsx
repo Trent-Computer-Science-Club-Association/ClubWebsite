@@ -1,21 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log('Request method:', req.method);
-
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { Email, Subject, Name, Message } = req.body;
-
   console.log('Received form data:', { Email, Subject, Name, Message });
 
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-
   if (!webhookUrl) {
     console.error('Webhook URL not configured');
     return res.status(500).json({ message: 'Webhook URL not configured' });
