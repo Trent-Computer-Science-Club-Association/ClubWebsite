@@ -2,8 +2,20 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log('Request method:', req.method);
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  switch (req.method) {
+    case 'OPTIONS':
+      return res.status(200).end();
+    case 'GET':
+      return res.status(200).json({ message: 'API route is working' });
+    case 'POST':
+      break;
+    default:
+      return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   const { Email, Subject, Name, Message } = req.body;
