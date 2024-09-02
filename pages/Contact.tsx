@@ -15,12 +15,16 @@ import ContactSection from '../layouts/ContactSection';
 
 export default function Home() {
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
 
   const handleInputChange = (label: string, value: string) => {
     setFormData((prevData) => ({ ...prevData, [label]: value }));
   };
 
   const handleSubmit = async (formData: Record<string, string>) => {
+    setSubmitError(null);
+    setSubmitSuccess(false);
     try {
       console.log('Submitting form data:', formData);
       const response = await fetch('/api/submit-form', {
@@ -33,16 +37,22 @@ export default function Home() {
 
       console.log('Response status:', response.status);
 
+      const data = await response.json();
+
       if (response.ok) {
         console.log('Form submitted successfully');
+        setSubmitSuccess(true);
         return response;
       } else {
-        const errorData = await response.json();
-        console.error('Error response:', errorData);
-        throw new Error(errorData.message || 'Error submitting form');
+        console.error('Error response:', data);
+        setSubmitError(data.message || 'Error submitting form');
+        throw new Error(data.message || 'Error submitting form');
       }
     } catch (error) {
       console.error('Error:', error);
+      setSubmitError(
+        (error as Error).message || 'An unexpected error occurred'
+      );
       throw error;
     }
   };
@@ -86,6 +96,16 @@ export default function Home() {
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
           />
+          {submitError && (
+            <div className={styles.errorMessage}>
+              Error submitting form: {submitError}
+            </div>
+          )}
+          {submitSuccess && (
+            <div className={styles.successMessage}>
+              Form submitted successfully!
+            </div>
+          )}
         </main>
         <Footer />
       </section>
