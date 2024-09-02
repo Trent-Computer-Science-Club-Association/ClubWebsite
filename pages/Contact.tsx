@@ -22,6 +22,7 @@ export default function Home() {
 
   const handleSubmit = async (formData: Record<string, string>) => {
     try {
+      console.log('Submitting form data:', formData);
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
@@ -30,11 +31,14 @@ export default function Home() {
         body: JSON.stringify(formData),
       });
 
+      console.log('Response status:', response.status);
+
       if (response.ok) {
         console.log('Form submitted successfully');
         return response;
       } else {
         const errorData = await response.json();
+        console.error('Error response:', errorData);
         throw new Error(errorData.message || 'Error submitting form');
       }
     } catch (error) {
