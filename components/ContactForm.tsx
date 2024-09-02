@@ -174,7 +174,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
             onBlur={() => handleBlur(item.label)}
             options={item.options}
             placeholder={item.placeholder}
-            className={`${styles.reactSelect} ${isInvalid ? styles.invalidSelect : ''}`}
+            // className={`${styles.reactSelect} ${isInvalid ? styles.invalidSelect : ''}`}
+            className={'reactSelect'}
             classNamePrefix='react-select'
           />
           {isInvalid && (
