@@ -21,37 +21,26 @@ export default function Home() {
   };
 
   const handleSubmit = async (formData: Record<string, string>) => {
-    const { Email, Subject, Name, Message } = formData;
-    const webhookUrl = 'DISCORD_WEBHOOK_URL_HERE';
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const webhookPayload = {
-      content: `**Subject:** ${Subject}\n**Name:** ${Name}\n**Email:** ${Email}\n**Message:**\n${Message}`,
-      username: 'TCSCA Contact Form',
-    };
-
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(webhookPayload),
-    }).catch((error) => {
-      console.error('Error submitting to Discord webhook:', error);
-    });
-
-    if (response) {
-      if (response.status === 204) {
-        console.log('Form submitted successfully to Discord');
-      } else if (response.status === 400) {
-        console.error('Error: Bad request');
-      } else if (response.status === 404) {
-        console.error('Error: Webhook not found');
-      } else if (response.status === 429) {
-        console.error('Error: Rate limited');
+      if (response.ok) {
+        console.log('Form submitted successfully');
+        return response;
       } else {
-        console.error(`Error: Unknown (${response.status})`);
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error submitting form');
       }
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
     }
-
-    return response;
   };
 
   return (
