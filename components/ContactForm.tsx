@@ -112,17 +112,25 @@ const ContactForm: React.FC<ContactFormProps> = ({
     validateForm();
 
     if (canSubmit) {
-      const response = await onSubmit(formData).catch((error: any) => {
-        setSubmissionState({ success: false, message: error.message });
-      });
-      if (response instanceof Response && response.status === 204) {
+      try {
+        const response = await onSubmit(formData);
+        if (response instanceof Response && response.status === 200) {
+          setSubmissionState({ success: true });
+          // Reset form after successful submission
+          setTouchedFields({});
+        } else {
+          setSubmissionState({
+            success: false,
+            message:
+              'There was an error submitting the form. Please try again later.',
+          });
+        }
+      } catch (error: any) {
         setSubmissionState({
-          success: true,
+          success: false,
+          message:
+            error.message || 'An unexpected error occurred. Please try again.',
         });
-      }
-      if (submissionState) {
-        // Reset form after successful submission
-        setTouchedFields({});
       }
     }
   };
@@ -244,8 +252,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
       )}
       {submissionState && !submissionState.success && (
         <p className={styles.errorMessage}>
-          There was an error submitting the form. Please email
-          tcscadev@gmail.com or try again later.
+          {submissionState.message ||
+            'There was an error submitting the form. Please email tcscadev@gmail.com or try again later.'}
         </p>
       )}
     </div>

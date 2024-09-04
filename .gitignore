@@ -36,3 +36,4 @@ yarn-error.log*
 next-env.d.ts
 .supermaven/config.json
 /.supermaven
+.env

@@ -17,7 +17,7 @@
   }
 
   .group {
-    @apply flex flex-row space-x-4;
+    @apply flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4;
   }
 
   .groupItem {
@@ -58,19 +58,15 @@
   }
 
   .errorText {
-    @apply text-red-500 text-sm;
-  }
-
-  .marginTop {
-    @apply mt-4;
+    @apply text-red-500 text-sm font-bold;
   }
 
   .serverError {
-    @apply text-red-500 mt-4;
+    @apply text-red-500 mt-4 font-bold;
   }
 
   .successMessage {
-    @apply text-green-500 mt-4;
+    @apply text-green-500 mt-4 font-bold;
   }
 
   .errorMessage {
