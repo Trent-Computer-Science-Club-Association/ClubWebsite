@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import modalStyles from '../styles/components/Modal.module.scss';
-import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
 import { Listing, website_config } from '../config';
 import Link from 'next/link';
 import ListingCard from '../components/ListingCard';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
 
 interface ListingsSectionProps {
   positions?: Listing[];
@@ -132,9 +133,11 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
         {modalState.listing && (
           <div className={modalStyles.modalContent}>
             <h2>{modalState.listing.title}</h2>
-            <ReactMarkdown>
-              {modalState.listing.modal ?? modalState.listing.description}
-            </ReactMarkdown>
+            <Suspense fallback={<div>Loading...</div>}>
+              <ReactMarkdown>
+                {modalState.listing.modal ?? modalState.listing.description}
+              </ReactMarkdown>
+            </Suspense>
             <ul>
               {modalState.listing.requirements.map((requirement, reqIndex) => (
                 <li key={reqIndex}>

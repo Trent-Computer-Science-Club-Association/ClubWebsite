@@ -1,10 +1,11 @@
 import moment from 'moment';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
-import ReactMarkdown from 'react-markdown';
 import { type NewsSection } from '../config';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
 
 export const NewsSectionStyle = {
   primary: styles.primaryStyle,
@@ -19,14 +20,18 @@ interface NewsItem {
   date: Date;
   href: string;
 }
+
 const formatDate = (date: Date): string => {
   return moment(date).format('MMMM Do, YYYY');
 };
+
 const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   return (
     <Link className={styles.newsItem} href={href}>
       <div className={styles.left}>
-        <ReactMarkdown className={styles.title}>{text}</ReactMarkdown>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReactMarkdown className={styles.title}>{text}</ReactMarkdown>
+        </Suspense>
         <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <div className={styles.right}>

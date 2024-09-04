@@ -1,19 +1,24 @@
+import React, { lazy, Suspense } from 'react';
 import styles from '../styles/components/Footer.module.scss';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import { website_config, footer_config } from '../config';
-import ReactMarkdown from 'react-markdown';
 import Logo from '../components/Logo';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
 
 export default function Footer() {
   const { social_icons } = website_config;
   const { text } = footer_config;
+
   // ui
   return (
     <footer className={styles.Footer}>
       {/* Top section */}
       <div className={styles.top}>
-        <ReactMarkdown className={styles.text}>{text}</ReactMarkdown>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReactMarkdown className={styles.text}>{text}</ReactMarkdown>
+        </Suspense>
       </div>
       {/* Left side */}
       <div className={styles.left}>
