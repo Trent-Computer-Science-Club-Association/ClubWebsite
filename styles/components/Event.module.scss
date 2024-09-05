@@ -13,6 +13,7 @@
   }
   // Override default image styling
   img {
+    @apply static #{!important};
     // Need to use normal css here because of https://github.com/tailwindlabs/tailwindcss/discussions/8733
     user-drag: none;
     -webkit-user-drag: none;
@@ -20,8 +21,6 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    // This needs to be normal css because of the !important
-    position: static !important;
   }
   // Handle sub events
   div {

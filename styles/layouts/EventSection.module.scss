@@ -5,7 +5,11 @@
     @apply grid gap-4 grid-cols-3;
     & > p {
       @apply text-txt-1 w-full text-center col-span-full;
+      @apply text-lg;
     }
+    // Mobile
+    @apply max-[1200px]:grid-cols-2;
+    @apply max-[675px]:grid-cols-1;
   }
 
   ul {
@@ -32,17 +36,6 @@
         @apply opacity-100;
       }
     }
-  }
-}
-// Mobile
-@media (max-width: 1200px) {
-  .container > div {
-    @apply grid-cols-2;
-  }
-}
-@media (max-width: 675px) {
-  .container > div {
-    @apply grid-cols-1;
   }
 }
 // Style Variants

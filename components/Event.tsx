@@ -1,6 +1,7 @@
 // Style
 import styles from '../styles/components/Event.module.scss';
 // Components
+import moment from 'moment';
 import Link from 'next/link';
 // Internal Components
 import Image from './Image';
@@ -15,7 +16,7 @@ export default function Event({ eventItem }: Props) {
   const closed = open_date > now || href == '';
   const styleList = [styles.container];
   if (closed) styleList.push(styles.closed);
-  const userFriendlyDate = date.toDateString();
+  const userFriendlyDate = moment(date).format('ddd MMM Do, yyyy');
   // Build ui
   const content = (
     <>
@@ -24,7 +25,6 @@ export default function Event({ eventItem }: Props) {
       {/* Content */}
       <div>
         <h3>{title}</h3>
-        {/* Date  */}
         <span>{userFriendlyDate}</span>
       </div>
     </>

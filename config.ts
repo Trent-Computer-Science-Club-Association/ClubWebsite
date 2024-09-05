@@ -24,6 +24,10 @@ export interface ImageDescription {
   src: string;
   alt: string;
 }
+const imageDescription = z.strictObject({
+  src: z.string(),
+  alt: z.string(),
+});
 // Section
 export enum SectionType {
   TextSection = 'TextSection',
@@ -112,10 +116,7 @@ const eventItem = z.strictObject({
   main_event: z.boolean().optional().default(false),
   open_date: z.date(),
   date: z.date(),
-  image: z.strictObject({
-    src: z.string(),
-    alt: z.string(),
-  }),
+  image: imageDescription,
 });
 // Sections
 export interface TextSection extends SectionBase {
@@ -130,10 +131,7 @@ export interface TextSection extends SectionBase {
 const textSection = sectionBase.extend({
   section_type: z.literal(SectionType.TextSection),
   text: z.string(),
-  image: z.strictObject({
-    src: z.string(),
-    alt: z.string(),
-  }),
+  image: imageDescription,
   button: z
     .strictObject({
       text: z.string(),
@@ -163,8 +161,17 @@ const newsSection = sectionBase.extend({
   news_feed: z.array(newsItem),
 });
 export enum EventGridStyle {
+  /**
+   * All events are shown in a grid.
+   */
   Grid = 'EventGrid',
+  /**
+   * 3 Events are shown in a regular list.
+   */
   List = 'EventList',
+  /**
+   * 3 Events are shown in a list, but only future events are shown.
+   */
   HomeList = 'HomeList',
 }
 const eventGridStyle = z.nativeEnum(EventGridStyle);
@@ -176,7 +183,23 @@ export interface EventSection extends SectionBase {
 const eventSection = sectionBase.extend({
   section_type: z.literal(SectionType.EventSection),
   grid_style: eventGridStyle,
-  events: z.array(eventItem),
+  events: z.array(eventItem).refine(
+    (events: EventItem[]) => {
+      // Ensure we can only have one main_event
+      let foundMainEvent = false;
+      for (const event of events) {
+        if (event.main_event) {
+          if (foundMainEvent) return false;
+          foundMainEvent = true;
+        }
+      }
+      return true;
+    },
+    {
+      message: 'Only one event can be designated as the main event.',
+      path: ['events'],
+    }
+  ),
 });
 export type Section = TextSection | NewsSection | EventSection;
 const section = z.union([textSection, newsSection, eventSection]);

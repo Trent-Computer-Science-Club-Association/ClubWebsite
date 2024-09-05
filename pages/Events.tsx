@@ -28,8 +28,9 @@ const processEvents = (events: EventItem[]) => {
       throw new Error('ConfigError: Event opens after event date');
     // handle main event
     if (event.main_event) {
+      // The error is impossible because zod will prevent configurations with this case
       if (mainEvent == null) mainEvent = event;
-      else throw new Error('ConfigError: Multiple events marked as main');
+      else throw new Error('Impossible: Multiple events marked as main');
     }
     // Determine if it is future, current or past
     const now = new Date();
@@ -73,16 +74,9 @@ const processEvents = (events: EventItem[]) => {
 };
 
 export default function Events() {
-  // Generate fake events
-  // TODO: Remove debug
-  const fake_events = [
-    ...events,
-    ...Array(100).fill(events[3]),
-    ...Array(25).fill(events[2]),
-  ];
   // Build events
   const { main_event, future_events, current_events, past_events } =
-    processEvents(fake_events);
+    processEvents(events);
   // Make Main Event
   const mainEvent = <Event eventItem={main_event} />;
   // merge sections
@@ -101,7 +95,7 @@ export default function Events() {
         </header>
         <main>
           {sections.map((section, i) => (
-            <Section sectionConfig={section} index={i} />
+            <Section sectionConfig={section} index={i} key={i} />
           ))}
         </main>
       </section>

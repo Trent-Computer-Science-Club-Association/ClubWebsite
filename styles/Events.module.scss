@@ -9,21 +9,9 @@
     span {
       @apply max-w-4xl;
     }
-  }
-}
-// Mobile
-@media (max-width: 900px) {
-  .container > header {
-    @apply px-32;
-  }
-}
-@media (max-width: 600px) {
-  .container > header {
-    @apply px-16;
-  }
-}
-@media (max-width: 450px) {
-  .container > header {
-    @apply px-8;
+    // Mobile
+    @apply max-[900px]:px-32;
+    @apply max-[600px]:px-16;
+    @apply max-[450px]:px-8;
   }
 }

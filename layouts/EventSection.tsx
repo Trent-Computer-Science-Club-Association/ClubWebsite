@@ -73,7 +73,7 @@ export default function EventSection({
   // Map events
   const event_view =
     event_list.length == 0 || event_list[currentView].length == 0 ? (
-      <p>This section is currently empty.</p>
+      <p>There are currently no events present.</p>
     ) : (
       event_list[currentView]
     );

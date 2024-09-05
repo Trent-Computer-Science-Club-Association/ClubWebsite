@@ -80,35 +80,35 @@ home_page:
 events: &events # Future Events
   - title: Future Event
     href: https://www.example.com/
-    open_date: 2024-08-20
-    date: 2024-08-25
+    open_date: 2024-09-04
+    date: 2024-09-26
     image:
       src: https://via.placeholder.com/150
       alt: placeholder image
   # Current Events
-  - title: Trent Computer Science Hackathon
-    main_event: true # Note we can only have one of these
-    href: https://www.example.com/
-    open_date: 2024-08-10
-    date: 2024-08-20
-    image:
-      src: https://via.placeholder.com/150
-      alt: placeholder image
-  - title: Current Event 1
-    href: https://www.example.com/
-    open_date: 2024-08-10
-    date: 2024-08-20
-    image:
-      src: https://via.placeholder.com/150
-      alt: placeholder image
+  # - title: Trent Computer Science Hackathon
+  #   main_event: true # Note we can only have one of these
+  #   href: https://www.example.com/
+  #   open_date: 2024-08-10
+  #   date: 2024-08-20
+  #   image:
+  #     src: https://via.placeholder.com/150
+  #     alt: placeholder image
+  # - title: Current Event 1
+  #   href: https://www.example.com/
+  #   open_date: 2024-08-10
+  #   date: 2024-08-20
+  #   image:
+  #     src: https://via.placeholder.com/150
+  #     alt: placeholder image
   # Past Events, just marked by date
-  - title: Past Event 1
-    href: https://www.example.com/
-    open_date: 2024-08-10
-    date: 2024-08-16
-    image:
-      src: https://via.placeholder.com/150
-      alt: placeholder image
+  # - title: Past Event 1
+  #   href: https://www.example.com/
+  #   open_date: 2024-08-10
+  #   date: 2024-08-16
+  #   image:
+  #     src: https://via.placeholder.com/150
+  #     alt: placeholder image
 # Configuration for the homepage
 home_page:
   sections:
