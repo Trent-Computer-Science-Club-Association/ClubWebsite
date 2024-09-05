@@ -11,7 +11,7 @@
 
 // An additional note, do not use `z.object` instead use `z.strictObject` or else we are not fully validating the values
 
-import z from 'zod';
+import z, { type ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
@@ -106,17 +106,24 @@ export interface EventItem {
   title: string;
   href: string;
   main_event: boolean;
-  open_date: Date;
-  date: Date;
+  start_date: Date;
+  end_date: Date;
   image: ImageDescription;
 }
 const eventItem = z.strictObject({
   title: z.string(),
   href: z.string(),
   main_event: z.boolean().optional().default(false),
-  open_date: z.date(),
-  date: z.date(),
+  start_date: z.date(),
+  end_date: z.date(),
   image: imageDescription,
+}).refine(({ start_date, end_date }) => {
+  if (end_date < start_date) return false;
+  return true;
+},
+{
+  message: 'Event ends before it starts.',
+  path: ['events'],
 });
 // Sections
 export interface TextSection extends SectionBase {
@@ -229,7 +236,7 @@ const configValidator = z.strictObject({
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
-function formatConfigError(error: z.ZodError) {
+function formatConfigError(error: ZodError) {
   const formattedError = fromZodError(error, {
     prefix: 'Configuration error',
     prefixSeparator: ': ',

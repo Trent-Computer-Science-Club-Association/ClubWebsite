@@ -10,13 +10,31 @@ import { type EventItem } from '../config';
 interface Props {
   eventItem: EventItem;
 }
-export default function Event({ eventItem }: Props) {
+
+export const isFuture = (eventItem: EventItem) => {
   const now = new Date();
-  const { title, href, open_date, date, image } = eventItem;
-  const closed = open_date > now || href == '';
+  const { start_date } = eventItem;
+  const closed = start_date > now;
+  return closed;
+};
+export const isClosed = (eventItem: EventItem) => {
+  const { href } = eventItem;
+  const closed = href == undefined || href == '';
+  return closed;
+};
+const getDate = (start_date: Date, end_date: Date) => {
+  const formatDate = (date: Date) => moment(date).format('ddd MMM Do, yyyy');
+  const start = formatDate(start_date);
+  if (start_date == end_date) return start;
+  const end = formatDate(end_date);
+  return `${start} - ${end}`;
+};
+export default function Event({ eventItem }: Props) {
+  const { title, href, start_date, end_date, image } = eventItem;
+  const closed = isClosed(eventItem);
   const styleList = [styles.container];
   if (closed) styleList.push(styles.closed);
-  const userFriendlyDate = moment(date).format('ddd MMM Do, yyyy');
+  const userFriendlyDate = getDate(start_date, end_date);
   // Build ui
   const content = (
     <>

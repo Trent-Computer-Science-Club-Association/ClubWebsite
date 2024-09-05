@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Section from '../layouts/Section';
 import EventBanner from '../components/EventBanner';
-import Event from '../components/Event';
+import Event, { isFuture } from '../components/Event';
 import {
   events,
   SectionType,
@@ -20,12 +20,9 @@ const processEvents = (events: EventItem[]) => {
   const currentEvents: EventItem[] = [];
   const pastEvents: EventItem[] = [];
   // Sort Events
-  events.sort((a, b) => a.date.getTime() - b.date.getTime());
+  events.sort((a, b) => a.start_date.getTime() - b.start_date.getTime());
   // Process Events
   for (const event of events) {
-    // Sanity TypeChecking
-    if (event.date < event.open_date)
-      throw new Error('ConfigError: Event opens after event date');
     // handle main event
     if (event.main_event) {
       // The error is impossible because zod will prevent configurations with this case
@@ -34,9 +31,9 @@ const processEvents = (events: EventItem[]) => {
     }
     // Determine if it is future, current or past
     const now = new Date();
-    if (event.open_date > now) {
+    if (isFuture(event)) {
       futureEvents.push(event);
-    } else if (event.date > now) {
+    } else if (event.start_date > now && event.end_date < now) {
       currentEvents.push(event);
     } else {
       pastEvents.push(event);

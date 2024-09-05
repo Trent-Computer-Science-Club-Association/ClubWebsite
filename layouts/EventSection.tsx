@@ -42,8 +42,8 @@ const getSectionLayout = (
       // Filter
       const now = new Date();
       const filteredEvents = events
-        .filter(([event, _]) => event.date > now)
-        .sort((a, b) => a[0].date.getTime() - b[0].date.getTime());
+        .filter(([event, _]) => event.start_date > now)
+        .sort((a, b) => a[0].start_date.getTime() - b[0].start_date.getTime());
       // Return Style
       return [filteredEvents.slice(0, 3).map((e) => e[1])];
     }
