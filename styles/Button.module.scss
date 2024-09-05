@@ -40,7 +40,7 @@
 }
 
 .navBtn {
-  @apply text-color-3;
+  @apply text-color-2;
   @apply bg-transparent hover:text-hover-1;
   &.active {
     @apply text-active-1;
