@@ -27,8 +27,8 @@ const BlurBanner: React.FC<Props> = ({
           <div className={styles.waveContainer}>
             <Image src={'wave.svg'} alt={'wave'} fill={true} />
             <div>
-              <h2 className={styles.sectionHeader}>{sectionHeader}</h2>
-              <hr className={styles.sectionHeaderUnderline} />
+              <h2>{sectionHeader}</h2>
+              <hr />
             </div>
           </div>
         )}
