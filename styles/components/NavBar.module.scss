@@ -1,19 +1,29 @@
 .NavBar {
-  @apply bg-color-2 flex;
+  @apply bg-color-3 flex flex-wrap items-center justify-between p-2 px-4;
 }
 
-.Icon {
-  @apply grow;
+.LogoContainer {
+  @apply flex items-center;
+  @apply w-20 h-20;
+}
+
+.MenuToggle {
+  @apply md:hidden px-2 py-1 text-sm border rounded hover:bg-color-1 text-color-2;
 }
 
 .LinkArea {
-  @apply flex px-4;
-  & > li {
-    @apply p-4;
+  @apply w-full md:w-auto md:flex flex-col md:flex-row mt-4 md:mt-0 hidden;
+
+  li {
+    @apply p-2 md:p-4;
     &:hover {
       @apply text-hover-1;
     }
   }
+}
+
+.MenuOpen {
+  @apply flex;
 }
 
 .currentPage {

@@ -1,46 +1,55 @@
-// CSS
+import { useState } from 'react';
 import styles from '../styles/components/NavBar.module.scss';
-// Config
 import { page_list } from '../config';
-// Components
 import Button, { ButtonType } from '../components/Button';
+import Logo from '../components/Logo';
 
-// Component
 interface Props {
   currentPage: string;
 }
+
 export default function NavBar(props: Props) {
-  // Build The Nav
-  const navContent: JSX.Element[] = [];
-  page_list.forEach((page, index) => {
-    if (!page.display_in_navbar) return;
-    navContent.push(
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navContent = page_list
+    .filter((page) => page.display_in_navbar)
+    .map((page, index) => (
       <li
         key={index}
-        className={
-          props.currentPage == page.page_name ? styles.currentPage : ''
-        }
+        className={`${props.currentPage === page.page_name ? styles.currentPage : ''} w-full md:w-auto`}
       >
-        <Button
-          type={ButtonType.NAVBAR}
-          href={page.page_link}
-          className={
-            props.currentPage == page.page_name
-              ? ButtonType.NAVBAR_ACTIVE
-              : ButtonType.NAVBAR
-          }
-          label={page.page_name}
-        />
+        {props.currentPage === page.page_name ? (
+          <Button
+            type={ButtonType.NAVBAR_ACTIVE}
+            href={page.page_link}
+            className={styles.navBtn}
+            label={page.page_name}
+          />
+        ) : (
+          <Button
+            type={ButtonType.NAVBAR}
+            href={page.page_link}
+            className={styles.navBtn}
+            label={page.page_name}
+          />
+        )}
       </li>
-    );
-  });
-  // Return Our Layout
+    ));
+
   return (
     <nav className={styles.NavBar}>
-      {/* TODO: LOGO */}
-      <div className={styles.Icon}></div>
-      {/* Navigation */}
-      <ul className={styles.LinkArea}>{navContent}</ul>
+      <div className={styles.LogoContainer}>
+        <Logo />
+      </div>
+      <button
+        className={styles.MenuToggle}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? 'Close' : 'Menu'}
+      </button>
+      <ul className={`${styles.LinkArea} ${isMenuOpen ? styles.MenuOpen : ''}`}>
+        {navContent}
+      </ul>
     </nav>
   );
 }
