@@ -30,6 +30,14 @@ export default function TextSection({
   return (
     <div className={styles.TextSectionWrapper}>
       <div className={`${styles.TextSection} ${style}`}>
+        <div className={styles.ImageWrapper}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill={true}
+            className={styles.TextSectionImage}
+          />
+        </div>
         <div className={styles.TextAndButton}>
           <p>{text}</p>
           {/* Checks if buttonText and link are in props in order to conditionally render a button */}
@@ -40,14 +48,6 @@ export default function TextSection({
               label={button.text}
             />
           )}
-        </div>
-        <div className={styles.ImageWrapper}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill={true}
-            className={styles.TextSectionImage}
-          />
         </div>
       </div>
     </div>
