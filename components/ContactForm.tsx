@@ -165,7 +165,7 @@ const renderItem = (formItem: GroupItem, propagate: Propagate) => {
               propagate(formItem);
             }}
             placeholder={formItem.placeholder}
-            maxLength={5000}
+            maxLength={1000}
           />
         );
       } else {
@@ -177,6 +177,7 @@ const renderItem = (formItem: GroupItem, propagate: Propagate) => {
                   ? 'email'
                   : 'text'
               }
+              maxLength={200}
               id={formItem.label}
               value={formItem.value}
               onChange={(e) => {
@@ -264,24 +265,20 @@ const renderForm = (formItem: FormItem, propagate: Propagate, key: number) => {
   }
 };
 // Components
-type SubmissionState = { state: boolean; message: string } | undefined;
-const getSubmissionMessage = (submissionState: SubmissionState) => {
+export interface SubmissionResponse {
+  success: boolean;
+  status: number;
+  message: string;
+}
+const getSubmissionMessage = (
+  submissionState: SubmissionResponse | undefined
+) => {
   if (submissionState == undefined) return <></>;
-  switch (submissionState.state) {
-    case true:
-      return (
-        <p className={styles.successMessage}>
-          Form submitted successfully! We'll get back to you soon.
-        </p>
-      );
-    case false:
-      return (
-        <p className={styles.errorMessage}>
-          {submissionState.message ||
-            'There was an error submitting the form. Please email tcscadev@gmail.com or try again later.'}
-        </p>
-      );
-  }
+  const style =
+    submissionState.success && submissionState.status == 200
+      ? styles.successMessage
+      : styles.errorMessage;
+  return <p className={style}>{submissionState.message}</p>;
 };
 interface ContactFormProps {
   title: string;
@@ -289,7 +286,7 @@ interface ContactFormProps {
   formContent: FormItem[]; // This is going to be a reference
   setFormContent: Dispatch<FormItem[]>;
   clearForm: () => void;
-  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
+  onSubmit: (formData: Record<string, string>) => Promise<SubmissionResponse>;
 }
 const ContactForm = ({
   title,
@@ -300,7 +297,7 @@ const ContactForm = ({
   onSubmit,
 }: ContactFormProps) => {
   const [submissionState, setSubmissionState] = useState<
-    { state: boolean; message: string } | undefined
+    SubmissionResponse | undefined
   >();
   // Render Form
   const onPropagate = (formItem: FormItem) => {
@@ -318,9 +315,8 @@ const ContactForm = ({
     e.preventDefault();
     const { formContent: newFormContent, valid } = validateForm(formContent);
     setFormContent(newFormContent);
-    console.log(valid);
     if (!valid) return;
-    // Serailize Form
+    // Serialize Form
     const formData: { [key: string]: string } = {};
     formContent.map((item) => {
       if (item.type === InputType.Group) {
@@ -332,25 +328,11 @@ const ContactForm = ({
       }
     });
     // Handle Submissions
-    try {
-      const response = await onSubmit(formData);
-      if (response instanceof Response && response.status === 200) {
-        setSubmissionState({ state: true, message: '' });
-        // Reset form after successful submission
-        clearForm();
-      } else {
-        setSubmissionState({
-          state: false,
-          message:
-            'There was an error submitting the form. Please try again later.',
-        });
-      }
-    } catch (error: any) {
-      setSubmissionState({
-        state: false,
-        message:
-          error.message ?? 'An unexpected error occurred. Please try again.',
-      });
+    const response = await onSubmit(formData);
+    setSubmissionState(response);
+    if (response.success && response.status == 200) {
+      // Reset A Successful form
+      clearForm();
     }
   };
   // Build UI

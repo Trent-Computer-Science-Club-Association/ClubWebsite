@@ -6,6 +6,7 @@ import ContactForm, {
   Group,
   updateItem,
   type FormItem,
+  type SubmissionResponse,
 } from '../components/ContactForm';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
@@ -13,7 +14,7 @@ import { website_config, ContactSubject } from '../config';
 
 interface ContactSectionProps {
   dropDownValue: ContactSubject | undefined;
-  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
+  onSubmit: (formData: Record<string, string>) => Promise<SubmissionResponse>;
 }
 
 export default function ContactSection({

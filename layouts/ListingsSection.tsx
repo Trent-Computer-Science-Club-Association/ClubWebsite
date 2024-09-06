@@ -1,4 +1,5 @@
-import React, { type Dispatch, useState, lazy, Suspense } from 'react';
+import React, { type Dispatch, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
@@ -7,8 +8,6 @@ import Modal from 'react-modal';
 import { website_config, type ContactSubject, type Listing } from '../config';
 import Link from 'next/link';
 import ListingCard from '../components/ListingCard';
-
-const ReactMarkdown = lazy(() => import('react-markdown'));
 
 interface ListingsSectionProps {
   positions?: Listing[];
@@ -120,11 +119,9 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
         {modalState && (
           <div className={modalStyles.modalContent}>
             <h2>{modalState.title}</h2>
-            <Suspense fallback={<div>Loading...</div>}>
-              <ReactMarkdown>
-                {modalState.modal ?? modalState.description}
-              </ReactMarkdown>
-            </Suspense>
+            <ReactMarkdown>
+              {modalState.modal ?? modalState.description}
+            </ReactMarkdown>
             <ul>
               {modalState.requirements.map((requirement, reqIndex) => (
                 <li key={reqIndex}>

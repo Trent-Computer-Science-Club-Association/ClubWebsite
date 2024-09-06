@@ -11,38 +11,59 @@ import SectionHeader, {
   SectionHeaderStyle,
   SectionLocation,
 } from '../layouts/SectionHeader';
+import { type SubmissionResponse } from '../components/ContactForm';
 import ContactSection from '../layouts/ContactSection';
+import { processFormData } from '../pages/api/submitForm';
 
 export default function Home() {
   const [dropDownValue, setDropDownValue] = useState<
     ContactSubject | undefined
   >(undefined);
 
-  const handleSubmit = async (formData: Record<string, string>) => {
-    try {
-      console.log('Submitting form data:', formData);
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      console.log('Response status:', response.status);
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Form submitted successfully');
-        return response;
-      } else {
-        console.error('Error response:', data);
-        throw new Error(data.message || 'Error submitting form');
+  const handleSubmit = async (
+    formData: Record<string, string>
+  ): Promise<SubmissionResponse> => {
+    const validFormData = processFormData(formData);
+    if (validFormData == undefined) {
+      // Invalid Form Submission
+      return {
+        success: false,
+        status: 500, // Unknown Response
+        message: `Impossible Invalid Payload Provided, Please Contact ${website_config.email}.`,
+      };
+    } else {
+      // Submit Our Form
+      try {
+        const response = await fetch('/api/submitForm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(validFormData),
+        });
+        // Build A Blanket Response
+        const submissionResponse: SubmissionResponse = {
+          success: false,
+          status: response.status,
+          message: 'An unknown error occurred. Please try again.',
+        };
+        // Process the response
+        if (response.status == 200 && response.ok) {
+          const data = await response.json();
+          if ('message' in data && typeof data.message === 'string') {
+            submissionResponse.success = true;
+            submissionResponse.message = data.message;
+          }
+        }
+        return submissionResponse;
+      } catch (e) {
+        console.error('Failed to submit form, unhandled error', e);
+        return {
+          success: false,
+          status: 500, // Unknown Response
+          message: 'An unknown error occurred. Please try again.',
+        };
       }
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
     }
   };
 

@@ -1,11 +1,10 @@
 import moment from 'moment';
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
 import { type NewsSection } from '../config';
-
-const ReactMarkdown = lazy(() => import('react-markdown'));
 
 export const NewsSectionStyle = {
   primary: styles.primaryStyle,
@@ -29,9 +28,7 @@ const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   return (
     <Link className={styles.newsItem} href={href}>
       <div className={styles.left}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ReactMarkdown className={styles.title}>{text}</ReactMarkdown>
-        </Suspense>
+        <ReactMarkdown className={styles.title}>{text}</ReactMarkdown>
         <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <div className={styles.right}>

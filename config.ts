@@ -161,7 +161,7 @@ export enum ContactSubject {
   Outreach = 'Outreach',
 }
 
-const contactSubject = z.nativeEnum(ContactSubject);
+export const contactSubject = z.nativeEnum(ContactSubject);
 
 interface Requirement {
   description: string;
