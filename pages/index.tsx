@@ -1,5 +1,6 @@
+import Head from 'next/head';
 import styles from '../styles/Home.module.scss';
-import { home_page } from '../config';
+import { home_page, website_config } from '../config';
 // Internal Components
 import NavBar from '../components/NavBar';
 import EventBanner from '../components/EventBanner';
@@ -12,6 +13,9 @@ export default function Home() {
   // UI
   return (
     <>
+      <Head>
+        <title key='title'>Home | {website_config.meta.title}</title>
+      </Head>
       <EventBanner />
       <NavBar currentPage='Home' />
       <section className={styles.container}>
