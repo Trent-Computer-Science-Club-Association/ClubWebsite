@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title key='title'>Home | {website_config.meta.title}</title>
+        <title key='title'>{`Home | ${website_config.meta.title}`}</title>
       </Head>
       <EventBanner />
       <NavBar currentPage='Home' />
