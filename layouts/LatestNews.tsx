@@ -1,9 +1,9 @@
 import moment from 'moment';
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import Button, { ButtonType } from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
+import ReactMarkdown from 'react-markdown';
 import { type NewsSection } from '../config';
 
 export const NewsSectionStyle = {
@@ -19,11 +19,9 @@ interface NewsItem {
   date: Date;
   href: string;
 }
-
 const formatDate = (date: Date): string => {
   return moment(date).format('MMMM Do, YYYY');
 };
-
 const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
   return (
     <Link className={styles.newsItem} href={href}>
