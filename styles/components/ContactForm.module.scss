@@ -1,81 +1,67 @@
-.contactForm {
+.container {
   @apply bg-color-3 text-white p-4 rounded-lg shadow-lg;
+  // Parent Stuff
   h2 {
     @apply text-3xl font-bold mb-2 text-area-header;
   }
-
   p {
     @apply text-sm mb-4 text-color-2;
   }
-
   form {
     @apply space-y-4;
   }
-
-  .formField {
-    @apply flex flex-col;
-  }
-
-  .group {
+  // Form Items
+  & > div {
     @apply flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4;
   }
-
-  .groupItem {
-    @apply flex-1;
+  span {
+    @apply flex flex-col flex-1;
+    label {
+      @apply text-sm mb-1;
+      &.mandatory:after {
+        @apply content-['*'] text-red-500 ml-1;
+      }
+    }
+    p {
+      @apply invisible;
+    }
   }
-
-  label {
-    @apply text-sm mb-1 text-color-2 flex items-center;
-  }
-
-  .mandatory {
-    @apply text-red-500 ml-1;
-  }
-
-  .invalidLabel {
-    @apply text-red-500;
-  }
-
   input,
   textarea {
     @apply w-full bg-color-3 text-white border-2 border-color-2 rounded-md p-2 outline-none;
     @apply h-10;
-    &:focus:not(.invalidInput) {
+    &:focus {
       @apply border-area-header;
     }
   }
-
-  .invalidInput {
-    @apply border-red-500;
-  }
-
   textarea {
     @apply h-40 resize-none;
   }
-
-  button[type='submit'] {
-    @apply w-full bg-secondary-green text-color-3 py-2 px-4 rounded-md hover:bg-green-600 mt-4 font-bold;
-  }
-
-  .errorText {
-    @apply text-red-500 text-sm font-bold;
-  }
-
-  .serverError {
-    @apply text-red-500 mt-4 font-bold;
-  }
-
-  .successMessage {
-    @apply text-green-500 mt-4 font-bold;
-  }
-
-  .errorMessage {
-    @apply text-red-500 mt-4 font-bold;
-  }
-
   .invalidField {
+    label {
+      @apply text-red-500;
+    }
     .react-select__control {
       @apply border-red-500;
     }
+    input,
+    textarea,
+    .select > div {
+      @apply border-red-500;
+    }
+    p {
+      @apply visible text-red-500 text-sm font-bold;
+    }
+  }
+  // Submit button
+  button[type='submit'] {
+    @apply w-full bg-secondary-green text-color-3 py-2 px-4 rounded-md hover:bg-green-600 mt-4 font-bold;
+  }
+  // Submission Result
+  .successMessage {
+    @apply text-green-500 mt-4 font-bold;
+  }
+  .errorMessage {
+    @apply text-red-500 mt-4 font-bold;
   }
 }

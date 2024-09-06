@@ -1,49 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ContactForm, {
+  Constraint,
   TextInput,
-  EmailInput,
   DropdownInput,
   Group,
+  updateItem,
+  type FormItem,
 } from '../components/ContactForm';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
-import { website_config } from '../config';
+import { website_config, ContactSubject } from '../config';
 
 interface ContactSectionProps {
-  formData: Record<string, string>;
-  onInputChange: (label: string, value: string) => void;
+  dropDownValue: ContactSubject | undefined;
   onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
 }
 
 export default function ContactSection({
-  formData,
-  onInputChange,
+  dropDownValue,
   onSubmit,
 }: ContactSectionProps) {
+  const clearedForm = [
+    Group(
+      'Top Level',
+      TextInput('Name', [], 'Enter your name', undefined, false, true),
+      DropdownInput(
+        'Subject',
+        'Select your subject',
+        Object.entries(ContactSubject).map(([key, value]) => ({
+          label: key,
+          value: value,
+        })),
+        dropDownValue,
+        true
+      )
+    ),
+    TextInput(
+      'Email',
+      [Constraint.Email],
+      'Enter your email',
+      undefined,
+      false,
+      true
+    ),
+    TextInput('Message', [], 'Enter your message', undefined, true, true),
+  ];
+  const [formContent, setFormContent] = useState<FormItem[]>(clearedForm);
+  // Handle The DropDown Change
+  useEffect(() => {
+    setFormContent((currentValue) => {
+      return updateItem(
+        currentValue,
+        'Subject',
+        DropdownInput(
+          'Subject',
+          'Select your subject',
+          Object.entries(ContactSubject).map(([key, value]) => ({
+            label: key,
+            value: value,
+          })),
+          dropDownValue,
+          true
+        )
+      );
+    });
+  }, [dropDownValue]);
   return (
     <div className={styles.contactSection} id='contact-form'>
       <div className={styles.left}>
         <ContactForm
           title='Get In Touch'
           description='Fill out the form below to contact us.'
+          clearForm={() => setFormContent(clearedForm)}
           onSubmit={onSubmit} // Defines what data is sent to the server and how its handled (ex. adding metadata)
-          formData={formData}
-          onInputChange={onInputChange} // How to handle input being changed (for example, validation)
-          formItems={[
-            Group(
-              TextInput('Name', 'Enter your name'),
-              DropdownInput('Subject', 'Select your subject', [
-                { value: 'Applying', label: 'Applying' },
-                { value: 'Volunteering', label: 'Volunteering' },
-                { value: 'Development', label: 'Development' },
-                { value: 'Creative', label: 'Creative' },
-                { value: 'Managerial', label: 'Managerial' },
-                { value: 'Outreach', label: 'Outreach' },
-              ])
-            ),
-            EmailInput('Email', 'Enter your email'),
-            TextInput('Message', 'Enter your message', '', true),
-          ]}
+          formContent={formContent}
+          setFormContent={setFormContent}
         />
       </div>
       <div className={styles.right}>

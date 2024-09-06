@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/About.module.scss';
-import { contact_page, website_config } from '../config';
+import { contact_page, website_config, type ContactSubject } from '../config';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import BlurBanner from '../components/BlurBanner';
@@ -14,11 +14,9 @@ import SectionHeader, {
 import ContactSection from '../layouts/ContactSection';
 
 export default function Home() {
-  const [formData, setFormData] = useState<Record<string, string>>({});
-
-  const handleInputChange = (label: string, value: string) => {
-    setFormData((prevData) => ({ ...prevData, [label]: value }));
-  };
+  const [dropDownValue, setDropDownValue] = useState<
+    ContactSubject | undefined
+  >(undefined);
 
   const handleSubmit = async (formData: Record<string, string>) => {
     try {
@@ -62,9 +60,7 @@ export default function Home() {
           />
           <ListingsSection
             positions={contact_page.listings}
-            formData={formData}
-            onInputChange={handleInputChange}
-            onSubmit={handleSubmit}
+            setDropDownValue={setDropDownValue}
           />
           <SectionHeader
             title='Become a Sponsor'
@@ -83,8 +79,7 @@ export default function Home() {
             location={SectionLocation.LEFT_ALIGNED}
           />
           <ContactSection
-            formData={formData}
-            onInputChange={handleInputChange}
+            dropDownValue={dropDownValue}
             onSubmit={handleSubmit}
           />
         </main>

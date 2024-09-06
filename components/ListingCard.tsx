@@ -1,6 +1,6 @@
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/components/ListingCard.module.scss';
-import { Listing, ListingType } from '../config';
+import { Listing, ContactSubject } from '../config';
 import DynamicIcon from '../components/DynamicIcon';
 
 interface ListingCardProps {
@@ -12,16 +12,16 @@ const ListingCard: React.FC<ListingCardProps> = ({ position, onLearnMore }) => {
   const isHighestPriority = position.priority === 1;
   const borderClass = isHighestPriority ? styles.gradientBorder : '';
 
-  const getUnderlineClass = (type: ListingType) => {
+  const getUnderlineClass = (type: ContactSubject) => {
     const baseClass = styles.underline;
     switch (type) {
-      case ListingType.Developer:
+      case ContactSubject.Development:
         return `${baseClass} ${styles.developerUnderline}`;
-      case ListingType.Creative:
+      case ContactSubject.Creative:
         return `${baseClass} ${styles.creativeUnderline}`;
-      case ListingType.Managerial:
+      case ContactSubject.Managerial:
         return `${baseClass} ${styles.managerialUnderline}`;
-      case ListingType.Volunteer:
+      case ContactSubject.Volunteering:
         return `${baseClass} ${styles.volunteerUnderline}`;
       default:
         return baseClass;

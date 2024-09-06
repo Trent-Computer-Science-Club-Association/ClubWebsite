@@ -1,10 +1,10 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { type Dispatch, useState, lazy, Suspense } from 'react';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Button, { ButtonType } from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import modalStyles from '../styles/components/Modal.module.scss';
 import Modal from 'react-modal';
-import { Listing, website_config } from '../config';
+import { website_config, type ContactSubject, type Listing } from '../config';
 import Link from 'next/link';
 import ListingCard from '../components/ListingCard';
 
@@ -12,9 +12,7 @@ const ReactMarkdown = lazy(() => import('react-markdown'));
 
 interface ListingsSectionProps {
   positions?: Listing[];
-  formData: Record<string, string>;
-  onInputChange: (label: string, value: string) => void;
-  onSubmit: (formData: Record<string, string>) => Promise<void | Response>;
+  setDropDownValue: Dispatch<ContactSubject | undefined>;
 }
 
 // Set the app element for accessibility
@@ -22,30 +20,19 @@ Modal.setAppElement('#__next');
 
 const ListingsSection: React.FC<ListingsSectionProps> = ({
   positions = [],
-  onInputChange,
+  setDropDownValue,
 }) => {
   // State for expanded view and modal
   const [isExpanded, setIsExpanded] = useState(false);
-  const [modalState, setModalState] = useState<{
-    isOpen: boolean;
-    listing: Listing | null;
-  }>({
-    isOpen: false,
-    listing: null,
-  });
+  const [modalState, setModalState] = useState<Listing | undefined>();
 
   // Number of cards to display per row
   const cardsPerRow = 3;
 
-  // Function to open/close the modal and set the current listing
-  const setModal = (isOpen: boolean, listing: Listing | null = null) => {
-    setModalState({ isOpen, listing: isOpen ? listing : modalState.listing });
-  };
-
   // Handle the apply action
   const handleApply = () => {
-    onInputChange('Subject', modalState.listing?.title ?? '');
-    setModal(false);
+    setDropDownValue(modalState?.type ?? undefined);
+    setModalState(undefined);
     // Scroll to the contact form
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -73,7 +60,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
         <ListingCard
           key={index}
           position={position}
-          onLearnMore={(position) => setModal(true, position)}
+          onLearnMore={(position) => setModalState(position)}
         />
       ))}
     </div>
@@ -124,22 +111,22 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
     <div className={styles.listingsSectionWrapper}>
       {getContent()}
       <Modal
-        isOpen={modalState.isOpen}
-        onRequestClose={() => setModal(false)}
-        contentLabel={modalState.listing?.title || ''}
+        isOpen={modalState != undefined}
+        onRequestClose={() => setModalState(undefined)}
+        contentLabel={modalState?.title ?? ''}
         className={modalStyles.modal}
         overlayClassName={modalStyles.modalOverlay}
       >
-        {modalState.listing && (
+        {modalState && (
           <div className={modalStyles.modalContent}>
-            <h2>{modalState.listing.title}</h2>
+            <h2>{modalState.title}</h2>
             <Suspense fallback={<div>Loading...</div>}>
               <ReactMarkdown>
-                {modalState.listing.modal ?? modalState.listing.description}
+                {modalState.modal ?? modalState.description}
               </ReactMarkdown>
             </Suspense>
             <ul>
-              {modalState.listing.requirements.map((requirement, reqIndex) => (
+              {modalState.requirements.map((requirement, reqIndex) => (
                 <li key={reqIndex}>
                   <div className={modalStyles.requirementIcon}>
                     {requirement.icon ? <requirement.icon /> : <FaCheck />}
@@ -151,7 +138,7 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
             <div className={modalStyles.buttonContainer}>
               <Button
                 type={ButtonType.LIGHT}
-                onClick={() => setModal(false)}
+                onClick={() => setModalState(undefined)}
                 label='Close'
               />
               <Button

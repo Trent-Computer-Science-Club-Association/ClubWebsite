@@ -152,14 +152,16 @@ const homePage = z.strictObject({
 });
 
 // Listing Types
-export enum ListingType {
-  Developer = 'Developer',
+export enum ContactSubject {
+  Applying = 'Applying',
+  Volunteering = 'Volunteering',
+  Development = 'Development',
   Creative = 'Creative',
   Managerial = 'Managerial',
-  Volunteer = 'Volunteer',
+  Outreach = 'Outreach',
 }
 
-const listingTypeEnum = z.nativeEnum(ListingType);
+const contactSubject = z.nativeEnum(ContactSubject);
 
 interface Requirement {
   description: string;
@@ -176,7 +178,7 @@ export interface Listing {
   title: string;
   description: string;
   requirements: Requirement[];
-  type: ListingType;
+  type: ContactSubject;
   modal?: string;
   keywords: string[];
 }
@@ -186,7 +188,7 @@ const listing = z.strictObject({
   title: z.string(),
   description: z.string(),
   requirements: z.array(requirement).max(4),
-  type: listingTypeEnum,
+  type: contactSubject,
   modal: z.string().optional(),
   keywords: z.array(z.string()),
 });

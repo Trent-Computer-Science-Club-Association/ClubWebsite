@@ -85,7 +85,7 @@ contact_page:
           icon: FaReact
         - description: Strong CSS and UI/UX design skills
         - description: Familiarity with modern web development tools
-      type: Developer
+      type: Development
       priority: 1 # The lower the number, the higher the priority (with 1 being highest)
       keywords: []
       modal: >
@@ -99,7 +99,7 @@ contact_page:
         - description: Proficiency in Node.js, Python, or Java
         - description: Experience with databases like MongoDB, MySQL
         - description: Knowledge of RESTful APIs and microservices architecture
-      type: Developer
+      type: Development
       priority: 1
       keywords: []
       modal: >
@@ -112,7 +112,7 @@ contact_page:
         - description: Experience with data analysis tools like Python, R
         - description: Knowledge of machine learning algorithms
         - description: Strong statistical analysis skills
-      type: Developer
+      type: Development
       priority: 2
       keywords: []
       modal: >
@@ -161,7 +161,7 @@ contact_page:
         - description: Strong communication and leadership skills
         - description: Experience with volunteer management
         - description: Ability to motivate and inspire volunteers
-      type: Volunteer
+      type: Volunteering
       priority: 3
       keywords: []
       modal: >
@@ -175,7 +175,7 @@ contact_page:
         - description: Excellent communication and networking skills
         - description: Experience with public relations or community outreach
         - description: Ability to develop and maintain partnerships
-      type: Volunteer
+      type: Volunteering
       priority: 2
       keywords: []
       modal: >
