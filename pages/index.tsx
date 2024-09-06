@@ -23,9 +23,7 @@ export default function Home() {
           <HeroBanner />
           {/* In the config we have a list of sections, this is how we iterate through them */}
           {sections.map((section, i) => (
-            <section key={i}>
-              <Section sectionConfig={section} index={i} />
-            </section>
+            <Section sectionConfig={section} index={i} key={i} />
           ))}
         </main>
         <Footer />

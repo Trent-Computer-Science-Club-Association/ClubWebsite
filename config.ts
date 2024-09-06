@@ -23,7 +23,7 @@ export interface ImageDescription {
 // Section
 export enum SectionType {
   TextSection = 'TextSection',
-  LatestNews = 'NewsSection',
+  NewsSection = 'NewsSection',
 }
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
@@ -116,23 +116,24 @@ const textSection = sectionBase.extend({
     })
     .optional(),
 });
+export interface NewsItem {
+  text: string;
+  date: Date;
+  href?: string;
+}
+const newsItem = z.strictObject({
+  text: z.string(),
+  date: z.date(),
+  href: z.string().optional(),
+});
+
 export interface NewsSection extends SectionBase {
-  section_type: SectionType.LatestNews;
-  news_feed: {
-    text: string;
-    date: Date;
-    href: string;
-  }[];
+  section_type: SectionType.NewsSection;
+  news_feed: NewsItem[];
 }
 const newsSection = sectionBase.extend({
-  section_type: z.literal(SectionType.LatestNews),
-  news_feed: z.array(
-    z.strictObject({
-      text: z.string(),
-      date: z.date(),
-      href: z.string(),
-    })
-  ),
+  section_type: z.literal(SectionType.NewsSection),
+  news_feed: z.array(newsItem),
 });
 type HomeSection = TextSection | NewsSection;
 const homeSection = z.union([textSection, newsSection]);

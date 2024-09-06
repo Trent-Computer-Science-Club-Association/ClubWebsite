@@ -1,16 +1,8 @@
+import styles from '../styles/layouts/Section.module.scss';
 import React from 'react';
-import SectionHeader, {
-  SectionHeaderStyle,
-  SectionLocation,
-} from './SectionHeader';
-import NewsSection, {
-  NewsSectionStyle,
-  type NewsSectionStyleType,
-} from './LatestNews';
-import TextSection, {
-  TextSectionStyle,
-  type TextSectionStyleType,
-} from './TextSection';
+import SectionHeader, { Alignment } from './SectionHeader';
+import NewsSection from './NewsSection';
+import TextSection from './TextSection';
 import { SectionType, type Section } from '../config';
 
 interface SectionProps {
@@ -21,17 +13,15 @@ interface SectionProps {
 const getStyle = (index: number) => {
   if (index % 2 === 0) {
     return {
-      sectionStyle: SectionHeaderStyle.primary,
-      location: SectionLocation.LEFT_ALIGNED,
-      newsSectionStyle: NewsSectionStyle.primary,
-      textSectionStyle: TextSectionStyle.primary,
+      headerStyle: styles.primaryHeader,
+      sectionStyle: styles.primaryStyle,
+      alignment: Alignment.Left,
     };
   } else {
     return {
-      sectionStyle: SectionHeaderStyle.secondary,
-      location: SectionLocation.RIGHT_ALIGNED,
-      newsSectionStyle: NewsSectionStyle.secondary,
-      textSectionStyle: TextSectionStyle.secondary,
+      headerStyle: styles.secondaryHeader,
+      sectionStyle: styles.secondaryStyle,
+      alignment: Alignment.Right,
     };
   }
 };
@@ -39,38 +29,27 @@ const getStyle = (index: number) => {
 const getContent = (
   sectionConfig: Section,
   index: number,
-  style: {
-    newsSectionStyle: NewsSectionStyleType;
-    textSectionStyle: TextSectionStyleType;
-  }
+  sectionStyle: string
 ) => {
   switch (sectionConfig.section_type) {
     case SectionType.TextSection:
-      return (
-        <TextSection section={sectionConfig} style={style.textSectionStyle} />
-      );
-    case SectionType.LatestNews:
-      return (
-        <NewsSection section={sectionConfig} style={style.newsSectionStyle} />
-      );
+      return <TextSection section={sectionConfig} className={sectionStyle} />;
+    case SectionType.NewsSection:
+      return <NewsSection section={sectionConfig} className={sectionStyle} />;
   }
 };
 
 const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
-  const { sectionStyle, location, newsSectionStyle, textSectionStyle } =
-    getStyle(index);
+  const { headerStyle, sectionStyle, alignment } = getStyle(index);
 
-  const content = getContent(sectionConfig, index, {
-    newsSectionStyle,
-    textSectionStyle,
-  });
+  const content = getContent(sectionConfig, index, sectionStyle);
 
   return (
     <section>
       <SectionHeader
         title={sectionConfig.section_header}
-        style={sectionStyle}
-        location={location}
+        alignment={alignment}
+        className={headerStyle}
       />
       {content}
     </section>
