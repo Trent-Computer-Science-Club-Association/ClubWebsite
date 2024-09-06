@@ -9,7 +9,6 @@ const nextConfig = withYaml({
     unoptimized: true,
   },
   optimizeFonts: true,
-  // output: 'export',
   experimental: {
     workerThreads: true,
     optimizeCss: true,
