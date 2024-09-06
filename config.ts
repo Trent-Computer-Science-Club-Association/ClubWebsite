@@ -219,7 +219,13 @@ interface HomePage {
 const homePage = z.strictObject({
   sections: z.array(section),
 });
-
+// About Page
+interface AboutPage {
+  sections: TextSection[];
+}
+const aboutPage = z.strictObject({
+  sections: z.array(textSection),
+});
 // config
 interface ValidConfig {
   website_config: WebsiteConfig;
@@ -228,6 +234,7 @@ interface ValidConfig {
   // Page Configs
   home_page: HomePage;
   events: EventItem[];
+  about_page: AboutPage;
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
@@ -235,6 +242,7 @@ const configValidator = z.strictObject({
   footer_config: footerConfig,
   home_page: homePage,
   events: z.array(eventItem),
+  about_page: aboutPage,
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
@@ -274,3 +282,4 @@ export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
 export const events = config.events;
+export const about_page = config.about_page;

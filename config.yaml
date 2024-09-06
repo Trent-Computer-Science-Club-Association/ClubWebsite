@@ -30,7 +30,7 @@ page_list:
     page_link: /
     display_in_navbar: true
   - page_name: About Us
-    page_link: /About
+    page_link: /about
     display_in_navbar: true
   - page_name: Events
     page_link: /Events
@@ -93,25 +93,25 @@ home_page:
 # Configuration for About page
 about_page:
   sections:
-    - section_type: TextSecion
+    - section_type: TextSection
       section_header: Who Are We?
       text: The Trent Computer Science Club Association is a student-run organization dedicated to enriching the computer science experience at Trent University. From coding workshops to hackathons, the TCSCA offers a variety of opportunities for students to expand their knowledge and network effectively to break into the tech industry.
       image:
         src: /AboutUsPlaceHolder.jpg
         alt: Who Are We Image
-    - section_type: TextSecion
+    - section_type: TextSection
       section_header: Our Mission
       text: Our mission is to improve the computer science experience at Trent university and create an environment where every member can easily pursue their tech interests. Whether it's mastering a programming language, developing cutting-edge software, enhancing academic success, or simply gaining a better understanding of how technology shapes our world. The TCSCA provides the support, resources, and community to help you achieve your goals and advance in your tech journey
       image:
         src: /AboutUsPlaceHolder.jpg
         alt: Our Mission Image
-    - section_type: TextSecion
+    - section_type: TextSection
       section_header: Why Join Us?
       text: Joining the Trent Computer Science Club Association opens the door to countless opportunities. You'll gain hands-on experience through collaborative projects and workshops, build a network and connect with industry professionals, and develop skills that will give you a competitive edge in your future prospects. Whether you're looking to boost your resume, make new friends, or just have fun with technology, The TCSCA is the place to be
       image:
         src: /AboutUsPlaceHolder.jpg
         alt: Why Join Us Image
-    - section_type: TextSecion
+    - section_type: TextSection
       section_header: Meet The Team
       text: Meet the team behind the Trent Computer Science Club Association! Our dedicated executive members and volunteers work tirelessly to ensure the club runs smoothly and continues to grow.
       image:
