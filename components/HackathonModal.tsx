@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import Image from '../components/Image';
 import Link from 'next/link';
@@ -14,7 +14,6 @@ interface HackathonModalProps {
 const HackathonModal: React.FC<HackathonModalProps> = ({ onRequestClose }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [assetsLoaded, setAssetsLoaded] = useState<boolean>(false);
-  const hasChecked = useRef(false);
 
   useEffect(() => {
     const fontFamilies = ['Orbitron', 'Poppins', 'Motorblock'];
@@ -59,28 +58,23 @@ const HackathonModal: React.FC<HackathonModalProps> = ({ onRequestClose }) => {
       .catch((error) => console.error('Failed to load assets:', error));
   }, []);
 
-  useLayoutEffect(() => {
-    const checkAndSetModalDisplay = () => {
-      if (hasChecked.current) return;
-      hasChecked.current = true;
+  useEffect(() => {
+    if (assetsLoaded) {
       const lastViewed = localStorage.getItem('lastViewed');
       const currentTime = Date.now();
+
       if (
         !lastViewed ||
         currentTime - Number(lastViewed) > MODAL_DISPLAY_INTERVAL
       ) {
         setIsOpen(true);
+        localStorage.setItem('lastViewed', currentTime.toString());
       }
-    };
-
-    if (assetsLoaded) {
-      checkAndSetModalDisplay();
     }
   }, [assetsLoaded]);
 
   const handleClose = () => {
     setIsOpen(false);
-    localStorage.setItem('lastViewed', Date.now().toString());
     onRequestClose();
   };
 
