@@ -47,3 +47,7 @@
   }
   @apply hover:shadow-none;
 }
+
+.navToggle {
+  @apply px-2 py-1 text-sm border rounded hover:bg-color-1 text-color-2;
+}

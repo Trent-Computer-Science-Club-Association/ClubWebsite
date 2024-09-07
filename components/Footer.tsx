@@ -17,9 +17,7 @@ export default function Footer() {
       </div>
       {/* Left side */}
       <span>
-        <div className={styles.logo}>
-          <Logo />
-        </div>
+        <Logo className={styles.logo} />
         <Link href={`mailto:${website_config.email}`}>
           {website_config.email}
         </Link>

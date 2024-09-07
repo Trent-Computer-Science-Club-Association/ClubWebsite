@@ -14,42 +14,31 @@ export default function NavBar(props: Props) {
   const navContent = page_list
     .filter((page) => page.display_in_navbar)
     .map((page, index) => (
-      <li
-        key={index}
-        className={`${props.currentPage === page.page_name ? styles.currentPage : ''} w-full md:w-auto`}
-      >
-        {props.currentPage === page.page_name ? (
-          <Button
-            type={ButtonType.NAVBAR_ACTIVE}
-            href={page.page_link}
-            className={styles.navBtn}
-            label={page.page_name}
-          />
-        ) : (
-          <Button
-            type={ButtonType.NAVBAR}
-            href={page.page_link}
-            className={styles.navBtn}
-            label={page.page_name}
-          />
-        )}
+      <li key={index}>
+        <Button
+          type={
+            props.currentPage === page.page_name
+              ? ButtonType.NAVBAR_ACTIVE
+              : ButtonType.NAVBAR
+          }
+          href={page.page_link}
+          label={page.page_name}
+        />
       </li>
     ));
 
   return (
-    <nav className={styles.NavBar}>
-      <div className={styles.LogoContainer}>
+    <nav className={styles.container}>
+      <span className={styles.logo}>
         <Logo priority={true} />
-      </div>
-      <button
-        className={styles.MenuToggle}
+      </span>
+      <Button
+        className={styles.menuToggle}
+        type={ButtonType.NAVBAR_TOGGLE}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        {isMenuOpen ? 'Close' : 'Menu'}
-      </button>
-      <ul className={`${styles.LinkArea} ${isMenuOpen ? styles.MenuOpen : ''}`}>
-        {navContent}
-      </ul>
+        label={isMenuOpen ? 'Close' : 'Menu'}
+      />
+      <ul className={isMenuOpen ? styles.open : ''}>{navContent}</ul>
     </nav>
   );
 }

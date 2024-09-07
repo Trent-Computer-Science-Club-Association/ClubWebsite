@@ -6,8 +6,8 @@
 .leftColumn {
   @apply col-span-1 grid place-items-center;
   @apply mb-4 md:mb-0;
-  div {
-    @apply mb-4;
+  .logo {
+    @apply w-1/2 mb-4;
   }
 }
 

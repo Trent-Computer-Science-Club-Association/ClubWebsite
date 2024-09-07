@@ -6,6 +6,7 @@ import Image from '../components/Image';
 const ButtonType = {
   NAVBAR: styles.navBtn,
   NAVBAR_ACTIVE: [styles.navBtn, styles.active].join(' '),
+  NAVBAR_TOGGLE: styles.navToggle,
   LIGHT: styles.lightBtn,
   SOCIAL: styles.socialBtn,
   SOCIAL_DARK: styles.socialBtnDark,
