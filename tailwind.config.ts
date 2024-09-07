@@ -21,6 +21,7 @@ const config: Config = {
         'hover-2': '#89B4FA', // TODO: Decide on a color for this
         'event-banner': '#5E18EB', // Event Banner Background
         'newsItem-color': '#135b3f', // a shade of green
+        'event-content': '#403c3c',
         socials: '#7BD4CB', // Social
       },
       spacing: {

@@ -1,10 +1,11 @@
 // Style
 import styles from '../styles/components/Event.module.scss';
 // Components
-import moment from 'moment';
 import Link from 'next/link';
 // Internal Components
 import Image from './Image';
+import { SlCalender, SlLocationPin } from 'react-icons/sl';
+import { formatDate, DateFormat } from '../utils';
 import { type EventItem } from '../config';
 
 interface Props {
@@ -22,20 +23,42 @@ export const isClosed = (eventItem: EventItem) => {
   const closed = href == undefined || href == '';
   return closed;
 };
-const getDate = (start_date: Date, end_date: Date) => {
-  // TODO(#40): use Utils.formatDate
-  const formatDate = (date: Date) => moment(date).format('ddd MMM Do, yyyy');
-  const start = formatDate(start_date);
-  if (start_date == end_date) return start;
-  const end = formatDate(end_date);
-  return `${start} - ${end}`;
+
+interface EventDateTimeProps {
+  start_date: Date;
+  end_date: Date;
+}
+/**
+ * Represents the events date
+ */
+const EventDateTime = ({ start_date, end_date }: EventDateTimeProps) => {
+  const start = (
+    <time dateTime={formatDate(start_date, DateFormat.HTMlDateTime)}>
+      {formatDate(start_date)}
+    </time>
+  );
+  if (start_date == end_date)
+    return (
+      <span>
+        <SlCalender /> {start}
+      </span>
+    );
+  const end = (
+    <time dateTime={formatDate(end_date, DateFormat.HTMlDateTime)}>
+      {formatDate(end_date)}
+    </time>
+  );
+  return (
+    <span>
+      <SlCalender /> {start} - {end}
+    </span>
+  );
 };
 export default function Event({ eventItem }: Props) {
   const { title, href, start_date, end_date, image, location } = eventItem;
   const closed = isClosed(eventItem);
   const styleList = [styles.container];
   if (closed) styleList.push(styles.closed);
-  const userFriendlyDate = getDate(start_date, end_date);
   // Build ui
   const content = (
     <>
@@ -44,9 +67,10 @@ export default function Event({ eventItem }: Props) {
       {/* Content */}
       <div>
         <h3>{title}</h3>
-        {/* TODO(#40): set datetime with Utils.formatDate */}
-        <time>{userFriendlyDate}</time>
-        <span>{location}</span>
+        <EventDateTime start_date={start_date} end_date={end_date} />
+        <span>
+          <SlLocationPin /> {location}
+        </span>
       </div>
     </>
   );

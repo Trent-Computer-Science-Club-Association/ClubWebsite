@@ -8,10 +8,12 @@
     @apply bg-color-1;
     span {
       @apply max-w-4xl;
+      @apply max-[600px]:text-xs;
     }
     // Mobile
     @apply max-[900px]:px-32;
-    @apply max-[600px]:px-16;
+    @apply max-[850px]:px-16;
+    @apply max-[700px]:px-10;
     @apply max-[450px]:px-8;
   }
 }

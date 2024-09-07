@@ -13,7 +13,7 @@
   }
   // Override default image styling
   img {
-    @apply static #{!important};
+    @apply static #{!important}; // This line causes tailwind lsp issues, its needed for !important in scss though
     // Need to use normal css here because of https://github.com/tailwindlabs/tailwindcss/discussions/8733
     user-drag: none;
     -webkit-user-drag: none;
@@ -28,15 +28,16 @@
     @apply px-4 py-3;
     @apply absolute left-0 bottom-0;
     @apply text-txt-1;
-    // Background gradient (Not using tailwind here because of gradient)
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(75, 75, 75, 0.55) 20%
-    );
+    @apply bg-event-content bg-opacity-90 backdrop-blur-sm;
     // Make the span a block
+    h3 {
+      @apply text-xl;
+    }
     span {
-      @apply block text-txt-4;
+      @apply flex items-center text-txt-4;
+      svg {
+        @apply mr-2;
+      }
     }
   }
 }
