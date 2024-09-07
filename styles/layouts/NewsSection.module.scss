@@ -1,13 +1,28 @@
 .container {
-  @apply grid gap-4 p-4 text-white;
+  @apply p-4 text-white;
   .newsItem {
-    @apply flex justify-between rounded-xl p-4;
-    @apply border-2 border-gray-500;
+    @apply flex justify-between rounded-xl p-4 m-[0.125rem] mb-5 items-center;
+    @apply bg-newsItem-color;
     @apply duration-300 ease-in-out;
+    .content {
+      h3 {
+        @apply text-xl mr-10;
+      }
+      time {
+        @apply brightness-[.8];
+      }
+    }
+    .buttonContainer {
+      @apply h-min text-nowrap;
+      @apply max-[350px]:text-wrap;
+    }
     &:hover {
-      @apply bg-hover-1 border-[#0000];
       @apply shadow-lg;
       @apply transition-[box-shadow];
     }
+  }
+  hr {
+    @apply w-full my-4 block;
+    @apply max-[700px]:hidden;
   }
 }

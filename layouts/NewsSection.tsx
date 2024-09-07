@@ -1,25 +1,32 @@
 import styles from '../styles/layouts/NewsSection.module.scss';
 import React from 'react';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
 import Button, { ButtonType } from '../components/Button';
-import { formatDate } from '../utils';
+import { DateFormat, formatDate } from '../utils';
 import { type NewsSection, type NewsItem } from '../config';
 
 const NewsItemComponent = ({ text, href, date }: NewsItem) => {
   const content = (
-    <span>
-      <ReactMarkdown>{text}</ReactMarkdown>
-      <p>{formatDate(date)}</p>
+    <span className={styles.content}>
+      <h3>{text}</h3>
+      <time dateTime={formatDate(date, DateFormat.HTMlDateTime)}>
+        {formatDate(date)}
+      </time>
+      <hr />
     </span>
   );
   if (href == undefined) {
-    return <div className={styles.newsItem}>{content}</div>;
+    return (
+      <div className={styles.newsItem}>
+        {content}
+        <span></span>
+      </div>
+    );
   } else {
     return (
       <Link className={styles.newsItem} href={href}>
         {content}
-        <span>
+        <span className={styles.buttonContainer}>
           <Button type={ButtonType.LIGHT} label='Learn more' />
         </span>
       </Link>
