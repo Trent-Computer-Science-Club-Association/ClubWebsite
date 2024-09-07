@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import Button, { ButtonType } from '../components/Button';
+import Button from '../components/Button';
 import Link from 'next/link';
 import styles from '../styles/layouts/LatestNews.module.scss';
 import ReactMarkdown from 'react-markdown';
@@ -30,11 +30,7 @@ const NewsItemComponent: React.FC<NewsItem> = ({ text, href, date }) => {
         <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <div className={styles.right}>
-        <Button
-          type={ButtonType.LIGHT}
-          className={styles.learnMore}
-          label='Learn more'
-        />
+        <Button className={styles.learnMore} label='Learn more' />
       </div>
     </Link>
   );

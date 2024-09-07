@@ -1,6 +1,6 @@
 // CSS
 import styles from '../styles/components/HeroBanner.module.scss';
-import Button, { ButtonType } from './Button';
+import Button, { ButtonStyle } from './Button';
 import Logo from '../components/Logo';
 import { website_config } from '../config';
 
@@ -12,7 +12,7 @@ export default function HeroBanner() {
       {/* Left Column */}
       <div className={styles.leftColumn}>
         <Logo priority={true} className={styles.logo} />
-        <Button type={ButtonType.LIGHT} label='Apply' href={'/Contact'} />
+        <Button label='Apply' href={'/Contact'} />
       </div>
       {/* Right Column */}
       <div className={styles.rightColumn}>
@@ -24,8 +24,8 @@ export default function HeroBanner() {
             <Button
               key={i}
               href={link}
-              type={ButtonType.SOCIAL}
-              image={{ src: path, altText: alt_text }}
+              buttonStyle={ButtonStyle.Social}
+              image={{ src: path, alt: alt_text }}
             />
           ))}
         </div>

@@ -1,5 +1,5 @@
 import styles from '../styles/components/Footer.module.scss';
-import Button, { ButtonType } from '../components/Button';
+import Button, { ButtonStyle, ButtonModifier } from '../components/Button';
 import Link from 'next/link';
 import { website_config, footer_config } from '../config';
 import ReactMarkdown from 'react-markdown';
@@ -27,8 +27,9 @@ export default function Footer() {
         {social_icons.map(({ alt_text, link, path }, i) => (
           <Button
             key={i}
-            image={{ src: path, altText: alt_text }}
-            type={ButtonType.SOCIAL_DARK}
+            buttonStyle={ButtonStyle.Social}
+            buttonModifiers={[ButtonModifier.Dark]}
+            image={{ src: path, alt: alt_text }}
             href={link}
           />
         ))}

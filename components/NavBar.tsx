@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/components/NavBar.module.scss';
 import { page_list } from '../config';
-import Button, { ButtonType } from '../components/Button';
+import Button, { ButtonStyle, ButtonModifier } from '../components/Button';
 import Logo from '../components/Logo';
 
 interface Props {
@@ -16,10 +16,9 @@ export default function NavBar(props: Props) {
     .map((page, index) => (
       <li key={index}>
         <Button
-          type={
-            props.currentPage === page.page_name
-              ? ButtonType.NAVBAR_ACTIVE
-              : ButtonType.NAVBAR
+          buttonStyle={ButtonStyle.NavButton}
+          buttonModifiers={
+            props.currentPage === page.page_name ? [ButtonModifier.Active] : []
           }
           href={page.page_link}
           label={page.page_name}
@@ -34,7 +33,7 @@ export default function NavBar(props: Props) {
       </span>
       <Button
         className={styles.menuToggle}
-        type={ButtonType.NAVBAR_TOGGLE}
+        buttonStyle={ButtonStyle.NavToggle}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         label={isMenuOpen ? 'Close' : 'Menu'}
       />
