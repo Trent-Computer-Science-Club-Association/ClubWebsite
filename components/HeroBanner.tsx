@@ -11,7 +11,7 @@ export default function HeroBanner() {
     <div className={styles.HeroBanner}>
       {/* Left Column */}
       <div className={styles.leftColumn}>
-        <Logo />
+        <Logo priority={true} />
         <Button type={ButtonType.LIGHT} label='Apply' href={'/Contact'} />
       </div>
       {/* Right Column */}

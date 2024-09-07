@@ -39,7 +39,7 @@ export default function NavBar(props: Props) {
   return (
     <nav className={styles.NavBar}>
       <div className={styles.LogoContainer}>
-        <Logo />
+        <Logo priority={true} />
       </div>
       <button
         className={styles.MenuToggle}
