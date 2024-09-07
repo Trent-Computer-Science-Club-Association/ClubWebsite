@@ -94,13 +94,17 @@ const Button = ({
   const content = [];
   if (image != undefined) {
     content.push(
-      <div>
+      <div key='button-image'>
         <Image src={image.src} alt={image.alt} fill={true} />
       </div>
     );
   }
   if (label != undefined) {
-    content.push(<span className={styles.buttonText}>{label}</span>);
+    content.push(
+      <span className={styles.buttonText} key='button-content'>
+        {label}
+      </span>
+    );
   }
   // Wrap Component
   return href ? (
