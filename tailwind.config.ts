@@ -21,6 +21,26 @@ const config: Config = {
         'newsItem-color': '#135b3f', // a shade of green
         socials: '#7BD4CB', // Social
       },
+      keyframes: {
+        float: {
+          '0%, 100%': {
+            transform: 'translate-y-0 rotate-3',
+            '-webkit-transform': 'translateY(0) rotate(3deg)',
+          },
+          '50%': {
+            transform: '-translate-y-5 rotate-0',
+            '-webkit-transform': 'translateY(-1.25rem) rotate(0deg)',
+          },
+        },
+      },
+      animation: {
+        float: 'float 5s ease-in-out infinite',
+      },
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+        motorblock: ['Motorblock', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],
