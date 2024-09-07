@@ -1,7 +1,7 @@
 import styles from '../styles/layouts/NewsSection.module.scss';
 import React from 'react';
 import Link from 'next/link';
-import Button, { ButtonType } from '../components/Button';
+import Button from '../components/Button';
 import { DateFormat, formatDate } from '../utils';
 import { type NewsSection, type NewsItem } from '../config';
 
@@ -27,7 +27,7 @@ const NewsItemComponent = ({ text, href, date }: NewsItem) => {
       <Link className={styles.newsItem} href={href}>
         {content}
         <span className={styles.buttonContainer}>
-          <Button type={ButtonType.LIGHT} label='Learn more' />
+          <Button label='Learn more' />
         </span>
       </Link>
     );
