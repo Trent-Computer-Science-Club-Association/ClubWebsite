@@ -5,7 +5,8 @@ import Button from '../components/Button';
 import { DateFormat, formatDate } from '../utils';
 import { type NewsSection, type NewsItem } from '../config';
 
-const NewsItemComponent = ({ text, href, date }: NewsItem) => {
+const NewsItemComponent = ({ newsItem }: { newsItem: NewsItem }) => {
+  const { text, href, date } = newsItem;
   const content = (
     <span className={styles.content}>
       <h3>{text}</h3>
@@ -43,7 +44,7 @@ const NewsSection = ({ section, className }: NewsSectionProps) => {
   return (
     <div className={`${styles.container} ${className ?? ''}`}>
       {news_feed.map((item, i) => (
-        <NewsItemComponent key={i} {...item} />
+        <NewsItemComponent key={i} newsItem={item} />
       ))}
     </div>
   );
