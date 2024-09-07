@@ -33,27 +33,28 @@ interface IconProps extends Props {
   label?: string;
 }
 
-const Button: React.FC<LabelProps | IconProps> = ({
+const Button = ({
   onClick,
   href = '',
   className,
   type = ButtonType.NAVBAR,
-  ...props
-}) => {
+  label,
+  image,
+}: LabelProps | IconProps) => {
   const classes = `${className} ${type} ${styles.button}`;
   const content = (
     <>
-      {props.image == undefined ? (
+      {image == undefined ? (
         <></>
       ) : (
         <div className={styles.imageWrapper}>
-          <Image src={props.image.src} alt={props.image.altText} fill={true} />
+          <Image src={image.src} alt={image.altText} fill={true} />
         </div>
       )}
-      {props.label == undefined ? (
+      {label == undefined ? (
         <></>
       ) : (
-        <span className={styles.buttonText}>{props.label}</span>
+        <span className={styles.buttonText}>{label}</span>
       )}
     </>
   );
