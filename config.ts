@@ -44,8 +44,19 @@ const socialIcon = z.strictObject({
   link: z.string(),
   path: z.string(),
 });
+
+interface MetaConfig {
+  title: string;
+  description: string;
+}
+const metaConfig = z.strictObject({
+  title: z.string(),
+  description: z.string(),
+});
+
 interface WebsiteConfig {
   title: string;
+  meta: MetaConfig;
   email: string;
   discord: string;
   instagram: string;
@@ -56,6 +67,7 @@ interface WebsiteConfig {
 }
 const websiteConfig = z.strictObject({
   title: z.string(),
+  meta: metaConfig,
   email: z.string(),
   discord: z.string(),
   instagram: z.string(),

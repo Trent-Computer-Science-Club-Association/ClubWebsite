@@ -1,14 +1,11 @@
 .container {
-  @apply w-1/2 h-auto;
-
-  div {
-    @apply relative;
-    @apply w-full h-full;
-    @apply aspect-square;
-  }
-
+  @apply block w-full h-auto;
+  @apply relative;
+  @apply aspect-square;
   img {
-    @apply object-cover rounded-xl;
+    @apply object-cover;
+    @apply rounded-xl;
+    @apply p-1;
     @apply bg-black;
   }
 }

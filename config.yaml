@@ -1,6 +1,10 @@
 # General website configuration
 website_config:
   title: Trent Student Computer Science Association
+  meta: # Configurations for the website meta data
+    title: TSCSA # The default page title
+    # The default page description
+    description: The Student Computer Science Association is a place for students to demonstrate and apply their skills to the broader Trent community. # TODO: Improve this
   # Socials - The `&<value>` are anchors which let us use these elsewhere in the config with `*<value>``
   email: &contactEmail 'tcscatrent@outlook.com'
   discord: &discordLink https://discord.gg/serea2sPAd
@@ -19,13 +23,13 @@ website_config:
       link: *discordLink
       path: /Icons/discord.svg
   # Banner text, comment this out if you do not want a banner
-  banner_text: '**HACK TRENT**, coming November 8th-10th, [Learn More](example.com)!' # TODO: Placeholder example.com
+  banner_text: 'Learn more about [**Hack Trent**](example.com) coming November 8th-10th!' # TODO: Placeholder example.com
 # Page info for navigation
 page_list:
   - page_name: Home
     page_link: /
     display_in_navbar: true
-  - page_name: About
+  - page_name: About Us
     page_link: /About
     display_in_navbar: true
   - page_name: Events

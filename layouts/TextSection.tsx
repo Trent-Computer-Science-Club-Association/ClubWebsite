@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from '../components/Image';
-import Button, { ButtonType } from '../components/Button';
+import Button from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
 import { type TextSection } from '../config';
 
@@ -41,13 +41,7 @@ export default function TextSection({
         <div className={styles.TextAndButton}>
           <p>{text}</p>
           {/* Checks if buttonText and link are in props in order to conditionally render a button */}
-          {button != null && (
-            <Button
-              type={ButtonType.LIGHT}
-              href={button.href}
-              label={button.text}
-            />
-          )}
+          {button != null && <Button href={button.href} label={button.text} />}
         </div>
       </div>
     </div>

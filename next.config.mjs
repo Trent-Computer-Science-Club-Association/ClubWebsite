@@ -5,12 +5,9 @@ const nextConfig = withYaml({
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
-  images: {
-    unoptimized: true,
-  },
   optimizeFonts: true,
-  output: 'export',
   experimental: {
+    bundlePagesExternals: true,
     workerThreads: true,
     optimizeCss: true,
   },

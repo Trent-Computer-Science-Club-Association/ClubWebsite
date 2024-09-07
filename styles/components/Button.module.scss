@@ -1,0 +1,60 @@
+.container {
+  div {
+    @apply relative;
+    @apply w-6 h-6;
+    @apply flex-shrink-0;
+    img {
+      @apply object-contain;
+      @apply w-full h-full;
+    }
+  }
+  span {
+    @apply ml-2 mr-2;
+  }
+}
+// Regular Styles
+.default {
+  @apply bg-color-2 text-black;
+  @apply rounded-md border-2 border-black;
+  @apply p-2;
+  @apply font-bold;
+  &:hover {
+    @apply opacity-80;
+    @apply hover:shadow-lg;
+  }
+}
+// Social Button Styles
+.social {
+  @apply bg-socials;
+  @apply rounded-md;
+  @apply p-2;
+  @apply shadow-md;
+  &:hover {
+    @apply opacity-80;
+    @apply hover:shadow-lg;
+  }
+  // Modifier
+  &.dark {
+    @apply bg-black;
+  }
+}
+// Navbar Styles
+.nav {
+  @apply text-color-2;
+  @apply hover:text-hover-1;
+  // Modifier
+  &.active {
+    @apply text-active-1;
+  }
+}
+.navToggle {
+  @apply border rounded;
+  @apply px-2 py-1;
+  @apply text-sm;
+  @apply text-color-2;
+  @apply hover:bg-color-1;
+  // Modifier
+  &.active {
+    @apply bg-color-1;
+  }
+}

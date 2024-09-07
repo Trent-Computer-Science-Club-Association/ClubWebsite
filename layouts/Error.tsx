@@ -2,7 +2,7 @@
 import styles from '../styles/layouts/Error.module.scss';
 // Components
 import NavBar from '../components/NavBar';
-import Button, { ButtonType } from '../components/Button';
+import Button from '../components/Button';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
@@ -44,16 +44,14 @@ export default function ErrorLayout({
           {/* Actions the user can take */}
           <div>
             <Button
-              type={ButtonType.LIGHT}
-              href={returnHref}
               className={styles.button}
+              href={returnHref}
               label='Return Home'
             />
             {allowReport && (
               <Button
-                type={ButtonType.LIGHT}
-                href={reportHref}
                 className={styles.button}
+                href={reportHref}
                 label='Let us know'
               />
             )}

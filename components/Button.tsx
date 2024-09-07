@@ -1,73 +1,117 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/Button.module.scss';
+import styles from '../styles/components/Button.module.scss';
 import Image from '../components/Image';
+import { type ImageDescription } from '../config';
 
-const ButtonType = {
-  NAVBAR: styles.navBtn,
-  NAVBAR_ACTIVE: [styles.navBtn, styles.active].join(' '),
-  LIGHT: styles.lightBtn,
-  SOCIAL: styles.socialBtn,
-  SOCIAL_DARK: styles.socialBtnDark,
-} as const;
+export enum ButtonStyle {
+  // Regular
+  Default,
+  // Social
+  Social,
+  // Navbar
+  NavButton,
+  NavToggle,
+}
+const getButtonStyle = (buttonStyle: ButtonStyle) => {
+  switch (buttonStyle) {
+    // Regular
+    case ButtonStyle.Default:
+      return [styles.default];
+    // Social
+    case ButtonStyle.Social:
+      return [styles.social];
+    // Navbar
+    case ButtonStyle.NavButton:
+      return [styles.nav];
+    case ButtonStyle.NavToggle:
+      return [styles.navToggle];
+  }
+};
 
-type ButtonType = (typeof ButtonType)[keyof typeof ButtonType];
+/**
+ * A list of possible button modifiers.
+ */
+export enum ButtonModifier {
+  /**
+   * Uses the active variant of the button if available.
+   */
+  Active,
+  /**
+   * Uses the dark variant of the button if available.
+   */
+  Dark,
+}
+const getButtonModifiers = (buttonModifiers: ButtonModifier[]) => {
+  const modifierStyles: string[] = [];
+  for (const modifier of buttonModifiers) {
+    switch (modifier) {
+      case ButtonModifier.Active:
+        modifierStyles.push(styles.active);
+        break;
+      case ButtonModifier.Dark:
+        modifierStyles.push(styles.dark);
+        break;
+    }
+  }
+  return modifierStyles;
+};
 
 interface Props {
+  buttonStyle?: ButtonStyle;
+  buttonModifiers?: ButtonModifier[];
+  className?: string;
   onClick?: () => void;
   href?: string;
-  className?: string;
-  type: ButtonType;
 }
 
 interface LabelProps extends Props {
   label: string;
   image?: never;
 }
-
 interface IconProps extends Props {
-  image: {
-    src: string;
-    altText: string;
-  };
+  image: ImageDescription;
   label?: string;
 }
 
-const Button: React.FC<LabelProps | IconProps> = ({
+const Button = ({
   onClick,
   href = '',
   className,
-  type = ButtonType.NAVBAR,
-  ...props
-}) => {
-  const classes = `${className} ${type} ${styles.button}`;
-  const content = (
-    <>
-      {props.image == undefined ? (
-        <></>
-      ) : (
-        <div className={styles.imageWrapper}>
-          <Image src={props.image.src} alt={props.image.altText} fill={true} />
-        </div>
-      )}
-      {props.label == undefined ? (
-        <></>
-      ) : (
-        <span className={styles.buttonText}>{props.label}</span>
-      )}
-    </>
-  );
-
+  buttonStyle = ButtonStyle.Default,
+  buttonModifiers = [],
+  label,
+  image,
+}: LabelProps | IconProps) => {
+  // Get Styles
+  const classes = [
+    className,
+    styles.container,
+    ...getButtonStyle(buttonStyle),
+    ...getButtonModifiers(buttonModifiers),
+  ].join(' ');
+  // Build Content
+  const content = [];
+  if (image != undefined) {
+    content.push(
+      <div>
+        <Image src={image.src} alt={image.alt} fill={true} />
+      </div>
+    );
+  }
+  if (label != undefined) {
+    content.push(<span className={styles.buttonText}>{label}</span>);
+  }
+  // Wrap Component
   return href ? (
-    <Link href={href} className={classes} onClick={onClick}>
+    <Link className={classes} href={href} onClick={onClick}>
       {content}
     </Link>
   ) : (
-    <button onClick={onClick} className={classes}>
+    <button className={classes} onClick={onClick}>
       {content}
     </button>
   );
 };
 
 export default Button;
-export { ButtonType };
