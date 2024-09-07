@@ -85,7 +85,7 @@ events: &events # Future Events
     main_event: true # This is the main_event we can only have one of these
     location: TBD # TODO: Placeholder
     image:
-      src: ./events/TrentHacks1.webp
+      src: /events/TrentHacks1.webp
       alt: Electric City Hacks returns as Hack Trent for its fifth time
 # Configuration for the homepage
 home_page:
