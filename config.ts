@@ -16,10 +16,6 @@ import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
 // General Types
-export enum SectionStyle {
-  Primary = 'primary',
-  Secondary = 'secondary',
-}
 export interface ImageDescription {
   src: string;
   alt: string;

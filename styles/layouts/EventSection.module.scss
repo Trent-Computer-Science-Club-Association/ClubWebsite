@@ -38,16 +38,3 @@
     }
   }
 }
-// Style Variants
-.primaryStyle {
-  @apply bg-color-3;
-  & > span {
-    @apply bg-color-1;
-  }
-}
-.secondaryStyle {
-  @apply bg-color-1;
-  & > span {
-    @apply bg-color-3;
-  }
-}

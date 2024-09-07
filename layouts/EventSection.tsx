@@ -1,24 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../styles/layouts/EventSection.module.scss';
-import {
-  SectionStyle,
-  EventGridStyle,
-  type EventSection,
-  type EventItem,
-} from '../config';
+import { EventGridStyle, type EventSection, type EventItem } from '../config';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Event from '../components/Event';
-
-const getStyle = (style: SectionStyle) => {
-  switch (style) {
-    case SectionStyle.Primary:
-      return styles.primaryStyle;
-    case SectionStyle.Secondary:
-      return styles.secondaryStyle;
-    default:
-      throw new Error('Unknown Style In EventSection');
-  }
-};
 
 const getSectionLayout = (
   events: [EventItem, JSX.Element][],
@@ -53,14 +37,11 @@ const getSectionLayout = (
 };
 
 interface Props {
+  className?: string;
   section: EventSection;
-  style: SectionStyle;
 }
 
-export default function EventSection({
-  section,
-  style = SectionStyle.Primary,
-}: Props) {
+export default function EventSection({ className, section }: Props) {
   const [currentView, setCurrentView] = useState(0);
   // Map the events
   const events = section.events.map((event, i): [EventItem, JSX.Element] => [
@@ -68,7 +49,6 @@ export default function EventSection({
     <Event key={i} eventItem={event} />,
   ]);
   // Determine style
-  const sectionStyle = getStyle(style);
   const event_list = getSectionLayout(events, section.grid_style);
   // Map events
   const event_view =
@@ -79,7 +59,7 @@ export default function EventSection({
     );
   // Build ui
   return (
-    <div className={[styles.container, sectionStyle].join(' ')}>
+    <div className={[styles.container, className].join(' ')}>
       {/* Event Container */}
       <div>{event_view}</div>
       {/* Possible Buttons */}
