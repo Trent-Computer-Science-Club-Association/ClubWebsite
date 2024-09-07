@@ -1,49 +1,29 @@
-.TextSection {
-  @apply grid gap-4 p-4;
-  @apply py-16;
-  @apply px-10;
+.container {
+  @apply grid grid-cols-1 gap-4 p-4;
+  @apply py-16 px-10;
   @apply items-center;
-
-  @apply grid-cols-1;
-  @apply md:grid-cols-2;
-
   p {
     @apply text-color-2 leading-relaxed text-xl;
     @apply mb-4;
     @apply items-start;
     @apply md:pr-4;
   }
-}
 
-.TextAndButton {
-  @apply col-span-1 order-2 md:order-1;
-}
-
-.ImageWrapper {
-  @apply relative;
-  @apply w-full;
-  @apply h-0;
-  @apply pb-[80%];
-  @apply overflow-hidden;
-  @apply rounded-xl;
-  @apply order-1 md:order-2;
-}
-
-.TextSectionImage {
-  @apply object-cover;
-  @apply object-center;
-}
-
-.primaryStyle {
-  @apply bg-color-3;
-  & > span {
-    @apply bg-color-1;
+  .contentContainer {
+    @apply col-span-1 order-2 md:order-1;
   }
-}
 
-.secondaryStyle {
-  @apply bg-color-1;
-  & > span {
-    @apply bg-color-3;
+  .imageContainer {
+    @apply relative;
+    @apply w-full h-0;
+    @apply pb-[80%];
+    @apply overflow-hidden;
+    @apply rounded-xl;
+    @apply order-1 md:order-2;
+    & > image {
+      @apply object-cover object-center;
+    }
   }
+  // Mobile - 2 cols
+  @apply md:grid-cols-2;
 }

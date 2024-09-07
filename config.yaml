@@ -58,7 +58,20 @@ home_page:
       news_feed:
         - text: NEWS ABOUT TRENT COMPUTER SCIENCE
           date: 2024-09-10
+          location: Trent University
           href: /
         - text: NEWS ABOUT EXCITING EVENT
           date: 2024-07-25
-          href: /
+          # href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          # href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          # href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          # href: /
+        - text: NEWS ABOUT EXCITING EVENT
+          date: 2024-07-25
+          # href: /
