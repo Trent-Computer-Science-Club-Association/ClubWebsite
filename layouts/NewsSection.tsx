@@ -2,18 +2,24 @@ import styles from '../styles/layouts/NewsSection.module.scss';
 import React from 'react';
 import Link from 'next/link';
 import Button from '../components/Button';
-import { DateFormat, formatDate } from '../utils';
+import { SlCalender, SlLocationPin } from 'react-icons/sl';
+import { Fonts, DateFormat, formatDate } from '../utils';
 import { type NewsSection, type NewsItem } from '../config';
 
 const NewsItemComponent = ({ newsItem }: { newsItem: NewsItem }) => {
-  const { text, href, date } = newsItem;
+  const { text, href, date, location } = newsItem;
   const content = (
-    <span className={styles.content}>
-      <h3>{text}</h3>
-      <time dateTime={formatDate(date, DateFormat.HTMlDateTime)}>
-        {formatDate(date)}
-      </time>
-      <hr />
+    <span className={[styles.content, Fonts.Open_Sans].join(' ')}>
+      <h3 className={Fonts.Anonymous_Pro}>{text}</h3>
+      <span>
+        <time dateTime={formatDate(date, DateFormat.HTMlDateTime)}>
+          <SlCalender />
+          {formatDate(date)}
+        </time>
+        {location != undefined && '|'}
+        {location != undefined && <SlLocationPin />}
+        {location != undefined && location}
+      </span>
     </span>
   );
   if (href == undefined) {

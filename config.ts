@@ -119,11 +119,13 @@ const textSection = sectionBase.extend({
 export interface NewsItem {
   text: string;
   date: Date;
+  location?: string;
   href?: string;
 }
 const newsItem = z.strictObject({
   text: z.string(),
   date: z.date(),
+  location: z.string().optional(),
   href: z.string().optional(),
 });
 
