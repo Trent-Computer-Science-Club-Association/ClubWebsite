@@ -71,10 +71,8 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
       className={`${styles.expandButton} ${isExpanded ? styles.expanded : ''}`}
       onClick={() => setIsExpanded(!isExpanded)}
     >
-      <div className={styles.expandButtonContent}>
-        <div
-          className={`${styles.expandIcon} ${isExpanded ? styles.rotated : ''}`}
-        >
+      <div>
+        <div className={isExpanded ? styles.rotated : ''}>
           <FaChevronDown />
         </div>
         <span>{isExpanded ? 'Show Less' : 'Show More'}</span>

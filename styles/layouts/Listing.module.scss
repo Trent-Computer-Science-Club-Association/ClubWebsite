@@ -35,14 +35,14 @@
     @apply bg-active-1;
   }
 
-  .expandButtonContent {
+  > div {
     @apply flex items-center;
 
     span {
       @apply ml-2;
     }
 
-    .expandIcon {
+    > div {
       @apply w-5 h-5;
       @apply flex items-center justify-center;
       @apply transition-transform duration-300;
