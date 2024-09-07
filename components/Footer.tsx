@@ -10,34 +10,31 @@ export default function Footer() {
   const { text } = footer_config;
   // ui
   return (
-    <footer className={styles.Footer}>
+    <footer className={styles.container}>
       {/* Top section */}
-      <div className={styles.top}>
-        <ReactMarkdown className={styles.text}>{text}</ReactMarkdown>
+      <div>
+        <ReactMarkdown>{text}</ReactMarkdown>
       </div>
       {/* Left side */}
-      <div className={styles.left}>
+      <span>
         <div className={styles.logo}>
           <Logo />
         </div>
-        <Link href={`mailto:${website_config.email}`} className={styles.link}>
+        <Link href={`mailto:${website_config.email}`}>
           {website_config.email}
         </Link>
-      </div>
+      </span>
       {/* Right side */}
-      <div className={styles.right}>
-        <div className={styles.socialMedia}>
-          {social_icons.map(({ alt_text, link, path }, i) => (
-            <Button
-              key={i}
-              image={{ src: path, altText: alt_text }}
-              type={ButtonType.SOCIAL_DARK}
-              href={link}
-              className={styles.socialMedia}
-            />
-          ))}
-        </div>
-      </div>
+      <span className={styles.socialButtons}>
+        {social_icons.map(({ alt_text, link, path }, i) => (
+          <Button
+            key={i}
+            image={{ src: path, altText: alt_text }}
+            type={ButtonType.SOCIAL_DARK}
+            href={link}
+          />
+        ))}
+      </span>
     </footer>
   );
 }
