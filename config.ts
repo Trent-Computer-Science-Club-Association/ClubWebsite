@@ -109,22 +109,28 @@ export interface EventItem {
   start_date: Date;
   end_date: Date;
   image: ImageDescription;
+  location: string;
 }
-const eventItem = z.strictObject({
-  title: z.string(),
-  href: z.string(),
-  main_event: z.boolean().optional().default(false),
-  start_date: z.date(),
-  end_date: z.date(),
-  image: imageDescription,
-}).refine(({ start_date, end_date }) => {
-  if (end_date < start_date) return false;
-  return true;
-},
-{
-  message: 'Event ends before it starts.',
-  path: ['events'],
-});
+const eventItem = z
+  .strictObject({
+    title: z.string(),
+    href: z.string(),
+    main_event: z.boolean().optional().default(false),
+    start_date: z.date(),
+    end_date: z.date(),
+    image: imageDescription,
+    location: z.string(),
+  })
+  .refine(
+    ({ start_date, end_date }) => {
+      if (end_date < start_date) return false;
+      return true;
+    },
+    {
+      message: 'Event ends before it starts.',
+      path: ['events'],
+    }
+  );
 // Sections
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;

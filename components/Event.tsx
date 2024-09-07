@@ -23,6 +23,7 @@ export const isClosed = (eventItem: EventItem) => {
   return closed;
 };
 const getDate = (start_date: Date, end_date: Date) => {
+  // TODO(#40): use Utils.formatDate
   const formatDate = (date: Date) => moment(date).format('ddd MMM Do, yyyy');
   const start = formatDate(start_date);
   if (start_date == end_date) return start;
@@ -30,7 +31,7 @@ const getDate = (start_date: Date, end_date: Date) => {
   return `${start} - ${end}`;
 };
 export default function Event({ eventItem }: Props) {
-  const { title, href, start_date, end_date, image } = eventItem;
+  const { title, href, start_date, end_date, image, location } = eventItem;
   const closed = isClosed(eventItem);
   const styleList = [styles.container];
   if (closed) styleList.push(styles.closed);
@@ -43,7 +44,9 @@ export default function Event({ eventItem }: Props) {
       {/* Content */}
       <div>
         <h3>{title}</h3>
-        <span>{userFriendlyDate}</span>
+        {/* TODO(#40): set datetime with Utils.formatDate */}
+        <time>{userFriendlyDate}</time>
+        <span>{location}</span>
       </div>
     </>
   );
