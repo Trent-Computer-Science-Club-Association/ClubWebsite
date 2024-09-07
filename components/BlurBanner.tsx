@@ -16,15 +16,15 @@ const BlurBanner: React.FC<Props> = ({
 }) => {
   return (
     <div className={styles.Container}>
-      <div className={styles.BlurBanner}>
-        <div className={styles.imageContainer}>
+      <div>
+        <div>
           <Image src={imagePath} alt={altText} fill={true} />
         </div>
-        <div className={styles.overlay}>
-          <h1 className={styles.title}>{title}</h1>
+        <div>
+          <h1>{title}</h1>
         </div>
         {sectionHeader && (
-          <div className={styles.waveContainer}>
+          <div>
             <Image src={'wave.svg'} alt={'wave'} fill={true} />
             <div>
               <h2>{sectionHeader}</h2>
