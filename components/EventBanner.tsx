@@ -14,9 +14,9 @@ export default function EventBanner({ color = 'event-banner' }: Props) {
   if (banner_text.length == 0) return null;
 
   return (
-    <div className={styles.EventBanner} style={{ backgroundColor: color }}>
+    <div className={styles.container} style={{ backgroundColor: color }}>
       {/* Event Content */}
-      <div className={styles.EventContent}>
+      <div>
         <ReactMarkdown className={styles.Markdown}>{banner_text}</ReactMarkdown>
       </div>
     </div>
