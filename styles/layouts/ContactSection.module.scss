@@ -1,0 +1,37 @@
+.contactSection {
+  @apply grid gap-4 p-4;
+  @apply items-center;
+
+  @screen md {
+    @apply grid-cols-2;
+  }
+}
+
+.left {
+  @apply col-span-1;
+  @apply mb-8;
+
+  @screen md {
+    @apply mb-0;
+  }
+}
+
+.right {
+  @apply col-span-1;
+  @apply flex flex-col;
+  @apply h-full;
+}
+
+.topBox {
+  @apply mb-8;
+
+  @screen md {
+    @apply mb-auto;
+  }
+}
+
+.bottomBox {
+  @screen md {
+    @apply mt-auto;
+  }
+}

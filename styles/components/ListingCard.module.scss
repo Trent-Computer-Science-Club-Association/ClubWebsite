@@ -1,0 +1,90 @@
+.border {
+  @apply p-1 rounded-lg shadow-md flex flex-col relative overflow-hidden;
+  @apply transition-transform duration-300 ease-out;
+  @apply bg-color-2;
+  &:hover {
+    @apply -translate-y-2;
+  }
+}
+
+.card {
+  @apply bg-color-3 rounded-lg shadow-md p-6 flex flex-col flex-1 relative overflow-hidden;
+
+  h2 {
+    @apply text-2xl font-bold mb-2 text-color-2;
+  }
+
+  > p {
+    @apply mb-4 text-color-2;
+  }
+
+  hr {
+    @apply w-full h-0.5 bg-color-2 mb-2 border-0 rounded-lg;
+
+    &.developerUnderline {
+      @apply bg-development-color;
+    }
+
+    &.creativeUnderline {
+      @apply bg-creative-color;
+    }
+
+    &.managerialUnderline {
+      @apply bg-managerial-color;
+    }
+
+    &.volunteerUnderline {
+      @apply bg-volunteer-color;
+    }
+
+    // This is done since tailwind doesn't support multi-color gradients
+    &.gradientUnderline {
+      background: linear-gradient(
+        135deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #ee82ee,
+        #8b00ff
+      );
+      @apply text-white;
+    }
+  }
+
+  ul {
+    @apply space-y-2 mb-4;
+
+    li {
+      @apply flex items-center text-color-2;
+    }
+  }
+
+  button {
+    @apply mt-auto mr-auto text-color-3;
+  }
+}
+
+// This is done since tailwind doesn't support multi-color gradients
+.gradientBorder {
+  background: linear-gradient(
+    135deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #ee82ee,
+    #8b00ff
+  );
+  @apply text-white;
+}
+
+.requirementIcon {
+  @apply relative w-5 h-5 mr-2 flex-shrink-0;
+
+  img {
+    @apply w-full h-full;
+  }
+}

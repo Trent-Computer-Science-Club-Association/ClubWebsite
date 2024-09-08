@@ -1,0 +1,59 @@
+.listingsSection {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6;
+  @apply w-full overflow-hidden;
+}
+
+.listingsSectionWrapper {
+  @apply flex flex-col items-center m-4;
+
+  .noPositions {
+    @apply flex flex-col items-center text-color-2 text-center mt-4;
+
+    p {
+      @apply w-1/2 text-3xl leading-loose font-bold my-16;
+    }
+
+    a {
+      @apply underline text-color-2;
+
+      &:visited,
+      &:active {
+        @apply text-color-2;
+      }
+
+      &:hover {
+        @apply text-hover-1;
+      }
+    }
+  }
+}
+
+.expandButton {
+  @apply mt-4 flex items-center justify-center text-color-2 bg-color-3 px-6 py-2 rounded-full shadow-md transition-colors duration-300;
+
+  &:hover {
+    @apply bg-active-1;
+  }
+
+  > div {
+    @apply flex items-center;
+
+    span {
+      @apply ml-2;
+    }
+
+    > div {
+      @apply w-5 h-5;
+      @apply flex items-center justify-center;
+      @apply transition-transform duration-300;
+
+      svg {
+        @apply w-full h-full;
+      }
+
+      &.rotated {
+        @apply transform rotate-180;
+      }
+    }
+  }
+}

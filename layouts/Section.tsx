@@ -5,32 +5,43 @@ import NewsSection from './NewsSection';
 import TextSection from './TextSection';
 import { SectionType, type Section } from '../config';
 
-interface SectionProps {
-  sectionConfig: Section;
-  index: number;
+export enum Style {
+  Primary,
+  Secondary,
 }
+export const getHeaderStyle = (headerStyle: Style): string => {
+  switch (headerStyle) {
+    case Style.Primary:
+      return styles.primaryHeader;
+    case Style.Secondary:
+      return styles.secondaryHeader;
+  }
+};
+const getSectionStyle = (sectionStyle: Style): string => {
+  switch (sectionStyle) {
+    case Style.Primary:
+      return styles.primaryStyle;
+    case Style.Secondary:
+      return styles.secondaryStyle;
+  }
+};
 
 const getStyle = (index: number) => {
   if (index % 2 === 0) {
     return {
-      headerStyle: styles.primaryHeader,
-      sectionStyle: styles.primaryStyle,
+      style: Style.Primary,
       alignment: Alignment.Left,
     };
   } else {
     return {
-      headerStyle: styles.secondaryHeader,
-      sectionStyle: styles.secondaryStyle,
+      style: Style.Secondary,
       alignment: Alignment.Right,
     };
   }
 };
 
-const getContent = (
-  sectionConfig: Section,
-  index: number,
-  sectionStyle: string
-) => {
+const getContent = (sectionConfig: Section, style: Style) => {
+  const sectionStyle = getSectionStyle(style);
   switch (sectionConfig.section_type) {
     case SectionType.TextSection:
       return <TextSection section={sectionConfig} className={sectionStyle} />;
@@ -39,21 +50,42 @@ const getContent = (
   }
 };
 
-const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
-  const { headerStyle, sectionStyle, alignment } = getStyle(index);
+interface SectionConfigProps {
+  sectionConfig: Section;
+  index: number;
+  includeHeader?: boolean;
+  headerStyle?: Style;
+  sectionStyle?: Style;
+  alignment?: Alignment;
+}
+const Section = ({
+  sectionConfig,
+  index,
+  includeHeader = true,
+  headerStyle,
+  sectionStyle,
+  alignment,
+}: SectionConfigProps) => {
+  const sectionStyling = getStyle(index);
 
-  const content = getContent(sectionConfig, index, sectionStyle);
+  const content = getContent(
+    sectionConfig,
+    sectionStyle ?? sectionStyling.style
+  );
 
   return (
     <section>
-      <SectionHeader
-        title={sectionConfig.section_header}
-        alignment={alignment}
-        className={headerStyle}
-      />
+      {includeHeader && (
+        <SectionHeader
+          title={sectionConfig.section_header}
+          alignment={alignment ?? sectionStyling.alignment}
+          className={getHeaderStyle(headerStyle ?? sectionStyling.style)}
+        />
+      )}
       {content}
     </section>
   );
 };
 
+export { Alignment };
 export default Section;

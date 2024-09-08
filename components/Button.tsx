@@ -7,17 +7,20 @@ import { type ImageDescription } from '../config';
 export enum ButtonStyle {
   // Regular
   Default,
+  Sponsor,
   // Social
   Social,
   // Navbar
   NavButton,
   NavToggle,
 }
-const getButtonStyle = (buttonStyle: ButtonStyle) => {
+const getButtonStyle = (buttonStyle: ButtonStyle): string[] => {
   switch (buttonStyle) {
     // Regular
     case ButtonStyle.Default:
       return [styles.default];
+    case ButtonStyle.Sponsor:
+      return [styles.default, styles.sponsor];
     // Social
     case ButtonStyle.Social:
       return [styles.social];

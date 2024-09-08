@@ -34,15 +34,17 @@ const sectionBase = z.strictObject({
   section_header: z.string(),
 });
 // Config Types
-interface SocialIcon {
+export interface SocialIcon {
   alt_text: string;
   link: string;
   path: string;
+  text: string;
 }
 const socialIcon = z.strictObject({
   alt_text: z.string(),
   link: z.string(),
   path: z.string(),
+  text: z.string(),
 });
 
 interface MetaConfig {
@@ -61,6 +63,7 @@ interface WebsiteConfig {
   discord: string;
   instagram: string;
   linkedin: string;
+  github: string;
   tagline: string;
   social_icons: SocialIcon[];
   banner_text?: string;
@@ -72,6 +75,7 @@ const websiteConfig = z.strictObject({
   discord: z.string(),
   instagram: z.string(),
   linkedin: z.string(),
+  github: z.string(),
   tagline: z.string(),
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),
@@ -93,13 +97,22 @@ const footerConfig = z.strictObject({
   text: z.string(),
 });
 // homepage sections
+export enum TextSectionButton {
+  Default = 'Default',
+  Sponsor = 'Sponsor',
+}
+const textSectionButton = z.nativeEnum(TextSectionButton);
+
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;
   text: string;
   image: ImageDescription;
   button?: {
+    style: TextSectionButton;
     text: string;
     href: string;
+    // Config cannot interact with this
+    onClick?: () => void;
   };
 }
 const textSection = sectionBase.extend({
@@ -111,11 +124,13 @@ const textSection = sectionBase.extend({
   }),
   button: z
     .strictObject({
+      style: textSectionButton.optional().default(TextSectionButton.Default),
       text: z.string(),
       href: z.string(),
     })
     .optional(),
 });
+
 export interface NewsItem {
   text: string;
   date: Date;
@@ -145,6 +160,55 @@ interface HomePage {
 const homePage = z.strictObject({
   sections: z.array(homeSection),
 });
+// Contact Page
+export enum ContactSubject {
+  Applying = 'Applying',
+  Sponsor = 'Sponsor',
+  Volunteering = 'Volunteering',
+  Development = 'Development',
+  Creative = 'Creative',
+  Managerial = 'Managerial',
+  Outreach = 'Outreach',
+}
+export const contactSubject = z.nativeEnum(ContactSubject);
+
+interface Requirement {
+  description: string;
+  icon?: string;
+}
+const requirement = z.strictObject({
+  description: z.string(),
+  icon: z.string().optional(),
+});
+
+export interface Listing {
+  priority: number;
+  title: string;
+  description: string;
+  requirements: Requirement[];
+  type: ContactSubject;
+  modal?: string;
+  keywords: string[];
+}
+const listing = z.strictObject({
+  priority: z.number().default(Infinity),
+  title: z.string(),
+  description: z.string(),
+  requirements: z.array(requirement).max(4),
+  type: contactSubject,
+  modal: z.string().optional(),
+  keywords: z.array(z.string()),
+});
+
+interface ContactPage {
+  sponsor_section: TextSection;
+  listings?: Listing[];
+}
+const contactPage = z.strictObject({
+  sponsor_section: textSection,
+  listings: z.array(listing).optional(),
+});
+
 // config
 export type Section = HomeSection;
 interface ValidConfig {
@@ -153,12 +217,14 @@ interface ValidConfig {
   footer_config: FooterConfig;
   // Page Configs
   home_page: HomePage;
+  contact_page: ContactPage;
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
   home_page: homePage,
+  contact_page: contactPage,
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
@@ -197,3 +263,4 @@ export const website_config = config.website_config;
 export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
+export const contact_page = config.contact_page;
