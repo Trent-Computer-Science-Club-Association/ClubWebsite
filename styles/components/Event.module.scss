@@ -1,5 +1,6 @@
 .container {
-  @apply block max-w-full max-h-full w-full aspect-event;
+  @apply grid max-w-full max-h-full w-full;
+  grid-template-rows: 1fr max-content;
   @apply m-auto rounded-xl overflow-hidden shadow-l1;
   @apply relative cursor-pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -10,6 +11,9 @@
   // Closed
   &.closed > img {
     @apply brightness-50 blur-sm;
+  }
+  .imageContainer {
+    @apply aspect-event;
   }
   // Override default image styling
   img {
@@ -26,16 +30,20 @@
   div {
     @apply w-full;
     @apply px-4 py-3;
-    @apply absolute left-0 bottom-0;
+    @apply left-0 bottom-0;
+    @apply min-[850px]:absolute;
     @apply text-txt-1;
     @apply bg-event-content bg-opacity-90 backdrop-blur-sm;
+    // Make the time element no wrap
     // Make the span a block
     h3 {
       @apply text-xl;
     }
     span {
-      @apply flex items-center text-txt-4;
+      @apply items-center text-txt-4;
+      @apply max-[450px]:text-xs;
       svg {
+        @apply inline;
         @apply mr-2;
       }
     }

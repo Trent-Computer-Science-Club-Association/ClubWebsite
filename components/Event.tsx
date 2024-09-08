@@ -63,11 +63,14 @@ export default function Event({ eventItem }: Props) {
   const content = (
     <>
       {/* Background Image */}
-      <Image src={image.src} alt={image.alt} fill />
+      <span className={styles.imageContainer}>
+        <Image src={image.src} alt={image.alt} fill />
+      </span>
       {/* Content */}
       <div>
         <h3>{title}</h3>
         <EventDateTime start_date={start_date} end_date={end_date} />
+        <br />
         <span>
           <SlLocationPin /> {location}
         </span>
