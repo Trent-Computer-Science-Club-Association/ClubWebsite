@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import styles from '../styles/layouts/ListingSection.module.scss';
 import modalStyles from '../styles/components/Modal.module.scss';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaReact } from 'react-icons/fa';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import Modal from 'react-modal';
 import Button from '../components/Button';
 import ListingCard from '../components/ListingCard';
-import { website_config, type ListingSection, type Listing } from '../config';
+import {
+  website_config,
+  type ListingSection,
+  type Listing,
+  RequirementIcon,
+} from '../config';
 
 const CARD_COUNT = 3; // We render 3 cards per line
 
@@ -39,6 +44,18 @@ const ListingSection = ({ section, className }: Props) => {
   }
   // Get first three listings if able too
   const sortedListings = [...listings].sort((a, b) => a.priority - b.priority);
+
+  const renderIcon = (icon: RequirementIcon) => {
+    switch (icon) {
+      case RequirementIcon.CheckMark:
+        return <FaCheck />;
+      case RequirementIcon.React:
+        return <FaReact />;
+      default:
+        return <FaCheck />;
+    }
+  };
+
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.cardGrid}>
@@ -80,7 +97,7 @@ const ListingSection = ({ section, className }: Props) => {
               {modalState.requirements.map((requirement, reqIndex) => (
                 <li key={reqIndex}>
                   <div className={modalStyles.requirementIcon}>
-                    {requirement.icon ? <requirement.icon /> : <FaCheck />}
+                    {renderIcon(requirement.icon)}
                   </div>
                   <p>{requirement.description}</p>
                 </li>
