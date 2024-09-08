@@ -3,7 +3,7 @@ import styles from '../styles/components/ListingCard.module.scss';
 import { FaReact, FaCheck } from 'react-icons/fa';
 import { RequirementIcon, type Listing, ContactSubject } from '../config';
 
-const getIcon = (requirementIcon: RequirementIcon): JSX.Element => {
+export const getIcon = (requirementIcon: RequirementIcon): JSX.Element => {
   switch (requirementIcon) {
     case RequirementIcon.CheckMark:
       return <FaCheck />;
