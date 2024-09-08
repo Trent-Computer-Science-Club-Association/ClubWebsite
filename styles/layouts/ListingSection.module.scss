@@ -1,0 +1,22 @@
+.emptyContainer {
+  @apply flex;
+  @apply items-center justify-center text-center;
+  @apply m-16;
+  @apply text-color-2 text-xl;
+  a {
+    @apply underline;
+    &:hover {
+      @apply text-hover-1;
+    }
+  }
+}
+
+.container {
+  div {
+    @apply flex justify-center;
+  }
+  .cardGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6;
+    @apply w-full overflow-hidden;
+  }
+}

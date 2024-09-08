@@ -1,7 +1,16 @@
 import Button from '../components/Button';
 import styles from '../styles/components/ListingCard.module.scss';
-import { Listing, ContactSubject } from '../config';
-import DynamicIcon from '../components/DynamicIcon';
+import { FaReact, FaCheck } from 'react-icons/fa';
+import { RequirementIcon, type Listing, ContactSubject } from '../config';
+
+const getIcon = (requirementIcon: RequirementIcon): JSX.Element => {
+  switch (requirementIcon) {
+    case RequirementIcon.CheckMark:
+      return <FaCheck />;
+    case RequirementIcon.React:
+      return <FaReact />;
+  }
+};
 
 const getUnderlineClass = (type: ContactSubject) => {
   const baseClass = styles.underline;
@@ -38,7 +47,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ position, onLearnMore }) => {
           {position.requirements.map((requirement, reqIndex) => (
             <li key={reqIndex}>
               <div className={styles.requirementIcon}>
-                <DynamicIcon iconName={requirement.icon} />
+                {getIcon(requirement.icon)}
               </div>
               <p>{requirement.description}</p>
             </li>

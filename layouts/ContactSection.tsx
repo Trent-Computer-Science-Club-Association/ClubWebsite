@@ -1,7 +1,3 @@
-// TODO: Cleanup this file
-// TODO: When we clear the form clear the urlParams without causing a reload or scroll
-// TODO: Make sure we only scroll on first navigation somehow (Look into this)
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ContactForm, {

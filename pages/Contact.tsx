@@ -14,7 +14,6 @@ export default function Home() {
       <NavBar currentPage='Contact Us' />
       <section className={styles.container}>
         <main className={styles.MainArea}>
-          {/* TODO: Convert below into a section */}
           <BlurBanner
             imagePath='/FaryonBridge.jpg'
             altText='About Us Image'

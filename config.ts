@@ -131,7 +131,6 @@ const newsSection = sectionBase.extend({
 export interface ContactSection extends SectionBase {
   section_type: SectionType.ContactSection;
   submission_url: string;
-  // TODO: Support configuration of the blurbs
 }
 const contactSection = sectionBase.extend({
   section_type: z.literal(SectionType.ContactSection),
@@ -149,13 +148,18 @@ export enum ContactSubject {
 }
 export const contactSubject = z.nativeEnum(ContactSubject);
 
+export enum RequirementIcon {
+  CheckMark = 'CheckMark',
+  React = 'React',
+}
+const requirementIcon = z.nativeEnum(RequirementIcon);
 interface Requirement {
   description: string;
-  icon?: string;
+  icon: RequirementIcon;
 }
 const requirement = z.strictObject({
   description: z.string(),
-  icon: z.string().optional(),
+  icon: requirementIcon.optional().default(RequirementIcon.CheckMark),
 });
 
 export interface Listing {
