@@ -20,18 +20,14 @@ export interface ImageDescription {
   src: string;
   alt: string;
 }
-// Section
-export enum SectionType {
-  TextSection = 'TextSection',
-  NewsSection = 'NewsSection',
+
+interface MetaConfig {
+  title: string;
+  description: string;
 }
-interface SectionBase {
-  // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
-  section_header: string;
-}
-const sectionBase = z.strictObject({
-  section_type: z.nativeEnum(SectionType),
-  section_header: z.string(),
+const metaConfig = z.strictObject({
+  title: z.string(),
+  description: z.string(),
 });
 // Config Types
 export interface SocialIcon {
@@ -45,40 +41,6 @@ const socialIcon = z.strictObject({
   link: z.string(),
   path: z.string(),
   text: z.string(),
-});
-
-interface MetaConfig {
-  title: string;
-  description: string;
-}
-const metaConfig = z.strictObject({
-  title: z.string(),
-  description: z.string(),
-});
-
-interface WebsiteConfig {
-  title: string;
-  meta: MetaConfig;
-  email: string;
-  discord: string;
-  instagram: string;
-  linkedin: string;
-  github: string;
-  tagline: string;
-  social_icons: SocialIcon[];
-  banner_text?: string;
-}
-const websiteConfig = z.strictObject({
-  title: z.string(),
-  meta: metaConfig,
-  email: z.string(),
-  discord: z.string(),
-  instagram: z.string(),
-  linkedin: z.string(),
-  github: z.string(),
-  tagline: z.string(),
-  social_icons: z.array(socialIcon),
-  banner_text: z.optional(z.string()),
 });
 interface PageItem {
   page_name: string;
@@ -96,7 +58,22 @@ interface FooterConfig {
 const footerConfig = z.strictObject({
   text: z.string(),
 });
-// homepage sections
+// Section
+export enum SectionType {
+  TextSection = 'TextSection',
+  NewsSection = 'NewsSection',
+  ContactSection = 'ContactSection',
+  ListingSection = 'ListingSection',
+}
+interface SectionBase {
+  // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
+  section_header?: string;
+}
+const sectionBase = z.strictObject({
+  section_type: z.nativeEnum(SectionType),
+  section_header: z.string().optional(),
+});
+
 export enum TextSectionButton {
   Default = 'Default',
   Sponsor = 'Sponsor',
@@ -150,15 +127,17 @@ const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.NewsSection),
   news_feed: z.array(newsItem),
 });
-type HomeSection = TextSection | NewsSection;
-const homeSection = z.union([textSection, newsSection]);
-interface HomePage {
-  sections: HomeSection[];
+
+export interface ContactSection extends SectionBase {
+  section_type: SectionType.ContactSection;
+  submission_url: string;
+  // TODO: Support configuration of the blurbs
 }
-const homePage = z.strictObject({
-  sections: z.array(homeSection),
+const contactSection = sectionBase.extend({
+  section_type: z.literal(SectionType.ContactSection),
+  submission_url: z.string(),
 });
-// Contact Page
+
 export enum ContactSubject {
   Applying = 'Applying',
   Sponsor = 'Sponsor',
@@ -198,31 +177,74 @@ const listing = z.strictObject({
   keywords: z.array(z.string()),
 });
 
-interface ContactPage {
-  sponsor_section: TextSection;
+export interface ListingSection extends SectionBase {
+  section_type: SectionType.ListingSection;
   listings: Listing[];
 }
-const contactPage = z.strictObject({
-  sponsor_section: textSection,
+const listingSection = sectionBase.extend({
+  section_type: z.literal(SectionType.ListingSection),
   listings: z.array(listing),
 });
 
+// Top Level
+export type Section =
+  | TextSection
+  | NewsSection
+  | ContactSection
+  | ListingSection;
+const section = z.union([
+  textSection,
+  newsSection,
+  contactSection,
+  listingSection,
+]);
+
+interface WebsiteConfig {
+  title: string;
+  meta: MetaConfig;
+  email: string;
+  discord: string;
+  instagram: string;
+  linkedin: string;
+  github: string;
+  tagline: string;
+  social_icons: SocialIcon[];
+  banner_text?: string;
+}
+const websiteConfig = z.strictObject({
+  title: z.string(),
+  meta: metaConfig,
+  email: z.string(),
+  discord: z.string(),
+  instagram: z.string(),
+  linkedin: z.string(),
+  github: z.string(),
+  tagline: z.string(),
+  social_icons: z.array(socialIcon),
+  banner_text: z.optional(z.string()),
+});
+interface ComposablePage {
+  sections: Section[];
+}
+const composablePage = z.strictObject({
+  sections: z.array(section),
+});
+
 // config
-export type Section = HomeSection;
 interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];
   footer_config: FooterConfig;
   // Page Configs
-  home_page: HomePage;
-  contact_page: ContactPage;
+  home_page: ComposablePage;
+  contact_page: ComposablePage;
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
-  home_page: homePage,
-  contact_page: contactPage,
+  home_page: composablePage,
+  contact_page: composablePage,
 });
 // Config Section Spaced out for an easier error
 // =========================================================================

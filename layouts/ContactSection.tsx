@@ -15,7 +15,12 @@ import ContactForm, {
 import { processFormData } from '../pages/api/submitForm';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
-import { website_config, ContactSubject, contactSubject } from '../config';
+import {
+  website_config,
+  ContactSubject,
+  contactSubject,
+  type ContactSection,
+} from '../config';
 
 const generateForm = (dropDownValue: ContactSubject | undefined) => [
   Group(
@@ -44,9 +49,14 @@ const generateForm = (dropDownValue: ContactSubject | undefined) => [
 ];
 
 interface ContactSectionProps {
-  submissionURL: string;
+  section: ContactSection;
+  className?: string;
 }
-export default function ContactSection({ submissionURL }: ContactSectionProps) {
+export default function ContactSection({
+  section,
+  className,
+}: ContactSectionProps) {
+  const { submission_url } = section;
   const onSubmit = async (
     formData: Record<string, string>
   ): Promise<SubmissionResponse> => {
@@ -61,7 +71,7 @@ export default function ContactSection({ submissionURL }: ContactSectionProps) {
     } else {
       // Submit Our Form
       try {
-        const response = await fetch('/api/submitForm', {
+        const response = await fetch(submission_url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -113,7 +123,7 @@ export default function ContactSection({ submissionURL }: ContactSectionProps) {
     }
   }, [dropDownValue]);
   return (
-    <div className={styles.contactSection} id='contact-form'>
+    <div className={`${styles.container} ${className ?? ''}`} id='contact-form'>
       <div className={styles.left}>
         {/* <Suspense> */}
         <ContactForm

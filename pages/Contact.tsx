@@ -4,34 +4,27 @@ import { contact_page, website_config } from '../config';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import BlurBanner from '../components/BlurBanner';
-import ListingsSection from '../layouts/ListingsSection';
-import ContactSection from '../layouts/ContactSection';
 import EventBanner from '../components/EventBanner';
-import SectionHeader from '../layouts/SectionHeader';
-import Section, { Style, Alignment, getHeaderStyle } from '../layouts/Section';
+import Section from '../layouts/Section';
 export default function Home() {
-  let i = 0; // Easy way to keep track of the section index
+  const { sections } = contact_page;
   return (
     <>
       <EventBanner />
       <NavBar currentPage='Contact Us' />
       <section className={styles.container}>
         <main className={styles.MainArea}>
+          {/* TODO: Convert below into a section */}
           <BlurBanner
             imagePath='/FaryonBridge.jpg'
             altText='About Us Image'
             title={website_config.title}
             sectionHeader='Positions'
           />
-
-          <ListingsSection positions={contact_page.listings} />
-          <Section sectionConfig={contact_page.sponsor_section} index={i++} />
-          <SectionHeader
-            title='Contact Us'
-            className={getHeaderStyle(Style.Secondary)}
-            alignment={Alignment.Right}
-          />
-          <ContactSection submissionURL={'/api/submitForm'} />
+          {/* In the config we have a list of sections, this is how we iterate through them */}
+          {sections.map((section, i) => (
+            <Section sectionConfig={section} index={i + 1} key={i} />
+          ))}
         </main>
         <Footer />
       </section>

@@ -3,6 +3,8 @@ import React from 'react';
 import SectionHeader, { Alignment } from './SectionHeader';
 import NewsSection from './NewsSection';
 import TextSection from './TextSection';
+import ContactSection from './ContactSection';
+import ListingSection from './ListingsSection';
 import { SectionType, type Section } from '../config';
 
 export enum Style {
@@ -26,7 +28,7 @@ const getSectionStyle = (sectionStyle: Style): string => {
   }
 };
 
-const getStyle = (index: number) => {
+const getStyle = (index: number): { style: Style; alignment: Alignment } => {
   if (index % 2 === 0) {
     return {
       style: Style.Primary,
@@ -40,13 +42,21 @@ const getStyle = (index: number) => {
   }
 };
 
-const getContent = (sectionConfig: Section, style: Style) => {
+const getContent = (sectionConfig: Section, style: Style): JSX.Element => {
   const sectionStyle = getSectionStyle(style);
   switch (sectionConfig.section_type) {
     case SectionType.TextSection:
       return <TextSection section={sectionConfig} className={sectionStyle} />;
     case SectionType.NewsSection:
       return <NewsSection section={sectionConfig} className={sectionStyle} />;
+    case SectionType.ContactSection:
+      return (
+        <ContactSection section={sectionConfig} className={sectionStyle} />
+      );
+    case SectionType.ListingSection:
+      return (
+        <ListingSection section={sectionConfig} className={sectionStyle} />
+      );
   }
 };
 
@@ -75,7 +85,7 @@ const Section = ({
 
   return (
     <section>
-      {includeHeader && (
+      {includeHeader && sectionConfig.section_header != undefined && (
         <SectionHeader
           title={sectionConfig.section_header}
           alignment={alignment ?? sectionStyling.alignment}

@@ -5,18 +5,20 @@ import Button from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import modalStyles from '../styles/components/Modal.module.scss';
 import Modal from 'react-modal';
-import { website_config, type Listing } from '../config';
+import { website_config, type ListingSection, type Listing } from '../config';
 import Link from 'next/link';
 import ListingCard from '../components/ListingCard';
 
 interface ListingsSectionProps {
-  positions: Listing[];
+  section: ListingSection;
+  className?: string;
 }
 
 // Set the app element for accessibility
 Modal.setAppElement('#__next');
 
-const ListingsSection = ({ positions }: ListingsSectionProps) => {
+const ListingsSection = ({ section, className }: ListingsSectionProps) => {
+  const { listings } = section;
   // State for expanded view and modal
   const [isExpanded, setIsExpanded] = useState(false);
   const [modalState, setModalState] = useState<Listing | undefined>();
@@ -67,12 +69,12 @@ const ListingsSection = ({ positions }: ListingsSectionProps) => {
 
   // Main function to get the content based on the current state
   const getContent = () => {
-    if (positions.length === 0) {
+    if (listings.length === 0) {
       return getNoPositionsContent();
     }
 
     // Sort listings by priority (lower number = higher priority)
-    const sortedListings = [...positions].sort(
+    const sortedListings = [...listings].sort(
       (a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)
     );
 
@@ -84,13 +86,13 @@ const ListingsSection = ({ positions }: ListingsSectionProps) => {
     return (
       <>
         {getListingsContent(visibleListings)}
-        {positions.length > cardsPerRow && getExpandButton()}
+        {listings.length > cardsPerRow && getExpandButton()}
       </>
     );
   };
 
   return (
-    <div className={styles.listingsSectionWrapper}>
+    <div className={`${styles.listingsSectionWrapper} ${className}`}>
       {getContent()}
       <Modal
         isOpen={modalState != undefined}
