@@ -1,5 +1,5 @@
 .Container {
-  @apply w-full;
+  @apply w-full overflow-hidden;
   @apply relative;
   > div {
     @apply w-full;

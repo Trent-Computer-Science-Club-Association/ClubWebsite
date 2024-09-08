@@ -19,6 +19,10 @@
     @apply flex gap-4;
     @apply items-center;
   }
+  .socialButtons,
+  .logo {
+    @apply max-[500px]:hidden;
+  }
 }
 
 .logo {
