@@ -26,15 +26,12 @@ const HackathonModal = () => {
 
   useEffect(() => {
     const rawLastViewed = localStorage.getItem('lastViewed');
-    if (rawLastViewed == null) setIsOpen(true);
 
-    const lastViewed = parseInt(rawLastViewed as string);
-    const currentTime = moment().valueOf();
-
-    if (currentTime - lastViewed > MODAL_DISPLAY_INTERVAL) {
+    if (rawLastViewed == null) {
       setIsOpen(true);
     } else {
-      setIsOpen(false);
+      const timeDiff = moment().valueOf() - parseInt(rawLastViewed);
+      setIsOpen(timeDiff > MODAL_DISPLAY_INTERVAL);
     }
 
     if (isOpen)
