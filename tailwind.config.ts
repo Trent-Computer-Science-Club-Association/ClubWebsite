@@ -22,7 +22,7 @@ const config: Config = {
         socials: '#7BD4CB', // Social
       },
       keyframes: {
-        float: {
+        hackathonModalFloat: {
           '0%, 100%': {
             transform: 'translate-y-0 rotate-3',
             '-webkit-transform': 'translateY(0) rotate(3deg)',
@@ -34,12 +34,7 @@ const config: Config = {
         },
       },
       animation: {
-        float: 'float 5s ease-in-out infinite',
-      },
-      fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
-        motorblock: ['Motorblock', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
+        hackathonModalFloat: 'hackathonModalFloat 5s ease-in-out infinite',
       },
     },
   },

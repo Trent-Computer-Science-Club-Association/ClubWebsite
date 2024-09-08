@@ -5,7 +5,6 @@
 .MainArea {
   @apply bg-color-1 flex-grow;
 }
-
 .Modal {
   @apply w-11/12 max-w-2xl outline-none overflow-hidden;
   @apply bg-opacity-0;
@@ -40,9 +39,7 @@
   @apply flex flex-col items-center justify-center;
   @apply text-center;
   h3 {
-    @apply text-3xl font-bold mb-2 text-color-2;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
+    @apply text-2xl font-bold mb-2 text-color-2;
   }
   h2 {
     @apply mb-0 text-color-2 flex flex-col items-center;
@@ -62,7 +59,6 @@
     @apply max-w-md;
     @apply text-center;
     @apply text-lg mb-4 text-color-2 w-1/2;
-    font-family: 'Poppins', sans-serif;
     @apply mt-4;
   }
 

@@ -1,86 +1,49 @@
+// What is this?
+// For our hackathon, we wanted to have a extra way to display and grab the user's attention
+
+// CSS
+import styles from '../styles/components/HackathonModal.module.scss';
+// Config
+import { website_config } from '../config';
+// Components
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import Image from '../components/Image';
 import Link from 'next/link';
-import styles from '../styles/components/HackathonModal.module.scss';
-import { website_config } from '../config';
+import moment from 'moment';
+// Images
+import LittleGuy from '../public/Hackathon/little-guy.png';
+import TopLeft from '../public/Hackathon/top-left.svg';
+import TopRight from '../public/Hackathon/top-right.svg';
+import BottomLeft from '../public/Hackathon/bottom-left.svg';
+// Fonts - A collection of fonts used throughout the website from Utils
+import { Fonts } from '../utils';
 
-const MODAL_DISPLAY_INTERVAL = 2 * 24 * 60 * 60 * 1000; // 2 days in milliseconds
+const MODAL_DISPLAY_INTERVAL = moment.duration(2, 'seconds').asMilliseconds(); // 2 seconds in milliseconds
 
-interface HackathonModalProps {
-  onRequestClose: () => void;
-}
-
-const HackathonModal: React.FC<HackathonModalProps> = ({ onRequestClose }) => {
+const HackathonModal = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [assetsLoaded, setAssetsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    const fontFamilies = ['Orbitron', 'Poppins', 'Motorblock'];
+    const rawLastViewed = localStorage.getItem('lastViewed');
+    if (rawLastViewed == null) setIsOpen(true);
 
-    const imageUrls = [
-      '/Hackathon/little-guy.png',
-      '/Hackathon/top-left.svg',
-      '/Hackathon/top-right.svg',
-      '/Hackathon/bottom-left.svg',
-    ];
+    const lastViewed = parseInt(rawLastViewed as string);
+    const currentTime = moment().valueOf();
 
-    const loadFonts = async () => {
-      try {
-        await Promise.all(
-          fontFamilies.map((family) => document.fonts.load(`1em "${family}"`))
-        );
-      } catch (error) {
-        console.error('Failed to load fonts:', error);
-      }
-    };
-
-    const loadImages = async () => {
-      try {
-        await Promise.all(
-          imageUrls.map((url) => {
-            return new Promise<void>((resolve, reject) => {
-              const img = new window.Image();
-              img.onload = () => resolve();
-              img.onerror = () =>
-                reject(new Error(`Failed to load image: ${url}`));
-              img.src = url;
-            });
-          })
-        );
-      } catch (error) {
-        console.error('Failed to load images:', error);
-      }
-    };
-
-    Promise.all([loadFonts(), loadImages()])
-      .then(() => setAssetsLoaded(true))
-      .catch((error) => console.error('Failed to load assets:', error));
-  }, []);
-
-  useEffect(() => {
-    if (assetsLoaded) {
-      const lastViewed = localStorage.getItem('lastViewed');
-      const currentTime = Date.now();
-
-      if (
-        !lastViewed ||
-        currentTime - Number(lastViewed) > MODAL_DISPLAY_INTERVAL
-      ) {
-        setIsOpen(true);
-        localStorage.setItem('lastViewed', currentTime.toString());
-      }
+    if (currentTime - lastViewed > MODAL_DISPLAY_INTERVAL) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
     }
-  }, [assetsLoaded]);
+
+    if (isOpen)
+      localStorage.setItem('lastViewed', moment().valueOf().toString());
+  }, [isOpen]);
 
   const handleClose = () => {
     setIsOpen(false);
-    onRequestClose();
   };
-
-  if (!assetsLoaded) {
-    return null; // Don't render anything until assets are loaded
-  }
 
   return (
     <Modal
@@ -90,46 +53,38 @@ const HackathonModal: React.FC<HackathonModalProps> = ({ onRequestClose }) => {
       className={styles.Modal}
       overlayClassName={styles.ModalOverlay}
     >
-      <Link href={website_config.hackathon_url}>
+      <Link
+        href={website_config.hackathon_url}
+        target='_blank'
+        rel='noreferrer'
+      >
         <div className={styles.modalImageContainer}>
           <Image
-            src='/Hackathon/little-guy.png'
+            src={LittleGuy}
             alt='Modal Background'
             layout='fill'
             objectFit='fit'
           />
         </div>
         <div className={styles.modalContent}>
-          <div className={styles.imageContainer}>
-            <div className={styles.topLeft}>
-              <Image
-                src='/Hackathon/top-left.svg'
-                alt='Hackathon Top Left'
-                fill={true}
-              />
-            </div>
-            <div className={styles.topRight}>
-              <Image
-                src='/Hackathon/top-right.svg'
-                alt='Hackathon Top Right'
-                fill={true}
-              />
-            </div>
-            <div className={styles.bottomLeft}>
-              <Image
-                src='/Hackathon/bottom-left.svg'
-                alt='Hackathon Bottom Left'
-                fill={true}
-              />
-            </div>
-          </div>
-          <h3>Join Us For</h3>
+          <span className={styles.imageContainer}>
+            <span>
+              <Image src={TopLeft} alt='Hackathon Top Left' fill={true} />
+            </span>
+            <span>
+              <Image src={TopRight} alt='Hackathon Top Right' fill={true} />
+            </span>
+            <span>
+              <Image src={BottomLeft} alt='Hackathon Bottom Left' fill={true} />
+            </span>
+          </span>
+          <h3 className={Fonts.Orbitron}>Join Us For</h3>
           <h2>
             <span>Hack</span>
             <span>Trent</span>
           </h2>
           <span>On November 8th-10th, 2024</span>
-          <p>
+          <p className={Fonts.Poppins}>
             Electric City Hacks Returns as HackTrent for its 5th Edition in
             2024!
           </p>

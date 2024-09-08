@@ -5,12 +5,12 @@ website_config:
     title: TSCSA # The default page title
     # The default page description
     description: The Student Computer Science Association is a place for students to demonstrate and apply their skills to the broader Trent community. # TODO: Improve this
+  hackathon_url: &hackathonLink https://hacktrent.ca/
   # Socials - The `&<value>` are anchors which let us use these elsewhere in the config with `*<value>``
   email: &contactEmail 'tcscatrent@outlook.com'
   discord: &discordLink https://discord.gg/serea2sPAd
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
-  hackathon_url: &hackathonLink https://hacktrent.com/
   tagline: Where innovation happens
   # Social Icons
   social_icons:

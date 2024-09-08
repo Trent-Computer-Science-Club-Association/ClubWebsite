@@ -9,9 +9,6 @@ import HeroBanner from '../components/HeroBanner';
 import Footer from '../components/Footer';
 import Section from '../layouts/Section';
 import HackathonModal from '../components/HackathonModal';
-import Modal from 'react-modal';
-
-Modal.setAppElement('#__next'); // Set the app element for accessibility
 
 export default function Home() {
   const { sections } = home_page;
@@ -35,7 +32,7 @@ export default function Home() {
         </main>
         <Footer />
       </section>
-      <HackathonModal onRequestClose={() => {}} />
+      <HackathonModal />
     </>
   );
 }
