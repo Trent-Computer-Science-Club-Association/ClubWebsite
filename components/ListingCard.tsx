@@ -3,6 +3,22 @@ import styles from '../styles/components/ListingCard.module.scss';
 import { Listing, ContactSubject } from '../config';
 import DynamicIcon from '../components/DynamicIcon';
 
+const getUnderlineClass = (type: ContactSubject) => {
+  const baseClass = styles.underline;
+  switch (type) {
+    case ContactSubject.Development:
+      return `${baseClass} ${styles.developerUnderline}`;
+    case ContactSubject.Creative:
+      return `${baseClass} ${styles.creativeUnderline}`;
+    case ContactSubject.Managerial:
+      return `${baseClass} ${styles.managerialUnderline}`;
+    case ContactSubject.Volunteering:
+      return `${baseClass} ${styles.volunteerUnderline}`;
+    default:
+      return baseClass;
+  }
+};
+
 interface ListingCardProps {
   position: Listing;
   onLearnMore: (position: Listing) => void;
@@ -11,22 +27,6 @@ interface ListingCardProps {
 const ListingCard: React.FC<ListingCardProps> = ({ position, onLearnMore }) => {
   const isHighestPriority = position.priority === 1;
   const borderClass = isHighestPriority ? styles.gradientBorder : '';
-
-  const getUnderlineClass = (type: ContactSubject) => {
-    const baseClass = styles.underline;
-    switch (type) {
-      case ContactSubject.Development:
-        return `${baseClass} ${styles.developerUnderline}`;
-      case ContactSubject.Creative:
-        return `${baseClass} ${styles.creativeUnderline}`;
-      case ContactSubject.Managerial:
-        return `${baseClass} ${styles.managerialUnderline}`;
-      case ContactSubject.Volunteering:
-        return `${baseClass} ${styles.volunteerUnderline}`;
-      default:
-        return baseClass;
-    }
-  };
 
   return (
     <div className={`${styles.border} ${borderClass}`}>

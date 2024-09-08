@@ -1,43 +1,28 @@
-import React, { type Dispatch, useState } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Button from '../components/Button';
 import styles from '../styles/layouts/Listing.module.scss';
 import modalStyles from '../styles/components/Modal.module.scss';
 import Modal from 'react-modal';
-import { website_config, type ContactSubject, type Listing } from '../config';
+import { website_config, type Listing } from '../config';
 import Link from 'next/link';
 import ListingCard from '../components/ListingCard';
 
 interface ListingsSectionProps {
-  positions?: Listing[];
-  setDropDownValue: Dispatch<ContactSubject | undefined>;
+  positions: Listing[];
 }
 
 // Set the app element for accessibility
 Modal.setAppElement('#__next');
 
-const ListingsSection: React.FC<ListingsSectionProps> = ({
-  positions = [],
-  setDropDownValue,
-}) => {
+const ListingsSection = ({ positions }: ListingsSectionProps) => {
   // State for expanded view and modal
   const [isExpanded, setIsExpanded] = useState(false);
   const [modalState, setModalState] = useState<Listing | undefined>();
 
   // Number of cards to display per row
   const cardsPerRow = 3;
-
-  // Handle the apply action
-  const handleApply = () => {
-    setDropDownValue(modalState?.type ?? undefined);
-    setModalState(undefined);
-    // Scroll to the contact form
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   // Render content when there are no open positions
   const getNoPositionsContent = () => (
@@ -132,7 +117,11 @@ const ListingsSection: React.FC<ListingsSectionProps> = ({
             </ul>
             <div className={modalStyles.buttonContainer}>
               <Button onClick={() => setModalState(undefined)} label='Close' />
-              <Button onClick={handleApply} label='Apply' />
+              <Button
+                href={`?subject=${modalState.type}`}
+                onClick={() => setModalState(undefined)}
+                label='Apply'
+              />
             </div>
           </div>
         )}

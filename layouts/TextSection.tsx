@@ -34,7 +34,6 @@ const TextSection = ({
             buttonStyle={getButtonStyle(button.style)}
             href={button.href}
             label={button.text}
-            onClick={button.onClick}
           />
         )}
       </div>

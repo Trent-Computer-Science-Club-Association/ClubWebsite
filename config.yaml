@@ -95,7 +95,7 @@ contact_page:
     button:
       style: Sponsor
       text: Become a Sponsor
-      href: ''
+      href: '?subject=Sponsor'
   listings:
     - title: Frontend Developer
       description: We're looking for a talented frontend developer to join our team.

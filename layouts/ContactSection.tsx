@@ -1,82 +1,130 @@
+// TODO: Cleanup this file
+// TODO: When we clear the form clear the urlParams without causing a reload or scroll
+// TODO: Make sure we only scroll on first navigation somehow (Look into this)
+
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ContactForm, {
   Constraint,
   TextInput,
   DropdownInput,
   Group,
-  updateItem,
   type FormItem,
   type SubmissionResponse,
 } from '../components/ContactForm';
+import { processFormData } from '../pages/api/submitForm';
 import TextBox from '../components/TextBox';
 import styles from '../styles/layouts/ContactSection.module.scss';
-import { website_config, ContactSubject } from '../config';
+import { website_config, ContactSubject, contactSubject } from '../config';
+
+const generateForm = (dropDownValue: ContactSubject | undefined) => [
+  Group(
+    'Top Level',
+    TextInput('Name', [], 'Enter your name', undefined, false, true),
+    DropdownInput(
+      'Subject',
+      'Select your subject',
+      Object.entries(ContactSubject).map(([key, value]) => ({
+        label: key,
+        value: value,
+      })),
+      dropDownValue,
+      true
+    )
+  ),
+  TextInput(
+    'Email',
+    [Constraint.Email],
+    'Enter your email',
+    undefined,
+    false,
+    true
+  ),
+  TextInput('Message', [], 'Enter your message', undefined, true, true),
+];
 
 interface ContactSectionProps {
-  dropDownValue: ContactSubject | undefined;
-  onSubmit: (formData: Record<string, string>) => Promise<SubmissionResponse>;
+  submissionURL: string;
 }
-
-export default function ContactSection({
-  dropDownValue,
-  onSubmit,
-}: ContactSectionProps) {
-  const clearedForm = [
-    Group(
-      'Top Level',
-      TextInput('Name', [], 'Enter your name', undefined, false, true),
-      DropdownInput(
-        'Subject',
-        'Select your subject',
-        Object.entries(ContactSubject).map(([key, value]) => ({
-          label: key,
-          value: value,
-        })),
-        dropDownValue,
-        true
-      )
-    ),
-    TextInput(
-      'Email',
-      [Constraint.Email],
-      'Enter your email',
-      undefined,
-      false,
-      true
-    ),
-    TextInput('Message', [], 'Enter your message', undefined, true, true),
-  ];
-  const [formContent, setFormContent] = useState<FormItem[]>(clearedForm);
-  // Handle The DropDown Change
+export default function ContactSection({ submissionURL }: ContactSectionProps) {
+  const onSubmit = async (
+    formData: Record<string, string>
+  ): Promise<SubmissionResponse> => {
+    const validFormData = processFormData(formData);
+    if (validFormData == undefined) {
+      // Invalid Form Submission
+      return {
+        success: false,
+        status: 500, // Unknown Response
+        message: `Impossible Invalid Payload Provided, Please Contact ${website_config.email}.`,
+      };
+    } else {
+      // Submit Our Form
+      try {
+        const response = await fetch('/api/submitForm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(validFormData),
+        });
+        // Build A Blanket Response
+        const submissionResponse: SubmissionResponse = {
+          success: false,
+          status: response.status,
+          message: 'An unknown error occurred. Please try again.',
+        };
+        // Process the response
+        if (response.status == 200 && response.ok) {
+          const data = await response.json();
+          if ('message' in data && typeof data.message === 'string') {
+            submissionResponse.success = true;
+            submissionResponse.message = data.message;
+          }
+        }
+        return submissionResponse;
+      } catch (e) {
+        console.error('Failed to submit form, unhandled error', e);
+        return {
+          success: false,
+          status: 500, // Unknown Response
+          message: 'An unknown error occurred. Please try again.',
+        };
+      }
+    }
+  };
+  // Drop Down Value
+  const queryParams = useSearchParams();
+  const rawValue = queryParams.get('subject');
+  const dropDownValueResult = contactSubject.safeParse(rawValue);
+  const dropDownValue = dropDownValueResult.success
+    ? dropDownValueResult.data
+    : undefined;
+  // Build Form
+  const [formContent, setFormContent] = useState<FormItem[]>(
+    generateForm(dropDownValue)
+  );
   useEffect(() => {
-    setFormContent((currentValue) => {
-      return updateItem(
-        currentValue,
-        'Subject',
-        DropdownInput(
-          'Subject',
-          'Select your subject',
-          Object.entries(ContactSubject).map(([key, value]) => ({
-            label: key,
-            value: value,
-          })),
-          dropDownValue,
-          true
-        )
-      );
-    });
+    if (dropDownValue == undefined) return;
+    setFormContent(generateForm(dropDownValue));
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [dropDownValue]);
   return (
     <div className={styles.contactSection} id='contact-form'>
       <div className={styles.left}>
+        {/* <Suspense> */}
         <ContactForm
           title='Get In Touch'
           description='Fill out the form below to contact us.'
-          clearForm={() => setFormContent(clearedForm)}
+          clearForm={() => setFormContent(generateForm(undefined))}
           onSubmit={onSubmit} // Defines what data is sent to the server and how its handled (ex. adding metadata)
           formContent={formContent}
           setFormContent={setFormContent}
         />
+        {/* </Suspense> */}
       </div>
       <div className={styles.right}>
         <div className={styles.topBox}>

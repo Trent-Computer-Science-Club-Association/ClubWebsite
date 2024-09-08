@@ -87,21 +87,6 @@ export const Group = (label: string, ...inputs: GroupItem[]): Group => {
 };
 // Helpers
 type Propagate = (changeItem: FormItem) => void;
-export const updateItem = (
-  formContent: FormItem[],
-  label: string,
-  formItem: GroupItem
-) => {
-  return formContent.map((item) => {
-    if (item.type === InputType.Group) {
-      item.inputs = item.inputs.map((item) => {
-        if (item.label === label) return formItem;
-        return item;
-      });
-    } else if (item.label === label) return formItem;
-    return item;
-  });
-};
 const isEmailItem = (formItem: FormItem) =>
   formItem.type === InputType.TextInput &&
   formItem.constraints.includes(Constraint.Email);

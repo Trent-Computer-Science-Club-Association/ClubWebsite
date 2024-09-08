@@ -111,8 +111,6 @@ export interface TextSection extends SectionBase {
     style: TextSectionButton;
     text: string;
     href: string;
-    // Config cannot interact with this
-    onClick?: () => void;
   };
 }
 const textSection = sectionBase.extend({
@@ -202,11 +200,11 @@ const listing = z.strictObject({
 
 interface ContactPage {
   sponsor_section: TextSection;
-  listings?: Listing[];
+  listings: Listing[];
 }
 const contactPage = z.strictObject({
   sponsor_section: textSection,
-  listings: z.array(listing).optional(),
+  listings: z.array(listing),
 });
 
 // config
