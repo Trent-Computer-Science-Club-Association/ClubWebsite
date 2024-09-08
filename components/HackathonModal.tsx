@@ -19,7 +19,7 @@ import BottomLeft from '../public/Hackathon/bottom-left.svg';
 // Fonts - A collection of fonts used throughout the website from Utils
 import { Fonts } from '../utils';
 
-const MODAL_DISPLAY_INTERVAL = moment.duration(2, 'seconds').asMilliseconds(); // 2 seconds in milliseconds
+const MODAL_DISPLAY_INTERVAL = moment.duration(2, 'days').asMilliseconds(); // 2 days in milliseconds
 
 const HackathonModal = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
