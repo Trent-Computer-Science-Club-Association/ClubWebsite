@@ -11,7 +11,7 @@
 
 // An additional note, do not use `z.object` instead use `z.strictObject` or else we are not fully validating the values
 
-import z from 'zod';
+import z, { type ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
@@ -20,10 +20,15 @@ export interface ImageDescription {
   src: string;
   alt: string;
 }
+const imageDescription = z.strictObject({
+  src: z.string(),
+  alt: z.string(),
+});
 // Section
 export enum SectionType {
   TextSection = 'TextSection',
   NewsSection = 'NewsSection',
+  EventSection = 'EventSection',
 }
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
@@ -94,7 +99,37 @@ interface FooterConfig {
 const footerConfig = z.strictObject({
   text: z.string(),
 });
-// homepage sections
+// Events
+export interface EventItem {
+  title: string;
+  href: string;
+  main_event: boolean;
+  start_date: Date;
+  end_date: Date;
+  image: ImageDescription;
+  location: string;
+}
+const eventItem = z
+  .strictObject({
+    title: z.string(),
+    href: z.string(),
+    main_event: z.boolean().optional().default(false),
+    start_date: z.date(),
+    end_date: z.date(),
+    image: imageDescription,
+    location: z.string(),
+  })
+  .refine(
+    ({ start_date, end_date }) => {
+      if (end_date < start_date) return false;
+      return true;
+    },
+    {
+      message: 'Event ends before it starts.',
+      path: ['events'],
+    }
+  );
+// Sections
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;
   text: string;
@@ -107,10 +142,7 @@ export interface TextSection extends SectionBase {
 const textSection = sectionBase.extend({
   section_type: z.literal(SectionType.TextSection),
   text: z.string(),
-  image: z.strictObject({
-    src: z.string(),
-    alt: z.string(),
-  }),
+  image: imageDescription,
   button: z
     .strictObject({
       text: z.string(),
@@ -139,32 +171,76 @@ const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.NewsSection),
   news_feed: z.array(newsItem),
 });
-type HomeSection = TextSection | NewsSection;
-const homeSection = z.union([textSection, newsSection]);
+export enum EventGridStyle {
+  /**
+   * All events are shown in a grid.
+   */
+  Grid = 'EventGrid',
+  /**
+   * 3 Events are shown in a regular list.
+   */
+  List = 'EventList',
+  /**
+   * 3 Events are shown in a list, but only future events are shown.
+   */
+  HomeList = 'HomeList',
+}
+const eventGridStyle = z.nativeEnum(EventGridStyle);
+export interface EventSection extends SectionBase {
+  section_type: SectionType.EventSection;
+  grid_style: EventGridStyle;
+  events: EventItem[];
+}
+const eventSection = sectionBase.extend({
+  section_type: z.literal(SectionType.EventSection),
+  grid_style: eventGridStyle,
+  events: z.array(eventItem).refine(
+    (events: EventItem[]) => {
+      // Ensure we can only have one main_event
+      let foundMainEvent = false;
+      for (const event of events) {
+        if (event.main_event) {
+          if (foundMainEvent) return false;
+          foundMainEvent = true;
+        }
+      }
+      return true;
+    },
+    {
+      message: 'Only one event can be designated as the main event.',
+      path: ['events'],
+    }
+  ),
+});
+export type Section = TextSection | NewsSection | EventSection;
+const section = z.union([textSection, newsSection, eventSection]);
+// Home page
 interface HomePage {
-  sections: HomeSection[];
+  sections: Section[];
 }
 const homePage = z.strictObject({
-  sections: z.array(homeSection),
+  sections: z.array(section),
 });
+
 // config
-export type Section = HomeSection;
 interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];
   footer_config: FooterConfig;
   // Page Configs
   home_page: HomePage;
+  events: EventItem[];
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
   home_page: homePage,
+  events: z.array(eventItem),
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
-function formatConfigError(error: z.ZodError) {
+function formatConfigError(error: ZodError) {
   const formattedError = fromZodError(error, {
     prefix: 'Configuration error',
     prefixSeparator: ': ',
@@ -199,3 +275,4 @@ export const website_config = config.website_config;
 export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
+export const events = config.events;
