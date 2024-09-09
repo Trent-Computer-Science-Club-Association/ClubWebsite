@@ -6,3 +6,17 @@ hr {
   @apply bg-color-2 h-0.5;
   @apply w-4/5;
 }
+
+// Default Styles
+.primaryBackground {
+  @apply bg-color-3;
+}
+.primaryForeground {
+  @apply bg-color-1;
+}
+.secondaryBackground {
+  @apply bg-color-1;
+}
+.secondaryForeground {
+  @apply bg-color-3;
+}

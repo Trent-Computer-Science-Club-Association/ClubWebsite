@@ -17,9 +17,7 @@ export default function About() {
         <main className={styles.MainArea}>
           {/* Sections found in the config */}
           {sections.map((section, i) => (
-            <section key={i}>
-              <Section sectionConfig={section} index={i} />
-            </section>
+            <Section sectionConfig={section} index={i + 1} key={i} />
           ))}
         </main>
         <Footer />

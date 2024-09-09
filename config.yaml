@@ -93,30 +93,52 @@ home_page:
 # Configuration for About page
 about_page:
   sections:
-    - section_type: TextSection
+    - section_type: AboutSection
       section_header: Who Are We?
+      header_style: Inline
       text: The Trent Computer Science Club Association is a student-run organization dedicated to enriching the computer science experience at Trent University. From coding workshops to hackathons, the TCSCA offers a variety of opportunities for students to expand their knowledge and network effectively to break into the tech industry.
       image:
-        src: /AboutUsPlaceHolder.jpg
-        alt: Who Are We Image
-    - section_type: TextSection
+        src: /about1.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: People
+          title: Our Dedicated Members
+          text: Meet the individuals who lead our club and drive our initiatives.
+        - icon: HourGlass
+          title: More Text
+          text: Example text to say stuff about something about us
+        - icon: Award
+          title: Even More text
+          text: Example text to say stuff about something about us
+    - section_type: AboutSection
       section_header: Our Mission
-      text: Our mission is to improve the computer science experience at Trent university and create an environment where every member can easily pursue their tech interests. Whether it's mastering a programming language, developing cutting-edge software, enhancing academic success, or simply gaining a better understanding of how technology shapes our world. The TCSCA provides the support, resources, and community to help you achieve your goals and advance in your tech journey
+      text: Our mission is  to create a vibrant community of computer science enthusiasts, where students can explore their interests, develop their skills, and collaborate on innovative projects. We strive to inspire the next generation of technology leaders and empower them to make a positive impact on the world.
       image:
-        src: /AboutUsPlaceHolder.jpg
-        alt: Our Mission Image
-    - section_type: TextSection
+        src: /about2.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: LightBulb
+          title: Inspiring Innovation
+          text: We aim to inspire our members to explore the boundless possibilities of computer science and technology.
+        - icon: Development
+          title: Empowering Developers
+          text: We empower our members to develop their skills, collaborate on projects, and make a meaningful impact.
+        - icon: Target
+          title: Fostering Innovation
+          text: We encourage our members to think outside the box and develop innovative solutions to real-world problems.
+    - section_type: AboutSection
       section_header: Why Join Us?
-      text: Joining the Trent Computer Science Club Association opens the door to countless opportunities. You'll gain hands-on experience through collaborative projects and workshops, build a network and connect with industry professionals, and develop skills that will give you a competitive edge in your future prospects. Whether you're looking to boost your resume, make new friends, or just have fun with technology, The TCSCA is the place to be
+      text: Our mission is  to create a vibrant community of computer science enthusiasts, where students can explore their interests, develop their skills, and collaborate on innovative projects. We strive to inspire the next generation of technology leaders and empower them to make a positive impact on the world.
       image:
-        src: /AboutUsPlaceHolder.jpg
-        alt: Why Join Us Image
-    - section_type: TextSection
-      section_header: Meet The Team
-      text: Meet the team behind the Trent Computer Science Club Association! Our dedicated executive members and volunteers work tirelessly to ensure the club runs smoothly and continues to grow.
-      image:
-        src: /AboutUsPlaceHolder.jpg
-        alt: Meet The Team Image
-      button:
-        text: Join Now!
-        href: /Apply
+        src: /about3.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: People
+          title: Networking Opportunities
+          text: Connect with a diverse community of computer science enthusiasts and build lasting professional relationships.
+        - icon: HourGlass
+          title: Skill Development
+          text: Participate in workshops, hackathons, and project-based learning to enhance your technical and soft skills.
+        - icon: Award
+          title: Community Involvement
+          text: Contribute to the local community through volunteering, outreach programs, and collaborative projects.
