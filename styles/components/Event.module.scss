@@ -1,0 +1,50 @@
+.container {
+  @apply grid md:block max-w-full max-h-full w-full grid-rows-[1fr_max-content];
+  @apply m-auto rounded-xl overflow-hidden shadow-l1;
+  @apply relative cursor-pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  // Hover
+  &:hover {
+    @apply shadow-l1Hover;
+  }
+  // Closed
+  &.closed > img {
+    @apply brightness-50 blur-sm;
+  }
+  .imageContainer {
+    @apply aspect-event;
+  }
+  // Override default image styling
+  img {
+    @apply static #{!important}; // This line causes tailwind lsp issues, its needed for !important in scss though
+    // Need to use normal css here because of https://github.com/tailwindlabs/tailwindcss/discussions/8733
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  // Handle sub events
+  div {
+    @apply w-full;
+    @apply px-4 py-3;
+    @apply left-0 bottom-0;
+    @apply min-[850px]:absolute;
+    @apply text-txt-1;
+    @apply bg-event-content bg-opacity-90 backdrop-blur-sm;
+    // Make the time element no wrap
+    // Make the span a block
+    h3 {
+      @apply text-xl;
+    }
+    span {
+      @apply items-center text-txt-4;
+      @apply max-[450px]:text-xs;
+      svg {
+        @apply inline;
+        @apply mr-2;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.container {
+  @apply py-12 px-8;
+
+  & > div {
+    @apply grid gap-4 grid-cols-3;
+    & > p {
+      @apply text-txt-1 w-full text-center col-span-full;
+      @apply text-lg;
+    }
+    // Mobile
+    @apply max-[1200px]:grid-cols-2;
+    @apply max-[675px]:grid-cols-1;
+  }
+
+  ul {
+    @apply grid;
+    @apply p-4;
+    @apply grid-flow-col auto-cols-4 gap-4;
+    @apply justify-center items-center;
+    @apply overflow-x-auto;
+    li {
+      @apply flex items-center cursor-pointer;
+    }
+    .icon {
+      @apply text-txt-1 opacity-75;
+      &:hover {
+        @apply opacity-100;
+      }
+    }
+    button {
+      @apply w-full aspect-square;
+      @apply rounded-full;
+      @apply bg-txt-1 opacity-50;
+      &:hover,
+      &.active {
+        @apply opacity-100;
+      }
+    }
+  }
+}
