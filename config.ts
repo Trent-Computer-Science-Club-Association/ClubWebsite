@@ -62,6 +62,7 @@ const metaConfig = z.strictObject({
 interface WebsiteConfig {
   title: string;
   meta: MetaConfig;
+  hackathon_url: string;
   email: string;
   discord: string;
   instagram: string;
@@ -73,6 +74,7 @@ interface WebsiteConfig {
 const websiteConfig = z.strictObject({
   title: z.string(),
   meta: metaConfig,
+  hackathon_url: z.string(),
   email: z.string(),
   discord: z.string(),
   instagram: z.string(),
