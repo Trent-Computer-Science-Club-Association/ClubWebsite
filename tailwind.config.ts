@@ -38,6 +38,7 @@ const config: Config = {
       },
       animation: {
         hackathonModalFloat: 'hackathonModalFloat 5s ease-in-out infinite',
+      },
       spacing: {
         '136': '30rem',
       },
