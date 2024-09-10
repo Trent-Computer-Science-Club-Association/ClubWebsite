@@ -1,6 +1,7 @@
 # General website configuration
 website_config:
   title: Trent Computer Science Club Association
+  tagline: Where innovation happens
   meta: # Configurations for the website meta data
     title: TSCSA # The default page title
     # The default page description
@@ -11,7 +12,7 @@ website_config:
   instagram: &instagramLink https://www.instagram.com/trentcsca/
   linkedin: &linkedinLink https://www.linkedin.com/company/trent-computer-science-society
   github: &githubLink https://github.com/Trent-Computer-Science-Club-Association/ClubWebsite
-  tagline: Where innovation happens
+  hackathon_url: &hackathonLink https://hacktrent.ca/
   # Social Icons
   social_icons:
     - alt_text: Link to TCSCA Instagram
@@ -49,6 +50,17 @@ page_list:
 # Footer Config
 footer_config:
   text: Got questions or want to get involved? We'd love to hear from you! Feel free to contact us at the socials listed or by our  [contact us](Contact) page. We'd love to hear from you and help you get the most out of your experience with the Trent Computer Science Club Association.
+# Configuration for events
+events: &events # Future Events
+  - title: Hack Trent
+    href: *hackathonLink
+    start_date: 2024-11-08
+    end_date: 2024-11-10
+    main_event: true # This is the main_event we can only have one of these
+    location: TBD # TODO: Placeholder
+    image:
+      src: /events/TrentHacks1.webp
+      alt: Electric City Hacks returns as Hack Trent for its fifth time
 # Configuration for the homepage
 home_page:
   sections:
@@ -61,6 +73,10 @@ home_page:
       button:
         text: Learn More
         href: /About
+    - section_type: EventSection
+      section_header: Events
+      grid_style: HomeList
+      events: *events
     - section_type: NewsSection
       section_header: Latest News
       news_feed:

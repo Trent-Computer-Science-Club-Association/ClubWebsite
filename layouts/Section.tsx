@@ -5,6 +5,7 @@ import NewsSection from './NewsSection';
 import TextSection from './TextSection';
 import ContactSection from './ContactSection';
 import ListingSection from './ListingsSection';
+import EventSection from './EventSection';
 import { SectionType, type Section } from '../config';
 
 export enum Style {
@@ -57,6 +58,8 @@ const getContent = (sectionConfig: Section, style: Style): JSX.Element => {
       return (
         <ListingSection section={sectionConfig} className={sectionStyle} />
       );
+    case SectionType.EventSection:
+      return <EventSection section={sectionConfig} className={sectionStyle} />;
   }
 };
 

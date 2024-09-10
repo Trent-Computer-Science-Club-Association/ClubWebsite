@@ -1,7 +1,7 @@
 .container {
   @apply p-4 text-white;
   .newsItem {
-    @apply flex justify-between rounded-xl p-4 m-0.5 mb-5 items-center;
+    @apply flex justify-between rounded-xl p-4 m-0.5 mb-5 items-center shadow-l1;
     @apply bg-newsItem-color;
     @apply duration-300 ease-in-out;
     .content {
@@ -23,8 +23,11 @@
       @apply max-[350px]:text-wrap;
     }
     &:hover {
-      @apply shadow-lg;
+      @apply shadow-xl; // Default is a tiny shadow
       @apply transition-[box-shadow];
     }
+  }
+  a.newsItem:hover {
+    @apply shadow-l1Hover; // When it is interactive we make it bigger
   }
 }

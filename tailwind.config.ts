@@ -14,6 +14,8 @@ const config: Config = {
         'color-1': '#0f3b26', // Main Green
         'color-2': '#f9f7f7', // NavBar Off White
         'color-3': '#222', // Dark Gray
+        'txt-1': '#fff',
+        'txt-4': '#ddd',
         'active-1': '#4db6ac', // TODO: Decide on a color for this
         'hover-1': '#4db6ac', // TODO: Decide on a color for this
         'hover-2': '#89B4FA', // TODO: Decide on a color for this
@@ -22,12 +24,42 @@ const config: Config = {
         'area-header': '#DCD489', // Area Header
         'event-banner': '#5E18EB', // Event Banner Background
         'newsItem-color': '#135b3f', // a shade of green
+        'event-content': '#403c3c',
         socials: '#7BD4CB', // Social
         // Position Colors
         'development-color': '#4DEB91', // Development Color
         'creative-color': '#88EB3D', // Creative Color
         'managerial-color': '#FBD93C', // Managerial Color
         'volunteer-color': '#FAB22D', // Volunteer Color
+      },
+      keyframes: {
+        hackathonModalFloat: {
+          '0%, 100%': {
+            transform: 'translate-y-0 rotate-3',
+            '-webkit-transform': 'translateY(0) rotate(3deg)',
+          },
+          '50%': {
+            transform: '-translate-y-5 rotate-0',
+            '-webkit-transform': 'translateY(-1.25rem) rotate(0deg)',
+          },
+        },
+      },
+      animation: {
+        hackathonModalFloat: 'hackathonModalFloat 5s ease-in-out infinite',
+      },
+      spacing: {
+        '136': '30rem',
+      },
+      aspectRatio: {
+        event: '2 / 1', // This controls the aspect ratio of event elements, do not touch you will probably break stuff.
+      },
+      boxShadow: {
+        // Box Shadow - based on https://codepen.io/sdthornton/pen/wBZdXq
+        l1: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        l1Hover: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+      },
+      gridAutoColumns: {
+        '4': 'minmax(1rem, 1rem)',
       },
     },
   },
