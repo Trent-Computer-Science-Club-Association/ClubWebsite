@@ -69,11 +69,11 @@ interface WebsiteConfig {
 const websiteConfig = z.strictObject({
   title: z.string(),
   meta: metaConfig,
+  hackathon_url: z.string(),
   email: z.string(),
   discord: z.string(),
   instagram: z.string(),
   linkedin: z.string(),
-  hackathon_url: z.string(),
   tagline: z.string(),
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),

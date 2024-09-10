@@ -24,6 +24,7 @@ const Font_Open_Sans = Open_Sans({
   subsets: ['latin'],
 });
 
+// Hackathon Fonts
 const Font_Orbitron = Orbitron({ subsets: ['latin'], weight: '600' });
 const Font_Poppins = Poppins({ subsets: ['latin'], weight: '400' });
 
@@ -35,6 +36,9 @@ export const Fonts = {
   Anonymous_Pro: Font_Anonymous_Pro.className,
   // Open_Sans
   Open_Sans: Font_Open_Sans.className,
+
+  // Hackathon Fonts
+
   // Font_Orbitron
   Orbitron: Font_Orbitron.className,
   // Font_Poppins
