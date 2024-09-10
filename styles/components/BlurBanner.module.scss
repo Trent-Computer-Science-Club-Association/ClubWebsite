@@ -19,8 +19,9 @@
       @apply bg-black/40;
       @apply z-10;
       h1 {
-        @apply w-1/2;
+        @apply w-full px-4;
         @apply text-6xl font-bold text-white leading-normal text-center;
+        @apply max-w-4xl;
       }
     }
 

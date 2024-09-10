@@ -1,6 +1,6 @@
 # General website configuration
 website_config:
-  title: Trent Student Computer Science Association
+  title: Trent Computer Science Club Association
   meta: # Configurations for the website meta data
     title: TSCSA # The default page title
     # The default page description
