@@ -24,6 +24,21 @@ const config: Config = {
         'event-content': '#403c3c',
         socials: '#7BD4CB', // Social
       },
+      keyframes: {
+        hackathonModalFloat: {
+          '0%, 100%': {
+            transform: 'translate-y-0 rotate-3',
+            '-webkit-transform': 'translateY(0) rotate(3deg)',
+          },
+          '50%': {
+            transform: '-translate-y-5 rotate-0',
+            '-webkit-transform': 'translateY(-1.25rem) rotate(0deg)',
+          },
+        },
+      },
+      animation: {
+        hackathonModalFloat: 'hackathonModalFloat 5s ease-in-out infinite',
+      },
       spacing: {
         '136': '30rem',
       },

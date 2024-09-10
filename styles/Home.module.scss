@@ -5,3 +5,24 @@
 .MainArea {
   @apply bg-color-1 flex-grow;
 }
+.Modal {
+  @apply w-11/12 max-w-2xl outline-none overflow-hidden;
+  @apply bg-opacity-0;
+}
+
+.modalImageContainer {
+  @apply absolute w-52 h-72 z-40;
+  @apply top-8 left-1/2;
+  @keyframes float {
+    0% {
+      @apply translate-y-0 rotate-3;
+    }
+    50% {
+      @apply -translate-y-5 rotate-0;
+    }
+    100% {
+      @apply translate-y-0 rotate-3;
+    }
+  }
+  animation: float 5s ease-in-out infinite;
+}
