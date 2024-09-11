@@ -39,3 +39,12 @@ This project is licensed under the [LGPL-2.1 License](LICENSE).
 - `npm run start` - Starts the next.js server in production mode
 - `npm run lint` - Runs the linter
 - `npm run format` - Runs prettier to format code
+
+## Contributing
+
+We welcome contributions to this project, however, please note that we do have plans and goals, so please contact us before doing anything that heavily impacts UI or functionality. (Fixes always welcome)
+
+## Contact Us
+
+- The best way to contact our devs is via Discord, you can join our Discord server [here](https://discord.gg/serea2sPAd).
+- Additionally, you can use the contact us page [here](https://tcsca.ca/Contact).
