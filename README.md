@@ -1,20 +1,36 @@
-## Getting Started
+<p align="center">
+  <img src="public/logo.svg" alt="Trent Computer Science Club Association Logo" width="200">
+</p>
+# Trent Computer Science Club Association Website
+This repository contains the source code for the official website of the Trent University Computer Science Club Association. The website serves as a central hub for club activities, announcements, resources, and information about our club's events.
 
-This project is a simple starting point for any next.js applications. It is configured to use `tailwind css`, `typescript`, `next.js`, `eslint` and `prettier`.
+## Pages
+- **[Home](https://tcsca.ca)** - The main page for the website
+- **[About Us](https://tcsca.ca/About)** - The page for our about us page
+- **[Events](https://tcsca.ca/Events)** - The page for our events
+- **[Contact Us](https://tcsca.ca/Contact)** - The page for our contact us page
 
-In order to get started, fork this project, clone the forked repository and run `npm install`, then run `npm run dev` to start the development server.
+## Layout and Structure
+- **[pages](pages)** - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
+- **[components](components)** - This folder contains all components for the project
+- **[layouts](layouts)** - This folder contains all layouts for the project
+- **[styles](styles)** - This folder contains all styles for the project
+  - **[components](styles/components)** - This folder contains all styles for the components
+  - **[layouts](styles/layouts)** - This folder contains all styles for the layouts
+- **[utils.ts](utils.ts)** - This file contains all of our global utility functions
+
+- Additionally, in the root directly you will find a `config.ts` file and `config.yaml` file.
+  - `config.ts` is the backbone of our site and ensures type safety for our configuration
+  - `config.yaml` is the configuration file for the website
+
+
+## License
+This project is licensed under the [LGPL-2.1 License](LICENSE).
 
 ## Commands
-
 - `npm run dev` - Runs the next.js development process
+  - if you need to use serverless functions in your testing, run `vercel dev` instead
 - `npm run build` - Runs the next.js build process
 - `npm run start` - Starts the next.js server in production mode
 - `npm run lint` - Runs the linter
 - `npm run format` - Runs prettier to format code
-
-## Layout
-
-- `pages` - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
-- `styles` - This folder contains all styles for the project
-- `components` - This folder contains all components for the project
-- `_Static` - This folder will contain any static code or files for the project
