@@ -1,16 +1,20 @@
 <p align="center">
   <img src="public/logo.svg" alt="Trent Computer Science Club Association Logo" width="200">
 </p>
+
 # Trent Computer Science Club Association Website
+
 This repository contains the source code for the official website of the Trent University Computer Science Club Association. The website serves as a central hub for club activities, announcements, resources, and information about our club's events.
 
 ## Pages
+
 - **[Home](https://tcsca.ca)** - The main page for the website
 - **[About Us](https://tcsca.ca/About)** - The page for our about us page
 - **[Events](https://tcsca.ca/Events)** - The page for our events
 - **[Contact Us](https://tcsca.ca/Contact)** - The page for our contact us page
 
 ## Layout and Structure
+
 - **[pages](pages)** - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
 - **[components](components)** - This folder contains all components for the project
 - **[layouts](layouts)** - This folder contains all layouts for the project
@@ -23,11 +27,12 @@ This repository contains the source code for the official website of the Trent U
   - `config.ts` is the backbone of our site and ensures type safety for our configuration
   - `config.yaml` is the configuration file for the website
 
-
 ## License
+
 This project is licensed under the [LGPL-2.1 License](LICENSE).
 
 ## Commands
+
 - `npm run dev` - Runs the next.js development process
   - if you need to use serverless functions in your testing, run `vercel dev` instead
 - `npm run build` - Runs the next.js build process
