@@ -4,12 +4,15 @@
     @apply flex justify-between rounded-xl p-4 m-0.5 mb-5 items-center shadow-l1;
     @apply bg-newsItem-color;
     @apply duration-300 ease-in-out;
+    @apply max-[600px]:flex-col;
     .content {
       h3 {
         @apply text-2xl mr-10;
       }
       span {
         @apply flex items-center;
+        @apply max-[600px]:mb-4;
+        @apply max-[400px]:text-xs;
       }
       time {
         @apply inline-flex items-center brightness-[.9];
