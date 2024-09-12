@@ -1,8 +1,17 @@
 import React from 'react';
 import Image from '../components/Image';
-import Button from '../components/Button';
+import Button, { ButtonStyle } from '../components/Button';
 import styles from '../styles/layouts/TextSection.module.scss';
-import { type TextSection } from '../config';
+import { TextSectionButton, type TextSection } from '../config';
+
+const getButtonStyle = (buttonStyle: TextSectionButton): ButtonStyle => {
+  switch (buttonStyle) {
+    case TextSectionButton.Default:
+      return ButtonStyle.Default;
+    case TextSectionButton.Sponsor:
+      return ButtonStyle.Sponsor;
+  }
+};
 
 interface Props {
   section: TextSection;
@@ -21,7 +30,11 @@ const TextSection = ({
       <div className={styles.contentContainer}>
         <p>{text}</p>
         {button != undefined && (
-          <Button href={button.href} label={button.text} />
+          <Button
+            buttonStyle={getButtonStyle(button.style)}
+            href={button.href}
+            label={button.text}
+          />
         )}
       </div>
     </div>

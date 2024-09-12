@@ -22,6 +22,9 @@
     @apply opacity-80;
     @apply hover:shadow-lg;
   }
+  &.sponsor {
+    @apply bg-event-banner text-white border-white;
+  }
 }
 // Social Button Styles
 .social {
