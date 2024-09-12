@@ -1,12 +1,5 @@
 .container {
   @apply grid grid-cols-3 w-full overflow-hidden;
-  h2 {
-    @apply bg-inherit;
-    @apply rounded-t-lg;
-    @apply px-4 py-2;
-    @apply text-2xl font-bold text-center text-color-2;
-    @apply z-10;
-  }
   // Border Radius
   span {
     @apply relative flex-grow;
@@ -37,4 +30,17 @@
   &.right {
     grid-template-columns: 1fr max-content 3rem;
   }
+}
+.container,
+.inline {
+  h2 {
+    @apply rounded-t-lg;
+    @apply px-4 py-2;
+    @apply text-2xl font-bold text-center text-color-2;
+    @apply z-10;
+  }
+}
+
+.inline > h2 {
+  @apply text-start text-4xl pl-32 pt-24;
 }

@@ -3,7 +3,13 @@ import React from 'react';
 import Link from 'next/link';
 import Button from '../components/Button';
 import { SlCalender, SlLocationPin } from 'react-icons/sl';
-import { Fonts, DateFormat, formatDate } from '../utils';
+import {
+  type SectionStyle,
+  getSectionStyling,
+  Fonts,
+  DateFormat,
+  formatDate,
+} from '../utils';
 import { type NewsSection, type NewsItem } from '../config';
 
 const NewsItemComponent = ({ newsItem }: { newsItem: NewsItem }) => {
@@ -43,12 +49,16 @@ const NewsItemComponent = ({ newsItem }: { newsItem: NewsItem }) => {
 
 interface NewsSectionProps {
   section: NewsSection;
+  style: SectionStyle;
   className?: string;
 }
-const NewsSection = ({ section, className }: NewsSectionProps) => {
+const NewsSection = ({ section, style, className }: NewsSectionProps) => {
   const { news_feed } = section;
+  const sectionStyle = getSectionStyling(style);
   return (
-    <div className={`${styles.container} ${className ?? ''}`}>
+    <div
+      className={`${styles.container} ${className ?? ''} ${sectionStyle.backgroundColor}`}
+    >
       {news_feed.map((item, i) => (
         <NewsItemComponent key={i} newsItem={item} />
       ))}

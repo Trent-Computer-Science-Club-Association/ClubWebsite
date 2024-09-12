@@ -1,9 +1,10 @@
-import styles from '../styles/layouts/Section.module.scss';
 import React from 'react';
 import SectionHeader, { Alignment } from './SectionHeader';
 import NewsSection from './NewsSection';
 import TextSection from './TextSection';
 import EventSection from './EventSection';
+import AboutSection from './AboutSection';
+import { SectionStyle } from '../utils';
 import { SectionType, type Section } from '../config';
 
 interface SectionProps {
@@ -14,14 +15,12 @@ interface SectionProps {
 const getStyle = (index: number) => {
   if (index % 2 === 0) {
     return {
-      headerStyle: styles.primaryHeader,
-      sectionStyle: styles.primaryStyle,
+      style: SectionStyle.Primary,
       alignment: Alignment.Left,
     };
   } else {
     return {
-      headerStyle: styles.secondaryHeader,
-      sectionStyle: styles.secondaryStyle,
+      style: SectionStyle.Secondary,
       alignment: Alignment.Right,
     };
   }
@@ -29,30 +28,32 @@ const getStyle = (index: number) => {
 
 const getContent = (
   sectionConfig: Section,
-  index: number,
-  sectionStyle: string
-) => {
+  sectionStyle: SectionStyle
+): JSX.Element => {
   switch (sectionConfig.section_type) {
     case SectionType.TextSection:
-      return <TextSection section={sectionConfig} className={sectionStyle} />;
+      return <TextSection section={sectionConfig} style={sectionStyle} />;
     case SectionType.NewsSection:
-      return <NewsSection section={sectionConfig} className={sectionStyle} />;
+      return <NewsSection section={sectionConfig} style={sectionStyle} />;
     case SectionType.EventSection:
-      return <EventSection section={sectionConfig} className={sectionStyle} />;
+      return <EventSection section={sectionConfig} style={sectionStyle} />;
+    case SectionType.AboutSection:
+      return <AboutSection section={sectionConfig} style={sectionStyle} />;
   }
 };
 
-const Section: React.FC<SectionProps> = ({ sectionConfig, index }) => {
-  const { headerStyle, sectionStyle, alignment } = getStyle(index);
+const Section = ({ sectionConfig, index }: SectionProps) => {
+  const { style, alignment } = getStyle(index);
 
-  const content = getContent(sectionConfig, index, sectionStyle);
+  const content = getContent(sectionConfig, style);
 
   return (
     <section>
       <SectionHeader
         title={sectionConfig.section_header}
+        style={style}
+        headerType={sectionConfig.header_style}
         alignment={alignment}
-        className={headerStyle}
       />
       {content}
     </section>

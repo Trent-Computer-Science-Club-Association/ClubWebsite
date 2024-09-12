@@ -1,0 +1,28 @@
+.container {
+  @apply py-16 px-10;
+  & > div {
+    @apply max-w-5xl mx-auto;
+  }
+  @apply items-center;
+  p {
+    @apply text-color-2 leading-relaxed text-xl text-center;
+    @apply mb-4;
+    // Desktop
+    @apply md:text-2xl md:indent-12 md:text-start;
+  }
+
+  .bulletList {
+    @apply grid max-[678px]:grid-rows-3 md:grid-cols-3;
+    @apply gap-4 mb-8;
+  }
+
+  .imageContainer {
+    @apply relative aspect-[16/9];
+    @apply w-full;
+    @apply overflow-hidden;
+    @apply rounded-xl;
+    & > image {
+      @apply object-cover object-center;
+    }
+  }
+}
