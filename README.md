@@ -6,6 +6,15 @@
 
 This repository contains the source code for the official website of the Trent University Computer Science Club Association. The website serves as a central hub for club activities, announcements, resources, and information about our club's events.
 
+# Running the Website Locally
+
+In order to run the website locally, you will need to have [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) installed on your machine.
+
+```bash
+yarn install
+yarn dev
+```
+
 ## Pages
 
 - **[Home](https://tcsca.ca)** - The home page
