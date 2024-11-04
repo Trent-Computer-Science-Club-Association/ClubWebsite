@@ -16,7 +16,7 @@ This repository contains the source code for the official website of the Trent U
 ## Layout and Structure
 
 - **[pages](pages)** - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
-- **[components](components)** - This folder contains all components for the project
+- **[components](components)** - The folder contains all react components used throughout the project (e.g `Button`)
 - **[layouts](layouts)** - This folder contains all layouts for the project
 - **[styles](styles)** - This folder contains all styles for the project
   - **[components](styles/components)** - This folder contains all styles for the components
