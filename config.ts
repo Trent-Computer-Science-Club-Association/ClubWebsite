@@ -13,6 +13,7 @@
 
 import z, { type ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
+import { IconType } from './components/Icon';
 // Import Config
 import rawConfig from './config.yaml';
 // General Types
@@ -29,14 +30,22 @@ export enum SectionType {
   TextSection = 'TextSection',
   NewsSection = 'NewsSection',
   EventSection = 'EventSection',
+  AboutSection = 'AboutSection',
 }
+export enum HeaderStyle {
+  Default = 'Default',
+  Inline = 'Inline',
+}
+const headerStyle = z.nativeEnum(HeaderStyle);
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
   section_header: string;
+  header_style: HeaderStyle;
 }
 const sectionBase = z.strictObject({
   section_type: z.nativeEnum(SectionType),
   section_header: z.string(),
+  header_style: headerStyle.optional().default(HeaderStyle.Default),
 });
 // Config Types
 interface SocialIcon {
@@ -212,31 +221,56 @@ const eventSection = sectionBase.extend({
     }
   ),
 });
-export type Section = TextSection | NewsSection | EventSection;
-const section = z.union([textSection, newsSection, eventSection]);
-// Home page
-interface HomePage {
+
+const iconType = z.nativeEnum(IconType);
+export interface BulletPoint {
+  icon: IconType;
+  title: string;
+  text: string;
+}
+const bulletPoint = z.strictObject({
+  icon: iconType,
+  title: z.string(),
+  text: z.string(),
+});
+export interface AboutSection extends SectionBase {
+  section_type: SectionType.AboutSection;
+  text: string;
+  image: ImageDescription;
+  bullet_points: BulletPoint[];
+}
+const aboutSection = sectionBase.extend({
+  section_type: z.literal(SectionType.AboutSection),
+  text: z.string(),
+  image: imageDescription,
+  bullet_points: z.array(bulletPoint).max(3).optional().default([]),
+});
+export type Section = TextSection | NewsSection | EventSection | AboutSection;
+const section = z.union([textSection, newsSection, eventSection, aboutSection]);
+// Pages
+interface ComposablePage {
   sections: Section[];
 }
-const homePage = z.strictObject({
+const composablePage = z.strictObject({
   sections: z.array(section),
 });
-
 // config
 interface ValidConfig {
   website_config: WebsiteConfig;
   page_list: PageItem[];
   footer_config: FooterConfig;
   // Page Configs
-  home_page: HomePage;
+  home_page: ComposablePage;
   events: EventItem[];
+  about_page: ComposablePage;
 }
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
-  home_page: homePage,
+  home_page: composablePage,
   events: z.array(eventItem),
+  about_page: composablePage,
 });
 // Config Section Spaced out for an easier error
 // =========================================================================
@@ -276,3 +310,4 @@ export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
 export const events = config.events;
+export const about_page = config.about_page;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/layouts/EventSection.module.scss';
+import { type SectionStyle, getSectionStyling } from '../utils';
 import { EventGridStyle, type EventSection, type EventItem } from '../config';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Event from '../components/Event';
@@ -38,10 +39,12 @@ const getSectionLayout = (
 
 interface Props {
   className?: string;
+  style: SectionStyle;
   section: EventSection;
 }
 
-export default function EventSection({ className, section }: Props) {
+export default function EventSection({ section, className, style }: Props) {
+  const sectionStyle = getSectionStyling(style);
   const [currentView, setCurrentView] = useState(0);
   // Map the events
   const events = section.events.map((event, i): [EventItem, JSX.Element] => [
@@ -59,7 +62,13 @@ export default function EventSection({ className, section }: Props) {
     );
   // Build ui
   return (
-    <div className={[styles.container, className].join(' ')}>
+    <div
+      className={[
+        styles.container,
+        className,
+        sectionStyle.backgroundColor,
+      ].join(' ')}
+    >
       {/* Event Container */}
       <div>{event_view}</div>
       {/* Possible Buttons */}

@@ -80,3 +80,39 @@ export const formatDate = (
       return moment(date).format('YYYY-MM-DD');
   }
 };
+
+// SectionStyling
+/**
+ * The type of style to apply.
+ */
+export enum SectionStyle {
+  Primary,
+  Secondary,
+}
+/**
+ * The styling information for a section.
+ */
+interface SectionStyling {
+  foregroundColor: string;
+  backgroundColor: string;
+}
+/**
+ * A global helper for getting the style information within sections.
+ * @param style: The style of the section
+ * @returns {Object} The style information for the section
+ */
+export const getSectionStyling = (style: SectionStyle): SectionStyling => {
+  // Note: These classes are in ./styles/globals.scss
+  switch (style) {
+    case SectionStyle.Primary:
+      return {
+        foregroundColor: 'primaryForeground',
+        backgroundColor: 'primaryBackground',
+      };
+    case SectionStyle.Secondary:
+      return {
+        foregroundColor: 'secondaryForeground',
+        backgroundColor: 'secondaryBackground',
+      };
+  }
+};

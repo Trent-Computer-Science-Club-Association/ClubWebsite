@@ -31,7 +31,7 @@ page_list:
     page_link: /
     display_in_navbar: true
   - page_name: About Us
-    page_link: /About
+    page_link: /about
     display_in_navbar: true
   - page_name: Events
     page_link: /Events
@@ -91,4 +91,55 @@ home_page:
         - text: NEWS ABOUT EXCITING EVENT
           date: 2024-07-25
           # href: /
-          href: /
+# Configuration for About page
+about_page:
+  sections:
+    - section_type: AboutSection
+      section_header: Who Are We?
+      header_style: Inline
+      text: The Trent Computer Science Club Association is a student-run organization dedicated to enriching the computer science experience at Trent University. From coding workshops to hackathons, the TCSCA offers a variety of opportunities for students to expand their knowledge and network effectively to break into the tech industry.
+      image:
+        src: /about1.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: People
+          title: Our Dedicated Members
+          text: Meet the individuals who lead our club and drive our initiatives.
+        - icon: HourGlass
+          title: More Text
+          text: Example text to say stuff about something about us
+        - icon: Award
+          title: Even More text
+          text: Example text to say stuff about something about us
+    - section_type: AboutSection
+      section_header: Our Mission
+      text: Our mission is  to create a vibrant community of computer science enthusiasts, where students can explore their interests, develop their skills, and collaborate on innovative projects. We strive to inspire the next generation of technology leaders and empower them to make a positive impact on the world.
+      image:
+        src: /about2.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: LightBulb
+          title: Inspiring Innovation
+          text: We aim to inspire our members to explore the boundless possibilities of computer science and technology.
+        - icon: Development
+          title: Empowering Developers
+          text: We empower our members to develop their skills, collaborate on projects, and make a meaningful impact.
+        - icon: Target
+          title: Fostering Innovation
+          text: We encourage our members to think outside the box and develop innovative solutions to real-world problems.
+    - section_type: AboutSection
+      section_header: Why Join Us?
+      text: Our mission is  to create a vibrant community of computer science enthusiasts, where students can explore their interests, develop their skills, and collaborate on innovative projects. We strive to inspire the next generation of technology leaders and empower them to make a positive impact on the world.
+      image:
+        src: /about3.png
+        alt: Currently a placeholder
+      bullet_points:
+        - icon: People
+          title: Networking Opportunities
+          text: Connect with a diverse community of computer science enthusiasts and build lasting professional relationships.
+        - icon: HourGlass
+          title: Skill Development
+          text: Participate in workshops, hackathons, and project-based learning to enhance your technical and soft skills.
+        - icon: Award
+          title: Community Involvement
+          text: Contribute to the local community through volunteering, outreach programs, and collaborative projects.
