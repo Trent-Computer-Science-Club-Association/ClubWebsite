@@ -8,16 +8,16 @@ This repository contains the source code for the official website of the Trent U
 
 ## Pages
 
-- **[Home](https://tcsca.ca)** - The main page for the website
-- **[About Us](https://tcsca.ca/About)** - The page for our about us page
-- **[Events](https://tcsca.ca/Events)** - The page for our events
-- **[Contact Us](https://tcsca.ca/Contact)** - The page for our contact us page
+- **[Home](https://tcsca.ca)** - The home page
+- **[About Us](https://tcsca.ca/About)** - The about us page
+- **[Events](https://tcsca.ca/Events)** - The events page
+- **[Contact Us](https://tcsca.ca/Contact)** - The contact us page
 
 ## Layout and Structure
 
 - **[pages](pages)** - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
-- **[components](components)** - This folder contains all components for the project
-- **[layouts](layouts)** - This folder contains all layouts for the project
+- **[components](components)** - The folder contains all react components used throughout the project (e.g `Button`)
+- **[layouts](layouts)** - This folder contains all the layouts for the project (e.g `AboutSection`)
 - **[styles](styles)** - This folder contains all styles for the project
   - **[components](styles/components)** - This folder contains all styles for the components
   - **[layouts](styles/layouts)** - This folder contains all styles for the layouts
@@ -30,7 +30,6 @@ This repository contains the source code for the official website of the Trent U
 ## Commands
 
 - `npm run dev` - Runs the next.js development process
-  - if you need to use serverless functions in your testing, run `vercel dev` instead
 - `npm run build` - Runs the next.js build process
 - `npm run start` - Starts the next.js server in production mode
 - `npm run lint` - Runs the linter
