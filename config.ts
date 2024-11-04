@@ -15,6 +15,7 @@ import z, { type ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 // Import Config
 import rawConfig from './config.yaml';
+
 // General Types
 export interface ImageDescription {
   src: string;
@@ -24,36 +25,46 @@ const imageDescription = z.strictObject({
   src: z.string(),
   alt: z.string(),
 });
+
 // Section
 export enum SectionType {
   TextSection = 'TextSection',
   NewsSection = 'NewsSection',
   EventSection = 'EventSection',
+  ContactSection = 'ContactSection',
+  ListingSection = 'ListingSection',
 }
+
 interface SectionBase {
   // section_type: SectionType; -- We cannot have this here because of the whole filtering by sections stuff, but it is necessary on each type
-  section_header: string;
+  section_header?: string;
 }
+
 const sectionBase = z.strictObject({
   section_type: z.nativeEnum(SectionType),
-  section_header: z.string(),
+  section_header: z.string().optional(),
 });
+
 // Config Types
-interface SocialIcon {
+export interface SocialIcon {
   alt_text: string;
   link: string;
   path: string;
+  text: string;
 }
+
 const socialIcon = z.strictObject({
   alt_text: z.string(),
   link: z.string(),
   path: z.string(),
+  text: z.string(),
 });
 
 interface MetaConfig {
   title: string;
   description: string;
 }
+
 const metaConfig = z.strictObject({
   title: z.string(),
   description: z.string(),
@@ -61,44 +72,52 @@ const metaConfig = z.strictObject({
 
 interface WebsiteConfig {
   title: string;
+  tagline: string;
   meta: MetaConfig;
-  hackathon_url: string;
   email: string;
   discord: string;
   instagram: string;
   linkedin: string;
-  tagline: string;
+  github: string;
+  hackathon_url: string;
   social_icons: SocialIcon[];
   banner_text?: string;
 }
+
 const websiteConfig = z.strictObject({
   title: z.string(),
+  tagline: z.string(),
   meta: metaConfig,
-  hackathon_url: z.string(),
   email: z.string(),
   discord: z.string(),
   instagram: z.string(),
   linkedin: z.string(),
-  tagline: z.string(),
+  github: z.string(),
+  hackathon_url: z.string(),
   social_icons: z.array(socialIcon),
   banner_text: z.optional(z.string()),
 });
+
 interface PageItem {
   page_name: string;
   page_link: string;
   display_in_navbar: boolean;
 }
+
 const pageItem = z.strictObject({
   page_name: z.string(),
   page_link: z.string(),
   display_in_navbar: z.boolean(),
 });
+
 interface FooterConfig {
   text: string;
 }
+
 const footerConfig = z.strictObject({
   text: z.string(),
 });
+
 // Events
 export interface EventItem {
   title: string;
@@ -109,6 +128,7 @@ export interface EventItem {
   image: ImageDescription;
   location: string;
 }
+
 const eventItem = z
   .strictObject({
     title: z.string(),
@@ -129,33 +149,46 @@ const eventItem = z
       path: ['events'],
     }
   );
+
 // Sections
+export enum TextSectionButton {
+  Default = 'Default',
+  Sponsor = 'Sponsor',
+}
+
+const textSectionButton = z.nativeEnum(TextSectionButton);
+
 export interface TextSection extends SectionBase {
   section_type: SectionType.TextSection;
   text: string;
   image: ImageDescription;
   button?: {
+    style: TextSectionButton;
     text: string;
     href: string;
   };
 }
+
 const textSection = sectionBase.extend({
   section_type: z.literal(SectionType.TextSection),
   text: z.string(),
   image: imageDescription,
   button: z
     .strictObject({
+      style: textSectionButton.optional().default(TextSectionButton.Default),
       text: z.string(),
       href: z.string(),
     })
     .optional(),
 });
+
 export interface NewsItem {
   text: string;
   date: Date;
   location?: string;
   href?: string;
 }
+
 const newsItem = z.strictObject({
   text: z.string(),
   date: z.date(),
@@ -167,10 +200,81 @@ export interface NewsSection extends SectionBase {
   section_type: SectionType.NewsSection;
   news_feed: NewsItem[];
 }
+
 const newsSection = sectionBase.extend({
   section_type: z.literal(SectionType.NewsSection),
   news_feed: z.array(newsItem),
 });
+
+export interface ContactSection extends SectionBase {
+  section_type: SectionType.ContactSection;
+  submission_url: string;
+}
+
+const contactSection = sectionBase.extend({
+  section_type: z.literal(SectionType.ContactSection),
+  submission_url: z.string(),
+});
+
+export enum ContactSubject {
+  Applying = 'Applying',
+  Sponsor = 'Sponsor',
+  Volunteering = 'Volunteering',
+  Development = 'Development',
+  Creative = 'Creative',
+  Managerial = 'Managerial',
+  Outreach = 'Outreach',
+}
+
+export const contactSubject = z.nativeEnum(ContactSubject);
+
+export enum RequirementIcon {
+  CheckMark = 'CheckMark',
+  React = 'React',
+}
+
+const requirementIcon = z.nativeEnum(RequirementIcon);
+
+interface Requirement {
+  description: string;
+  icon: RequirementIcon;
+}
+
+const requirement = z.strictObject({
+  description: z.string(),
+  icon: requirementIcon.optional().default(RequirementIcon.CheckMark),
+});
+
+export interface Listing {
+  priority: number;
+  title: string;
+  description: string;
+  requirements: Requirement[];
+  type: ContactSubject;
+  modal?: string;
+  keywords: string[];
+}
+
+const listing = z.strictObject({
+  priority: z.number().default(Infinity),
+  title: z.string(),
+  description: z.string(),
+  requirements: z.array(requirement).max(4),
+  type: contactSubject,
+  modal: z.string().optional(),
+  keywords: z.array(z.string()),
+});
+
+export interface ListingSection extends SectionBase {
+  section_type: SectionType.ListingSection;
+  listings: Listing[];
+}
+
+const listingSection = sectionBase.extend({
+  section_type: z.literal(SectionType.ListingSection),
+  listings: z.array(listing),
+});
+
 export enum EventGridStyle {
   /**
    * All events are shown in a grid.
@@ -185,12 +289,15 @@ export enum EventGridStyle {
    */
   HomeList = 'HomeList',
 }
+
 const eventGridStyle = z.nativeEnum(EventGridStyle);
+
 export interface EventSection extends SectionBase {
   section_type: SectionType.EventSection;
   grid_style: EventGridStyle;
   events: EventItem[];
 }
+
 const eventSection = sectionBase.extend({
   section_type: z.literal(SectionType.EventSection),
   grid_style: eventGridStyle,
@@ -212,13 +319,27 @@ const eventSection = sectionBase.extend({
     }
   ),
 });
-export type Section = TextSection | NewsSection | EventSection;
-const section = z.union([textSection, newsSection, eventSection]);
-// Home page
-interface HomePage {
+
+// Top Level
+export type Section =
+  | TextSection
+  | NewsSection
+  | ContactSection
+  | ListingSection
+  | EventSection;
+const section = z.union([
+  textSection,
+  newsSection,
+  contactSection,
+  listingSection,
+  eventSection,
+]);
+
+interface ComposablePage {
   sections: Section[];
 }
-const homePage = z.strictObject({
+
+const composablePage = z.strictObject({
   sections: z.array(section),
 });
 
@@ -228,16 +349,20 @@ interface ValidConfig {
   page_list: PageItem[];
   footer_config: FooterConfig;
   // Page Configs
-  home_page: HomePage;
+  home_page: ComposablePage;
+  contact_page: ComposablePage;
   events: EventItem[];
 }
+
 const configValidator = z.strictObject({
   website_config: websiteConfig,
   page_list: z.array(pageItem),
   footer_config: footerConfig,
-  home_page: homePage,
+  home_page: composablePage,
+  contact_page: composablePage,
   events: z.array(eventItem),
 });
+
 // Config Section Spaced out for an easier error
 // =========================================================================
 function formatConfigError(error: ZodError) {
@@ -275,4 +400,5 @@ export const website_config = config.website_config;
 export const footer_config = config.footer_config;
 export const page_list = config.page_list;
 export const home_page = config.home_page;
+export const contact_page = config.contact_page;
 export const events = config.events;
