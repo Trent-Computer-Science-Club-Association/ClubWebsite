@@ -22,9 +22,8 @@ export default function ErrorLayout({
     // If the user is coming from a broken link on our site, they can report an issue
     // Note: document.referrer is not always reliable as there are ways it can be blocked
     if (
-      document.referrer.includes(
-        'localhost:3000' || document.referrer.startsWith(departureUrl)
-      )
+      document.referrer.includes('localhost:3000') ||
+      document.referrer.startsWith(departureUrl)
     ) {
       setAllowReport(true);
     } else {

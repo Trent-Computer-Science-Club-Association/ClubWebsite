@@ -6,6 +6,15 @@
 
 This repository contains the source code for the official website of the Trent University Computer Science Club Association. The website serves as a central hub for club activities, announcements, resources, and information about our club's events.
 
+# Running the Website Locally
+
+In order to run the website locally, you will need to have [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) installed on your machine.
+
+```bash
+yarn install
+yarn dev
+```
+
 ## Pages
 
 - **[Home](https://tcsca.ca)** - The home page
@@ -29,11 +38,11 @@ This repository contains the source code for the official website of the Trent U
 
 ## Commands
 
-- `npm run dev` - Runs the next.js development process
-- `npm run build` - Runs the next.js build process
-- `npm run start` - Starts the next.js server in production mode
-- `npm run lint` - Runs the linter
-- `npm run format` - Runs prettier to format code
+- `yarn dev` - Runs the next.js development process
+- `yarn build` - Runs the next.js build process
+- `yarn start` - Starts the next.js server in production mode
+- `yarn lint` - Runs the linter
+- `yarn format` - Runs prettier to format code
 
 ## Contributing
 
