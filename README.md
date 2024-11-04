@@ -1,8 +1,31 @@
-## Getting Started
+<p align="center">
+  <img src="public/logo.svg" alt="Trent Computer Science Club Association Logo" width="200">
+</p>
 
-This project is a simple starting point for any next.js applications. It is configured to use `tailwind css`, `typescript`, `next.js`, `eslint` and `prettier`.
+# Trent Computer Science Club Association Website
 
-In order to get started, fork this project, clone the forked repository and run `npm install`, then run `npm run dev` to start the development server.
+This repository contains the source code for the official website of the Trent University Computer Science Club Association. The website serves as a central hub for club activities, announcements, resources, and information about our club's events.
+
+## Pages
+
+- **[Home](https://tcsca.ca)** - The home page
+- **[About Us](https://tcsca.ca/About)** - The about us page
+- **[Events](https://tcsca.ca/Events)** - The events page
+- **[Contact Us](https://tcsca.ca/Contact)** - The contact us page
+
+## Layout and Structure
+
+- **[pages](pages)** - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
+- **[components](components)** - The folder contains all react components used throughout the project (e.g `Button`)
+- **[layouts](layouts)** - This folder contains all the layouts for the project (e.g `AboutSection`)
+- **[styles](styles)** - This folder contains all styles for the project
+  - **[components](styles/components)** - This folder contains all styles for the components
+  - **[layouts](styles/layouts)** - This folder contains all styles for the layouts
+- **[utils.ts](utils.ts)** - This file contains all of our global utility functions
+
+- Additionally, in the root directly you will find a `config.ts` file and `config.yaml` file.
+  - `config.ts` is the backbone of our site and ensures type safety for our configuration
+  - `config.yaml` is the configuration file for the website
 
 ## Commands
 
@@ -12,9 +35,11 @@ In order to get started, fork this project, clone the forked repository and run 
 - `npm run lint` - Runs the linter
 - `npm run format` - Runs prettier to format code
 
-## Layout
+## Contributing
 
-- `pages` - This folder contains the source code for each page with `_app.tsx` and `_document.tsx` being special files that control global page content.
-- `styles` - This folder contains all styles for the project
-- `components` - This folder contains all components for the project
-- `_Static` - This folder will contain any static code or files for the project
+We welcome contributions to this project, however, please note that we do have plans and goals, so please contact us before doing anything that heavily impacts UI or functionality. (Fixes always welcome)
+
+## Contact Us
+
+- The best way to contact our devs is via Discord, you can join our Discord server [here](https://discord.gg/serea2sPAd).
+- Additionally, you can use the contact us page [here](https://tcsca.ca/Contact).
