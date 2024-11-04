@@ -21,10 +21,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Lint
         run: |
-          npm ci
-          npm run lint
-          npm run typecheck
+          yarn install
+          yarn lint
+          yarn typecheck

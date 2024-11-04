@@ -29,11 +29,11 @@ This repository contains the source code for the official website of the Trent U
 
 ## Commands
 
-- `npm run dev` - Runs the next.js development process
-- `npm run build` - Runs the next.js build process
-- `npm run start` - Starts the next.js server in production mode
-- `npm run lint` - Runs the linter
-- `npm run format` - Runs prettier to format code
+- `yarn dev` - Runs the next.js development process
+- `yarn build` - Runs the next.js build process
+- `yarn start` - Starts the next.js server in production mode
+- `yarn lint` - Runs the linter
+- `yarn format` - Runs prettier to format code
 
 ## Contributing
 
