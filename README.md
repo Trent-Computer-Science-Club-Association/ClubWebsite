@@ -27,10 +27,6 @@ This repository contains the source code for the official website of the Trent U
   - `config.ts` is the backbone of our site and ensures type safety for our configuration
   - `config.yaml` is the configuration file for the website
 
-## License
-
-This project is licensed under the [LGPL-2.1 License](LICENSE).
-
 ## Commands
 
 - `npm run dev` - Runs the next.js development process
