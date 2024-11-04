@@ -34,7 +34,6 @@ This project is licensed under the [LGPL-2.1 License](LICENSE).
 ## Commands
 
 - `npm run dev` - Runs the next.js development process
-  - if you need to use serverless functions in your testing, run `vercel dev` instead
 - `npm run build` - Runs the next.js build process
 - `npm run start` - Starts the next.js server in production mode
 - `npm run lint` - Runs the linter
