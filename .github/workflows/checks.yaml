@@ -25,6 +25,7 @@ jobs:
 
       - name: Lint
         run: |
+          corepack enable
           yarn install
           yarn lint
           yarn typecheck
