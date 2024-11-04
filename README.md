@@ -11,7 +11,7 @@ This repository contains the source code for the official website of the Trent U
 - **[Home](https://tcsca.ca)** - The home page
 - **[About Us](https://tcsca.ca/About)** - The about us page
 - **[Events](https://tcsca.ca/Events)** - The events page
-- **[Contact Us](https://tcsca.ca/Contact)** - The page for our contact us page
+- **[Contact Us](https://tcsca.ca/Contact)** - The contact us page
 
 ## Layout and Structure
 
